@@ -1,0 +1,7 @@
+# 2021-12-set2  subtitle/voice spot-check clips
+# audio: 2021.12六级听力第2套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[pass-2-0062.mp3]  714.68-719.56s  (Speaker, pass-2)   <== FLAGGED
+  EN: Educational shows have pro-education and pro-social goals.
+  ZH: 少儿教育节目固然秉持着崇高的崇尚教育与亲社会行为目标。

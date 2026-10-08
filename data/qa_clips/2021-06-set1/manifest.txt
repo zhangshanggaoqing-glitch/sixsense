@@ -1,0 +1,7 @@
+# 2021-06-set1  subtitle/voice spot-check clips
+# audio: 2021年6月六级听力第1套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[rec-3-0129.mp3]  1408.86-1416.74s  (Speaker, rec-3)   <== FLAGGED
+  EN: According to official statistics, Thailand's annual road death rate is almost double the global average.
+  ZH: 根据官方权威统计数据显示，泰国的年均交通事故致死率几乎是全球平均水平的两倍。

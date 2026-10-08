@@ -1,0 +1,67 @@
+# 2022-12-set1  subtitle/voice spot-check clips
+# audio: 2022.12六级真题第1套听力.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-2-0009.mp3]  285.33-309.97s  (W, conv-2)   <== FLAGGED
+  EN: Your last book was written mainly for the medical community.
+  ZH: 您的上一本书主要是为医学界专业人士写的。
+
+[conv-2-0010.mp3]  316.79-321.41s  (W, conv-2)   <== FLAGGED
+  EN: Do you expect this book will be read by a wider audience?
+  ZH: 您预期这本书会吸引更广泛的受众群体阅读吗？
+
+[conv-2-0011.mp3]  321.41-321.67s  (M, conv-2)   <== FLAGGED
+  EN: Yes, definitely.
+  ZH: 是的，肯定会。
+
+[conv-2-0012.mp3]  321.67-321.91s  (M, conv-2)   <== FLAGGED
+  EN: I think it has a lot to offer to anyone who wants to take charge of their health.
+  ZH: 我认为对于任何想要掌控自身健康的人来说，这本书都能带来很多启示。
+
+[conv-2-0013.mp3]  321.91-322.63s  (W, conv-2)   <== FLAGGED
+  EN: What do you think is the biggest mistake people make when they try to lose weight?
+  ZH: 您认为人们在尝试减肥时所犯的最大误区是什么？
+
+[conv-2-0014.mp3]  324.21-325.85s  (M, conv-2)   <== FLAGGED
+  EN: I think it's falling for fad diets that promise quick results.
+  ZH: 我认为是盲目迷信那些承诺能快速见效的流行节食法。
+
+[conv-2-0015.mp3]  325.85-326.09s  (M, conv-2)   <== FLAGGED
+  EN: Most of these diets are simply unsustainable in the long run.
+  ZH: 从长远来看，这些节食方法大多数根本无法长久坚持。
+
+[conv-2-0016.mp3]  326.09-326.29s  (M, conv-2)   <== FLAGGED
+  EN: And what's worse, they can actually be dangerous.
+  ZH: 更糟糕的是，它们实际上还可能危害身体健康。
+
+[conv-2-0017.mp3]  326.29-326.49s  (W, conv-2)   <== FLAGGED
+  EN: So what do you recommend instead?
+  ZH: 那么您有什么好的替代建议呢？
+
+[conv-2-0018.mp3]  326.49-329.99s  (M, conv-2)   <== FLAGGED
+  EN: I believe everyone needs to consider their own metabolism and eat what works for their body.
+  ZH: 我认为每个人都需要审视自身的新陈代谢，吃适合自己身体需求的食物。
+
+[conv-2-0019.mp3]  331.19-333.53s  (M, conv-2)   <== FLAGGED
+  EN: I don't advocate a one-size-fits-all diet.
+  ZH: 我不提倡一刀切的万能饮食模式。
+
+[conv-2-0021.mp3]  337.67-340.35s  (M, conv-2)   <== FLAGGED
+  EN: Different people have different requirements for protein and fat.
+  ZH: 不同的人对蛋白质和脂肪的需求量也各有不同。
+
+[conv-2-0022.mp3]  341.05-350.19s  (W, conv-2)   <== FLAGGED
+  EN: That makes a lot of sense.
+  ZH: 这非常合乎情理。
+
+[pass-2-0005.mp3]  686.94-709.94s  (W, pass-2)   <== FLAGGED
+  EN: As a result, they ignore the issues that may seem minor initially until, inevitably, they are transformed into crises by neglect.
+  ZH: 结果，他们忽视了那些起初看似微不足道的问题，直到这些小事因疏忽而不可避免地演变成危机。
+
+[pass-2-0006.mp3]  709.94-742.44s  (W, pass-2)   <== FLAGGED
+  EN: Consequently, leaders must shift resources from other tasks to check, filter and respond to emails.
+  ZH: 因此，领导者不得不从其他战略任务中抽调精力和资源，来查阅、筛选和回复电子邮件。
+
+[rec-3-0005.mp3]  1389.34-1400.78s  (M, rec-3)   <== FLAGGED
+  EN: Well, the coins collected can go to all sorts of different places—from fountain maintenance to charity or public service.
+  ZH: 其实，收集起来的硬币流向多种多样——从喷泉自身的维护修缮，到慈善事业或公共服务。

@@ -1,0 +1,19 @@
+# 2022-12-set2  subtitle/voice spot-check clips
+# audio: 2022.12六级真题第2套听力.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-2-0035.mp3]  279.56-281.00s  (M, conv-2)   <== FLAGGED
+  EN: This piece was inspired by Gregory's recent trek in the Gobi Desert.
+  ZH: 这幅作品的灵感源自格雷戈里最近在戈壁沙漠的徒步之旅。
+
+[conv-2-0055.mp3]  348.56-349.42s  (M, conv-2)   <== FLAGGED
+  EN: Would you like to come along?
+  ZH: 你想一起来吗？
+
+[pass-2-0077.mp3]  637.24-643.26s  (W, pass-2)   <== FLAGGED
+  EN: The Glasgow subway first opened in 1896 as a cable-hauled system.
+  ZH: 格拉斯哥地铁于1896年首次开通运营，当时采用钢缆牵引系统。
+
+[pass-2-0085.mp3]  702.38-705.46s  (W, pass-2)   <== FLAGGED
+  EN: The subway in its present form reopened for operation in April 1980.
+  ZH: 现行形态的地铁于1980年4月重新开通投入运营。

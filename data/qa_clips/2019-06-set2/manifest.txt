@@ -1,0 +1,19 @@
+# 2019-06-set2  subtitle/voice spot-check clips
+# audio: 2019年06月六级听力第2套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[pass-1-0026.mp3]  472.54-484.06s  (M, pass-1)   <== FLAGGED
+  EN: Airline passengers have to deal with a lot, getting bumped from a flight, losing luggage, and on top of this, nervous passengers are always and generally a fact of life.
+  ZH: 航空旅客必须应对许多问题：被临时取消航班、丢失行李，除此之外，紧张的乘客总是并且普遍是旅行生活的一部分。
+
+[rec-2-0050.mp3]  1162.62-1191.08s  (M, rec-2)   <== FLAGGED
+  EN: Good evening. In 1959, the year I was born, a headline in Life magazine proclaimed, Target Venus: May Be Life There! It told of scientists lifting a balloon to 80,000 feet for telescope observations of Venus's atmosphere and their discovery of water raising hopes of life on the planet.
+  ZH: 晚上好。1959 年，也就是我出生的那一年，《生活》杂志的一则头版标题宣称：《瞄准金星：那里可能有生命！》那篇文章讲述了科学家们把气球升到 8 万英尺高空，用望远镜观测金星大气层，以及他们关于在金星上发现水的消息如何唤起了人们对这颗星球上存在生命的期待。
+
+[rec-2-0057.mp3]  1326.96-1350.46s  (M, rec-2)   <== FLAGGED
+  EN: Thus our picture of Venus is of a planet with warm oceans swirled with organic molecules, lapping against shores that were lined with forests and volcanoes. The sun was far dimmer back then. So Venus was, in many ways, cozier than Earth.
+  ZH: 因此，我们脑海中描绘出的金星是这样一颗行星：温暖的海洋里打着有机分子，海浪拍打着由森林与火山环绕的海岸。那时的太阳要暗得多。所以从很多方面看，金星都比地球更加宜居。
+
+[rec-3-0058.mp3]  1351.72-1383.72s  (M, rec-3)   <== FLAGGED
+  EN: If I'm a psychology professor at the University of British Columbia, I specialize in cultural psychology, examining similarities and differences between East Asians and North Americans.
+  ZH: 我是英属哥伦比亚大学的一名心理学教授，专攻文化心理学，研究东亚人与北美人之间的异同。

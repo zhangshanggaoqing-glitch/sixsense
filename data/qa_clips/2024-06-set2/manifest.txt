@@ -1,0 +1,11 @@
+# 2024-06-set2  subtitle/voice spot-check clips
+# audio: 2024.06六级听力音频第2套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-1-0016.mp3]  84.33-85.31s  (W, conv-1)   <== FLAGGED
+  EN: Um, I see.
+  ZH: 嗯，我明白了。
+
+[conv-2-0018.mp3]  317.23-317.67s  (M, conv-2)   <== FLAGGED
+  EN: And it worked.
+  ZH: 而且这个办法奏效了。

@@ -1,0 +1,31 @@
+# 2023-03-set1  subtitle/voice spot-check clips
+# audio: 2023年03月六级真题（3套相同）听力音频.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-1-0031.mp3]  144.98-145.86s  (W, conv-1)   <== FLAGGED
+  EN: What are you going to have?
+  ZH: 你打算点些什么？
+
+[conv-2-0002.mp3]  229.59-231.01s  (W, conv-2)   <== FLAGGED
+  EN: Did you get much in the way of praise?
+  ZH: 得到不少表扬吧？
+
+[conv-2-0018.mp3]  304.33-304.55s  (W, conv-2)   <== FLAGGED
+  EN: Exactly.
+  ZH: 可不是嘛。
+
+[conv-2-0019.mp3]  304.55-306.07s  (W, conv-2)   <== FLAGGED
+  EN: Too honest? Isn't that a good thing?
+  ZH: 太坦率？难道这不是一件好事吗？
+
+[pass-1-0005.mp3]  497.67-498.25s  (M, pass-1)   <== FLAGGED
+  EN: Many show those same qualities off the playing field, too.
+  ZH: 许多人在赛场之外也同样展现出这些优秀的品质。
+
+[rec-1-0009.mp3]  911.02-911.68s  (M, rec-1)   <== FLAGGED
+  EN: They tend to be more agreeable and conscientious.
+  ZH: 他们往往表现得更加随和融洽、认真负责。
+
+[rec-2-0001.mp3]  1092.87-1094.31s  (W, rec-2)   <== FLAGGED
+  EN: Today, we are talking about loneliness.
+  ZH: 今天我们要探讨的话题是孤独。

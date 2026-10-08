@@ -1,0 +1,11 @@
+# 2018-12-set1  subtitle/voice spot-check clips
+# audio: 2018年12月六级听力第1套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[pass-2-0025.mp3]  673.70-705.70s  (M, pass-2)   <== FLAGGED
+  EN: The researchers used a psychological assessment tool to test the validity of the study. They asked one thousand one hundred Americans and one thousand six hundred Europeans to grade different statements such as After a challenging mental activity, my energy is depleted and I must rest to get it refueled again or I can focus on a mental task for long periods without feeling tired. Although there was little difference between men and women overall, Americans were more likely to admit to needing breaks after completing mentally challenging tasks. European participants, on the other hand, claimed they were able to keep going.
+  ZH: 研究者使用一种心理评估工具对研究的效度进行了测试。他们让 1100 名美国人和 1600 名欧洲人给不同的表述打分，比如「在一项挑战性脑力活动之后，我的能量会耗尽，我必须休息以补充能量」或「我可以长时间专注于一项脑力工作而不感到疲惫」。尽管总体上男性和女性几乎没有差异，但美国人更可能承认自己在完成挑战性脑力任务后需要休息，而欧洲参与者则声称自己能够继续坚持。
+
+[rec-3-0039.mp3]  1342.24-1374.24s  (M, rec-3)   <== FLAGGED
+  EN: Current services originate in two key measures. They are the National Health Service and the 1948 National Assistance Act. This required local governments to provide residential accommodation for older people and supervise care homes run by independent organizations. They also provided home and community services, including meals, day centres and home helpers and other subsidized services. The National Health Service was free and wholly publicly provided. It delivered the best health care for all. No such vision guided residential and community care, though. The care was substantially provided by voluntary services which worked together with local authorities as they long had, with eligibility based on income.
+  ZH: 当前服务源于两项重要法案，即《国民医疗服务法》和 1948 年的《国民救助法》。这要求地方政府为老年人提供住宿，并对由独立机构经营的养老院进行监督。它们还提供家庭和社区服务，包括膳食、日托中心和家庭帮佣以及其他补贴服务。国民医疗服务免费，完全由政府提供，它为所有人提供最好的医疗保健。然而，没有这样的愿景来指导院舍护理及社区护理。这些护理大部分是由志愿服务机构提供的，这些机构长期与地方政府合作，根据收入多少确定公民是否有资格得到护理。

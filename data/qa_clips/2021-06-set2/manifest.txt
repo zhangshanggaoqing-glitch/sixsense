@@ -1,0 +1,7 @@
+# 2021-06-set2  subtitle/voice spot-check clips
+# audio: 2021年6月六级听力第2套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-2-0026.mp3]  184.86-216.86s  (W, conv-2)   <== FLAGGED
+  EN: How was your holiday? Not too many other tourists around, were there?
+  ZH: 你假期过得怎么样？周围游客应该不算太多吧？

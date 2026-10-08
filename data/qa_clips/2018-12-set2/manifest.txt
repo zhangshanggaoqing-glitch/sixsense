@@ -1,0 +1,15 @@
+# 2018-12-set2  subtitle/voice spot-check clips
+# audio: 2018年12月六级听力第2套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[rec-1-0030.mp3]  883.19-915.19s  (M, rec-1)   <== FLAGGED
+  EN: You'll not find many brain scientists celebrating this breakthrough. The company might be very optimistic, but the ability of their machine to detect deception has not provided credible proof. That's because the technology has not been properly tested in real-world situations. In life, there are different kinds of lies and diverse context in which they're told. These differences may elicit different brain responses. Does their hypothesis behind the test apply in every case? We don't know the answer, because studies done on how reliable this machine is have not yet been duplicated. Much more research is badly needed.
+  ZH: 你会发现，没有多少脑科学家在赞美这项突破。该公司也许相当乐观，但是其机器的识骗能力并未提供可信性证明。这是因为该技术尚未在现实情境中进行充分测试。生活中有形形色色的谎言，而这些谎言又有着各式各样的生成语境。这些区别可能引起大脑的不同反应。他们试验背后的假设能应用于每一个案件吗？我们并不知道答案，因为关于这台机器可信度如何的研究尚未被复制。急需更多的研究。
+
+[rec-2-0035.mp3]  1127.23-1159.23s  (M, rec-2)   <== FLAGGED
+  EN: Why so many? We could ask the same question of the entire globe. People don't speak one universal language, or even a handful. Instead, today our species collectively speaks over 7,000 distinct languages. And these languages are not spread randomly across the planet. For example, far more languages are found in tropical regions than in the mild zones. The tropical island of New Guinea is home to over 900 languages. Russia, 20 times larger, has 105 indigenous languages. Even within the tropics, language diversity varies widely. For example, the 250,000 people who live on Vanuatu's 80 islands speak 110 different languages, but in Bangladesh, a population 600 times greater, speaks only 41 languages.
+  ZH: 为什么有这么多种语言呢？我们可以对全世界提出同样的问题。人们没有一种通用语言，甚至也不是只说几种语言。相反，今天我们人类一共有 7000 多种不同的语言。而这些语言在地球上并不是随意分布的。例如，在热带地区发现的语言种类远多于温带地区。热带岛屿新几内亚有 900 多种语言。而面积是新几内亚 20 倍的俄罗斯则只有 105 种土著语言。甚至在热带地区内部，语言多样性也有很大差异。例如，生活在瓦努阿图 80 个岛屿上的 25 万人讲着 110 种不同的语言，但在人口是瓦努阿图 600 倍的孟加拉国，却只有 41 种语言。
+
+[rec-2-0036.mp3]  1187.81-1219.81s  (M, rec-2)   <== FLAGGED
+  EN: How come humans speak so many languages? And why are they so unevenly spread across the planet? As it turns out, we have few clear answers to these fundamental questions about how humanity communicates. Most people can easily brainstorm possible answers to these intriguing questions. They hypothesize that language diversity must be about history, cultural differences, mountains or oceans dividing populations. But when our diverse team of researchers from six different disciplines and eight different countries began to review what was known, we were shocked that only a dozen previous studies had been done, including one we ourselves completed on language diversity in the Pacific.
+  ZH: 为什么人类会有这么多种语言？为什么这些语言在地球上的分布如此不均衡？事实证明，我们对人类是如何交流这类基本问题尚无明确的答案。大多数人能轻松地通过头脑风暴对这些有趣的问题做出可能的解释。他们假定语言的多样性一定与历史、文化差异、山川或海洋分隔人口有关。但是，当来自 6 个不同学科、8 个不同国家的研究人员组成的多元化团队开始回顾已知内容时，我们震惊地发现，在此之前只有 12 项相关研究，其中还包括一项我们自己完成的关于太平洋地区语言多样性的研究。

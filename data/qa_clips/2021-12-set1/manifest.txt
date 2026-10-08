@@ -1,0 +1,11 @@
+# 2021-12-set1  subtitle/voice spot-check clips
+# audio: 2021.12六级听力第1套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[pass-1-0049.mp3]  493.32-499.12s  (Speaker, pass-1)   <== FLAGGED
+  EN: Flash back to 1915, when a bottle of Coca-Cola cost just a nickel.
+  ZH: 回溯到1915年，当时一瓶可口可乐的售价仅为五分钱（一枚镍币）。
+
+[rec-3-0132.mp3]  1268.39-1300.39s  (Speaker, rec-3)   <== FLAGGED
+  EN: It is not hard to mess up an interview.
+  ZH: 要搞砸一场求职面试其实再容易不过了。

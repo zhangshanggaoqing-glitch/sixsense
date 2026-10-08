@@ -1,0 +1,7 @@
+# 2022-09-set1  subtitle/voice spot-check clips
+# audio: 2022年09月六级听力（全1套）听力.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-2-0032.mp3]  251.32-251.78s  (W, conv-2)   <== FLAGGED
+  EN: Come on up.
+  ZH: 请上楼来吧。

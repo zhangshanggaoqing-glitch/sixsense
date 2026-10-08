@@ -1,0 +1,19 @@
+# 2022-06-set1  subtitle/voice spot-check clips
+# audio: 2022年06月六级听力（全1套）.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-2-0037.mp3]  350.69-360.53s  (W, conv-2)   <== FLAGGED
+  EN: As you can see, I'm very tall and I couldn't find clothes that fit me in ordinary shops.
+  ZH: 如你所见，我个子非常高，在普通服装店里根本买不到适合我身形的衣服。
+
+[conv-2-0038.mp3]  360.53-361.63s  (W, conv-2)   <== FLAGGED
+  EN: So I kept trying and developed my skills over time.
+  ZH: 因此我不断尝试摸索，随着时间推移逐渐磨练提升了手艺。
+
+[conv-2-0045.mp3]  390.53-391.01s  (W, conv-2)   <== FLAGGED
+  EN: And I did.
+  ZH: 于是我就帮她们做了。
+
+[pass-1-0054.mp3]  541.91-553.71s  (M, pass-1)   <== FLAGGED
+  EN: According to a study published in the journal Cell, the compound successfully removed deadly strains of bacteria in mice which are resistant to all known antibiotics.
+  ZH: 根据发表在《细胞》期刊上的一项研究，该化合物成功清除了小鼠体内对所有已知抗生素均具有耐药性的致命菌株。

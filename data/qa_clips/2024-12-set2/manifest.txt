@@ -1,0 +1,19 @@
+# 2024-12-set2  subtitle/voice spot-check clips
+# audio: 2024年12月六级听力音频第2套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-1-0001.mp3]  113.90-136.16s  (W, conv-1)   <== FLAGGED
+  EN: Hi, Alan, sorry for not calling you back sooner.
+  ZH: 嗨，艾伦，抱歉没能早点给你回电话。
+
+[conv-1-0012.mp3]  205.10-205.62s  (M, conv-1)   <== FLAGGED
+  EN: Ah, well...
+  ZH: 啊，这个嘛……
+
+[rec-1-0001.mp3]  882.99-914.99s  (, rec-1)   <== FLAGGED
+  EN: It’s revision time for exams and dissertations.
+  ZH: 现在到了为期末考试和毕业论文复习备考的时候了。
+
+[rec-1-0024.mp3]  1157.58-1158.84s  (, rec-1)   <== FLAGGED
+  EN: Finally, don’t skip meals.
+  ZH: 最后，千万不要省略正餐。

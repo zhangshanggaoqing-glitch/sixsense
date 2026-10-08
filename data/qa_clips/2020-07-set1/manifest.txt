@@ -1,0 +1,91 @@
+# 2020-07-set1  subtitle/voice spot-check clips
+# audio: 202007-CET6 听力.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-1-0022.mp3]  145.08-146.02s  (W, conv-1)   <== FLAGGED
+  EN: There is no stopping technological progress.
+  ZH: 技术进步是无法阻挡的。
+
+[conv-2-0012.mp3]  268.80-274.74s  (W, conv-2)   <== FLAGGED
+  EN: I even use the same container.
+  ZH: 我甚至连集装箱都用同一个。
+
+[conv-2-0013.mp3]  274.74-274.94s  (M, conv-2)   <== FLAGGED
+  EN: That's a very efficient way of doing business.
+  ZH: 这样处理生意的效率很高。
+
+[conv-2-0014.mp3]  274.94-275.46s  (W, conv-2)   <== FLAGGED
+  EN: The same container?
+  ZH: 同一个集装箱？
+
+[conv-2-0015.mp3]  275.46-279.18s  (M, conv-2)   <== FLAGGED
+  EN: You mean you have one 40-foot container?
+  ZH: 你是说你有一个40英尺集装箱？
+
+[conv-2-0016.mp3]  279.82-280.70s  (W, conv-2)   <== FLAGGED
+  EN: Yes, that's right.
+  ZH: 对，没错。
+
+[conv-2-0019.mp3]  289.52-291.40s  (M, conv-2)   <== FLAGGED
+  EN: They're great value.
+  ZH: 它们很划算。
+
+[conv-2-0020.mp3]  291.90-297.30s  (W, conv-2)   <== FLAGGED
+  EN: I consolidate them at my warehouse and then ship them to my other warehouse in Italy.
+  ZH: 我把它们全都集中到我的仓库，然后运到我在意大利的另一个仓库。
+
+[conv-2-0021.mp3]  298.46-307.26s  (M, conv-2)   <== FLAGGED
+  EN: There I do the same thing, except with Italian foods like pasta, cheeses, wines, and chocolates.
+  ZH: 在那边我也是这么做，只不过家具换成了意大利食品，比如意大利面、奶酪、红酒和巧克力。
+
+[conv-2-0022.mp3]  307.26-312.14s  (W, conv-2)   <== FLAGGED
+  EN: I ship all of these to China in the very same cargo containers I used to bring the furniture.
+  ZH: 我把所有这些都运到中国的仓库，用的还是我用来运家具的货物集装箱。
+
+[conv-2-0023.mp3]  313.34-318.00s  (M, conv-2)   <== FLAGGED
+  EN: I assume you wholesale both product lines in both countries?
+  ZH: 我猜你的两大产品系列在两个国家都是批发出售的。
+
+[conv-2-0024.mp3]  318.00-318.66s  (W, conv-2)   <== FLAGGED
+  EN: Absolutely.
+  ZH: 当然了。
+
+[conv-2-0025.mp3]  319.60-323.22s  (M, conv-2)   <== FLAGGED
+  EN: I have clients and partner networks in both countries.
+  ZH: 我在两个国家都有客户和伙伴关系网。
+
+[conv-2-0026.mp3]  323.22-326.50s  (W, conv-2)   <== FLAGGED
+  EN: That's the best thing about working in this industry for so long.
+  ZH: 这就是在这个行业干了这么久的最大好处。
+
+[conv-2-0027.mp3]  326.50-328.42s  (M, conv-2)   <== FLAGGED
+  EN: I've built up quite a network of business acquaintances.
+  ZH: 我积累了不少生意熟人。
+
+[conv-2-0028.mp3]  329.18-331.50s  (W, conv-2)   <== FLAGGED
+  EN: How many shipments do you do?
+  ZH: 你会运多少批货物？
+
+[conv-2-0030.mp3]  338.36-339.60s  (W, conv-2)   <== FLAGGED
+  EN: That's counting both routes.
+  ZH: 这是算上来回两条路线的。
+
+[pass-1-0009.mp3]  547.32-552.72s  (, pass-1)   <== FLAGGED
+  EN: Their 1,000-square-foot Humour Room features a toy store.
+  ZH: 他们的幽默室占地面积 1000 平方英尺，玩具店是其主要特色。
+
+[pass-2-0003.mp3]  665.66-674.36s  (, pass-2)   <== FLAGGED
+  EN: The researchers believe this gene influences development of a hormone that tells the organism how fat or full it is.
+  ZH: 研究人员认为，该基因会影响某种能让机体感知自身胖瘦或饱腹程度的激素的分泌。
+
+[pass-2-0009.mp3]  714.56-731.36s  (, pass-2)   <== FLAGGED
+  EN: She believes about half of a person's total weight variation can be attributed to genetics, with the rest influenced by environmental factors.
+  ZH: 她认为，一个人总的体重变化中约有一半可归因于遗传，其余则受环境因素影响。
+
+[pass-2-0010.mp3]  731.36-745.38s  (, pass-2)   <== FLAGGED
+  EN: A survey by the Center for Disease Control found a dramatic increase in obesity during the late 1980s and 1990s, highlighting the influence of environmental factors such as the abundant provision of rich foods.
+  ZH: 疾病控制中心的一项调查发现，在20世纪80年代末和90年代，肥胖症显著增加，这凸显了环境因素（如大量油腻食物的供应）的影响。
+
+[rec-2-0004.mp3]  1155.26-1168.66s  (, rec-2)   <== FLAGGED
+  EN: Many people get the idea from the mass of bones in the pit wall that some disaster such as a volcanic explosion or a sudden flood killed a whole herd of dinosaurs in this area.
+  ZH: 许多人看到坑壁中的大量骨头会产生一种观点：火山爆发或洪水突发等某种灾害导致了这一地区的整个恐龙群的灭亡。

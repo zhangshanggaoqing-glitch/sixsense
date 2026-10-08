@@ -1,0 +1,91 @@
+# 2023-06-set2  subtitle/voice spot-check clips
+# audio: 2023.06六级真题第2套听力音频.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-1-0001.mp3]  0.34-32.34s  (W, conv-1)   <== FLAGGED
+  EN: I've made my decision. I want to study architecture.
+  ZH: 我已经下定决心了，我想去学建筑学。
+
+[conv-1-0002.mp3]  42.78-46.58s  (M, conv-1)   <== FLAGGED
+  EN: Architecture? Where has this come from?
+  ZH: 建筑学？你怎么会突然有这个想法？
+
+[conv-1-0003.mp3]  46.94-51.42s  (W, conv-1)   <== FLAGGED
+  EN: Well, I was thinking about what I'm good at, and what I enjoy. And I really love design, especially when it is combined with math and engineering.
+  ZH: 嗯，我认真思考了自己擅长什么以及热爱什么。我真的很喜欢设计，尤其是当设计与数学和工程学紧密结合的时候。
+
+[conv-1-0004.mp3]  51.42-60.44s  (M, conv-1)   <== FLAGGED
+  EN: Yes, architecture is definitely a marriage of design and engineering. But it's an incredibly difficult course of study.
+  ZH: 没错，建筑学确实是设计美学与工程技术的完美联姻。但这是一门难度极高的艰苦学科。
+
+[conv-1-0005.mp3]  60.44-67.46s  (W, conv-1)   <== FLAGGED
+  EN: I know, especially the mathematics part. Math has always been my weakest subject.
+  ZH: 我知道，尤其是数学部分。数学一直以来都是我最薄弱的科目。
+
+[conv-1-0006.mp3]  67.46-83.32s  (W, conv-1)   <== FLAGGED
+  EN: But I'm willing to work hard, and I believe hard work pays off.
+  ZH: 但我愿意下苦功夫，我相信天道酬勤、一份耕耘一份收获。
+
+[conv-1-0007.mp3]  84.38-96.10s  (M, conv-1)   <== FLAGGED
+  EN: That's true. But remember, architects don't just design pretty buildings. They have to consider physics, building codes, environmental impact, and budget constraints.
+  ZH: 那倒是。但别忘了，建筑师绝不仅仅是设计漂亮的大楼，他们还必须综合考量物理结构、建筑规范、环保评估以及预算限制。
+
+[conv-1-0008.mp3]  96.10-96.56s  (W, conv-1)   <== FLAGGED
+  EN: I find all of that exciting. It's about creating something practical and lasting.
+  ZH: 我觉得所有这些都令人兴奋不已，因为那是在创造既具实用价值又能经久不衰的杰作。
+
+[conv-1-0009.mp3]  96.56-101.10s  (M, conv-1)   <== FLAGGED
+  EN: That's an admirable attitude. An architect's work can become a long-lasting legacy, enduring far longer than a human lifetime.
+  ZH: 这种态度令人钦佩。建筑师的作品能够成为留传后世的持久遗产，其生命力远比一个人的寿命要漫长得多。
+
+[conv-1-0010.mp3]  101.10-101.62s  (M, conv-1)   <== FLAGGED
+  EN: But before you commit, why not try some introductory coursework?
+  ZH: 但在你正式确定专业之前，为什么不先去选修几门入门课程试听一下呢？
+
+[conv-1-0011.mp3]  101.62-102.84s  (W, conv-1)   <== FLAGGED
+  EN: What do you recommend?
+  ZH: 你有什么好的推荐吗？
+
+[conv-1-0012.mp3]  102.84-134.84s  (M, conv-1)   <== FLAGGED
+  EN: I suggest you start with computer science. Modern architectural design relies heavily on computer modeling and 3D software. If you enjoy that, you'll know architecture is right for you.
+  ZH: 我建议你先从计算机科学着手。现代建筑设计高度依赖计算机三维建模软件。如果你能乐在其中，你就知道建筑学到底适不适合你了。
+
+[conv-1-0013.mp3]  195.77-227.77s  (W, conv-1)   <== FLAGGED
+  EN: That's great advice. I'll register for a computer programming course next semester.
+  ZH: 这个建议太棒了！我下学期就去注册报名一门计算机编程课。
+
+[conv-2-0012.mp3]  298.21-330.21s  (M, conv-2)   <== FLAGGED
+  EN: I am, however, very excited about the prospect of working for this sports agency.
+  ZH: 然而，对于加入这家体育经纪咨询公司的职业前景，我内心感到无比激动和期待。
+
+[conv-2-0013.mp3]  336.69-343.41s  (W, conv-2)   <== FLAGGED
+  EN: What makes you think you are a competitive candidate?
+  ZH: 那你凭什么认为自己是一名具备强劲竞争力的求职者呢？
+
+[conv-2-0014.mp3]  343.41-375.41s  (M, conv-2)   <== FLAGGED
+  EN: Well, first, I am passionate about football. Second, I am fluent in English, Spanish, and French. My language skills would be very useful in international sports consulting.
+  ZH: 首先，我对足球运动怀揣极大的热爱；其次，我精通英语、西班牙语和法语三种语言，在未来的国际体育咨询业务中我的多语种技能将大有用武之地。
+
+[conv-2-0015.mp3]  455.24-457.04s  (W, conv-2)   <== FLAGGED
+  EN: Excellent. Fluency in three languages is definitely an asset.
+  ZH: 太出色了，熟练掌握三门外语绝对是一项不可多得的巨大优势。
+
+[pass-2-0004.mp3]  661.06-693.06s  (N, pass-2)   <== FLAGGED
+  EN: This planned obsolescence creates mountains of electronic waste.
+  ZH: 这种被蓄意设计的“计划性报废”，堆积出了堆积如山的电子垃圾。
+
+[pass-2-0005.mp3]  700.22-712.86s  (N, pass-2)   <== FLAGGED
+  EN: E-waste contains dangerous chemicals like lead and mercury that leak into soil and groundwater and disperse in the air.
+  ZH: 电子废料中含有铅、汞等剧毒化学物质，它们不仅会渗入土壤与地下水，还会散逸弥漫在空气之中。
+
+[pass-2-0009.mp3]  727.06-728.38s  (N, pass-2)   <== FLAGGED
+  EN: This year, the French government began requiring makers of tech products to post repairability ratings.
+  ZH: 今年，法国政府已率先出台法规，强制要求科技产品制造商公开张贴其设备的可修复性评分等级。
+
+[pass-2-0010.mp3]  728.38-728.58s  (N, pass-2)   <== FLAGGED
+  EN: These repairability indexes inform consumers about how easy it is to fix a device before buying it.
+  ZH: 这些可修复性指数能够让消费者在付款购买前，清楚了解该设备坏了之后到底有多容易修复。
+
+[pass-2-0013.mp3]  747.20-750.16s  (N, pass-2)   <== FLAGGED
+  EN: Consumers should support right-to-repair legislation.
+  ZH: 广大消费者应当积极支持捍卫自主维修权的立法行动。

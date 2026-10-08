@@ -1,0 +1,15 @@
+# 2026-06-set1  subtitle/voice spot-check clips
+# audio: 2026年6月英语六级听力第1套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-2-0013.mp3]  222.28-222.72s  (W, conv-2)   <== FLAGGED
+  EN: Quit your moaning.
+  ZH: 别抱怨啦。
+
+[pass-1-0001.mp3]  278.62-310.62s  (Spk, pass-1)   <== FLAGGED
+  EN: Makeup can do more than just change your appearance.
+  ZH: 化妆的作用不仅限于改变你的容貌外表。
+
+[rec-3-0014.mp3]  1206.84-1238.84s  (Spk, rec-3)   <== FLAGGED
+  EN: With an increase in attention-grabbing accidents recently, drivers now view self-driving cars as less safe than they used to.
+  ZH: 随着近期频频发生引人注目的交通事故，广大驾驶员如今认为自动驾驶汽车的安全性反而不如以往令人放心了。

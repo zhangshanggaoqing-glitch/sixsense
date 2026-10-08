@@ -1,0 +1,7 @@
+# 2020-12-set1  subtitle/voice spot-check clips
+# audio: 2020年12月六级听力第1套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[rec-1-0064.mp3]  848.77-854.79s  (Speaker, rec-1)   <== FLAGGED
+  EN: This is largely due to our obsession with consumption, which has resulted in huge amounts of credit card debt, and a massive environmental footprint.
+  ZH: 这在很大程度上源于我们对消费主义的病态痴迷，它导致了巨额的信用卡高额债务，以及极其庞大沉重的人类生态环境足迹。

@@ -1,0 +1,19 @@
+# 2024-12-set1  subtitle/voice spot-check clips
+# audio: 2024年12月六级听力音频第1套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-1-0001.mp3]  18.58-50.58s  (M, conv-1)   <== FLAGGED
+  EN: OK then, this here is your yearly performance review.
+  ZH: 好，这是你的年度绩效评估报告。
+
+[conv-1-0019.mp3]  205.68-206.14s  (W, conv-1)   <== FLAGGED
+  EN: Thank you, though.
+  ZH: 不过还是谢谢您。
+
+[conv-1-0020.mp3]  207.36-211.46s  (M, conv-1)   <== FLAGGED
+  EN: OK, this leads me to the not-so-good part.
+  ZH: 好的，这就引出了不太理想的部分。
+
+[pass-2-0001.mp3]  670.60-702.60s  (, pass-2)   <== FLAGGED
+  EN: Four years ago, Jenny Weiner was in a fitness slump.
+  ZH: 四年前，珍妮·韦纳陷入了健身低谷。

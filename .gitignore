@@ -1,0 +1,52 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+.env
+.env.local
+.env.*.local
+venv/
+env/
+ENV/
+.venv/
+
+# PID & Log files
+*.pid
+.backend.pid
+.frontend.pid
+*.log
+backend.log
+frontend.log
+
+# Node.js & Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.vercel
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Database backups & scratch
+*.db.bak*
+data/*.db.bak*
+data/sixsense.db.bak*
+scratch/
+.tmp/
+tmp/
+
+# Audio files (Download via release or mount via volume)
+data/audio/*.mp3
+audio/*.mp3
+
+# Derived Whisper cache (Offline pipeline artifacts)
+data/derived/
+
+# OS metadata
+.DS_Store
+Thumbs.db

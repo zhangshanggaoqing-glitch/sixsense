@@ -1,0 +1,35 @@
+# 2025-12-set2  subtitle/voice spot-check clips
+# audio: 2025.12六级听力第2套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-1-0005.mp3]  48.22-48.86s  (W, conv-1)   <== FLAGGED
+  EN: What do you mean?
+  ZH: 你这是什么意思？
+
+[conv-1-0008.mp3]  56.52-57.64s  (W, conv-1)   <== FLAGGED
+  EN: I don’t actually.
+  ZH: 我还真不这么认为。
+
+[conv-1-0017.mp3]  81.52-82.18s  (W, conv-1)   <== FLAGGED
+  EN: I’ll give you that.
+  ZH: 这一点我承认你说得对。
+
+[pass-1-0005.mp3]  517.73-530.41s  (, pass-1)   <== FLAGGED
+  EN: The study involved 750 people, half of whom frequently ate vegetarian food, and half of whom rarely ate it.
+  ZH: 该项实证研究招募了750名受试者，其中一半在日常生活中经常食用素食，而另一半则极少吃素。
+
+[pass-1-0006.mp3]  530.41-530.61s  (, pass-1)   <== FLAGGED
+  EN: No vegetarians were included.
+  ZH: 需要特别说明的是，受试群体中并不包含严格素食主义者。
+
+[pass-2-0011.mp3]  747.83-779.83s  (, pass-2)   <== FLAGGED
+  EN: “By controlling indoor air pollution and improving air quality in this way, this work could be greatly beneficial to public health.”
+  ZH: “通过这种廉价高效的温控手段有效遏制室内空气污染并显著提振空气纯净度，这项研究成果无疑将对全人类的公共卫生健康事业产生极其深远的大幅裨益。”
+
+[rec-3-0002.mp3]  1343.50-1347.44s  (, rec-3)   <== FLAGGED
+  EN: If you are living your life full of regret, you are wasting your time.
+  ZH: 如果你整天让自己沉溺在无休止的悔恨与内耗之中虚度光阴，那么你纯粹是在残忍地挥霍浪费自己极其宝贵的生命。
+
+[rec-3-0021.mp3]  1451.04-1451.90s  (, rec-3)   <== FLAGGED
+  EN: There isn’t one.
+  ZH: 没有任何价值。

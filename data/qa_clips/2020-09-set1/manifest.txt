@@ -1,0 +1,7 @@
+# 2020-09-set1  subtitle/voice spot-check clips
+# audio: 2020年09月六级听力全1套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-2-0033.mp3]  278.79-279.67s  (W, conv-2)   <== FLAGGED
+  EN: Can you guess what she did?
+  ZH: 你能猜到她做了什么吗？

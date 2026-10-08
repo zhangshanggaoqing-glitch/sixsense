@@ -1,0 +1,11 @@
+# 2026-06-set2  subtitle/voice spot-check clips
+# audio: 2026年6月英语六级听力第2套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[rec-1-0012.mp3]  968.24-982.56s  (Spk, rec-1)   <== FLAGGED
+  EN: This finding is proven to be true across dozens of studies.
+  ZH: 这一结论在后续几十项独立实证研究中均得到了充分验证。
+
+[rec-1-0013.mp3]  982.56-985.72s  (Spk, rec-1)   <== FLAGGED
+  EN: You are more likely to achieve your goals if you have an implementation intention.
+  ZH: 只要你具备明确的执行意图，实现既定目标的可能性就会大得多。

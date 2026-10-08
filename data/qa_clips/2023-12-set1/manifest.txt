@@ -1,0 +1,7 @@
+# 2023-12-set1  subtitle/voice spot-check clips
+# audio: 2023年12月六级听力音频第1套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[rec-2-0006.mp3]  1140.46-1143.90s  (Spk, rec-2)   <== FLAGGED
+  EN: Because dogs' sense of smell is much more powerful than ours.
+  ZH: 因为犬类的嗅觉感知灵敏度远比人类强大得多。

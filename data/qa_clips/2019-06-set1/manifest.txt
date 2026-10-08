@@ -1,0 +1,7 @@
+# 2019-06-set1  subtitle/voice spot-check clips
+# audio: 2019年06月六级听力第1套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[rec-3-0105.mp3]  1497.25-1513.23s  (M, rec-3)   <== FLAGGED
+  EN: Our species originated around 200,000 years ago and underwent tremendous diversification—culturally, technologically, linguistically, artistically—for 130,000 years.
+  ZH: 我们这个物种大约起源于20万年前，并经历了长达13万年的巨大多元化进程——在文化、技术、语言和艺术等方面皆是如此。

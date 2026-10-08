@@ -1,0 +1,11 @@
+# 2025-06-set1  subtitle/voice spot-check clips
+# audio: 2025年6月六级1音频.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-1-0024.mp3]  123.00-123.88s  (W, conv-1)   <== FLAGGED
+  EN: I don’t know.
+  ZH: 我不知道。
+
+[rec-1-0010.mp3]  913.30-917.46s  (, rec-1)   <== FLAGGED
+  EN: If so, then maybe persistence isn’t simply a character trait.
+  ZH: 如果答案是肯定的，那么坚持性也许并不仅仅是一种天生的性格特质。

@@ -1,0 +1,824 @@
+[
+  {
+    "session": "2015年06月",
+    "audio_count": 3,
+    "audios": [
+      "2015年06月六级听力音频第2套.mp3",
+      "2015年06月六级听力音频第3套.mp3",
+      "2015年06月六级听力音频第1套.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2015.06英语六级考试第2套解析.pdf",
+        "char_count": 17,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2015.06英语六级考试第3套解析.pdf",
+        "char_count": 17,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2015.06英语六级考试第1套解析.pdf",
+        "char_count": 17,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2015年12月",
+    "audio_count": 3,
+    "audios": [
+      "2015年12月六级听力音频第3套.mp3",
+      "2015年12月六级听力音频第2套.mp3",
+      "2015年12月六级听力音频第1套.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2015.12英语六级考试第2套解析.pdf",
+        "char_count": 17,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2015.12英语六级考试第1套解析.pdf",
+        "char_count": 17,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2015.12英语六级考试第3套解析.pdf",
+        "char_count": 17,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2016年06月",
+    "audio_count": 2,
+    "audios": [
+      "2016年06月六级听力第1套.mp3",
+      "2016年06月六级听力第2套.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2016.06英语六级考试第1套解析.pdf",
+        "char_count": 17,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2016.06英语六级考试第2套解析.pdf",
+        "char_count": 17,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2016.06英语六级考试第3套解析.pdf",
+        "char_count": 10,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2016年12月",
+    "audio_count": 2,
+    "audios": [
+      "2016年12月六级听力第2套.mp3",
+      "2016年12月六级听力第1套.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2016年12月六级（第3套）答案及解析.pdf",
+        "char_count": 101990,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2016年12月六级（第1套）答案及解析.pdf",
+        "char_count": 177786,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2016年12月六级（第2套）答案及解析.pdf",
+        "char_count": 178574,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2017年06月",
+    "audio_count": 2,
+    "audios": [
+      "2017年06月六级听力第2套.mp3",
+      "2017年06月六级听力第1套.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2017.06英语六级考试第2套解析.pdf",
+        "char_count": 173053,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2017.06英语六级考试第1套解析.pdf",
+        "char_count": 177323,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2017.06英语六级考试第3套解析.pdf",
+        "char_count": 102262,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2017年12月",
+    "audio_count": 2,
+    "audios": [
+      "2017年12月六级听力第2套.mp3",
+      "2017年12月六级听力第1套.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2017.12英语六级考试第2套解析.pdf",
+        "char_count": 305437,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2017.12英语六级考试第3套解析.pdf",
+        "char_count": 186946,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2017.12英语六级考试第1套解析.pdf",
+        "char_count": 313776,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2018年06月",
+    "audio_count": 2,
+    "audios": [
+      "2018年06月六级听力音频第2套.mp3",
+      "2018年06月六级听力音频第1套.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2018.06英语六级考试第1套解析.pdf",
+        "char_count": 312336,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2018.06英语六级考试第3套解析.pdf",
+        "char_count": 173478,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2018.06英语六级考试第2套解析.pdf",
+        "char_count": 310407,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2018年12月",
+    "audio_count": 2,
+    "audios": [
+      "2018年12月六级听力第1套.mp3",
+      "2018年12月六级听力第2套.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2018.12英语六级考试第2套解析.pdf",
+        "char_count": 120265,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2018.12英语六级考试第3套解析.pdf",
+        "char_count": 79945,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2018.12英语六级考试第1套解析.pdf",
+        "char_count": 120298,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2019年06月",
+    "audio_count": 2,
+    "audios": [
+      "2019年06月六级听力第1套.mp3",
+      "2019年06月六级听力第2套.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2019年06月真题解析第1套.pdf",
+        "char_count": 56,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2019年06月真题解析第2套.pdf",
+        "char_count": 56,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2019年06月真题解析第3套.pdf",
+        "char_count": 32,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2019年12月",
+    "audio_count": 2,
+    "audios": [
+      "2019.12六级听力第2套.mp3",
+      "2019.12六级听力第1套.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2019.12英语六级考试解析第3套.pdf",
+        "char_count": 23429,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2019.12英语六级考试解析第1套.pdf",
+        "char_count": 55903,
+        "has_transcript": true,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2019.12英语六级考试解析第2套.pdf",
+        "char_count": 55001,
+        "has_transcript": true,
+        "has_translation": true,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2020年07月",
+    "audio_count": 1,
+    "audios": [
+      "202007-CET6 听力.mp3"
+    ],
+    "paper_count": 2,
+    "explanation_count": 1,
+    "explanations": [
+      {
+        "name": "2020.07英语六级考试全1套解析.pdf",
+        "char_count": 140258,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2020年09月",
+    "audio_count": 1,
+    "audios": [
+      "2020年09月六级听力全1套.mp3"
+    ],
+    "paper_count": 5,
+    "explanation_count": 2,
+    "explanations": [
+      {
+        "name": "2020.09英语六级考试第1套解析.pdf",
+        "char_count": 142936,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2020.09英语六级考试第2、3套解析.pdf",
+        "char_count": 81721,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2020年12月",
+    "audio_count": 2,
+    "audios": [
+      "2020年12月六级听力第2套.mp3",
+      "2020年12月六级听力第1套.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2020.12英语六级考试第3套解析.pdf",
+        "char_count": 24882,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2020.12英语六级考试第2套解析.pdf",
+        "char_count": 60850,
+        "has_transcript": true,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2020.12英语六级考试第1套解析.pdf",
+        "char_count": 57843,
+        "has_transcript": true,
+        "has_translation": true,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2021年06月",
+    "audio_count": 2,
+    "audios": [
+      "2021年6月六级听力第2套.mp3",
+      "2021年6月六级听力第1套.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2021.06英语六级答案解析第3套.pdf",
+        "char_count": 32239,
+        "has_transcript": true,
+        "has_translation": false,
+        "snippet": "Section A [)t�*iJl.l *X:® § 2019 !cp 11 A 12 B ffJiftE Sydney Morning Herald(((��:$'6�R1UIU)_t-ffifi:N!�\"Our Midlife Should Be Celebrated, Please Stop"
+      },
+      {
+        "name": "2021.06英语六级答案解析第2套.pdf",
+        "char_count": 51874,
+        "has_transcript": true,
+        "has_translation": false,
+        "snippet": "Section A Questions 1 to 4 are based on the conversation you have just heard.  M: How are you enjoying your new job? W: So far, so good. (1.1) I don't"
+      },
+      {
+        "name": "2021.06英语六级答案解析第1套.pdf",
+        "char_count": 51169,
+        "has_transcript": true,
+        "has_translation": false,
+        "snippet": "Section A Questions 1 to 4 are based on the conversation you have just heard.  M: Cl) It's my last day at work tomorrow. I start my new job in two wee"
+      }
+    ]
+  },
+  {
+    "session": "2021年12月",
+    "audio_count": 2,
+    "audios": [
+      "2021.12六级听力第2套.mp3",
+      "2021.12六级听力第1套.mp3"
+    ],
+    "paper_count": 4,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2021.12英语六级解析第3套.pdf",
+        "char_count": 16079,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2021.12英语六级解析第1套.pdf",
+        "char_count": 39585,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2021.12英语六级解析第2套.pdf",
+        "char_count": 39161,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2022年06月",
+    "audio_count": 1,
+    "audios": [
+      "2022年06月六级听力（全1套）.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2022.06英语六级考试解析第1套.pdf",
+        "char_count": 39244,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2022.06英语六级真题解析第3套 .pdf",
+        "char_count": 5509,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2022.06英语六级真题解析第2套 .pdf",
+        "char_count": 20475,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2022年09月",
+    "audio_count": 1,
+    "audios": [
+      "2022年09月六级听力（全1套）听力.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2022.09英语六级解析第1套.pdf",
+        "char_count": 38660,
+        "has_transcript": true,
+        "has_translation": true,
+        "snippet": "Section A Questions 1 to 4 are based on the conversation you have just heard. M: (1) Welcome to Money Matters, a weekly program that helps you manage "
+      },
+      {
+        "name": "2022.09英语六级解析第2套.pdf",
+        "char_count": 2795,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      },
+      {
+        "name": "2022.09英语六级解析第3套.pdf",
+        "char_count": 3071,
+        "has_transcript": false,
+        "has_translation": true,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2022年12月",
+    "audio_count": 2,
+    "audios": [
+      "2022.12六级真题第1套听力.mp3",
+      "2022.12六级真题第2套听力.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2022.12六级真题第2套答案及详解.pdf",
+        "char_count": 651,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2022.12六级真题第3套答案及详解.pdf",
+        "char_count": 378,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2022.12六级真题第1套答案及详解.pdf",
+        "char_count": 15,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2023年03月",
+    "audio_count": 1,
+    "audios": [
+      "2023年03月六级真题（3套相同）听力音频.mp3"
+    ],
+    "paper_count": 0,
+    "explanation_count": 11,
+    "explanations": [
+      {
+        "name": "2023.03英语六级详解第2套.pdf",
+        "char_count": 81,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2023.03英语六级详解第1套.pdf",
+        "char_count": 199,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2023.03英语六级详解第3套.pdf",
+        "char_count": 81,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2023.03英语六级真题第2套.pdf",
+        "char_count": 907,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2023.03英语六级真题第3套.pdf",
+        "char_count": 908,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2023.03英语六级真题第1套.pdf",
+        "char_count": 27360,
+        "has_transcript": true,
+        "has_translation": false,
+        "snippet": "Section A Directions: In this section, you will hear two long conversations. At the end of each conversation, you will hear four questions. Both the c"
+      }
+    ]
+  },
+  {
+    "session": "2023年06月",
+    "audio_count": 2,
+    "audios": [
+      "2023.06六级真题第1套听力音频.mp3",
+      "2023.06六级真题第2套听力音频.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2023.06六级真题第2套详解.pdf",
+        "char_count": 231,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2023.06六级真题第1套详解.pdf",
+        "char_count": 231,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2023.06六级真题第3套详解.pdf",
+        "char_count": 126,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2023年12月",
+    "audio_count": 2,
+    "audios": [
+      "2023年12月六级听力音频第1套.mp3",
+      "2023年12月六级听力音频第2套.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2023.12英语六级真题第1套解析.pdf",
+        "char_count": 20,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2023.12英语六级真题第3套解析.pdf",
+        "char_count": 12,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2023.12英语六级真题第2套解析.pdf",
+        "char_count": 19,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2024年06月",
+    "audio_count": 2,
+    "audios": [
+      "2024.06六级听力音频第2套.mp3",
+      "2024.06六级听力音频第1套.mp3"
+    ],
+    "paper_count": 6,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2024.06六级英语第3套解析.pdf",
+        "char_count": 12,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2024.06六级英语第2套解析.pdf",
+        "char_count": 20,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2024.06六级英语第1套解析.pdf",
+        "char_count": 20,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2024年12月",
+    "audio_count": 2,
+    "audios": [
+      "2024年12月六级听力音频第2套.mp3",
+      "2024年12月六级听力音频第1套.mp3"
+    ],
+    "paper_count": 3,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2024.12英语六级解析第2套.pdf",
+        "char_count": 15,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2024.12英语六级解析第1套.pdf",
+        "char_count": 15,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2024.12英语六级解析第3套.pdf",
+        "char_count": 9,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2025年06月",
+    "audio_count": 2,
+    "audios": [
+      "2025年6月六级1音频.mp3",
+      "2025年6月六级2音频.mp3"
+    ],
+    "paper_count": 3,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2025.06英语六级解析第2套.pdf",
+        "char_count": 20,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2025.06英语六级解析第3套.pdf",
+        "char_count": 12,
+        "has_transcript": false,
+        "has_translation": false,
+        "snippet": ""
+      },
+      {
+        "name": "2025.06英语六级解析第1套.pdf",
+        "char_count": 4519,
+        "has_transcript": true,
+        "has_translation": false,
+        "snippet": ""
+      }
+    ]
+  },
+  {
+    "session": "2026年06月",
+    "audio_count": 2,
+    "audios": [
+      "2026年6月英语六级听力第1套.mp3",
+      "2026年6月英语六级听力第2套.mp3"
+    ],
+    "paper_count": 3,
+    "explanation_count": 3,
+    "explanations": [
+      {
+        "name": "2026年6月英语六级解析第1套.pdf",
+        "char_count": 59165,
+        "has_transcript": true,
+        "has_translation": true,
+        "snippet": "Section A Conversation One M: Welcome ω B usiness Matters. [ 1 ] To出y ， we have invited car臼r development consultant Lucy Williams ωωk about how to ge"
+      },
+      {
+        "name": "2026年6月英语六级解析第3套.pdf",
+        "char_count": 32199,
+        "has_transcript": true,
+        "has_translation": true,
+        "snippet": "Section A //////////////////////////////////////////////// .  选项归 类. ////////////////////////////////////////////////  B ) buffer 缓冲区 ; 缓冲物 单数/不可数 名词 "
+      },
+      {
+        "name": "2026年6月英语六级解析第2套.pdf",
+        "char_count": 59608,
+        "has_transcript": true,
+        "has_translation": true,
+        "snippet": "Section A Conversation One W : Hi , Frank. Are you working through your lunch hour again ? M: No , not at all. [ 1- 1] 1t's my tenth wedding anniversa"
+      }
+    ]
+  }
+]

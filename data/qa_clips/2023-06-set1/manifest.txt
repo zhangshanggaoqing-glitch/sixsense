@@ -1,0 +1,79 @@
+# 2023-06-set1  subtitle/voice spot-check clips
+# audio: 2023.06六级真题第1套听力音频.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-2-0006.mp3]  266.82-272.08s  (M, conv-2)   <== FLAGGED
+  EN: We're allocating too many resources to humanities and not enough to science and technology, which are what match the needs of employers.
+  ZH: 我们把过多的资源浪费在了人文学科上，而在理工科领域的投入严重不足，而后者的技能恰恰才是用人单位真正需要的。
+
+[conv-2-0009.mp3]  293.44-325.44s  (M, conv-2)   <== FLAGGED
+  EN: The reality is that college is too expensive to spend four years learning how to build a better society.
+  ZH: 可现实是读大学学费昂贵，学生根本耗不起四年青春只为了去空谈如何建立一个更好的社会。
+
+[conv-2-0010.mp3]  343.76-348.32s  (M, conv-2)   <== FLAGGED
+  EN: In the real world, you need a good job.
+  ZH: 在现实世界里，首先得有一份能养家糊口的好工作。
+
+[conv-2-0011.mp3]  348.32-354.94s  (M, conv-2)   <== FLAGGED
+  EN: What's the point of learning how to think critically if you can't pay your bills?
+  ZH: 如果你连账单都付不起，学会所谓的批判性思维又有什么实际意义呢？
+
+[conv-2-0012.mp3]  354.94-356.02s  (W, conv-2)   <== FLAGGED
+  EN: You're being deliberately provocative.
+  ZH: 你这是在故意耸人听闻、挑起对立。
+
+[conv-2-0013.mp3]  356.02-388.02s  (W, conv-2)   <== FLAGGED
+  EN: The arts aren't just about thinking critically.
+  ZH: 人文学术和艺术的意义远非批判性思考那么简单。
+
+[conv-2-0014.mp3]  394.42-412.26s  (W, conv-2)   <== FLAGGED
+  EN: They're about experiencing life in a more profound way, which makes young people better citizens and builds a better society.
+  ZH: 它们能让年轻人以更加深邃的视角去感悟人生与世界，从而使他们成为更健全优秀的公民，共同构建更美好的社会。
+
+[conv-2-0015.mp3]  412.26-412.60s  (M, conv-2)   <== FLAGGED
+  EN: You talk about building a better society, Susan.
+  ZH: 苏珊，你总是把“构建美好社会”挂在嘴边。
+
+[conv-2-0016.mp3]  412.60-412.80s  (M, conv-2)   <== FLAGGED
+  EN: But a society doesn't run on philosophical theories and poetic verses.
+  ZH: 但现代社会的平稳运转靠的不是哲学理论和优美诗句。
+
+[conv-2-0017.mp3]  412.80-413.00s  (M, conv-2)   <== FLAGGED
+  EN: It runs on science, engineering, and technology.
+  ZH: 它的基石是科学、工程与现代科技。
+
+[conv-2-0018.mp3]  413.00-414.88s  (M, conv-2)   <== FLAGGED
+  EN: So that's where our education budget should be focused.
+  ZH: 因此，我们的教育财政预算必须重点倾斜到这些领域。
+
+[conv-2-0019.mp3]  414.88-415.08s  (W, conv-2)   <== FLAGGED
+  EN: I'm not saying we shouldn't fund science and technology, Frank.
+  ZH: 弗兰克，我并不是说不该资助科学技术。
+
+[conv-2-0020.mp3]  415.08-446.56s  (W, conv-2)   <== FLAGGED
+  EN: But surely we can find room in the budget for the arts as well.
+  ZH: 但我们完全可以在预算中为人文艺术留出足够的生存空间。
+
+[conv-2-0021.mp3]  451.46-460.84s  (M, conv-2)   <== FLAGGED
+  EN: Of course we can find some room, but it needs to be drastically reduced.
+  ZH: 留点空间固然可以，但目前的规模必须大幅削减。
+
+[conv-2-0022.mp3]  461.08-468.68s  (M, conv-2)   <== FLAGGED
+  EN: Look, I'm not suggesting we eliminate the arts entirely, but we shouldn't be funding disciplines that don't produce graduates who can contribute to economic growth.
+  ZH: 听着，我并非主张彻底取消艺术学科，但我们绝不应该盲目资助那些无法培养出推动经济增长毕业生的冷门专业。
+
+[conv-2-0023.mp3]  468.68-470.10s  (W, conv-2)   <== FLAGGED
+  EN: We'll have to agree to disagree on that, Frank.
+  ZH: 在这一点上，我们只能各自保留意见了，弗兰克。
+
+[pass-2-0004.mp3]  678.40-691.52s  (N, pass-2)   <== FLAGGED
+  EN: On the settlement's location, now stands the state capital, Denver.
+  ZH: 而当年那个定居点所在的旧址，如今正是科罗拉多州的首府丹佛。
+
+[pass-2-0007.mp3]  736.16-737.82s  (N, pass-2)   <== FLAGGED
+  EN: Postmasters, who usually ran shops or taverns, took a share of the postal revenues, plus whatever trade was drummed up by people collecting mail.
+  ZH: 各地的邮政长通常由经营杂货铺或小酒馆的店主兼任，他们从邮政营业收入中提成，还能借助人们前来取信的机会招揽生意带动消费。
+
+[pass-2-0009.mp3]  743.74-745.52s  (N, pass-2)   <== FLAGGED
+  EN: Rather than dispatching federal troops or building expensive forts to protect the settlers, the government spent money on the post.
+  ZH: 联邦政府没有耗费巨资派驻军队或修筑堡垒来守卫定居者，而是把宝贵的资金主要投入到了邮政建设上。

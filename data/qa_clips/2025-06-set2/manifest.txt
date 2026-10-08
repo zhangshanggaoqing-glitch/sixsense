@@ -1,0 +1,35 @@
+# 2025-06-set2  subtitle/voice spot-check clips
+# audio: 2025年6月六级2音频.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-1-0007.mp3]  170.46-171.00s  (W, conv-1)   <== FLAGGED
+  EN: What do you think?
+  ZH: 你怎么看？
+
+[conv-1-0027.mp3]  225.00-235.02s  (W, conv-1)   <== FLAGGED
+  EN: So, we agree that Rachel appeared inexperienced and less mature than Peter, even though both candidates are the same age and have practically no work experience.
+  ZH: 所以，我们都认同瑞秋显得稍微欠缺经验且不如彼得成熟，尽管两位候选人年纪相同并且几乎都没有实际工作经验。
+
+[conv-1-0036.mp3]  253.16-253.36s  (W, conv-1)   <== FLAGGED
+  EN: Really?
+  ZH: 真的吗？
+
+[conv-2-0001.mp3]  263.38-295.38s  (M, conv-2)   <== FLAGGED
+  EN: We’re here with Clementine Ortega, head designer of the private fashion label L’ Orange, to discuss her latest collection.
+  ZH: 我们今天请到了私人时装品牌L'Orange的首席设计师克莱门汀·奥尔特加，一同探讨她的最新系列作品。
+
+[conv-2-0021.mp3]  452.00-452.20s  (M, conv-2)   <== FLAGGED
+  EN: Spectacular for sure!
+  ZH: 毫无疑问极其震撼壮观！
+
+[conv-2-0022.mp3]  452.20-452.40s  (M, conv-2)   <== FLAGGED
+  EN: A stunning show all around.
+  ZH: 整场秀处处令人叹为观止。
+
+[pass-1-0006.mp3]  617.30-621.86s  (, pass-1)   <== FLAGGED
+  EN: Dogs were domesticated 10,000 to 15,000 years ago.
+  ZH: 狗在1万到1.5万年前被人类驯化。
+
+[rec-2-0015.mp3]  1292.88-1294.82s  (, rec-2)   <== FLAGGED
+  EN: They mise-en-place their life.
+  ZH: 他们用“备料各就各位”的严谨哲学来井然有序地打理整个人生。

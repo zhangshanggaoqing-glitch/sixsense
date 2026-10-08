@@ -1,0 +1,39 @@
+# 2025-12-set1  subtitle/voice spot-check clips
+# audio: 2025.12六级听力第1套.mp3
+# lead-in 0.3s, lead-out 0.3s
+
+[conv-1-0003.mp3]  45.71-46.29s  (M, conv-1)   <== FLAGGED
+  EN: It’s my pleasure.
+  ZH: 这是我的荣幸。
+
+[conv-2-0001.mp3]  156.51-188.51s  (M, conv-2)   <== FLAGGED
+  EN: It’s getting late and we’re both displaying signs of weariness.
+  ZH: 时间已经很晚了，我们俩也都显露出了满脸疲态。
+
+[conv-2-0008.mp3]  253.74-254.54s  (W, conv-2)   <== FLAGGED
+  EN: OK, fine.
+  ZH: 好的，成交。
+
+[conv-2-0021.mp3]  303.00-303.94s  (M, conv-2)   <== FLAGGED
+  EN: I wasn’t finished.
+  ZH: 我还没把话说完呢。
+
+[conv-2-0029.mp3]  328.20-328.54s  (W, conv-2)   <== FLAGGED
+  EN: You’ll see.
+  ZH: 等着瞧吧。
+
+[rec-1-0009.mp3]  901.14-917.48s  (, rec-1)   <== FLAGGED
+  EN: Some airports have sophisticated automated systems, including scanners that read baggage labels, destination coded vehicles that load and unload the bags without stopping, and sorting machines that route baggage to the appropriate gate.
+  ZH: 有些顶级机场装备了极度精密的自动化智能系统，包括高速读取行李标签的激光扫描仪、能够不减速连续自动装卸行李的目的地编码自动小车，以及将行李精准分拣至对应登机口的智能分流机。
+
+[rec-1-0010.mp3]  917.48-917.68s  (, rec-1)   <== FLAGGED
+  EN: Even so, all that technology may not save your baggage tag from being torn off on the conveyor belt, making you the owner of a bag with no name.
+  ZH: 即便如此，再顶尖的科技也无法完全保证你的行李纸质条码标签不会在高速传送带的剧烈摩擦挤压中被不幸撕裂扯掉，从而让你瞬间变成一个“无名失主”。
+
+[rec-2-0001.mp3]  995.10-1027.10s  (, rec-2)   <== FLAGGED
+  EN: You’ve probably been with someone who ignored you while interacting with his or her smartphone, and you’ve probably engaged in this behavior yourself.
+  ZH: 你大概经历过这样的场景：与某人聚会共处时，对方却只顾埋头摆弄自己的智能手机而对你冷落置之；而且很可能你自己也曾有过这样低头玩手机的举动。
+
+[rec-2-0018.mp3]  1193.43-1197.23s  (, rec-2)   <== FLAGGED
+  EN: The twist is that this exclusion occurs while sharing a physical encounter and having a conversation.
+  ZH: 而最讽刺吊诡的折磨之处在于，这种残酷的心灵排挤恰恰发生在彼此肉身共处一室甚至正在口头对话的亲密物理情境之下。
