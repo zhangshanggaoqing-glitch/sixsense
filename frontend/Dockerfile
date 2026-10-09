@@ -6,6 +6,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+ENV BACKEND_URL=http://backend:8000
 RUN npm run build
 
 FROM node:20-alpine AS runner
@@ -13,6 +14,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV PORT=3000
+ENV BACKEND_URL=http://backend:8000
 
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
