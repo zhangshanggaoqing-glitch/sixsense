@@ -3,17 +3,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Check, RotateCcw, ArrowRight } from "lucide-react";
 import { api, Sentence, DiffResult } from "@/lib/api";
+import { WordPopover } from "./WordPopover";
 
 interface DictationBoxProps {
   sentence: Sentence;
+  examId?: string;
   onNext: () => void;
   onReplay: () => void;
 }
 
-export function DictationBox({ sentence, onNext, onReplay }: DictationBoxProps) {
+export function DictationBox({ sentence, examId = "", onNext, onReplay }: DictationBoxProps) {
   const [input, setInput] = useState("");
   const [result, setResult] = useState<DiffResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedWord, setSelectedWord] = useState<string | null>(null);
+  const [popoverPos, setPopoverPos] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   // Focus textarea when sentence changes
@@ -47,6 +51,15 @@ export function DictationBox({ sentence, onNext, onReplay }: DictationBoxProps) 
         onNext();
       }
     }
+  };
+
+  const handleWordClick = (e: React.MouseEvent, wordText: string) => {
+    e.stopPropagation();
+    const clean = wordText.replace(/[^\w'-]+/g, "");
+    if (!clean) return;
+    const rect = (e.target as HTMLElement).getBoundingClientRect();
+    setSelectedWord(clean);
+    setPopoverPos({ top: rect.bottom, left: rect.left });
   };
 
   return (
@@ -114,12 +127,17 @@ export function DictationBox({ sentence, onNext, onReplay }: DictationBoxProps) 
             </div>
           </div>
 
-          {/* Word-level Diff Breakdown */}
+          {/* Word-level Diff Breakdown with clickable dictionary */}
           <div className="text-lg leading-relaxed flex flex-wrap gap-1.5 items-center mb-6">
             {result.diff_tokens.map((tok, idx) => {
               if (tok.type === "match") {
                 return (
-                  <span key={idx} className="text-gray-900 dark:text-gray-100 font-medium">
+                  <span
+                    key={idx}
+                    onClick={(e) => handleWordClick(e, tok.standard)}
+                    className="text-gray-900 dark:text-gray-100 font-medium cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 hover:underline"
+                    title="点击查词音标与翻译"
+                  >
                     {tok.standard}
                   </span>
                 );
@@ -128,8 +146,9 @@ export function DictationBox({ sentence, onNext, onReplay }: DictationBoxProps) 
                 return (
                   <span
                     key={idx}
-                    className="px-1.5 py-0.5 bg-red-100 dark:bg-red-950/50 text-red-600 dark:text-red-400 rounded border border-red-200 dark:border-red-900/60 font-semibold"
-                    title="Missing word"
+                    onClick={(e) => handleWordClick(e, tok.standard)}
+                    className="px-1.5 py-0.5 bg-red-100 dark:bg-red-950/50 text-red-600 dark:text-red-400 rounded border border-red-200 dark:border-red-900/60 font-semibold cursor-pointer hover:ring-2 hover:ring-red-400"
+                    title="漏词：点击查看读音与释义"
                   >
                     {tok.standard}
                   </span>
@@ -139,8 +158,9 @@ export function DictationBox({ sentence, onNext, onReplay }: DictationBoxProps) 
                 return (
                   <span
                     key={idx}
-                    className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 rounded border border-amber-200 dark:border-amber-900/60 font-semibold"
-                    title={`Form difference: user wrote '${tok.user}'`}
+                    onClick={(e) => handleWordClick(e, tok.standard)}
+                    className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 rounded border border-amber-200 dark:border-amber-900/60 font-semibold cursor-pointer hover:ring-2 hover:ring-amber-400"
+                    title={`词形差异 (输入了 '${tok.user}')：点击查看读音与释义`}
                   >
                     {tok.standard}
                   </span>
@@ -150,15 +170,20 @@ export function DictationBox({ sentence, onNext, onReplay }: DictationBoxProps) 
                 return (
                   <span
                     key={idx}
-                    className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-400 line-through rounded text-sm"
-                    title="Extra word"
+                    onClick={(e) => handleWordClick(e, tok.user)}
+                    className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-400 line-through rounded text-sm cursor-pointer hover:text-gray-600"
+                    title="冗余词：点击查词"
                   >
                     {tok.user}
                   </span>
                 );
               }
               return (
-                <span key={idx} className="text-red-500">
+                <span
+                  key={idx}
+                  onClick={(e) => handleWordClick(e, tok.standard)}
+                  className="text-red-500 cursor-pointer hover:underline"
+                >
                   {tok.standard}
                 </span>
               );
@@ -185,6 +210,17 @@ export function DictationBox({ sentence, onNext, onReplay }: DictationBoxProps) 
             </button>
           </div>
         </div>
+      )}
+
+      {/* Word Popover Anchor in Dictation Box */}
+      {selectedWord && (
+        <WordPopover
+          word={selectedWord}
+          currentSentence={sentence}
+          examId={examId}
+          onClose={() => setSelectedWord(null)}
+          position={popoverPos}
+        />
       )}
     </div>
   );

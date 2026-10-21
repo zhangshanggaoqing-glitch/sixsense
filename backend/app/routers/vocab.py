@@ -11,6 +11,10 @@ class AddVocabRequest(BaseModel):
     word: str
     lemma: Optional[str] = None
     phonetic: Optional[str] = ""
+    phonetic_uk: Optional[str] = ""
+    phonetic_us: Optional[str] = ""
+    audio_uk: Optional[str] = ""
+    audio_us: Optional[str] = ""
     part_of_speech: Optional[str] = ""
     definition_zh: Optional[str] = ""
     cet_level: Optional[str] = "CET-6"
@@ -51,12 +55,14 @@ def add_vocabulary(req: AddVocabRequest):
 
     cursor.execute("""
         INSERT INTO vocabulary (
-            id, word, lemma, phonetic, part_of_speech, definition_zh, cet_level,
+            id, word, lemma, phonetic, phonetic_uk, phonetic_us, audio_uk, audio_us,
+            part_of_speech, definition_zh, cet_level,
             source_sentence_id, source_sentence_en, source_sentence_zh, exam_id,
             audio_clip_start, audio_clip_end, created_at, review_count, mastery
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0.0);
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0.0);
     """, (
-        item_id, req.word.lower(), lemma, req.phonetic, req.part_of_speech, req.definition_zh, req.cet_level,
+        item_id, req.word.lower(), lemma, req.phonetic, req.phonetic_uk, req.phonetic_us, req.audio_uk, req.audio_us,
+        req.part_of_speech, req.definition_zh, req.cet_level,
         req.source_sentence_id, req.source_sentence_en, req.source_sentence_zh, req.exam_id,
         req.audio_clip_start, req.audio_clip_end, now
     ))

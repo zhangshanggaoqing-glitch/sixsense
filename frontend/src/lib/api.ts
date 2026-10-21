@@ -93,11 +93,34 @@ export interface DiffResult {
   };
 }
 
+export interface WordDefinition {
+  pos?: string;
+  meaning: string;
+}
+
+export interface WordLookupResult {
+  word: string;
+  lemma: string;
+  phonetic_uk: string;
+  phonetic_us: string;
+  audio_uk: string;
+  audio_us: string;
+  audio_uk_direct?: string;
+  audio_us_direct?: string;
+  definitions: WordDefinition[];
+  tags?: string[];
+  examples?: Array<{ en: string; zh: string }>;
+}
+
 export interface VocabItem {
   id: string;
   word: string;
   lemma: string;
   phonetic: string;
+  phonetic_uk?: string;
+  phonetic_us?: string;
+  audio_uk?: string;
+  audio_us?: string;
   part_of_speech: string;
   definition_zh: string;
   cet_level: string;
@@ -219,5 +242,15 @@ export const api = {
 
   async deleteVocabulary(id: string): Promise<void> {
     await fetch(`${API_BASE}/vocab/${id}`, { method: "DELETE" });
+  },
+
+  async lookupWord(word: string): Promise<WordLookupResult> {
+    const res = await fetch(`${API_BASE}/dict/lookup?word=${encodeURIComponent(word)}`);
+    if (!res.ok) throw new Error("Failed to look up word");
+    return res.json();
+  },
+
+  getVoiceUrl(word: string, type: 1 | 2): string {
+    return `${API_BASE}/dict/voice?word=${encodeURIComponent(word)}&type=${type}`;
   },
 };

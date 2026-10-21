@@ -37,7 +37,7 @@ export function SentenceCard({
 
   // If in Dictation mode (Mode D)
   if (displayMode === "D") {
-    return <DictationBox sentence={sentence} onNext={onNext} onReplay={onReplay} />;
+    return <DictationBox sentence={sentence} examId={examId} onNext={onNext} onReplay={onReplay} />;
   }
 
   // Tokenize sentence into clickable words

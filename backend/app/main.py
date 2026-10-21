@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from backend.app.database import init_db
-from backend.app.routers import exams, audio, vocab, progress
+from backend.app.routers import exams, audio, vocab, progress, dict as dict_router
 
 app = FastAPI(
     title="SixSense API",
@@ -23,6 +23,7 @@ app.include_router(exams.router)
 app.include_router(audio.router)
 app.include_router(vocab.router)
 app.include_router(progress.router)
+app.include_router(dict_router.router)
 
 @app.on_event("startup")
 def on_startup():

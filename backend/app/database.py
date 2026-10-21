@@ -137,6 +137,22 @@ def init_db():
     );
     """)
 
+    # 9. Dictionary Cache
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS dictionary_cache (
+        word TEXT PRIMARY KEY,
+        data_json TEXT NOT NULL,
+        updated_at REAL NOT NULL
+    );
+    """)
+
+    # Ensure vocabulary table has UK/US phonetic & audio fields
+    cursor.execute("PRAGMA table_info(vocabulary);")
+    vocab_cols = [r[1] for r in cursor.fetchall()]
+    for col in ["phonetic_uk", "phonetic_us", "audio_uk", "audio_us"]:
+        if col not in vocab_cols:
+            cursor.execute(f"ALTER TABLE vocabulary ADD COLUMN {col} TEXT DEFAULT '';")
+
     conn.commit()
     conn.close()
 

@@ -14,6 +14,7 @@ import {
   HelpCircle,
   ArrowRight,
   CheckCircle2,
+  Search,
 } from "lucide-react";
 import { api, ExamDetail, Sentence, Subpart, Question } from "@/lib/api";
 import { useAudioPlayer } from "@/hooks/useAudioPlayer";
@@ -22,6 +23,7 @@ import { SentenceCard } from "@/components/studio/SentenceCard";
 import { AudioBar } from "@/components/studio/AudioBar";
 import { KeyboardHelpModal } from "@/components/studio/KeyboardHelpModal";
 import { QuestionsModal } from "@/components/studio/QuestionsModal";
+import { QuickLookupModal } from "@/components/studio/QuickLookupModal";
 
 function StudioContent() {
   const router = useRouter();
@@ -37,6 +39,7 @@ function StudioContent() {
   const [displayMode, setDisplayMode] = useState<"A" | "B" | "C" | "D">("C");
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isQuestionsOpen, setIsQuestionsOpen] = useState(false);
+  const [isLookupOpen, setIsLookupOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   // Active time tracking
@@ -316,6 +319,14 @@ function StudioContent() {
             </button>
           )}
 
+          <button
+            onClick={() => setIsLookupOpen(true)}
+            className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors p-1.5"
+            title="词典查词 / 英美发音与释义"
+          >
+            <Search className="w-4 h-4" />
+          </button>
+
           <Link
             href="/vocabulary"
             className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors p-1.5"
@@ -394,6 +405,13 @@ function StudioContent() {
         subpartTitle={currentSubpart?.title || ""}
         questionRange={currentSubpart?.question_range || ""}
         questions={questions}
+      />
+
+      {/* Quick Word Lookup & Pronunciation Modal */}
+      <QuickLookupModal
+        isOpen={isLookupOpen}
+        onClose={() => setIsLookupOpen(false)}
+        currentExamId={exam.id}
       />
     </div>
   );
