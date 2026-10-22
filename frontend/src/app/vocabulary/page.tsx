@@ -117,16 +117,16 @@ export default function VocabularyPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fbfbfd] dark:bg-[#0d0f14] text-gray-900 dark:text-gray-100 p-6 sm:p-12">
+    <div className="min-h-screen bg-[#f5f5f7] dark:bg-[#000000] text-[#1d1d1f] dark:text-[#f5f5f7] p-6 sm:p-12 select-none">
       <div className="max-w-3xl mx-auto">
-        <header className="flex items-center justify-between pb-6 border-b border-gray-200 dark:border-gray-800">
+        <header className="flex items-center justify-between pb-6 border-b border-black/[0.06] dark:border-white/[0.08]">
           <Link
             href="/studio"
-            className="flex items-center gap-1.5 text-xs font-medium text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+            className="flex items-center gap-1.5 text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] transition-colors"
           >
             <ChevronLeft className="w-4 h-4" /> 返回精听工作台
           </Link>
-          <span className="text-xs uppercase font-mono font-bold text-gray-400">CET-6 Contextual Vocabulary</span>
+          <span className="text-xs text-[#86868b]">大学英语六级语境生词本</span>
         </header>
 
         <main className="mt-8">

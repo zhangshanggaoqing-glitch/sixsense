@@ -3,54 +3,63 @@
 @tailwind utilities;
 
 :root {
-  --background: #fbfbfd;
+  --background: #f5f5f7;
   --foreground: #1d1d1f;
   --card: #ffffff;
-  --card-border: #e5e7eb;
+  --card-border: rgba(0, 0, 0, 0.06);
   --muted: #86868b;
-  --accent: #2563eb;
-  --accent-light: #eff6ff;
-  --diff-missing: #ef4444;
-  --diff-extra: #9ca3af;
-  --diff-form: #f59e0b;
+  --accent: #0071e3;
+  --accent-hover: #0077ed;
+  --accent-light: rgba(0, 113, 227, 0.08);
+  --success: #34c759;
+  --danger: #ff3b30;
+  --diff-missing: #ff3b30;
+  --diff-extra: #86868b;
+  --diff-form: #ff9500;
 }
 
 .dark {
-  --background: #0d0f14;
-  --foreground: #f3f4f6;
-  --card: #151821;
-  --card-border: #222736;
-  --muted: #9ca3af;
-  --accent: #3b82f6;
-  --accent-light: #1e293b;
-  --diff-missing: #f87171;
-  --diff-extra: #6b7280;
-  --diff-form: #fbbf24;
+  --background: #000000;
+  --foreground: #f5f5f7;
+  --card: #1c1c1e;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --muted: #a1a1a6;
+  --accent: #0a84ff;
+  --accent-hover: #0071e3;
+  --accent-light: rgba(10, 132, 255, 0.15);
+  --success: #30d158;
+  --danger: #ff453a;
+  --diff-missing: #ff453a;
+  --diff-extra: #636366;
+  --diff-form: #ffd60a;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-  letter-spacing: -0.011em;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  letter-spacing: -0.015em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Minimalist scrollbars */
+/* Apple-style minimalist scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--card-border);
+  background: rgba(0, 0, 0, 0.12);
   border-radius: 9999px;
 }
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+}
 
-/* Subtle transitions for focus and hover states */
-button, input, textarea {
-  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+/* Smooth Apple UI element transitions */
+button, input, textarea, a {
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }

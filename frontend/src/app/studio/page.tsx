@@ -6,22 +6,19 @@ import { useRouter, useSearchParams } from "next/navigation";
 import {
   ChevronLeft,
   ChevronDown,
-  Keyboard,
-  BookOpen,
-  Headphones,
-  FileText,
-  PenTool,
   HelpCircle,
-  ArrowRight,
-  CheckCircle2,
   Search,
+  BookOpen,
+  CheckCircle2,
+  ArrowRight,
+  X,
 } from "lucide-react";
 import { api, ExamDetail, Sentence, Subpart, Question } from "@/lib/api";
+import { formatExamTitleZh, formatSubpartTitleZh } from "@/lib/formatters";
 import { useAudioPlayer } from "@/hooks/useAudioPlayer";
-import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
+import { useKeyboardShortcuts, StudioMode } from "@/hooks/useKeyboardShortcuts";
 import { SentenceCard } from "@/components/studio/SentenceCard";
 import { AudioBar } from "@/components/studio/AudioBar";
-import { KeyboardHelpModal } from "@/components/studio/KeyboardHelpModal";
 import { QuestionsModal } from "@/components/studio/QuestionsModal";
 import { QuickLookupModal } from "@/components/studio/QuickLookupModal";
 
@@ -29,26 +26,53 @@ function StudioContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const urlSubpartId = searchParams.get("subpart_id") || searchParams.get("subpartId");
-  const urlExamId = searchParams.get("exam_id") || searchParams.get("examId") || searchParams.get("id") || "2020-07-set1";
+  const urlExamId = searchParams.get("exam_id") || searchParams.get("examId") || searchParams.get("id") || "2016-06-set1";
 
   const [exam, setExam] = useState<ExamDetail | null>(null);
   const [subparts, setSubparts] = useState<Subpart[]>([]);
   const [activeSubpartId, setActiveSubpartId] = useState<string>("");
   const [sentences, setSentences] = useState<Sentence[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [displayMode, setDisplayMode] = useState<"A" | "B" | "C" | "D">("C");
-  const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const [displayMode, setDisplayMode] = useState<StudioMode>("blind");
   const [isQuestionsOpen, setIsQuestionsOpen] = useState(false);
   const [isLookupOpen, setIsLookupOpen] = useState(false);
+  const [showShortcutTip, setShowShortcutTip] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   // Active time tracking
   const activeSecondsRef = useRef(0);
   const lastInteractionTimeRef = useRef(Date.now());
 
-  // 1. Initial Load: Exam detail & Subparts
+  // 1. Check first-time entry for keyboard shortcut tip
+  useEffect(() => {
+    try {
+      const seen = localStorage.getItem("has_seen_shortcuts_tip");
+      if (!seen) {
+        setShowShortcutTip(true);
+        const timer = setTimeout(() => {
+          setShowShortcutTip(false);
+          localStorage.setItem("has_seen_shortcuts_tip", "true");
+        }, 6000);
+        return () => clearTimeout(timer);
+      }
+    } catch {
+      // Ignore storage errors in private browsing
+    }
+  }, []);
+
+  const dismissShortcutTip = () => {
+    setShowShortcutTip(false);
+    try {
+      localStorage.setItem("has_seen_shortcuts_tip", "true");
+    } catch {}
+  };
+
+  // 2. Initial Load: Exam detail & Subparts
   useEffect(() => {
     async function init() {
+      setIsLoading(true);
+      setIsError(false);
       try {
         const [examData, subpartsList, resume] = await Promise.all([
           api.getExamDetail(urlExamId),
@@ -72,20 +96,28 @@ function StudioContent() {
         }
 
         setActiveSubpartId(targetSubpartId || "");
-        if (resume?.display_mode) setDisplayMode(resume.display_mode);
+
+        // Map legacy resume display_mode
+        if (resume?.display_mode) {
+          if (resume.display_mode === "C") setDisplayMode("blind");
+          else if (resume.display_mode === "D") setDisplayMode("dictation");
+          else setDisplayMode("bilingual");
+        }
       } catch (err) {
         console.error("Failed to initialize studio", err);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
       }
     }
     init();
   }, [urlExamId, urlSubpartId]);
 
-  // 2. Load Sentences & Questions when activeSubpartId changes
+  // 3. Load Sentences & Questions when activeSubpartId changes
   useEffect(() => {
     if (!activeSubpartId || !exam) return;
 
     async function loadSubpartContent() {
-      setIsLoading(true);
       try {
         const [subSentences, subQuestions] = await Promise.all([
           api.getSentences(exam!.id, activeSubpartId),
@@ -95,8 +127,6 @@ function StudioContent() {
         setQuestions(subQuestions);
       } catch (err) {
         console.error("Failed to load subpart content", err);
-      } finally {
-        setIsLoading(false);
       }
     }
 
@@ -133,19 +163,6 @@ function StudioContent() {
     }
   };
 
-  // Activity tracker
-  useEffect(() => {
-    const markActive = () => {
-      lastInteractionTimeRef.current = Date.now();
-    };
-    window.addEventListener("keydown", markActive);
-    window.addEventListener("mousedown", markActive);
-    return () => {
-      window.removeEventListener("keydown", markActive);
-      window.removeEventListener("mousedown", markActive);
-    };
-  }, []);
-
   // Heartbeat tracking
   useEffect(() => {
     if (!exam) return;
@@ -174,7 +191,7 @@ function StudioContent() {
         subpart_id: activeSubpartId,
         sentence_index: player.currentIndex,
         playback_rate: player.playbackRate,
-        display_mode: displayMode,
+        display_mode: displayMode === "blind" ? "C" : displayMode === "dictation" ? "D" : "A",
         loop_mode: player.loopMode,
         volume: player.volume,
       });
@@ -182,28 +199,21 @@ function StudioContent() {
     return () => clearTimeout(timer);
   }, [player.currentIndex, player.playbackRate, player.loopMode, player.volume, displayMode, exam, sentences, activeSubpartId]);
 
-  // Keyboard Shortcuts
+  // Single-sentence Loop toggle (R shortcut)
+  const handleToggleLoop = () => {
+    player.cycleLoopMode();
+  };
+
+  // Keyboard Shortcuts: 空格播放暂停，←/→ 上下一句，R 循环，1/2/3 切模式
   useKeyboardShortcuts({
     onTogglePlay: player.togglePlay,
-    onReplay: player.replay,
     onNext: player.nextSentence,
     onPrev: player.prevSentence,
-    onToggleLoop: player.cycleLoopMode,
-    onToggleEnglish: () => {
-      setDisplayMode((prev) => (prev === "C" ? "B" : prev === "B" ? "C" : prev === "A" ? "C" : "B"));
-    },
-    onToggleTranslation: () => {
-      setDisplayMode((prev) => (prev === "B" ? "A" : prev === "A" ? "B" : "A"));
-    },
-    onToggleDictation: () => {
-      setDisplayMode((prev) => (prev === "D" ? "C" : "D"));
-    },
+    onToggleLoop: handleToggleLoop,
+    onSelectMode: (mode) => setDisplayMode(mode),
     onSpeedDown: () => player.adjustSpeed(-0.1),
     onSpeedUp: () => player.adjustSpeed(0.1),
-    onVolumeUp: () => player.adjustVolume(0.1),
-    onVolumeDown: () => player.adjustVolume(-0.1),
-    onToggleHelp: () => setIsHelpOpen((prev) => !prev),
-    isDictating: displayMode === "D",
+    isDictating: displayMode === "dictation",
   });
 
   const currentSubpart = subparts.find((sp) => sp.id === activeSubpartId) || subparts[0];
@@ -211,173 +221,178 @@ function StudioContent() {
   const currentSubpartIndex = subparts.findIndex((sp) => sp.id === activeSubpartId);
   const nextSubpart = currentSubpartIndex >= 0 && currentSubpartIndex + 1 < subparts.length ? subparts[currentSubpartIndex + 1] : null;
 
-  if (isLoading || !exam || sentences.length === 0) {
+  // Loading state
+  if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#fbfbfd] dark:bg-[#0d0f14]">
+      <div className="min-h-screen flex items-center justify-center bg-[#f5f5f7] dark:bg-[#000000]">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
-          <span className="text-sm font-medium text-gray-400 font-mono">Loading Topic Content...</span>
+          <div className="w-7 h-7 border-2 border-[#0071e3] border-t-transparent rounded-full animate-spin" />
+          <span className="text-sm font-medium text-[#86868b]">正在准备听力材料…</span>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (isError || !exam) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#f5f5f7] dark:bg-[#000000] p-6 text-center">
+        <div className="flex flex-col items-center gap-3 max-w-sm">
+          <p className="text-sm font-medium text-[#86868b]">音频材料加载失败，请检查网络</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-5 py-2 text-xs font-semibold rounded-full bg-[#0071e3] text-white hover:bg-[#0077ed] transition-colors"
+          >
+            点击重试
+          </button>
         </div>
       </div>
     );
   }
 
   const currentSentence = player.currentSentence || sentences[0];
+  const examTitleZh = formatExamTitleZh(exam.title || exam.id);
+  const currentSubpartTitleZh = formatSubpartTitleZh(currentSubpart?.title, currentSubpart?.question_range);
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-[#fbfbfd] dark:bg-[#0d0f14] text-gray-900 dark:text-gray-100 select-none">
-      {/* Top Header */}
-      <header className="w-full max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-        {/* Left: Back & Topic Selector */}
-        <div className="flex items-center gap-3">
+    <div className="min-h-screen flex flex-col justify-between bg-[#f5f5f7] dark:bg-[#000000] text-[#1d1d1f] dark:text-[#f5f5f7] select-none">
+      {/* Top Header: 专注设计，只显示 真题名称 · 当前分节 · 进度 */}
+      <header className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2 sm:gap-4">
+        {/* Left: 首页导航 + 分节下拉菜单 */}
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <Link
             href="/"
-            className="flex items-center gap-1 text-xs font-medium text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
+            className="flex items-center gap-1 text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] transition-colors"
           >
-            <ChevronLeft className="w-4 h-4" /> Home
+            <ChevronLeft className="w-4 h-4" />
+            <span className="hidden sm:inline">首页</span>
           </Link>
-          <span className="text-gray-300 dark:text-gray-700">/</span>
+          <span className="text-black/10 dark:text-white/10">·</span>
 
           {/* Subpart Switcher Dropdown */}
           <div className="relative">
             <select
               value={activeSubpartId}
               onChange={(e) => handleSelectSubpart(e.target.value)}
-              className="appearance-none bg-gray-100 dark:bg-[#1a1e2b] border border-gray-200 dark:border-gray-800 text-xs font-medium text-gray-800 dark:text-gray-200 pl-3 pr-7 py-1.5 rounded-xl cursor-pointer hover:border-gray-300 dark:hover:border-gray-700 focus:outline-none"
+              className="appearance-none bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.07] dark:hover:bg-white/[0.12] text-xs font-medium text-[#1d1d1f] dark:text-[#f5f5f7] pl-3 pr-7 py-1.5 rounded-full cursor-pointer focus:outline-none transition-colors border-none"
             >
               {subparts.map((sp) => (
-                <option key={sp.id} value={sp.id}>
-                  {sp.title} ({sp.question_range})
+                <option key={sp.id} value={sp.id} className="dark:bg-[#1c1c1e] text-[#1d1d1f] dark:text-[#f5f5f7]">
+                  {examTitleZh} · {formatSubpartTitleZh(sp.title, sp.question_range)}
                 </option>
               ))}
             </select>
-            <ChevronDown className="w-3.5 h-3.5 text-gray-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <ChevronDown className="w-3.5 h-3.5 text-[#86868b] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
         </div>
 
-        {/* Center: Mode Switcher */}
-        <div className="flex items-center bg-gray-200/60 dark:bg-[#1b1f2b] p-1 rounded-xl text-xs font-medium border border-gray-200/60 dark:border-gray-800">
+        {/* Center: Apple Segmented Control: 盲听 ｜ 双语 ｜ 听写 */}
+        <div className="flex items-center bg-black/[0.05] dark:bg-white/[0.08] p-0.5 rounded-full text-xs font-medium">
           <button
-            onClick={() => setDisplayMode("C")}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-all ${
-              displayMode === "C"
-                ? "bg-white dark:bg-[#252a3a] text-blue-600 dark:text-blue-400 font-semibold shadow-2xs"
-                : "text-gray-500 hover:text-gray-900 dark:hover:text-gray-200"
+            onClick={() => setDisplayMode("blind")}
+            className={`px-3 sm:px-4 py-1.5 rounded-full transition-all ${
+              displayMode === "blind"
+                ? "bg-white dark:bg-[#2c2c2e] text-[#0071e3] dark:text-[#0a84ff] font-semibold shadow-xs"
+                : "text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7]"
             }`}
-            title="Blind Mode (C) - Audio Only"
+            title="纯音频听力训练 (快捷键: 1)"
           >
-            <Headphones className="w-3.5 h-3.5" /> Blind
+            盲听
           </button>
 
           <button
-            onClick={() => setDisplayMode("B")}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-all ${
-              displayMode === "B"
-                ? "bg-white dark:bg-[#252a3a] text-blue-600 dark:text-blue-400 font-semibold shadow-2xs"
-                : "text-gray-500 hover:text-gray-900 dark:hover:text-gray-200"
+            onClick={() => setDisplayMode("bilingual")}
+            className={`px-3 sm:px-4 py-1.5 rounded-full transition-all ${
+              displayMode === "bilingual"
+                ? "bg-white dark:bg-[#2c2c2e] text-[#0071e3] dark:text-[#0a84ff] font-semibold shadow-xs"
+                : "text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7]"
             }`}
-            title="English Mode (B) - Transcript Only"
+            title="英中文本对照精听 (快捷键: 2)"
           >
-            <FileText className="w-3.5 h-3.5" /> English (A)
+            双语
           </button>
 
           <button
-            onClick={() => setDisplayMode("A")}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-all ${
-              displayMode === "A"
-                ? "bg-white dark:bg-[#252a3a] text-blue-600 dark:text-blue-400 font-semibold shadow-2xs"
-                : "text-gray-500 hover:text-gray-900 dark:hover:text-gray-200"
+            onClick={() => setDisplayMode("dictation")}
+            className={`px-3 sm:px-4 py-1.5 rounded-full transition-all ${
+              displayMode === "dictation"
+                ? "bg-white dark:bg-[#2c2c2e] text-[#0071e3] dark:text-[#0a84ff] font-semibold shadow-xs"
+                : "text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7]"
             }`}
-            title="Bilingual Mode (A) - English + Translation"
+            title="单句听写实战训练 (快捷键: 3)"
           >
-            <span>Bilingual (T)</span>
-          </button>
-
-          <button
-            onClick={() => setDisplayMode("D")}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-all ${
-              displayMode === "D"
-                ? "bg-white dark:bg-[#252a3a] text-blue-600 dark:text-blue-400 font-semibold shadow-2xs"
-                : "text-gray-500 hover:text-gray-900 dark:hover:text-gray-200"
-            }`}
-            title="Dictation Mode (D)"
-          >
-            <PenTool className="w-3.5 h-3.5" /> Dictation (D)
+            听写
           </button>
         </div>
 
-        {/* Right Tools: Questions Drawer, Vocab & Keyboard */}
-        <div className="flex items-center gap-2.5">
+        {/* Right Tools: 考题, 查词, 生词本 */}
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           {questions.length > 0 && (
             <button
               onClick={() => setIsQuestionsOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium bg-blue-50 text-blue-600 dark:bg-blue-950/60 dark:text-blue-400 border border-blue-100 dark:border-blue-900/60 hover:bg-blue-100 dark:hover:bg-blue-900/80 transition-all"
-              title="View CET-6 Questions & Options"
+              className="flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-[#0071e3] dark:text-[#0a84ff] bg-[#0071e3]/10 dark:bg-[#0a84ff]/15 hover:bg-[#0071e3]/20 transition-colors"
+              title="查看六级官方原题与选项"
             >
               <HelpCircle className="w-3.5 h-3.5" />
-              <span>考题 ({currentSubpart?.question_range || "Q"})</span>
+              <span>考题</span>
             </button>
           )}
 
           <button
             onClick={() => setIsLookupOpen(true)}
-            className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors p-1.5"
-            title="词典查词 / 英美发音与释义"
+            className="w-8 h-8 flex items-center justify-center rounded-full text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+            title="查词典 / 英美发音与释义"
           >
             <Search className="w-4 h-4" />
           </button>
 
           <Link
             href="/vocabulary"
-            className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors p-1.5"
-            title="Vocabulary"
+            className="w-8 h-8 flex items-center justify-center rounded-full text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+            title="生词本"
           >
             <BookOpen className="w-4 h-4" />
           </Link>
-
-          <button
-            onClick={() => setIsHelpOpen(true)}
-            className="p-1.5 text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
-            title="Keyboard Shortcuts (?)"
-          >
-            <Keyboard className="w-4 h-4" />
-          </button>
         </div>
       </header>
 
-      {/* Main Focus Area (One Screen, One Job) */}
+      {/* Main Focus Area (一屏一个主角) */}
       <main className="flex-1 flex flex-col items-center justify-center px-4 relative">
-        <SentenceCard
-          sentence={currentSentence}
-          displayMode={displayMode}
-          isPlaying={player.isPlaying}
-          examId={exam.id}
-          onNext={player.nextSentence}
-          onReplay={player.replay}
-          onToggleTranslation={() => setDisplayMode("A")}
-        />
+        {currentSentence ? (
+          <SentenceCard
+            sentence={currentSentence}
+            displayMode={displayMode}
+            isPlaying={player.isPlaying}
+            examId={exam.id}
+            onNext={player.nextSentence}
+            onReplay={player.replay}
+            onTogglePlay={player.togglePlay}
+          />
+        ) : (
+          <div className="text-sm text-[#86868b]">暂无听力句子数据</div>
+        )}
 
-        {/* End of Subpart Celebration / Transition Notification */}
+        {/* End of Subpart Transition Notification */}
         {isLastSentence && (
-          <div className="mt-6 flex items-center gap-3 animate-in fade-in duration-300">
-            <span className="text-xs text-gray-400 flex items-center gap-1 font-mono">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-              本篇精听完毕 ({sentences.length} 句)
+          <div className="mt-4 flex items-center gap-3 animate-in fade-in duration-300">
+            <span className="text-xs text-[#86868b] flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-[#34c759]" />
+              本篇精听完毕（共 {sentences.length} 句）
             </span>
             {nextSubpart && (
               <button
                 onClick={handleNextSubpart}
-                className="flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-xl bg-gray-900 text-white dark:bg-white dark:text-gray-900 hover:opacity-90 shadow-2xs transition-all"
+                className="flex items-center gap-1 text-xs font-semibold px-4 py-1.5 rounded-full bg-[#1d1d1f] text-white dark:bg-[#f5f5f7] dark:text-[#1d1d1f] hover:opacity-90 shadow-sm transition-all"
               >
-                下一题：{nextSubpart.topic_zh} ({nextSubpart.question_range}) <ArrowRight className="w-3 h-3" />
+                下一题：{formatSubpartTitleZh(nextSubpart.title, nextSubpart.question_range)} <ArrowRight className="w-3 h-3" />
               </button>
             )}
           </div>
         )}
       </main>
 
-      {/* Bottom Audio Transport Bar */}
-      <footer className="w-full pb-8 pt-4 px-4">
+      {/* Bottom Floating Frosted Glass Audio Bar */}
+      <footer className="w-full pb-7 pt-2 px-4 z-30">
         <AudioBar
           currentIndex={player.currentIndex}
           totalSentences={sentences.length}
@@ -386,23 +401,32 @@ function StudioContent() {
           playbackRate={player.playbackRate}
           volume={player.volume}
           onTogglePlay={player.togglePlay}
-          onReplay={player.replay}
           onNext={player.nextSentence}
           onPrev={player.prevSentence}
-          onCycleLoop={player.cycleLoopMode}
+          onCycleLoop={handleToggleLoop}
           onSetSpeed={player.setPlaybackRate}
           onSetVolume={player.adjustVolume}
         />
       </footer>
 
-      {/* Keyboard Shortcuts Modal */}
-      <KeyboardHelpModal isOpen={isHelpOpen} onClose={() => setIsHelpOpen(false)} />
+      {/* First-time Entry Shortcut Toast (Corner Hint) */}
+      {showShortcutTip && (
+        <div className="fixed bottom-24 right-6 z-40 flex items-center gap-2 px-3.5 py-2 bg-white/90 dark:bg-[#2c2c2e]/90 backdrop-blur-md border border-black/[0.08] dark:border-white/[0.1] rounded-full shadow-lg text-[11px] font-medium text-[#86868b] dark:text-[#a1a1a6] animate-in fade-in slide-in-from-bottom-2 duration-200">
+          <span>快捷键：空格 播放 · ←/→ 选句 · R 循环 · 1/2/3 切模式</span>
+          <button
+            onClick={dismissShortcutTip}
+            className="p-0.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-[#86868b] hover:text-[#1d1d1f] transition-colors"
+          >
+            <X className="w-3 h-3" />
+          </button>
+        </div>
+      )}
 
       {/* Official Questions & Options Modal */}
       <QuestionsModal
         isOpen={isQuestionsOpen}
         onClose={() => setIsQuestionsOpen(false)}
-        subpartTitle={currentSubpart?.title || ""}
+        subpartTitle={currentSubpartTitleZh}
         questionRange={currentSubpart?.question_range || ""}
         questions={questions}
       />
@@ -421,10 +445,10 @@ export default function StudioPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen flex items-center justify-center bg-[#fbfbfd] dark:bg-[#0d0f14]">
+        <div className="min-h-screen flex items-center justify-center bg-[#f5f5f7] dark:bg-[#000000]">
           <div className="flex flex-col items-center gap-3">
-            <div className="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
-            <span className="text-sm font-medium text-gray-400 font-mono">Loading SixSense Studio...</span>
+            <div className="w-7 h-7 border-2 border-[#0071e3] border-t-transparent rounded-full animate-spin" />
+            <span className="text-sm font-medium text-[#86868b]">正在准备听力材料…</span>
           </div>
         </div>
       }

@@ -1,35 +1,27 @@
 import { useEffect } from "react";
 
+export type StudioMode = "blind" | "bilingual" | "dictation";
+
 export interface ShortcutHandlers {
   onTogglePlay: () => void;
-  onReplay: () => void;
   onNext: () => void;
   onPrev: () => void;
   onToggleLoop: () => void;
-  onToggleEnglish: () => void;
-  onToggleTranslation: () => void;
-  onToggleDictation: () => void;
-  onSpeedDown: () => void;
-  onSpeedUp: () => void;
-  onVolumeUp: () => void;
-  onVolumeDown: () => void;
-  onToggleHelp: () => void;
+  onSelectMode?: (mode: StudioMode) => void;
+  onSpeedDown?: () => void;
+  onSpeedUp?: () => void;
+  onToggleHelp?: () => void;
   isDictating?: boolean;
 }
 
 export function useKeyboardShortcuts({
   onTogglePlay,
-  onReplay,
   onNext,
   onPrev,
   onToggleLoop,
-  onToggleEnglish,
-  onToggleTranslation,
-  onToggleDictation,
+  onSelectMode,
   onSpeedDown,
   onSpeedUp,
-  onVolumeUp,
-  onVolumeDown,
   onToggleHelp,
   isDictating = false,
 }: ShortcutHandlers) {
@@ -37,27 +29,18 @@ export function useKeyboardShortcuts({
     const handleKeyDown = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement;
       const isInputFocused =
-        target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable;
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.isContentEditable;
 
-      // In dictation mode, allow Esc to exit dictation
-      if (isDictating) {
-        if (e.key === "Escape") {
-          e.preventDefault();
-          onToggleDictation();
-          return;
-        }
-        // If typing in input, don't trigger playback single-character shortcuts
-        if (isInputFocused) {
-          // Allow Ctrl+Space or Alt+R for replay if needed, but let user type
-          if ((e.ctrlKey || e.metaKey) && e.key === "r") {
-            e.preventDefault();
-            onReplay();
-          }
-          return;
-        }
+      // In dictation mode, allow Esc to exit
+      if (isDictating && e.key === "Escape") {
+        e.preventDefault();
+        onSelectMode?.("bilingual");
+        return;
       }
 
-      // If user is focused on a normal input, ignore shortcuts
+      // If user is focused on a text input, don't trigger global shortcuts
       if (isInputFocused) return;
 
       switch (e.code) {
@@ -75,44 +58,35 @@ export function useKeyboardShortcuts({
           break;
         case "KeyR":
           e.preventDefault();
-          onReplay();
-          break;
-        case "KeyL":
-          e.preventDefault();
           onToggleLoop();
           break;
-        case "KeyA":
+        case "Digit1":
+        case "Numpad1":
           e.preventDefault();
-          onToggleEnglish();
+          onSelectMode?.("blind");
           break;
-        case "KeyT":
+        case "Digit2":
+        case "Numpad2":
           e.preventDefault();
-          onToggleTranslation();
+          onSelectMode?.("bilingual");
           break;
-        case "KeyD":
+        case "Digit3":
+        case "Numpad3":
           e.preventDefault();
-          onToggleDictation();
+          onSelectMode?.("dictation");
           break;
         case "BracketLeft":
           e.preventDefault();
-          onSpeedDown();
+          onSpeedDown?.();
           break;
         case "BracketRight":
           e.preventDefault();
-          onSpeedUp();
-          break;
-        case "ArrowUp":
-          e.preventDefault();
-          onVolumeUp();
-          break;
-        case "ArrowDown":
-          e.preventDefault();
-          onVolumeDown();
+          onSpeedUp?.();
           break;
         case "Slash":
           if (e.shiftKey) {
             e.preventDefault();
-            onToggleHelp();
+            onToggleHelp?.();
           }
           break;
       }
@@ -122,17 +96,12 @@ export function useKeyboardShortcuts({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [
     onTogglePlay,
-    onReplay,
     onNext,
     onPrev,
     onToggleLoop,
-    onToggleEnglish,
-    onToggleTranslation,
-    onToggleDictation,
+    onSelectMode,
     onSpeedDown,
     onSpeedUp,
-    onVolumeUp,
-    onVolumeDown,
     onToggleHelp,
     isDictating,
   ]);

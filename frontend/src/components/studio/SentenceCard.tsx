@@ -1,19 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
-import { Headphones, Eye } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Headphones, Eye, EyeOff } from "lucide-react";
 import { Sentence } from "@/lib/api";
+import { formatSpeakerZh } from "@/lib/formatters";
 import { WordPopover } from "./WordPopover";
 import { DictationBox } from "./DictationBox";
 
 interface SentenceCardProps {
   sentence: Sentence;
-  displayMode: "A" | "B" | "C" | "D";
+  displayMode: "blind" | "bilingual" | "dictation" | "A" | "B" | "C" | "D";
   isPlaying: boolean;
   examId: string;
   onNext: () => void;
   onReplay: () => void;
-  onToggleTranslation: () => void;
+  onTogglePlay?: () => void;
 }
 
 export function SentenceCard({
@@ -23,10 +24,16 @@ export function SentenceCard({
   examId,
   onNext,
   onReplay,
-  onToggleTranslation,
+  onTogglePlay,
 }: SentenceCardProps) {
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
   const [popoverPos, setPopoverPos] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
+  const [showBlindTranscript, setShowBlindTranscript] = useState(false);
+
+  // Reset blind transcript reveal when sentence changes
+  useEffect(() => {
+    setShowBlindTranscript(false);
+  }, [sentence.id]);
 
   const handleWordClick = (e: React.MouseEvent, word: string) => {
     e.stopPropagation();
@@ -35,80 +42,95 @@ export function SentenceCard({
     setPopoverPos({ top: rect.bottom, left: rect.left });
   };
 
-  // If in Dictation mode (Mode D)
-  if (displayMode === "D") {
+  // Normalization for 3 modes
+  const isDictation = displayMode === "dictation" || displayMode === "D";
+  const isBlind = displayMode === "blind" || displayMode === "C";
+
+  // 1. Dictation Mode
+  if (isDictation) {
     return <DictationBox sentence={sentence} examId={examId} onNext={onNext} onReplay={onReplay} />;
   }
 
-  // Tokenize sentence into clickable words
+  // Tokenize sentence for word lookup
   const words = sentence.english.split(/(\s+)/);
+  const speakerZh = formatSpeakerZh(sentence.speaker);
 
   return (
-    <div className="w-full max-w-3xl mx-auto flex flex-col items-center text-center px-4 py-8">
-      {/* Speaker Tag if present */}
-      {sentence.speaker && (
-        <span className="text-[11px] font-mono tracking-widest uppercase font-semibold text-gray-400 dark:text-gray-500 mb-6 px-2.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800/60">
-          Speaker {sentence.speaker}
-        </span>
+    <div className="w-full max-w-3xl mx-auto flex flex-col items-center text-center px-4 py-6 sm:py-10 select-none">
+      {/* Speaker Tag: 男 / 女 */}
+      {speakerZh && (
+        <div className="mb-5 animate-in fade-in duration-200">
+          <span className="text-[12px] font-medium tracking-wider text-[#86868b] dark:text-[#a1a1a6] px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/[0.06]">
+            {speakerZh}
+          </span>
+        </div>
       )}
 
-      {/* Main English Sentence Area */}
-      <div className="min-h-[140px] flex items-center justify-center w-full">
-        {displayMode === "C" ? (
+      {/* Main Focus Area */}
+      <div className="min-h-[160px] flex items-center justify-center w-full">
+        {isBlind && !showBlindTranscript ? (
           // Blind Mode: Absolute focus on hearing
-          <div className="flex flex-col items-center justify-center animate-in fade-in duration-300">
-            <div className={`p-4 rounded-full transition-all duration-300 ${
-              isPlaying
-                ? "bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 scale-105"
-                : "text-gray-300 dark:text-gray-700"
-            }`}>
-              <Headphones className="w-8 h-8" />
-            </div>
-            <p className="mt-4 text-xl font-medium tracking-tight text-gray-400 dark:text-gray-500">
-              Listen.
+          <div className="flex flex-col items-center justify-center animate-in fade-in duration-300 py-4">
+            <button
+              onClick={onTogglePlay}
+              className={`p-6 rounded-full transition-all duration-300 ${
+                isPlaying
+                  ? "bg-[#0071e3]/10 text-[#0071e3] dark:text-[#0a84ff] scale-105 shadow-[0_0_30px_rgba(0,113,227,0.25)]"
+                  : "bg-black/[0.03] dark:bg-white/[0.05] text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7]"
+              }`}
+              title="点击播放 / 暂停"
+            >
+              <Headphones className="w-9 h-9" />
+            </button>
+            <p className="mt-4 text-base font-normal text-[#86868b] dark:text-[#a1a1a6]">
+              静心聆听，捕捉语音细节
             </p>
-            <p className="mt-1 text-xs text-gray-400 dark:text-gray-600 font-mono">
-              Press [A] to reveal English
-            </p>
+            <button
+              onClick={() => setShowBlindTranscript(true)}
+              className="mt-3 text-xs font-medium text-[#0071e3] dark:text-[#0a84ff] hover:underline flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-[#0071e3]/5 transition-colors"
+            >
+              <Eye className="w-3.5 h-3.5" /> 显示原文
+            </button>
           </div>
         ) : (
-          // Mode A or Mode B: English Text Visible
-          <div className="text-2xl sm:text-3xl font-medium tracking-tight leading-relaxed text-gray-900 dark:text-gray-50 flex flex-wrap justify-center gap-x-1.5 gap-y-1 animate-in fade-in duration-200">
-            {words.map((item, idx) => {
-              if (/^\s+$/.test(item)) {
-                return <span key={idx}>{item}</span>;
-              }
-              const clean = item.replace(/[^\w']+/g, "");
-              if (!clean) return <span key={idx}>{item}</span>;
+          // Bilingual Mode (or revealed Blind transcript): English Hero text
+          <div className="flex flex-col items-center justify-center animate-in fade-in duration-200">
+            <div className="text-2xl sm:text-[28px] font-medium tracking-tight leading-relaxed text-[#1d1d1f] dark:text-[#f5f5f7] flex flex-wrap justify-center gap-x-2 gap-y-1">
+              {words.map((item, idx) => {
+                if (/^\s+$/.test(item)) {
+                  return <span key={idx}>{item}</span>;
+                }
+                const clean = item.replace(/[^\w'-]+/g, "");
+                if (!clean) return <span key={idx}>{item}</span>;
 
-              return (
-                <span
-                  key={idx}
-                  onClick={(e) => handleWordClick(e, clean)}
-                  className="cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 hover:underline decoration-blue-500/30 decoration-2 underline-offset-4 rounded transition-colors"
-                >
-                  {item}
-                </span>
-              );
-            })}
+                return (
+                  <span
+                    key={idx}
+                    onClick={(e) => handleWordClick(e, clean)}
+                    className="cursor-pointer hover:text-[#0071e3] dark:hover:text-[#0a84ff] hover:underline decoration-[#0071e3]/30 decoration-2 underline-offset-4 rounded transition-colors"
+                  >
+                    {item}
+                  </span>
+                );
+              })}
+            </div>
+
+            {/* Translation underneath in lighter, secondary size */}
+            <p className="mt-4 text-base sm:text-lg text-[#86868b] dark:text-[#a1a1a6] font-normal leading-relaxed max-w-2xl">
+              {sentence.chinese}
+            </p>
+
+            {/* If in Blind mode but revealed, offer re-hide option */}
+            {isBlind && showBlindTranscript && (
+              <button
+                onClick={() => setShowBlindTranscript(false)}
+                className="mt-4 text-xs text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] flex items-center gap-1 transition-colors"
+              >
+                <EyeOff className="w-3.5 h-3.5" /> 隐去原文
+              </button>
+            )}
           </div>
         )}
-      </div>
-
-      {/* Translation Area */}
-      <div className="min-h-[50px] mt-6 flex items-center justify-center">
-        {displayMode === "A" ? (
-          <p className="text-base sm:text-lg text-gray-500 dark:text-gray-400 font-normal tracking-wide animate-in fade-in duration-200">
-            {sentence.chinese}
-          </p>
-        ) : displayMode === "B" ? (
-          <button
-            onClick={onToggleTranslation}
-            className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 flex items-center gap-1 transition-colors"
-          >
-            <Eye className="w-3.5 h-3.5" /> Show Translation (T)
-          </button>
-        ) : null}
       </div>
 
       {/* Word Popover Anchor */}
