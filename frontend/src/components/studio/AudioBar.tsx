@@ -104,13 +104,18 @@ export function AudioBar({
 
           {/* Single Sentence Loop */}
           <button
-            onClick={onCycleLoop}
-            className={`h-10 px-2.5 sm:px-3 flex items-center gap-1.5 rounded-full text-xs font-medium transition-colors ${
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onCycleLoop();
+            }}
+            className={`h-10 min-w-[44px] px-2.5 sm:px-3 flex items-center justify-center gap-1.5 rounded-full text-xs font-medium transition-all active:scale-95 ${
               isLooping
-                ? "bg-[#0071e3]/10 text-[#0071e3] dark:bg-[#0a84ff]/20 dark:text-[#0a84ff] font-semibold"
+                ? "bg-[#0071e3]/10 text-[#0071e3] dark:bg-[#0a84ff]/20 dark:text-[#0a84ff] font-semibold ring-1 ring-[#0071e3]/20"
                 : "text-[#86868b] dark:text-[#a1a1a6] hover:bg-black/5 dark:hover:bg-white/10 hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7]"
             }`}
-            title="快捷键：R"
+            title={isLooping ? "单句循环已开启 (快捷键 R)" : "开启单句循环 (快捷键 R)"}
           >
             <Repeat className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">单句循环</span>

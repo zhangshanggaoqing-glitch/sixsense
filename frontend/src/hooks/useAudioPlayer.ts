@@ -71,6 +71,8 @@ export function useAudioPlayer({
 
   const currentSentence = sentences[currentIndex] || null;
 
+  const lastLoopTimeRef = useRef<number>(0);
+
   // Time boundary check loop
   useEffect(() => {
     const audio = audioRef.current;
@@ -80,20 +82,21 @@ export function useAudioPlayer({
 
     const checkBoundary = () => {
       if (isPlaying && audio.currentTime >= currentSentence.end_time) {
-        // Sentence finished!
-        const maxLoops =
-          loopMode === "1x" ? 1 : loopMode === "3x" ? 3 : loopMode === "5x" ? 5 : loopMode === "infinity" ? Infinity : 0;
-
-        if (maxLoops > 0 && loopCount + 1 < maxLoops) {
-          // Replay current sentence in loop
-          setLoopCount((prev) => prev + 1);
-          audio.currentTime = Math.max(0, currentSentence.start_time - 0.05);
-          audio.play().catch(() => {});
-        } else {
-          // Stop loop and pause
-          audio.pause();
-          setIsPlaying(false);
-          setLoopCount(0);
+        const now = performance.now();
+        // Prevent rapid re-triggering during seek buffer update (within 350ms)
+        if (now - lastLoopTimeRef.current > 350) {
+          lastLoopTimeRef.current = now;
+          if (loopMode === "infinity" || loopMode === "1x" || loopMode === "3x" || loopMode === "5x") {
+            // Replay current sentence in loop
+            setLoopCount((prev) => prev + 1);
+            audio.currentTime = Math.max(0, currentSentence.start_time - 0.05);
+            audio.play().catch(() => {});
+          } else {
+            // Stop loop and pause
+            audio.pause();
+            setIsPlaying(false);
+            setLoopCount(0);
+          }
         }
       }
       animId = requestAnimationFrame(checkBoundary);
@@ -151,14 +154,22 @@ export function useAudioPlayer({
     }
   }, [currentIndex, playSentence]);
 
-  const cycleLoopMode = useCallback(() => {
-    const modes: LoopMode[] = ["off", "1x", "3x", "5x", "infinity"];
+  const toggleLoopMode = useCallback(() => {
     setLoopMode((prev) => {
-      const nextIdx = (modes.indexOf(prev) + 1) % modes.length;
-      return modes[nextIdx];
+      const nextMode = prev === "off" ? "infinity" : "off";
+      // If user turns ON loop and audio was paused at or past the end of the sentence, replay immediately!
+      if (nextMode === "infinity" && audioRef.current && currentSentence) {
+        if (audioRef.current.currentTime >= currentSentence.end_time || audioRef.current.paused) {
+          audioRef.current.currentTime = Math.max(0, currentSentence.start_time - 0.05);
+          audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+        }
+      }
+      return nextMode;
     });
     setLoopCount(0);
-  }, []);
+  }, [currentSentence]);
+
+  const cycleLoopMode = toggleLoopMode;
 
   const adjustSpeed = useCallback((delta: number) => {
     setPlaybackRate((prev) => {

@@ -17,7 +17,12 @@ export function DictationBox({ sentence, examId = "", onNext, onReplay }: Dictat
   const [result, setResult] = useState<DiffResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
-  const [popoverPos, setPopoverPos] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
+  const [popoverPos, setPopoverPos] = useState<{
+    top: number;
+    left: number;
+    wordTop?: number;
+    wordHeight?: number;
+  }>({ top: 0, left: 0 });
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   // Focus textarea when sentence changes
@@ -59,7 +64,12 @@ export function DictationBox({ sentence, examId = "", onNext, onReplay }: Dictat
     if (!clean) return;
     const rect = (e.target as HTMLElement).getBoundingClientRect();
     setSelectedWord(clean);
-    setPopoverPos({ top: rect.bottom, left: rect.left });
+    setPopoverPos({
+      top: rect.bottom,
+      left: rect.left,
+      wordTop: rect.top,
+      wordHeight: rect.height,
+    });
   };
 
   return (

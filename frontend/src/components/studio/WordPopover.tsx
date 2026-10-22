@@ -9,7 +9,12 @@ interface WordPopoverProps {
   currentSentence: Sentence;
   examId: string;
   onClose: () => void;
-  position: { top: number; left: number };
+  position: {
+    top: number;
+    left: number;
+    wordTop?: number;
+    wordHeight?: number;
+  };
 }
 
 // In-memory frontend cache for instantaneous re-lookups
@@ -22,6 +27,68 @@ export function WordPopover({ word, currentSentence, examId, onClose, position }
   const [isAdded, setIsAdded] = useState(false);
   const [playingVoice, setPlayingVoice] = useState<"uk" | "us" | null>(null);
   const currentAudioRef = useRef<HTMLAudioElement | null>(null);
+  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const [coords, setCoords] = useState<{ top: number; left: number }>({
+    top: position.top + 8,
+    left: Math.max(16, position.left - 120),
+  });
+
+  // Click outside listener for immediate dismiss
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
+      if (popoverRef.current && !popoverRef.current.contains(e.target as Node)) {
+        onClose();
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+    };
+  }, [onClose]);
+
+  // Viewport boundary guard - ensures popover never overflows the bottom or edges of the screen
+  useEffect(() => {
+    const updatePosition = () => {
+      if (typeof window === "undefined") return;
+      const el = popoverRef.current;
+      const height = el ? el.offsetHeight : 360;
+      const width = el ? el.offsetWidth : 350;
+      const margin = 16;
+      const winH = window.innerHeight;
+      const winW = window.innerWidth;
+
+      let top = position.top + 8;
+      const wordTop = position.wordTop ?? (position.top - (position.wordHeight ?? 24));
+
+      // Check if popover exceeds screen bottom boundary
+      if (top + height > winH - margin) {
+        // If there's enough room above the word, position above it
+        if (wordTop - height - 8 >= margin) {
+          top = wordTop - height - 8;
+        } else {
+          // Otherwise clamp so bottom stays within viewport
+          top = Math.max(margin, winH - height - margin);
+        }
+      }
+
+      // Check horizontal boundaries
+      let left = position.left - 120;
+      if (left + width > winW - margin) {
+        left = winW - width - margin;
+      }
+      if (left < margin) {
+        left = margin;
+      }
+
+      setCoords({ top, left });
+    };
+
+    updatePosition();
+    window.addEventListener("resize", updatePosition);
+    return () => window.removeEventListener("resize", updatePosition);
+  }, [position, data, isLoading]);
 
   // Fetch word definition and UK/US audio
   useEffect(() => {
@@ -144,20 +211,27 @@ export function WordPopover({ word, currentSentence, examId, onClose, position }
     }
   };
 
-  // Safe window placement
-  const top = typeof window !== "undefined"
-    ? Math.min(position.top + 8, window.innerHeight - 340)
-    : position.top;
-  const left = typeof window !== "undefined"
-    ? Math.max(16, Math.min(position.left - 120, window.innerWidth - 380))
-    : position.left;
-
   return (
-    <div
-      className="fixed z-50 p-4 sm:p-5 bg-white/95 dark:bg-[#151822]/95 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-2xl w-[340px] sm:w-[360px] backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 text-left select-text"
-      style={{ top: `${top}px`, left: `${left}px` }}
-      onClick={(e) => e.stopPropagation()}
-    >
+    <>
+      {/* Invisible backdrop to dismiss popover when clicking anywhere outside */}
+      <div
+        className="fixed inset-0 z-40 bg-transparent cursor-default"
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
+        onContextMenu={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
+      />
+
+      <div
+        ref={popoverRef}
+        className="fixed z-50 p-4 sm:p-5 bg-white/95 dark:bg-[#151822]/95 border border-black/[0.08] dark:border-white/[0.1] rounded-2xl shadow-2xl w-[340px] sm:w-[360px] max-h-[min(520px,calc(100vh-28px))] overflow-y-auto backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 text-left select-text"
+        style={{ top: `${coords.top}px`, left: `${coords.left}px` }}
+        onClick={(e) => e.stopPropagation()}
+      >
       {/* Header: Word & Tags */}
       <div className="flex items-start justify-between gap-2 border-b border-gray-100 dark:border-gray-800/80 pb-3">
         <div>
@@ -318,5 +392,6 @@ export function WordPopover({ word, currentSentence, examId, onClose, position }
         </button>
       </div>
     </div>
+    </>
   );
 }

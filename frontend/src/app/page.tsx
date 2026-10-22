@@ -18,15 +18,9 @@ export default function HomePage() {
   const [exams, setExams] = useState<ExamItem[]>([]);
   const [selectedExamId, setSelectedExamId] = useState<string>("2016-06-set1");
   const [subparts, setSubparts] = useState<Subpart[]>([]);
-  const [greeting, setGreeting] = useState("晚上好");
   const [isLoadingSubparts, setIsLoadingSubparts] = useState(false);
 
   useEffect(() => {
-    const hour = new Date().getHours();
-    if (hour < 12) setGreeting("早上好");
-    else if (hour < 18) setGreeting("下午好");
-    else setGreeting("晚上好");
-
     async function load() {
       try {
         const [resResume, resStats, resExams] = await Promise.all([
@@ -103,37 +97,25 @@ export default function HomePage() {
 
       {/* Main Container */}
       <main className="w-full max-w-4xl mx-auto py-8 flex flex-col gap-8">
-        {/* Welcome & Stats Row */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+        {/* Quick Metrics Bar */}
+        <div className="flex items-center gap-6 sm:gap-8 pb-3 border-b border-black/[0.04] dark:border-white/[0.06]">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1d1d1f] dark:text-[#f5f5f7]">
-              {greeting}，同学
-            </h1>
-            <p className="text-xs sm:text-sm text-[#86868b] dark:text-[#a1a1a6] mt-1.5">
-              全国大学英语六级历年官方全真听力 · 题型分类精听工作台
+            <span className="text-[11px] text-[#86868b]">今日精听</span>
+            <p className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
+              {stats.today_minutes} 分钟
             </p>
           </div>
-
-          {/* Quick Metrics */}
-          <div className="flex items-center gap-6 pt-2 sm:pt-0 border-t sm:border-t-0 border-black/[0.06] dark:border-white/[0.08]">
-            <div>
-              <span className="text-[11px] text-[#86868b]">今日精听</span>
-              <p className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
-                {stats.today_minutes} 分钟
-              </p>
-            </div>
-            <div>
-              <span className="text-[11px] text-[#86868b]">本周累计</span>
-              <p className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
-                {stats.this_week_minutes} 分钟
-              </p>
-            </div>
-            <div>
-              <span className="text-[11px] text-[#86868b]">连续天数</span>
-              <p className="text-sm font-semibold text-[#ff9500] flex items-center gap-1">
-                <Flame className="w-3.5 h-3.5 fill-[#ff9500]" /> {stats.streak_days} 天
-              </p>
-            </div>
+          <div>
+            <span className="text-[11px] text-[#86868b]">本周累计</span>
+            <p className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
+              {stats.this_week_minutes} 分钟
+            </p>
+          </div>
+          <div>
+            <span className="text-[11px] text-[#86868b]">连续天数</span>
+            <p className="text-sm font-semibold text-[#ff9500] flex items-center gap-1">
+              <Flame className="w-3.5 h-3.5 fill-[#ff9500]" /> {stats.streak_days} 天
+            </p>
           </div>
         </div>
 
@@ -305,11 +287,6 @@ export default function HomePage() {
           </div>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="w-full max-w-4xl mx-auto text-center text-xs text-[#86868b] py-6 border-t border-black/[0.06] dark:border-white/[0.08] mt-12">
-        石头听力 · 极简专注的大学英语六级真题精听工作台 · 一屏一事
-      </footer>
     </div>
   );
 }

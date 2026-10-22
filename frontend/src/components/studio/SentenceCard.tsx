@@ -15,6 +15,7 @@ interface SentenceCardProps {
   onNext: () => void;
   onReplay: () => void;
   onTogglePlay?: () => void;
+  isConversation?: boolean;
 }
 
 export function SentenceCard({
@@ -25,9 +26,15 @@ export function SentenceCard({
   onNext,
   onReplay,
   onTogglePlay,
+  isConversation = false,
 }: SentenceCardProps) {
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
-  const [popoverPos, setPopoverPos] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
+  const [popoverPos, setPopoverPos] = useState<{
+    top: number;
+    left: number;
+    wordTop?: number;
+    wordHeight?: number;
+  }>({ top: 0, left: 0 });
   const [showBlindTranscript, setShowBlindTranscript] = useState(false);
 
   // Reset blind transcript reveal when sentence changes
@@ -39,7 +46,12 @@ export function SentenceCard({
     e.stopPropagation();
     const rect = (e.target as HTMLElement).getBoundingClientRect();
     setSelectedWord(word);
-    setPopoverPos({ top: rect.bottom, left: rect.left });
+    setPopoverPos({
+      top: rect.bottom,
+      left: rect.left,
+      wordTop: rect.top,
+      wordHeight: rect.height,
+    });
   };
 
   // Normalization for 3 modes
@@ -53,7 +65,7 @@ export function SentenceCard({
 
   // Tokenize sentence for word lookup
   const words = sentence.english.split(/(\s+)/);
-  const speakerZh = formatSpeakerZh(sentence.speaker);
+  const speakerZh = isConversation ? formatSpeakerZh(sentence.speaker) : "";
 
   return (
     <div className="w-full max-w-3xl mx-auto flex flex-col items-center text-center px-4 py-6 sm:py-10 select-none">

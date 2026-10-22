@@ -253,6 +253,13 @@ function StudioContent() {
   const currentSentence = player.currentSentence || sentences[0];
   const examTitleZh = formatExamTitleZh(exam.title || exam.id);
   const currentSubpartTitleZh = formatSubpartTitleZh(currentSubpart?.title, currentSubpart?.question_range);
+  const isConversation = Boolean(
+    currentSubpart?.type === "conversation" ||
+    currentSubpart?.section_id?.toLowerCase().endsWith("sec-a") ||
+    currentSubpart?.section_id?.toLowerCase().endsWith("section-a") ||
+    /长对话/i.test(currentSubpartTitleZh) ||
+    /conversation/i.test(currentSubpart?.title || "")
+  );
 
   return (
     <div className="min-h-screen flex flex-col justify-between bg-[#f5f5f7] dark:bg-[#000000] text-[#1d1d1f] dark:text-[#f5f5f7] select-none">
@@ -367,6 +374,7 @@ function StudioContent() {
             onNext={player.nextSentence}
             onReplay={player.replay}
             onTogglePlay={player.togglePlay}
+            isConversation={isConversation}
           />
         ) : (
           <div className="text-sm text-[#86868b]">暂无听力句子数据</div>
