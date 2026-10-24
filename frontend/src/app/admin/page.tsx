@@ -17,6 +17,8 @@ import {
   ArrowRight,
   TrendingUp,
   UserCheck,
+  Globe,
+  Eye,
 } from "lucide-react";
 import {
   api,
@@ -191,22 +193,69 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* 1. Four Key Metrics Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
-          {/* Card 1: Total Users */}
+        {/* 1. Six Key Metrics Cards (PV, UV, Users, Listening, Vocab, Dictation) */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-4">
+          {/* Card 1: Total PV */}
+          <div className="p-4 sm:p-5 rounded-3xl bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+            <div className="flex items-center justify-between text-[#86868b]">
+              <span className="text-xs font-medium">全站总访问请求 (PV)</span>
+              <div className="w-8 h-8 rounded-xl bg-[#0071e3]/10 text-[#0071e3] dark:text-[#0a84ff] flex items-center justify-center">
+                <Globe className="w-4 h-4" />
+              </div>
+            </div>
+            <div className="mt-3">
+              <div className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1d1d1f] dark:text-[#f5f5f7]">
+                {overview?.total_pv != null ? Number(overview.total_pv).toLocaleString() : "—"}{" "}
+                <span className="text-xs font-normal text-[#86868b]">次</span>
+              </div>
+              <div className="mt-1 flex items-center gap-1.5 text-[11px] text-[#86868b] flex-wrap">
+                <span className="text-[#0071e3] dark:text-[#0a84ff] font-semibold flex items-center gap-0.5">
+                  <TrendingUp className="w-3 h-3" /> +{overview?.today_pv != null ? Number(overview.today_pv).toLocaleString() : 0} 今日
+                </span>
+                <span>·</span>
+                <span>全站 HTTP 请求</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Total UV */}
+          <div className="p-4 sm:p-5 rounded-3xl bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+            <div className="flex items-center justify-between text-[#86868b]">
+              <span className="text-xs font-medium">独立访客 IP 数量 (UV)</span>
+              <div className="w-8 h-8 rounded-xl bg-[#34c759]/10 text-[#34c759] dark:text-[#30d158] flex items-center justify-center">
+                <Eye className="w-4 h-4" />
+              </div>
+            </div>
+            <div className="mt-3">
+              <div className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1d1d1f] dark:text-[#f5f5f7]">
+                {overview?.total_uv != null ? Number(overview.total_uv).toLocaleString() : "—"}{" "}
+                <span className="text-xs font-normal text-[#86868b]">个独立 IP</span>
+              </div>
+              <div className="mt-1 flex items-center gap-1.5 text-[11px] text-[#86868b] flex-wrap">
+                <span className="text-[#34c759] font-semibold flex items-center gap-0.5">
+                  <TrendingUp className="w-3 h-3" /> +{overview?.today_uv != null ? Number(overview.today_uv).toLocaleString() : 0} 今日
+                </span>
+                <span>·</span>
+                <span>排除内部开发调试</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: Total Users */}
           <div className="p-4 sm:p-5 rounded-3xl bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between">
             <div className="flex items-center justify-between text-[#86868b]">
               <span className="text-xs font-medium">注册学员总数</span>
-              <div className="w-8 h-8 rounded-xl bg-[#0071e3]/10 text-[#0071e3] dark:text-[#0a84ff] flex items-center justify-center">
+              <div className="w-8 h-8 rounded-xl bg-[#5856d6]/10 text-[#5856d6] dark:text-[#5e5ce6] flex items-center justify-center">
                 <Users className="w-4 h-4" />
               </div>
             </div>
             <div className="mt-3">
               <div className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1d1d1f] dark:text-[#f5f5f7]">
-                {overview?.total_users ?? "—"}
+                {overview?.total_users ?? "—"}{" "}
+                <span className="text-xs font-normal text-[#86868b]">人</span>
               </div>
               <div className="mt-1 flex items-center gap-2 text-[11px] text-[#86868b] flex-wrap">
-                <span className="text-[#34c759] font-semibold flex items-center gap-0.5">
+                <span className="text-[#5856d6] dark:text-[#5e5ce6] font-semibold flex items-center gap-0.5">
                   <TrendingUp className="w-3 h-3" /> +{overview?.today_new_users ?? 0} 今日
                 </span>
                 <span>·</span>
@@ -215,7 +264,7 @@ export default function AdminPage() {
             </div>
           </div>
 
-          {/* Card 2: Total Listening Minutes */}
+          {/* Card 4: Total Listening Minutes */}
           <div className="p-4 sm:p-5 rounded-3xl bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between">
             <div className="flex items-center justify-between text-[#86868b]">
               <span className="text-xs font-medium">累计精听总时长</span>
@@ -233,25 +282,26 @@ export default function AdminPage() {
             </div>
           </div>
 
-          {/* Card 3: Total Vocabulary */}
+          {/* Card 5: Total Vocabulary */}
           <div className="p-4 sm:p-5 rounded-3xl bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between">
             <div className="flex items-center justify-between text-[#86868b]">
               <span className="text-xs font-medium">全网生词收集量</span>
-              <div className="w-8 h-8 rounded-xl bg-[#34c759]/10 text-[#34c759] flex items-center justify-center">
+              <div className="w-8 h-8 rounded-xl bg-[#ff2d55]/10 text-[#ff2d55] flex items-center justify-center">
                 <BookOpen className="w-4 h-4" />
               </div>
             </div>
             <div className="mt-3">
               <div className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1d1d1f] dark:text-[#f5f5f7]">
-                {overview?.total_vocab_words ?? "—"}
+                {overview?.total_vocab_words ?? "—"}{" "}
+                <span className="text-xs font-normal text-[#86868b]">词</span>
               </div>
               <div className="mt-1 text-[11px] text-[#86868b]">
-                今日新增 <strong className="text-[#34c759]">+{overview?.today_vocab_words ?? 0}</strong> 词入生词本
+                今日新增 <strong className="text-[#ff2d55]">+{overview?.today_vocab_words ?? 0}</strong> 词入生词本
               </div>
             </div>
           </div>
 
-          {/* Card 4: Dictations & Accuracy */}
+          {/* Card 6: Dictations & Accuracy */}
           <div className="p-4 sm:p-5 rounded-3xl bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between">
             <div className="flex items-center justify-between text-[#86868b]">
               <span className="text-xs font-medium">听写打卡与正确率</span>
@@ -261,7 +311,8 @@ export default function AdminPage() {
             </div>
             <div className="mt-3">
               <div className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1d1d1f] dark:text-[#f5f5f7]">
-                {overview?.total_dictation_attempts ?? "—"} <span className="text-xs font-normal text-[#86868b]">次</span>
+                {overview?.total_dictation_attempts ?? "—"}{" "}
+                <span className="text-xs font-normal text-[#86868b]">次</span>
               </div>
               <div className="mt-1 text-[11px] text-[#86868b]">
                 全站平均准确率 <strong className="text-[#af52de]">{overview?.avg_dictation_accuracy ?? 0}%</strong>

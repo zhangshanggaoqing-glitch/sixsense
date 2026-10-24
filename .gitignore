@@ -38,6 +38,8 @@ yarn-error.log*
 *.db.bak*
 data/*.db.bak*
 data/sixsense.db.bak*
+backups/
+*.db.gz
 scratch/
 .tmp/
 tmp/

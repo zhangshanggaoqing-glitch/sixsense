@@ -11,6 +11,7 @@ services:
       - "8000:8000"
     volumes:
       - ./data:/app/data
+      - /var/log/nginx:/var/log/nginx:ro
       # To mount external audio directory, uncomment the following line:
       # - /path/to/your/audio:/app/data/audio
     environment:

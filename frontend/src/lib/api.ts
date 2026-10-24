@@ -334,6 +334,10 @@ export const api = {
 };
 
 export interface AdminOverview {
+  total_pv?: number;
+  total_uv?: number;
+  today_pv?: number;
+  today_uv?: number;
   total_users: number;
   today_new_users: number;
   active_users_today: number;
