@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { ChevronLeft, Play, Pause, Trash2, BookOpen, Volume2 } from "lucide-react";
+import { ChevronLeft, Play, Pause, Trash2, BookOpen, Volume2, CheckCircle2 } from "lucide-react";
 import { api, VocabItem, ExamItem } from "@/lib/api";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function VocabularyPage() {
+  const { user, isLoggedIn, logout } = useAuth();
   const [vocabList, setVocabList] = useState<VocabItem[]>([]);
   const [examAudioMap, setExamAudioMap] = useState<Record<string, string>>({});
   const [playingId, setPlayingId] = useState<string | null>(null);
@@ -16,6 +18,7 @@ export default function VocabularyPage() {
 
   useEffect(() => {
     async function load() {
+      setIsLoading(true);
       try {
         const [items, exams] = await Promise.all([
           api.getVocabulary(),
@@ -35,7 +38,7 @@ export default function VocabularyPage() {
       }
     }
     load();
-  }, []);
+  }, [user]);
 
   const handlePlayVoice = (item: VocabItem, type: "uk" | "us") => {
     if (voiceAudioRef.current) {
@@ -130,6 +133,34 @@ export default function VocabularyPage() {
         </header>
 
         <main className="mt-8">
+          {/* Account Sync Status Banner */}
+          {!isLoggedIn ? (
+            <div className="mb-6 p-4 rounded-2xl bg-[#0071e3]/10 dark:bg-[#0a84ff]/15 border border-[#0071e3]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs animate-in fade-in duration-200">
+              <span className="text-[#0071e3] dark:text-[#0a84ff]">
+                当前为本地访客模式。登录后生词本将安全同步至云端账号，支持多设备无缝学习。
+              </span>
+              <Link
+                href="/login?redirect=/vocabulary"
+                className="px-3.5 py-1.5 rounded-full bg-[#0071e3] text-white font-medium hover:bg-[#0077ed] transition-colors shrink-0 shadow-sm text-center"
+              >
+                登录 / 注册
+              </Link>
+            </div>
+          ) : (
+            <div className="mb-6 px-1 flex items-center justify-between text-xs text-[#86868b] animate-in fade-in duration-200">
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#34c759]" />
+                已安全同步至账号：<strong className="text-[#1d1d1f] dark:text-[#f5f5f7]">{user?.username}</strong>
+              </span>
+              <button
+                onClick={logout}
+                className="text-[#86868b] hover:text-[#ff3b30] transition-colors"
+              >
+                退出登录
+              </button>
+            </div>
+          )}
+
           <div className="flex items-baseline justify-between mb-6">
             <h1 className="text-2xl font-light tracking-tight text-gray-900 dark:text-gray-50">
               生词笔记本

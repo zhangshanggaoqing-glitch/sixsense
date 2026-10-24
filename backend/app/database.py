@@ -146,12 +146,40 @@ def init_db():
     );
     """)
 
-    # Ensure vocabulary table has UK/US phonetic & audio fields
+    # 10. Users Table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id TEXT PRIMARY KEY,
+        username TEXT UNIQUE NOT NULL,
+        password_hash TEXT NOT NULL,
+        created_at REAL NOT NULL,
+        last_login_at REAL
+    );
+    """)
+
+    # Ensure vocabulary table has UK/US phonetic & audio fields, plus user_id
     cursor.execute("PRAGMA table_info(vocabulary);")
     vocab_cols = [r[1] for r in cursor.fetchall()]
     for col in ["phonetic_uk", "phonetic_us", "audio_uk", "audio_us"]:
         if col not in vocab_cols:
             cursor.execute(f"ALTER TABLE vocabulary ADD COLUMN {col} TEXT DEFAULT '';")
+    if "user_id" not in vocab_cols:
+        cursor.execute("ALTER TABLE vocabulary ADD COLUMN user_id TEXT DEFAULT 'default';")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_vocab_user ON vocabulary(user_id);")
+
+    # Ensure dictation_attempts has user_id
+    cursor.execute("PRAGMA table_info(dictation_attempts);")
+    dict_cols = [r[1] for r in cursor.fetchall()]
+    if "user_id" not in dict_cols:
+        cursor.execute("ALTER TABLE dictation_attempts ADD COLUMN user_id TEXT DEFAULT 'default';")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_dict_user ON dictation_attempts(user_id);")
+
+    # Ensure listening_sessions has user_id
+    cursor.execute("PRAGMA table_info(listening_sessions);")
+    sess_cols = [r[1] for r in cursor.fetchall()]
+    if "user_id" not in sess_cols:
+        cursor.execute("ALTER TABLE listening_sessions ADD COLUMN user_id TEXT DEFAULT 'default';")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_sess_user ON listening_sessions(user_id);")
 
     conn.commit()
     conn.close()

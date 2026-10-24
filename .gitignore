@@ -12,6 +12,8 @@ venv/
 env/
 ENV/
 .venv/
+.jwt_secret
+data/.jwt_secret
 
 # PID & Log files
 *.pid

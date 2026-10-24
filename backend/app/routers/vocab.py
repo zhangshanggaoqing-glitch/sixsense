@@ -1,9 +1,10 @@
 import time
 import uuid
 from typing import Optional
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from backend.app.database import get_connection
+from backend.app.utils.auth import get_current_user_optional
 
 router = APIRouter(prefix="/api/vocab", tags=["Vocabulary"])
 
@@ -26,24 +27,29 @@ class AddVocabRequest(BaseModel):
     audio_clip_end: Optional[float] = 0.0
 
 @router.get("")
-def list_vocabulary():
+def list_vocabulary(current_user: dict = Depends(get_current_user_optional)):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
         SELECT * FROM vocabulary
+        WHERE user_id = ?
         ORDER BY created_at DESC;
-    """)
+    """, (current_user["id"],))
     rows = cursor.fetchall()
     conn.close()
     return [dict(r) for r in rows]
 
 @router.post("")
-def add_vocabulary(req: AddVocabRequest):
+def add_vocabulary(req: AddVocabRequest, current_user: dict = Depends(get_current_user_optional)):
     conn = get_connection()
     cursor = conn.cursor()
+    user_id = current_user["id"]
     
-    # Check if word in same sentence already added
-    cursor.execute("SELECT id FROM vocabulary WHERE word = ? AND source_sentence_id = ?", (req.word.lower(), req.source_sentence_id))
+    # Check if word in same sentence already added by this user
+    cursor.execute(
+        "SELECT id FROM vocabulary WHERE word = ? AND source_sentence_id = ? AND user_id = ?",
+        (req.word.lower(), req.source_sentence_id, user_id)
+    )
     existing = cursor.fetchone()
     if existing:
         conn.close()
@@ -58,23 +64,23 @@ def add_vocabulary(req: AddVocabRequest):
             id, word, lemma, phonetic, phonetic_uk, phonetic_us, audio_uk, audio_us,
             part_of_speech, definition_zh, cet_level,
             source_sentence_id, source_sentence_en, source_sentence_zh, exam_id,
-            audio_clip_start, audio_clip_end, created_at, review_count, mastery
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0.0);
+            audio_clip_start, audio_clip_end, created_at, review_count, mastery, user_id
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0.0, ?);
     """, (
         item_id, req.word.lower(), lemma, req.phonetic, req.phonetic_uk, req.phonetic_us, req.audio_uk, req.audio_us,
         req.part_of_speech, req.definition_zh, req.cet_level,
         req.source_sentence_id, req.source_sentence_en, req.source_sentence_zh, req.exam_id,
-        req.audio_clip_start, req.audio_clip_end, now
+        req.audio_clip_start, req.audio_clip_end, now, user_id
     ))
     conn.commit()
     conn.close()
     return {"id": item_id, "status": "added"}
 
 @router.delete("/{vocab_id}")
-def delete_vocabulary(vocab_id: str):
+def delete_vocabulary(vocab_id: str, current_user: dict = Depends(get_current_user_optional)):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("DELETE FROM vocabulary WHERE id = ?", (vocab_id,))
+    cursor.execute("DELETE FROM vocabulary WHERE id = ? AND user_id = ?", (vocab_id, current_user["id"]))
     conn.commit()
     conn.close()
     return {"status": "deleted"}

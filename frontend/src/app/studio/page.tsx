@@ -12,11 +12,14 @@ import {
   CheckCircle2,
   ArrowRight,
   X,
+  User as UserIcon,
+  LogIn,
 } from "lucide-react";
 import { api, ExamDetail, Sentence, Subpart, Question } from "@/lib/api";
 import { formatExamTitleZh, formatSubpartTitleZh } from "@/lib/formatters";
 import { useAudioPlayer } from "@/hooks/useAudioPlayer";
 import { useKeyboardShortcuts, StudioMode } from "@/hooks/useKeyboardShortcuts";
+import { useAuth } from "@/hooks/useAuth";
 import { SentenceCard } from "@/components/studio/SentenceCard";
 import { AudioBar } from "@/components/studio/AudioBar";
 import { QuestionsModal } from "@/components/studio/QuestionsModal";
@@ -24,6 +27,7 @@ import { QuickLookupModal } from "@/components/studio/QuickLookupModal";
 
 function StudioContent() {
   const router = useRouter();
+  const { user, isLoggedIn, logout } = useAuth();
   const searchParams = useSearchParams();
   const urlSubpartId = searchParams.get("subpart_id") || searchParams.get("subpartId");
   const urlExamId = searchParams.get("exam_id") || searchParams.get("examId") || searchParams.get("id") || "2016-06-set1";
@@ -360,6 +364,31 @@ function StudioContent() {
           >
             <BookOpen className="w-4 h-4" />
           </Link>
+
+          {isLoggedIn ? (
+            <div className="flex items-center gap-1.5 pl-1.5 border-l border-black/[0.08] dark:border-white/[0.1]">
+              <span className="text-[11px] font-medium text-[#1d1d1f] dark:text-[#f5f5f7] flex items-center gap-1">
+                <UserIcon className="w-3.5 h-3.5 text-[#0071e3]" />
+                <span className="hidden sm:inline">{user?.username}</span>
+              </span>
+              <button
+                onClick={logout}
+                className="text-[11px] text-[#86868b] hover:text-[#ff3b30] px-1 transition-colors"
+                title="退出当前登录"
+              >
+                退出
+              </button>
+            </div>
+          ) : (
+            <Link
+              href={`/login?redirect=/studio?exam_id=${exam.id}&subpart_id=${activeSubpartId}`}
+              className="text-xs font-medium px-2.5 py-1 rounded-full text-[#86868b] hover:text-[#0071e3] hover:bg-[#0071e3]/10 transition-colors flex items-center gap-1"
+              title="登录以同步生词本与进度"
+            >
+              <LogIn className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">登录</span>
+            </Link>
+          )}
         </div>
       </header>
 

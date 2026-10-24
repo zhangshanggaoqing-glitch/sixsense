@@ -144,6 +144,17 @@ export interface ResumeState {
   volume: number;
 }
 
+import { getStoredToken, User } from "./auth";
+
+async function authFetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
+  const token = getStoredToken();
+  const headers = new Headers(init?.headers || {});
+  if (token && !headers.has("Authorization")) {
+    headers.set("Authorization", `Bearer ${token}`);
+  }
+  return fetch(input, { ...init, headers });
+}
+
 export const api = {
   getAudioUrl(filename: string): string {
     return `${API_BASE}/audio/${encodeURIComponent(filename)}`;
@@ -183,7 +194,7 @@ export const api = {
   },
 
   async checkDictation(sentenceId: string, standardText: string, userInput: string): Promise<DiffResult> {
-    const res = await fetch(`${API_BASE}/progress/dictation/check`, {
+    const res = await authFetch(`${API_BASE}/progress/dictation/check`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -197,13 +208,13 @@ export const api = {
   },
 
   async getResume(): Promise<ResumeState> {
-    const res = await fetch(`${API_BASE}/progress/resume`);
+    const res = await authFetch(`${API_BASE}/progress/resume`);
     if (!res.ok) throw new Error("Failed to fetch resume");
     return res.json();
   },
 
   async saveResume(state: ResumeState): Promise<void> {
-    await fetch(`${API_BASE}/progress/resume`, {
+    await authFetch(`${API_BASE}/progress/resume`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(state),
@@ -211,7 +222,7 @@ export const api = {
   },
 
   async sendHeartbeat(examId: string, activeSeconds: number): Promise<void> {
-    await fetch(`${API_BASE}/progress/heartbeat`, {
+    await authFetch(`${API_BASE}/progress/heartbeat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ exam_id: examId, active_seconds: activeSeconds }),
@@ -219,19 +230,19 @@ export const api = {
   },
 
   async getStats() {
-    const res = await fetch(`${API_BASE}/progress/stats`);
+    const res = await authFetch(`${API_BASE}/progress/stats`);
     if (!res.ok) throw new Error("Failed to fetch stats");
     return res.json();
   },
 
   async getVocabulary(): Promise<VocabItem[]> {
-    const res = await fetch(`${API_BASE}/vocab`);
+    const res = await authFetch(`${API_BASE}/vocab`);
     if (!res.ok) throw new Error("Failed to fetch vocabulary");
     return res.json();
   },
 
   async addVocabulary(data: Partial<VocabItem>): Promise<{ id: string; status: string }> {
-    const res = await fetch(`${API_BASE}/vocab`, {
+    const res = await authFetch(`${API_BASE}/vocab`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -241,7 +252,7 @@ export const api = {
   },
 
   async deleteVocabulary(id: string): Promise<void> {
-    await fetch(`${API_BASE}/vocab/${id}`, { method: "DELETE" });
+    await authFetch(`${API_BASE}/vocab/${id}`, { method: "DELETE" });
   },
 
   async lookupWord(word: string): Promise<WordLookupResult> {
@@ -252,5 +263,38 @@ export const api = {
 
   getVoiceUrl(word: string, type: 1 | 2): string {
     return `${API_BASE}/dict/voice?word=${encodeURIComponent(word)}&type=${type}`;
+  },
+
+  async register(username: string, password: string, migrateGuest = true): Promise<{ token: string; user: User }> {
+    const res = await fetch(`${API_BASE}/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password, migrate_guest: migrateGuest }),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.detail || "注册失败，请稍后重试");
+    }
+    return data;
+  },
+
+  async login(username: string, password: string, migrateGuest = true): Promise<{ token: string; user: User }> {
+    const res = await fetch(`${API_BASE}/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password, migrate_guest: migrateGuest }),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.detail || "用户名或密码错误");
+    }
+    return data;
+  },
+
+  async getMe(): Promise<User | null> {
+    const res = await authFetch(`${API_BASE}/auth/me`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.user;
   },
 };

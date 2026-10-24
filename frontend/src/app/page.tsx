@@ -2,15 +2,17 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Flame, Headphones, Clock, Layers, Calendar } from "lucide-react";
+import { ArrowRight, BookOpen, Flame, Headphones, Clock, Layers, Calendar, User as UserIcon, LogIn } from "lucide-react";
 import { api, ResumeState, Subpart, ExamItem } from "@/lib/api";
 import { formatExamTitleZh, formatSubpartTitleZh } from "@/lib/formatters";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function HomePage() {
+  const { user, isLoggedIn, logout } = useAuth();
   const [stats, setStats] = useState({
-    today_minutes: 18.0,
-    this_week_minutes: 96.0,
-    streak_days: 5,
+    today_minutes: 0.0,
+    this_week_minutes: 0.0,
+    streak_days: 0,
     vocab_count: 0,
     dictation_count: 0,
   });
@@ -24,11 +26,11 @@ export default function HomePage() {
     async function load() {
       try {
         const [resResume, resStats, resExams] = await Promise.all([
-          api.getResume(),
+          api.getResume().catch(() => null),
           api.getStats().catch(() => null),
           api.getExams().catch(() => []),
         ]);
-        setResume(resResume);
+        if (resResume) setResume(resResume);
         if (resStats) setStats(resStats);
         setExams(resExams);
 
@@ -42,7 +44,7 @@ export default function HomePage() {
       }
     }
     load();
-  }, []);
+  }, [user]);
 
   const handleSelectExam = async (examId: string) => {
     setSelectedExamId(examId);
@@ -87,12 +89,36 @@ export default function HomePage() {
           <span className="text-xs text-[#86868b] dark:text-[#a1a1a6]">大学英语六级真题精听</span>
         </div>
 
-        <Link
-          href="/vocabulary"
-          className="text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-all"
-        >
-          <BookOpen className="w-3.5 h-3.5" /> 生词本 ({stats.vocab_count})
-        </Link>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Link
+            href="/vocabulary"
+            className="text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-all"
+          >
+            <BookOpen className="w-3.5 h-3.5" /> 生词本 ({stats.vocab_count})
+          </Link>
+
+          {isLoggedIn ? (
+            <div className="flex items-center gap-2 pl-2 border-l border-black/[0.08] dark:border-white/[0.1]">
+              <span className="text-xs font-medium text-[#1d1d1f] dark:text-[#f5f5f7] flex items-center gap-1">
+                <UserIcon className="w-3.5 h-3.5 text-[#0071e3]" /> {user?.username}
+              </span>
+              <button
+                onClick={logout}
+                className="text-[11px] text-[#86868b] hover:text-[#ff3b30] transition-colors"
+                title="退出当前登录"
+              >
+                退出
+              </button>
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="text-xs font-medium px-3 py-1.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white flex items-center gap-1 shadow-sm transition-all"
+            >
+              <LogIn className="w-3.5 h-3.5" /> 登录
+            </Link>
+          )}
+        </div>
       </header>
 
       {/* Main Container */}

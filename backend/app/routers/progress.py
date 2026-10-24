@@ -2,10 +2,11 @@ import time
 import json
 import uuid
 from typing import Optional, Dict, Any
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from backend.app.database import get_connection
 from backend.app.utils.diff import compute_dictation_diff
+from backend.app.utils.auth import get_current_user_optional
 
 router = APIRouter(prefix="/api/progress", tags=["Progress & State"])
 
@@ -29,12 +30,18 @@ class HeartbeatRequest(BaseModel):
     active_seconds: int
 
 @router.get("/resume")
-def get_resume():
+def get_resume(current_user: dict = Depends(get_current_user_optional)):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT value_json FROM user_state WHERE key = 'last_resume'")
+    user_key = f"resume:{current_user['id']}"
+    cursor.execute("SELECT value_json FROM user_state WHERE key = ?", (user_key,))
     row = cursor.fetchone()
+    if not row and current_user["id"] != "default":
+        # Fallback to default/last_resume if user hasn't saved a personal resume yet
+        cursor.execute("SELECT value_json FROM user_state WHERE key = 'last_resume'")
+        row = cursor.fetchone()
     conn.close()
+
     if row and row["value_json"]:
         return json.loads(row["value_json"])
     return {
@@ -47,35 +54,38 @@ def get_resume():
     }
 
 @router.post("/resume")
-def save_resume(req: ResumeStateRequest):
+def save_resume(req: ResumeStateRequest, current_user: dict = Depends(get_current_user_optional)):
     conn = get_connection()
     cursor = conn.cursor()
     val_json = json.dumps(req.model_dump(), ensure_ascii=False)
     now = time.time()
+    user_key = f"resume:{current_user['id']}"
+
     cursor.execute("""
         INSERT INTO user_state (key, value_json, updated_at)
-        VALUES ('last_resume', ?, ?)
+        VALUES (?, ?, ?)
         ON CONFLICT(key) DO UPDATE SET value_json = excluded.value_json, updated_at = excluded.updated_at;
-    """, (val_json, now))
+    """, (user_key, val_json, now))
     conn.commit()
     conn.close()
     return {"status": "ok"}
 
 @router.post("/dictation/check")
-def check_dictation(req: DictationCheckRequest):
+def check_dictation(req: DictationCheckRequest, current_user: dict = Depends(get_current_user_optional)):
     diff_res = compute_dictation_diff(req.standard_text, req.user_input)
-    
+    user_id = current_user["id"]
+
     # Record attempt into database
     conn = get_connection()
     cursor = conn.cursor()
     att_id = f"att_{uuid.uuid4().hex[:10]}"
     cursor.execute("""
         INSERT INTO dictation_attempts (
-            id, sentence_id, user_input, standard_text, accuracy_score, diff_json, created_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?);
+            id, sentence_id, user_input, standard_text, accuracy_score, diff_json, created_at, user_id
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
     """, (
         att_id, req.sentence_id, req.user_input, req.standard_text,
-        diff_res["accuracy_score"], json.dumps(diff_res, ensure_ascii=False), time.time()
+        diff_res["accuracy_score"], json.dumps(diff_res, ensure_ascii=False), time.time(), user_id
     ))
     conn.commit()
     conn.close()
@@ -83,19 +93,19 @@ def check_dictation(req: DictationCheckRequest):
     return diff_res
 
 @router.post("/heartbeat")
-def record_heartbeat(req: HeartbeatRequest):
+def record_heartbeat(req: HeartbeatRequest, current_user: dict = Depends(get_current_user_optional)):
     conn = get_connection()
     cursor = conn.cursor()
     today = time.strftime("%Y-%m-%d")
-    key = f"daily_active_{today}"
-    
+    key = f"{current_user['id']}:daily_active_{today}"
+
     cursor.execute("SELECT value_json FROM user_state WHERE key = ?", (key,))
     row = cursor.fetchone()
     current_seconds = 0
     if row and row["value_json"]:
         try: current_seconds = int(row["value_json"])
         except: pass
-    
+
     new_seconds = current_seconds + req.active_seconds
     cursor.execute("""
         INSERT INTO user_state (key, value_json, updated_at)
@@ -107,27 +117,28 @@ def record_heartbeat(req: HeartbeatRequest):
     return {"today_active_seconds": new_seconds}
 
 @router.get("/stats")
-def get_stats():
+def get_stats(current_user: dict = Depends(get_current_user_optional)):
     conn = get_connection()
     cursor = conn.cursor()
     today = time.strftime("%Y-%m-%d")
-    key = f"daily_active_{today}"
-    
+    user_id = current_user["id"]
+    key = f"{user_id}:daily_active_{today}"
+
     cursor.execute("SELECT value_json FROM user_state WHERE key = ?", (key,))
     row = cursor.fetchone()
     today_active = int(row["value_json"]) if row and row["value_json"] else 0
 
-    cursor.execute("SELECT COUNT(*) as cnt FROM vocabulary")
+    cursor.execute("SELECT COUNT(*) as cnt FROM vocabulary WHERE user_id = ?", (user_id,))
     vocab_count = cursor.fetchone()["cnt"]
 
-    cursor.execute("SELECT COUNT(*) as cnt FROM dictation_attempts")
+    cursor.execute("SELECT COUNT(*) as cnt FROM dictation_attempts WHERE user_id = ?", (user_id,))
     dict_count = cursor.fetchone()["cnt"]
 
     conn.close()
     return {
         "today_minutes": round(today_active / 60, 1),
-        "this_week_minutes": round(today_active / 60, 1) + 45,  # active baseline
-        "streak_days": 3,
+        "this_week_minutes": round(today_active / 60, 1),
+        "streak_days": 1 if today_active > 0 else 0,
         "vocab_count": vocab_count,
         "dictation_count": dict_count
     }
