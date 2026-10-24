@@ -297,4 +297,76 @@ export const api = {
     const data = await res.json();
     return data.user;
   },
+
+  async getAdminOverview(): Promise<AdminOverview> {
+    const res = await authFetch(`${API_BASE}/admin/overview`);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || "获取后台总览数据失败");
+    }
+    const data = await res.json();
+    return data.data;
+  },
+
+  async getAdminUsers(query?: string): Promise<{ total: number; users: AdminUserItem[] }> {
+    const url = query ? `${API_BASE}/admin/users?q=${encodeURIComponent(query)}` : `${API_BASE}/admin/users`;
+    const res = await authFetch(url);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || "获取用户列表失败");
+    }
+    return res.json();
+  },
+
+  async getAdminPopularWords(limit = 15): Promise<AdminPopularWord[]> {
+    const res = await authFetch(`${API_BASE}/admin/popular-words?limit=${limit}`);
+    if (!res.ok) throw new Error("获取热门生词失败");
+    const data = await res.json();
+    return data.words;
+  },
+
+  async getAdminPopularExams(limit = 10): Promise<AdminPopularExam[]> {
+    const res = await authFetch(`${API_BASE}/admin/popular-exams?limit=${limit}`);
+    if (!res.ok) throw new Error("获取热门试卷失败");
+    const data = await res.json();
+    return data.exams;
+  },
 };
+
+export interface AdminOverview {
+  total_users: number;
+  today_new_users: number;
+  active_users_today: number;
+  total_listening_minutes: number;
+  today_listening_minutes: number;
+  total_vocab_words: number;
+  today_vocab_words: number;
+  total_dictation_attempts: number;
+  avg_dictation_accuracy: number;
+}
+
+export interface AdminUserItem {
+  id: string;
+  username: string;
+  created_at: number;
+  last_login_at?: number;
+  vocab_count: number;
+  listening_minutes: number;
+  dictation_count: number;
+}
+
+export interface AdminPopularWord {
+  word: string;
+  part_of_speech: string;
+  definition_zh: string;
+  phonetic_uk: string;
+  phonetic_us: string;
+  count: number;
+}
+
+export interface AdminPopularExam {
+  exam_id: string;
+  title: string;
+  session_count: number;
+  total_minutes: number;
+}

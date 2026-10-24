@@ -10,6 +10,7 @@ from backend.app.utils.auth import (
     create_access_token,
     get_current_user_required,
     get_current_user_optional,
+    is_admin_user,
 )
 
 router = APIRouter(prefix="/api/auth", tags=["Authentication"])
@@ -67,14 +68,16 @@ def register(req: RegisterRequest):
     conn.close()
 
     token = create_access_token(user_id, clean_username)
+    user_dict = {
+        "id": user_id,
+        "username": clean_username,
+        "created_at": now,
+        "is_admin": is_admin_user({"username": clean_username})
+    }
     return {
         "status": "success",
         "token": token,
-        "user": {
-            "id": user_id,
-            "username": clean_username,
-            "created_at": now
-        }
+        "user": user_dict
     }
 
 @router.post("/login")
@@ -107,14 +110,16 @@ def login(req: LoginRequest):
     conn.close()
 
     token = create_access_token(user_id, username)
+    user_dict = {
+        "id": user_id,
+        "username": username,
+        "created_at": user["created_at"],
+        "is_admin": is_admin_user({"username": username})
+    }
     return {
         "status": "success",
         "token": token,
-        "user": {
-            "id": user_id,
-            "username": username,
-            "created_at": user["created_at"]
-        }
+        "user": user_dict
     }
 
 @router.get("/me")
@@ -124,6 +129,7 @@ def get_me(current_user: dict = Depends(get_current_user_required)):
         "user": {
             "id": current_user["id"],
             "username": current_user["username"],
-            "created_at": current_user.get("created_at")
+            "created_at": current_user.get("created_at"),
+            "is_admin": current_user.get("is_admin", False)
         }
     }

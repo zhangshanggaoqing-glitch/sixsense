@@ -6,6 +6,7 @@ export interface User {
   id: string;
   username: string;
   created_at?: number;
+  is_admin?: boolean;
 }
 
 const TOKEN_KEY = "sixsense_auth_token";

@@ -99,6 +99,15 @@ export default function HomePage() {
 
           {isLoggedIn ? (
             <div className="flex items-center gap-2 pl-2 border-l border-black/[0.08] dark:border-white/[0.1]">
+              {user?.is_admin && (
+                <Link
+                  href="/admin"
+                  className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#0071e3]/10 text-[#0071e3] dark:text-[#0a84ff] hover:bg-[#0071e3]/20 transition-all"
+                  title="查看运营数据大盘"
+                >
+                  后台看板
+                </Link>
+              )}
               <span className="text-xs font-medium text-[#1d1d1f] dark:text-[#f5f5f7] flex items-center gap-1">
                 <UserIcon className="w-3.5 h-3.5 text-[#0071e3]" /> {user?.username}
               </span>

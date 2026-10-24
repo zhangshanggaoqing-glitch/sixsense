@@ -60,12 +60,20 @@ def decode_access_token(token: str) -> Optional[Dict[str, Any]]:
     except (jwt.PyJWTError, Exception):
         return None
 
+ADMIN_USERNAMES = {"stone", "admin"}
+
+def is_admin_user(user: Optional[Dict[str, Any]]) -> bool:
+    if not user or user.get("is_guest"):
+        return False
+    username = user.get("username", "").strip().lower()
+    return username in ADMIN_USERNAMES or user.get("is_admin") is True
+
 def get_current_user_optional(authorization: Optional[str] = Header(None)) -> Dict[str, Any]:
     """
     Dependency that extracts current user if valid Bearer token provided;
     otherwise falls back to a safe guest default user so non-logged-in users can still practice.
     """
-    guest_user = {"id": "default", "username": "访客", "is_guest": True}
+    guest_user = {"id": "default", "username": "访客", "is_guest": True, "is_admin": False}
     if not authorization:
         return guest_user
 
@@ -88,12 +96,14 @@ def get_current_user_optional(authorization: Optional[str] = Header(None)) -> Di
     if not row:
         return guest_user
 
-    return {
+    user_data = {
         "id": row["id"],
         "username": row["username"],
         "created_at": row["created_at"],
         "is_guest": False
     }
+    user_data["is_admin"] = is_admin_user(user_data)
+    return user_data
 
 def get_current_user_required(authorization: Optional[str] = Header(None)) -> Dict[str, Any]:
     """Dependency that enforces authentication, returning 401 if missing or invalid."""
@@ -103,5 +113,15 @@ def get_current_user_required(authorization: Optional[str] = Header(None)) -> Di
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="需要登录后方可操作",
             headers={"WWW-Authenticate": "Bearer"}
+        )
+    return user
+
+def get_current_admin_user(authorization: Optional[str] = Header(None)) -> Dict[str, Any]:
+    """Dependency that requires valid authentication AND administrator privileges."""
+    user = get_current_user_required(authorization)
+    if not is_admin_user(user):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="权限不足，仅管理员可访问后台看板"
         )
     return user
