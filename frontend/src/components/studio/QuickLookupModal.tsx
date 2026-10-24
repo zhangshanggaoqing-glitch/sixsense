@@ -126,41 +126,50 @@ export function QuickLookupModal({ isOpen, onClose, currentExamId = "" }: QuickL
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-150"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-lg bg-white dark:bg-[#151822] border border-gray-200 dark:border-gray-800 rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-150"
+        className="w-full max-w-lg bg-white dark:bg-[#1c1c1e] border-t sm:border border-black/[0.08] dark:border-white/[0.1] rounded-t-[28px] sm:rounded-3xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom sm:zoom-in-95 duration-200 pb-[env(safe-area-inset-bottom)]"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* iOS Drag Handle on Mobile */}
+        <div className="w-10 h-1 bg-black/15 dark:bg-white/20 rounded-full mx-auto mt-2.5 sm:hidden" />
+
         {/* Search Input Bar */}
-        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-gray-100 dark:border-gray-800/80">
-          <Search className="w-5 h-5 text-gray-400 shrink-0" />
+        <div className="flex items-center gap-2.5 px-4 sm:px-5 py-3 sm:py-3.5 border-b border-black/[0.06] dark:border-white/[0.08]">
+          <Search className="w-4 h-4 text-[#86868b] shrink-0" />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="输入任何单词，查询权威英美音与翻译（按回车搜索）..."
-            className="w-full bg-transparent text-sm sm:text-base text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none"
+            placeholder="输入单词，回车查英美音与释义..."
+            className="w-full bg-transparent text-base sm:text-sm text-[#1d1d1f] dark:text-[#f5f5f7] placeholder:text-[#86868b] focus:outline-none"
           />
           {query && (
             <button
               onClick={() => { setQuery(""); setData(null); inputRef.current?.focus(); }}
-              className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+              className="p-1 text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] active:scale-90"
             >
               <X className="w-4 h-4" />
             </button>
           )}
+          <button
+            onClick={onClose}
+            className="sm:hidden text-xs text-[#0071e3] font-medium pl-1 shrink-0"
+          >
+            取消
+          </button>
         </div>
 
         {/* Search Content */}
-        <div className="p-5 max-h-[70vh] overflow-y-auto">
+        <div className="p-4 sm:p-5 max-h-[75vh] sm:max-h-[70vh] overflow-y-auto">
           {isLoading ? (
-            <div className="py-12 flex flex-col items-center justify-center gap-2 text-gray-400">
-              <Loader2 className="w-6 h-6 animate-spin text-blue-500" />
-              <span className="text-xs font-mono">正在检索权威词库与英美原生读音...</span>
+            <div className="py-12 flex flex-col items-center justify-center gap-2 text-[#86868b]">
+              <Loader2 className="w-6 h-6 animate-spin text-[#0071e3]" />
+              <span className="text-xs font-mono">正在检索权威词库与英美发音...</span>
             </div>
           ) : data ? (
             <div className="space-y-4">

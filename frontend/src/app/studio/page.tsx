@@ -266,42 +266,93 @@ function StudioContent() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-[#f5f5f7] dark:bg-[#000000] text-[#1d1d1f] dark:text-[#f5f5f7] select-none">
-      {/* Top Header: 专注设计，只显示 真题名称 · 当前分节 · 进度 */}
-      <header className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2 sm:gap-4">
-        {/* Left: 首页导航 + 分节下拉菜单 */}
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <Link
-            href="/"
-            className="flex items-center gap-1 text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] transition-colors"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            <span className="hidden sm:inline">首页</span>
-          </Link>
-          <span className="text-black/10 dark:text-white/10">·</span>
-
-          {/* Subpart Switcher Dropdown */}
-          <div className="relative">
-            <select
-              value={activeSubpartId}
-              onChange={(e) => handleSelectSubpart(e.target.value)}
-              className="appearance-none bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.07] dark:hover:bg-white/[0.12] text-xs font-medium text-[#1d1d1f] dark:text-[#f5f5f7] pl-3 pr-7 py-1.5 rounded-full cursor-pointer focus:outline-none transition-colors border-none"
+    <div className="h-[100dvh] min-h-[100dvh] flex flex-col justify-between bg-[#f5f5f7] dark:bg-[#000000] text-[#1d1d1f] dark:text-[#f5f5f7] select-none overflow-hidden">
+      {/* Top Header: 专注设计，移动端/桌面端完美适配 */}
+      <header className="w-full max-w-5xl mx-auto px-3.5 sm:px-6 pt-[max(0.6rem,env(safe-area-inset-top))] pb-2 sm:py-3.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 shrink-0 border-b border-black/[0.03] dark:border-white/[0.04] sm:border-none">
+        {/* Row 1: Left Back/Subpart + Right Action Tools */}
+        <div className="flex items-center justify-between w-full sm:w-auto gap-2">
+          {/* Left: 首页导航 + 分节下拉菜单 */}
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+            <Link
+              href="/"
+              className="flex items-center gap-0.5 text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] p-1 -ml-1 rounded-full transition-colors active:scale-95"
             >
-              {subparts.map((sp) => (
-                <option key={sp.id} value={sp.id} className="dark:bg-[#1c1c1e] text-[#1d1d1f] dark:text-[#f5f5f7]">
-                  {examTitleZh} · {formatSubpartTitleZh(sp.title, sp.question_range)}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="w-3.5 h-3.5 text-[#86868b] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <ChevronLeft className="w-4 h-4" />
+              <span className="hidden sm:inline">首页</span>
+            </Link>
+            <span className="text-black/10 dark:text-white/10 hidden sm:inline">·</span>
+
+            {/* Subpart Switcher Dropdown */}
+            <div className="relative max-w-[160px] xs:max-w-[190px] sm:max-w-none">
+              <select
+                value={activeSubpartId}
+                onChange={(e) => handleSelectSubpart(e.target.value)}
+                className="appearance-none bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.07] dark:hover:bg-white/[0.12] text-xs font-medium text-[#1d1d1f] dark:text-[#f5f5f7] pl-2.5 sm:pl-3 pr-6 sm:pr-7 py-1.5 rounded-full cursor-pointer focus:outline-none transition-colors border-none truncate w-full"
+              >
+                {subparts.map((sp) => (
+                  <option key={sp.id} value={sp.id} className="dark:bg-[#1c1c1e] text-[#1d1d1f] dark:text-[#f5f5f7]">
+                    {examTitleZh} · {formatSubpartTitleZh(sp.title, sp.question_range)}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="w-3.5 h-3.5 text-[#86868b] absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+            </div>
+          </div>
+
+          {/* Right Tools (Mobile row 1 right): 考题, 查词, 生词本, 用户 */}
+          <div className="flex sm:hidden items-center gap-1 shrink-0">
+            {questions.length > 0 && (
+              <button
+                onClick={() => setIsQuestionsOpen(true)}
+                className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium text-[#0071e3] dark:text-[#0a84ff] bg-[#0071e3]/10 dark:bg-[#0a84ff]/15 active:scale-95 transition-colors"
+                title="查看六级官方原题与选项"
+              >
+                <HelpCircle className="w-3.5 h-3.5" />
+                <span>考题</span>
+              </button>
+            )}
+
+            <button
+              onClick={() => setIsLookupOpen(true)}
+              className="w-8 h-8 flex items-center justify-center rounded-full text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] active:scale-95 transition-colors"
+              title="查词典"
+            >
+              <Search className="w-4 h-4" />
+            </button>
+
+            <Link
+              href="/vocabulary"
+              className="w-8 h-8 flex items-center justify-center rounded-full text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] active:scale-95 transition-colors"
+              title="生词本"
+            >
+              <BookOpen className="w-4 h-4" />
+            </Link>
+
+            {isLoggedIn ? (
+              <button
+                onClick={logout}
+                className="text-[11px] text-[#86868b] hover:text-[#ff3b30] px-1 py-0.5 rounded transition-colors"
+                title="退出当前登录"
+              >
+                {user?.username}
+              </button>
+            ) : (
+              <Link
+                href={`/login?redirect=/studio?exam_id=${exam.id}&subpart_id=${activeSubpartId}`}
+                className="text-xs font-medium px-2 py-1 rounded-full text-[#0071e3] bg-[#0071e3]/10 flex items-center gap-0.5"
+                title="登录"
+              >
+                <LogIn className="w-3 h-3" />
+              </Link>
+            )}
           </div>
         </div>
 
-        {/* Center: Apple Segmented Control: 盲听 ｜ 双语 ｜ 听写 */}
-        <div className="flex items-center bg-black/[0.05] dark:bg-white/[0.08] p-0.5 rounded-full text-xs font-medium">
+        {/* Center: Apple Segmented Control: 盲听 ｜ 双语 ｜ 听写 (Desktop centered, Mobile full width) */}
+        <div className="flex items-center justify-center bg-black/[0.05] dark:bg-white/[0.08] p-0.5 rounded-full text-xs font-medium w-full sm:w-auto mx-auto sm:mx-0">
           <button
             onClick={() => setDisplayMode("blind")}
-            className={`px-3 sm:px-4 py-1.5 rounded-full transition-all ${
+            className={`flex-1 sm:flex-initial px-3 sm:px-4 py-1.5 rounded-full transition-all active:scale-95 ${
               displayMode === "blind"
                 ? "bg-white dark:bg-[#2c2c2e] text-[#0071e3] dark:text-[#0a84ff] font-semibold shadow-xs"
                 : "text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7]"
@@ -313,7 +364,7 @@ function StudioContent() {
 
           <button
             onClick={() => setDisplayMode("bilingual")}
-            className={`px-3 sm:px-4 py-1.5 rounded-full transition-all ${
+            className={`flex-1 sm:flex-initial px-3 sm:px-4 py-1.5 rounded-full transition-all active:scale-95 ${
               displayMode === "bilingual"
                 ? "bg-white dark:bg-[#2c2c2e] text-[#0071e3] dark:text-[#0a84ff] font-semibold shadow-xs"
                 : "text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7]"
@@ -325,7 +376,7 @@ function StudioContent() {
 
           <button
             onClick={() => setDisplayMode("dictation")}
-            className={`px-3 sm:px-4 py-1.5 rounded-full transition-all ${
+            className={`flex-1 sm:flex-initial px-3 sm:px-4 py-1.5 rounded-full transition-all active:scale-95 ${
               displayMode === "dictation"
                 ? "bg-white dark:bg-[#2c2c2e] text-[#0071e3] dark:text-[#0a84ff] font-semibold shadow-xs"
                 : "text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7]"
@@ -336,8 +387,8 @@ function StudioContent() {
           </button>
         </div>
 
-        {/* Right Tools: 考题, 查词, 生词本 */}
-        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+        {/* Right Tools (Desktop only): 考题, 查词, 生词本, 用户 */}
+        <div className="hidden sm:flex items-center gap-1 sm:gap-2 shrink-0">
           {questions.length > 0 && (
             <button
               onClick={() => setIsQuestionsOpen(true)}
@@ -393,7 +444,7 @@ function StudioContent() {
       </header>
 
       {/* Main Focus Area (一屏一个主角) */}
-      <main className="flex-1 flex flex-col items-center justify-center px-4 relative">
+      <main className="flex-1 flex flex-col items-center justify-center px-4 relative overflow-y-auto no-scrollbar">
         {currentSentence ? (
           <SentenceCard
             sentence={currentSentence}
@@ -428,8 +479,8 @@ function StudioContent() {
         )}
       </main>
 
-      {/* Bottom Floating Frosted Glass Audio Bar */}
-      <footer className="w-full pb-7 pt-2 px-4 z-30">
+      {/* Bottom Floating Frosted Glass Audio Bar with Safe Area */}
+      <footer className="w-full pb-[max(1.25rem,calc(env(safe-area-inset-bottom)+0.6rem))] pt-1 px-3 sm:px-4 z-30 shrink-0">
         <AudioBar
           currentIndex={player.currentIndex}
           totalSentences={sentences.length}

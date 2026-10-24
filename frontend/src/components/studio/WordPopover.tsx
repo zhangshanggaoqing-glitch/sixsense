@@ -211,11 +211,11 @@ export function WordPopover({ word, currentSentence, examId, onClose, position }
     }
   };
 
-  return (
+    return (
     <>
-      {/* Invisible backdrop to dismiss popover when clicking anywhere outside */}
+      {/* Backdrop: translucent dim on mobile, transparent on desktop */}
       <div
-        className="fixed inset-0 z-40 bg-transparent cursor-default"
+        className="fixed inset-0 z-40 bg-black/30 sm:bg-transparent backdrop-blur-[2px] sm:backdrop-blur-none cursor-default transition-opacity"
         onClick={(e) => {
           e.stopPropagation();
           onClose();
@@ -228,170 +228,185 @@ export function WordPopover({ word, currentSentence, examId, onClose, position }
 
       <div
         ref={popoverRef}
-        className="fixed z-50 p-4 sm:p-5 bg-white/95 dark:bg-[#151822]/95 border border-black/[0.08] dark:border-white/[0.1] rounded-2xl shadow-2xl w-[340px] sm:w-[360px] max-h-[min(520px,calc(100vh-28px))] overflow-y-auto backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 text-left select-text"
-        style={{ top: `${coords.top}px`, left: `${coords.left}px` }}
+        className="fixed z-50 bg-white/95 dark:bg-[#1c1c1e]/95 border-t sm:border border-black/[0.08] dark:border-white/[0.1] shadow-2xl overflow-y-auto backdrop-blur-2xl animate-in duration-200 select-text
+        inset-x-0 bottom-0 rounded-t-[28px] max-h-[82vh] p-5 pb-[max(1.75rem,calc(env(safe-area-inset-bottom)+1rem))] slide-in-from-bottom
+        sm:inset-auto sm:rounded-2xl sm:w-[360px] sm:max-h-[min(520px,calc(100vh-28px))] sm:p-5 sm:fade-in sm:zoom-in-95"
+        style={typeof window !== "undefined" && window.innerWidth >= 640 ? { top: `${coords.top}px`, left: `${coords.left}px` } : undefined}
         onClick={(e) => e.stopPropagation()}
       >
-      {/* Header: Word & Tags */}
-      <div className="flex items-start justify-between gap-2 border-b border-gray-100 dark:border-gray-800/80 pb-3">
-        <div>
-          <div className="flex items-baseline gap-2">
-            <h4 className="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
-              {cleanWord}
-            </h4>
-            {data?.lemma && data.lemma !== cleanWord && (
-              <span className="text-xs text-gray-400 font-mono">
-                (原形: {data.lemma})
-              </span>
-            )}
-          </div>
-        </div>
+        {/* iOS Drag Indicator Capsule (Mobile only) */}
+        <div className="w-10 h-1 bg-black/20 dark:bg-white/25 rounded-full mx-auto mb-3 sm:hidden" />
 
-        <div className="flex items-center gap-1.5 flex-wrap justify-end">
-          <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 rounded-full border border-blue-200 dark:border-blue-900">
-            CET-6
-          </span>
-          {data?.tags?.slice(0, 2).map((t, idx) => (
-            t !== "CET6" && t !== "CET-6" ? (
-              <span key={idx} className="text-[10px] font-medium px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded-md">
-                {t}
-              </span>
-            ) : null
-          ))}
-        </div>
-      </div>
-
-      {isLoading ? (
-        <div className="py-8 flex flex-col items-center justify-center gap-2 text-gray-400">
-          <Loader2 className="w-5 h-5 animate-spin text-blue-500" />
-          <span className="text-xs font-mono">正在检索权威英美读音与释义...</span>
-        </div>
-      ) : (
-        <div className="mt-3 space-y-3">
-          {/* Pronunciations: UK & US */}
-          <div className="grid grid-cols-2 gap-2">
-            {/* UK British Accent */}
-            <button
-              onClick={() => playVoice("uk")}
-              className={`flex items-center justify-between p-2 rounded-xl border transition-all text-left ${
-                playingVoice === "uk"
-                  ? "bg-indigo-50 border-indigo-300 dark:bg-indigo-950/40 dark:border-indigo-700 ring-2 ring-indigo-500/30"
-                  : "bg-gray-50/80 dark:bg-[#1a1e2b] border-gray-100 dark:border-gray-800 hover:border-indigo-200 dark:hover:border-indigo-900"
-              }`}
-              title="播放纯正英音 (UK Pronunciation)"
-            >
-              <div className="flex flex-col">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                  🇬🇧 英音
+        {/* Header: Word & Tags & Mobile Close */}
+        <div className="flex items-start justify-between gap-2 border-b border-black/[0.06] dark:border-white/[0.08] pb-3">
+          <div>
+            <div className="flex items-baseline gap-2">
+              <h4 className="text-xl sm:text-2xl font-bold tracking-tight text-[#1d1d1f] dark:text-[#f5f5f7]">
+                {cleanWord}
+              </h4>
+              {data?.lemma && data.lemma !== cleanWord && (
+                <span className="text-xs text-[#86868b] font-mono">
+                  (原形: {data.lemma})
                 </span>
-                <span className="text-xs font-mono text-gray-600 dark:text-gray-300 mt-0.5">
-                  {data?.phonetic_uk ? `/${data.phonetic_uk}/` : `/${cleanWord}/`}
-                </span>
-              </div>
-              <div className={`p-1.5 rounded-lg ${
-                playingVoice === "uk"
-                  ? "bg-indigo-600 text-white animate-pulse"
-                  : "text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400"
-              }`}>
-                <Volume2 className="w-4 h-4" />
-              </div>
-            </button>
-
-            {/* US American Accent */}
-            <button
-              onClick={() => playVoice("us")}
-              className={`flex items-center justify-between p-2 rounded-xl border transition-all text-left ${
-                playingVoice === "us"
-                  ? "bg-blue-50 border-blue-300 dark:bg-blue-950/40 dark:border-blue-700 ring-2 ring-blue-500/30"
-                  : "bg-gray-50/80 dark:bg-[#1a1e2b] border-gray-100 dark:border-gray-800 hover:border-blue-200 dark:hover:border-blue-900"
-              }`}
-              title="播放标准美音 (US Pronunciation)"
-            >
-              <div className="flex flex-col">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                  🇺🇸 美音
-                </span>
-                <span className="text-xs font-mono text-gray-600 dark:text-gray-300 mt-0.5">
-                  {data?.phonetic_us ? `/${data.phonetic_us}/` : `/${cleanWord}/`}
-                </span>
-              </div>
-              <div className={`p-1.5 rounded-lg ${
-                playingVoice === "us"
-                  ? "bg-blue-600 text-white animate-pulse"
-                  : "text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
-              }`}>
-                <Volume2 className="w-4 h-4" />
-              </div>
-            </button>
+              )}
+            </div>
           </div>
 
-          {/* Definitions Section */}
-          <div className="max-h-40 overflow-y-auto pr-1 space-y-1.5 text-xs text-gray-700 dark:text-gray-200">
-            {data?.definitions && data.definitions.length > 0 ? (
-              data.definitions.slice(0, 4).map((def, idx) => (
-                <div key={idx} className="flex items-start gap-1.5 leading-relaxed">
-                  {def.pos && (
-                    <span className="shrink-0 font-semibold px-1 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 font-mono text-[11px]">
-                      {def.pos}
-                    </span>
-                  )}
-                  <span className="text-gray-800 dark:text-gray-200 font-normal">
-                    {def.meaning}
+          <div className="flex items-center gap-1.5 flex-wrap justify-end">
+            <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 bg-[#0071e3]/10 text-[#0071e3] dark:text-[#0a84ff] rounded-full">
+              CET-6
+            </span>
+            {data?.tags?.slice(0, 2).map((t, idx) => (
+              t !== "CET6" && t !== "CET-6" ? (
+                <span key={idx} className="text-[10px] font-medium px-1.5 py-0.5 bg-black/[0.04] dark:bg-white/[0.06] text-[#86868b] rounded-md">
+                  {t}
+                </span>
+              ) : null
+            ))}
+            <button
+              onClick={onClose}
+              className="sm:hidden -mr-1 p-1 text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7]"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+
+        {isLoading ? (
+          <div className="py-10 flex flex-col items-center justify-center gap-2 text-[#86868b]">
+            <Loader2 className="w-6 h-6 animate-spin text-[#0071e3]" />
+            <span className="text-xs font-mono">正在检索英美发音与释义...</span>
+          </div>
+        ) : (
+          <div className="mt-4 space-y-3.5">
+            {/* Pronunciations: UK & US */}
+            <div className="grid grid-cols-2 gap-2.5">
+              {/* UK British Accent */}
+              <button
+                type="button"
+                onClick={() => playVoice("uk")}
+                className={`flex items-center justify-between p-2.5 sm:p-2 rounded-2xl border transition-all text-left active:scale-[0.98] ${
+                  playingVoice === "uk"
+                    ? "bg-[#0071e3]/10 border-[#0071e3]/30 text-[#0071e3] dark:text-[#0a84ff] ring-2 ring-[#0071e3]/20"
+                    : "bg-black/[0.02] dark:bg-white/[0.04] border-black/[0.06] dark:border-white/[0.08] hover:border-[#0071e3]/30"
+                }`}
+                title="播放纯正英音 (UK Pronunciation)"
+              >
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0071e3] dark:text-[#0a84ff]">
+                    🇬🇧 英音
+                  </span>
+                  <span className="text-xs font-mono text-[#1d1d1f] dark:text-[#f5f5f7] mt-0.5">
+                    {data?.phonetic_uk ? `/${data.phonetic_uk}/` : `/${cleanWord}/`}
                   </span>
                 </div>
-              ))
-            ) : (
-              <div className="text-gray-400 italic">暂无权威中文释义</div>
+                <div className={`p-1.5 rounded-xl ${
+                  playingVoice === "uk"
+                    ? "bg-[#0071e3] text-white animate-pulse"
+                    : "text-[#86868b] hover:text-[#0071e3]"
+                }`}>
+                  <Volume2 className="w-4 h-4" />
+                </div>
+              </button>
+
+              {/* US American Accent */}
+              <button
+                type="button"
+                onClick={() => playVoice("us")}
+                className={`flex items-center justify-between p-2.5 sm:p-2 rounded-2xl border transition-all text-left active:scale-[0.98] ${
+                  playingVoice === "us"
+                    ? "bg-[#0071e3]/10 border-[#0071e3]/30 text-[#0071e3] dark:text-[#0a84ff] ring-2 ring-[#0071e3]/20"
+                    : "bg-black/[0.02] dark:bg-white/[0.04] border-black/[0.06] dark:border-white/[0.08] hover:border-[#0071e3]/30"
+                }`}
+                title="播放标准美音 (US Pronunciation)"
+              >
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0071e3] dark:text-[#0a84ff]">
+                    🇺🇸 美音
+                  </span>
+                  <span className="text-xs font-mono text-[#1d1d1f] dark:text-[#f5f5f7] mt-0.5">
+                    {data?.phonetic_us ? `/${data.phonetic_us}/` : `/${cleanWord}/`}
+                  </span>
+                </div>
+                <div className={`p-1.5 rounded-xl ${
+                  playingVoice === "us"
+                    ? "bg-[#0071e3] text-white animate-pulse"
+                    : "text-[#86868b] hover:text-[#0071e3]"
+                }`}>
+                  <Volume2 className="w-4 h-4" />
+                </div>
+              </button>
+            </div>
+
+            {/* Definitions Section */}
+            <div className="max-h-48 overflow-y-auto pr-1 space-y-2 text-xs sm:text-sm text-[#1d1d1f] dark:text-[#f5f5f7]">
+              {data?.definitions && data.definitions.length > 0 ? (
+                data.definitions.slice(0, 4).map((def, idx) => (
+                  <div key={idx} className="flex items-start gap-2 leading-relaxed">
+                    {def.pos && (
+                      <span className="shrink-0 font-semibold px-1.5 py-0.5 rounded bg-[#0071e3]/10 text-[#0071e3] dark:text-[#0a84ff] font-mono text-[11px]">
+                        {def.pos}
+                      </span>
+                    )}
+                    <span className="text-[#1d1d1f] dark:text-[#f5f5f7] font-normal">
+                      {def.meaning}
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <div className="text-[#86868b] italic">暂无权威中文释义</div>
+              )}
+            </div>
+
+            {/* Example Sentence if available */}
+            {data?.examples && data.examples.length > 0 && (
+              <div className="p-3 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.06] text-xs leading-relaxed">
+                <div className="flex items-center gap-1 text-[10px] font-semibold text-[#86868b] uppercase tracking-wider mb-1">
+                  <Sparkles className="w-3 h-3 text-[#ff9500]" /> 搭配例句
+                </div>
+                <p className="font-medium text-[#1d1d1f] dark:text-[#f5f5f7]">
+                  {data.examples[0].en}
+                </p>
+                <p className="text-[#86868b] mt-0.5">
+                  {data.examples[0].zh}
+                </p>
+              </div>
             )}
           </div>
+        )}
 
-          {/* Example Sentence if available */}
-          {data?.examples && data.examples.length > 0 && (
-            <div className="p-2.5 rounded-xl bg-gray-50/80 dark:bg-[#1a1e2b] border border-gray-100 dark:border-gray-800/80 text-[11px] leading-relaxed">
-              <div className="flex items-center gap-1 text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">
-                <Sparkles className="w-3 h-3 text-amber-500" /> 经典搭配例句
-              </div>
-              <p className="font-medium text-gray-700 dark:text-gray-300">
-                {data.examples[0].en}
-              </p>
-              <p className="text-gray-400 dark:text-gray-500 mt-0.5">
-                {data.examples[0].zh}
-              </p>
-            </div>
-          )}
+        {/* Footer Controls: Full width touch button on mobile */}
+        <div className="mt-5 pt-3.5 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={handleAdd}
+            disabled={isAdded || isLoading}
+            className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 text-xs font-semibold h-11 sm:h-9 px-5 rounded-full transition-all active:scale-[0.98] shadow-sm ${
+              isAdded
+                ? "bg-[#34c759]/15 text-[#34c759]"
+                : "bg-[#0071e3] hover:bg-[#0077ed] text-white disabled:opacity-40"
+            }`}
+          >
+            {isAdded ? (
+              <>
+                <Check className="w-4 h-4" /> 已加入生词本
+              </>
+            ) : (
+              <>
+                <Plus className="w-4 h-4" /> 加入生词本
+              </>
+            )}
+          </button>
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="hidden sm:inline-block text-xs text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] px-3 py-1.5 transition-colors"
+          >
+            关闭
+          </button>
         </div>
-      )}
-
-      {/* Footer Controls */}
-      <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800/80 flex items-center justify-between">
-        <button
-          onClick={handleAdd}
-          disabled={isAdded || isLoading}
-          className={`flex items-center gap-1.5 text-xs font-medium px-3.5 py-1.5 rounded-xl transition-all shadow-sm ${
-            isAdded
-              ? "bg-green-100 dark:bg-green-950/60 text-green-700 dark:text-green-300"
-              : "bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:opacity-90 disabled:opacity-40"
-          }`}
-        >
-          {isAdded ? (
-            <>
-              <Check className="w-3.5 h-3.5" /> 已收入生词本
-            </>
-          ) : (
-            <>
-              <Plus className="w-3.5 h-3.5" /> 收入生词本
-            </>
-          )}
-        </button>
-
-        <button
-          onClick={onClose}
-          className="text-xs text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 px-2 py-1 transition-colors"
-        >
-          关闭
-        </button>
       </div>
-    </div>
     </>
   );
 }

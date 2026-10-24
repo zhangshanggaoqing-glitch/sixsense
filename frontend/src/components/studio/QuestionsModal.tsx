@@ -36,21 +36,24 @@ export function QuestionsModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm p-0 sm:p-4 animate-in fade-in duration-150"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-2xl max-h-[85vh] flex flex-col bg-white dark:bg-[#1c1c1e] border border-black/[0.08] dark:border-white/[0.1] rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-150"
+        className="w-full max-w-2xl max-h-[90vh] sm:max-h-[85vh] flex flex-col bg-white dark:bg-[#1c1c1e] border-t sm:border border-black/[0.08] dark:border-white/[0.1] rounded-t-[28px] sm:rounded-3xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom sm:zoom-in-95 duration-200 pb-[env(safe-area-inset-bottom)]"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* iOS Drag Handle on Mobile */}
+        <div className="w-10 h-1 bg-black/15 dark:bg-white/20 rounded-full mx-auto mt-2.5 sm:hidden" />
+
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-black/[0.06] dark:border-white/[0.08] bg-black/[0.02] dark:bg-white/[0.02]">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-black/[0.06] dark:border-white/[0.08] bg-black/[0.02] dark:bg-white/[0.02]">
           <div>
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-0.5 text-[11px] font-semibold rounded-full bg-[#0071e3]/10 text-[#0071e3] dark:bg-[#0a84ff]/20 dark:text-[#0a84ff]">
                 官方考题 {questionRange ? `· ${questionRange}` : ""}
               </span>
-              <h2 className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
+              <h2 className="text-xs sm:text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] truncate max-w-[180px] sm:max-w-none">
                 {subpartTitle}
               </h2>
             </div>
@@ -60,14 +63,14 @@ export function QuestionsModal({
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-full text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+            className="w-8 h-8 flex items-center justify-center rounded-full text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] hover:bg-black/5 dark:hover:bg-white/10 active:scale-90 transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Question List */}
-        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
+        <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6 space-y-5 sm:space-y-6">
           {questions.length === 0 ? (
             <div className="text-center py-12 text-sm text-[#86868b]">
               当前分节暂无对应考题。

@@ -78,21 +78,21 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7] dark:bg-[#000000] text-[#1d1d1f] dark:text-[#f5f5f7] flex flex-col justify-between p-6 sm:p-12 select-none">
+    <div className="min-h-screen bg-[#f5f5f7] dark:bg-[#000000] text-[#1d1d1f] dark:text-[#f5f5f7] flex flex-col justify-between p-4 sm:p-12 pt-[max(0.85rem,env(safe-area-inset-top))] pb-[max(2rem,env(safe-area-inset-bottom))] select-none">
       {/* Top Header */}
-      <header className="w-full max-w-4xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <span className="text-base font-bold tracking-tight text-[#0071e3] dark:text-[#0a84ff]">
+      <header className="w-full max-w-4xl mx-auto flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <span className="text-base sm:text-lg font-bold tracking-tight text-[#0071e3] dark:text-[#0a84ff]">
             石头听力
           </span>
-          <span className="text-black/10 dark:text-white/10">·</span>
-          <span className="text-xs text-[#86868b] dark:text-[#a1a1a6]">大学英语六级真题精听</span>
+          <span className="text-black/10 dark:text-white/10 hidden xs:inline">·</span>
+          <span className="text-xs text-[#86868b] dark:text-[#a1a1a6] hidden xs:inline">六级真题精听</span>
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
           <Link
             href="/vocabulary"
-            className="text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-all"
+            className="text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all"
           >
             <BookOpen className="w-3.5 h-3.5" /> 生词本 ({stats.vocab_count})
           </Link>
@@ -104,7 +104,7 @@ export default function HomePage() {
               </span>
               <button
                 onClick={logout}
-                className="text-[11px] text-[#86868b] hover:text-[#ff3b30] transition-colors"
+                className="text-[11px] text-[#86868b] hover:text-[#ff3b30] p-1 transition-colors"
                 title="退出当前登录"
               >
                 退出
@@ -113,7 +113,7 @@ export default function HomePage() {
           ) : (
             <Link
               href="/login"
-              className="text-xs font-medium px-3 py-1.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white flex items-center gap-1 shadow-sm transition-all"
+              className="text-xs font-medium px-3.5 py-1.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white flex items-center gap-1 shadow-sm active:scale-95 transition-all"
             >
               <LogIn className="w-3.5 h-3.5" /> 登录
             </Link>
@@ -122,22 +122,22 @@ export default function HomePage() {
       </header>
 
       {/* Main Container */}
-      <main className="w-full max-w-4xl mx-auto py-8 flex flex-col gap-8">
-        {/* Quick Metrics Bar */}
-        <div className="flex items-center gap-6 sm:gap-8 pb-3 border-b border-black/[0.04] dark:border-white/[0.06]">
-          <div>
+      <main className="w-full max-w-4xl mx-auto py-5 sm:py-8 flex flex-col gap-6 sm:gap-8">
+        {/* Quick Metrics Bar: Smooth horizontal scrollable on mobile */}
+        <div className="flex items-center gap-6 sm:gap-8 pb-3 border-b border-black/[0.04] dark:border-white/[0.06] overflow-x-auto no-scrollbar">
+          <div className="shrink-0">
             <span className="text-[11px] text-[#86868b]">今日精听</span>
             <p className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
               {stats.today_minutes} 分钟
             </p>
           </div>
-          <div>
+          <div className="shrink-0">
             <span className="text-[11px] text-[#86868b]">本周累计</span>
             <p className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
               {stats.this_week_minutes} 分钟
             </p>
           </div>
-          <div>
+          <div className="shrink-0">
             <span className="text-[11px] text-[#86868b]">连续天数</span>
             <p className="text-sm font-semibold text-[#ff9500] flex items-center gap-1">
               <Flame className="w-3.5 h-3.5 fill-[#ff9500]" /> {stats.streak_days} 天
@@ -147,10 +147,10 @@ export default function HomePage() {
 
         {/* Continue Listening Hero Card */}
         {resume && (
-          <div className="p-6 sm:p-7 bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] flex flex-col sm:flex-row sm:items-center justify-between gap-6 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#0071e3]/10 text-[#0071e3] dark:text-[#0a84ff] flex items-center justify-center shrink-0">
-                <Headphones className="w-6 h-6" />
+          <div className="p-5 sm:p-7 bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] flex flex-col sm:flex-row sm:items-center justify-between gap-5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all">
+            <div className="flex items-start gap-3.5 sm:gap-4">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#0071e3]/10 text-[#0071e3] dark:text-[#0a84ff] flex items-center justify-center shrink-0">
+                <Headphones className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
@@ -162,7 +162,7 @@ export default function HomePage() {
                     第 { (resume.sentence_index ?? 0) + 1 } 句
                   </span>
                 </div>
-                <h2 className="text-lg font-medium text-[#1d1d1f] dark:text-[#f5f5f7] mt-1">
+                <h2 className="text-base sm:text-lg font-medium text-[#1d1d1f] dark:text-[#f5f5f7] mt-1">
                   {formatExamTitleZh(currentExam?.title || selectedExamId)}
                 </h2>
                 <p className="text-xs text-[#86868b] mt-0.5">
@@ -173,7 +173,7 @@ export default function HomePage() {
 
             <Link
               href={resume.subpart_id ? `/studio?exam_id=${resume.exam_id}&subpart_id=${resume.subpart_id}` : `/studio?exam_id=${selectedExamId}`}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1d1d1f] hover:bg-black dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-[#1d1d1f] text-xs font-semibold rounded-full shadow-sm transition-transform active:scale-95"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1d1d1f] hover:bg-black dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-[#1d1d1f] text-xs font-semibold rounded-full shadow-sm transition-transform active:scale-95"
             >
               进入工作台 <ArrowRight className="w-4 h-4" />
             </Link>
@@ -181,8 +181,8 @@ export default function HomePage() {
         )}
 
         {/* Exam Navigation & Year Filter */}
-        <div className="p-6 bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] rounded-3xl space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="p-5 sm:p-6 bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] rounded-3xl space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4 text-[#0071e3] dark:text-[#0a84ff]" />
               <h2 className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
@@ -194,8 +194,8 @@ export default function HomePage() {
             </span>
           </div>
 
-          {/* Year Pills */}
-          <div className="flex items-center gap-2 flex-wrap pt-1">
+          {/* Year Pills: Swipeable horizontal track */}
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
             {availableYears.map((yr) => {
               const isSelectedYear = yr === selectedYear;
               return (
@@ -205,7 +205,7 @@ export default function HomePage() {
                     const firstInYear = exams.find((e) => e.year === yr);
                     if (firstInYear) handleSelectExam(firstInYear.id);
                   }}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
+                  className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all active:scale-95 ${
                     isSelectedYear
                       ? "bg-[#0071e3] text-white shadow-xs"
                       : "bg-black/[0.04] dark:bg-white/[0.06] text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7]"
@@ -218,8 +218,8 @@ export default function HomePage() {
           </div>
 
           {/* Sets within selected year */}
-          <div className="flex items-center gap-2.5 flex-wrap pt-3 border-t border-black/[0.04] dark:border-white/[0.06]">
-            <span className="text-xs text-[#86868b]">考卷套数：</span>
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pt-3 border-t border-black/[0.04] dark:border-white/[0.06]">
+            <span className="text-xs text-[#86868b] shrink-0">考卷：</span>
             {examsInSelectedYear.map((e) => {
               const isSelected = e.id === selectedExamId;
               const setZh = formatExamTitleZh(e.title || e.id);
@@ -227,7 +227,7 @@ export default function HomePage() {
                 <button
                   key={e.id}
                   onClick={() => handleSelectExam(e.id)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all border ${
+                  className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all border active:scale-95 ${
                     isSelected
                       ? "border-[#0071e3] bg-[#0071e3]/10 text-[#0071e3] dark:text-[#0a84ff] font-semibold"
                       : "border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-[#1c1c1e] text-[#86868b] hover:border-black/20"
