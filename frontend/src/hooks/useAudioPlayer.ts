@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { Sentence } from "@/lib/api";
 
 export type LoopMode = "off" | "1x" | "3x" | "5x" | "infinity";
+export type PlaybackPace = "pause_each" | "continuous";
 
 export interface UseAudioPlayerProps {
   audioUrl: string;
@@ -9,6 +10,7 @@ export interface UseAudioPlayerProps {
   initialIndex?: number;
   initialRate?: number;
   initialLoop?: LoopMode;
+  playbackPace?: PlaybackPace;
   onSentenceChange?: (index: number) => void;
   onSentenceComplete?: (index: number) => void;
 }
@@ -19,6 +21,7 @@ export function useAudioPlayer({
   initialIndex = 0,
   initialRate = 1.0,
   initialLoop = "off",
+  playbackPace = "pause_each",
   onSentenceChange,
   onSentenceComplete,
 }: UseAudioPlayerProps) {
@@ -45,6 +48,12 @@ export function useAudioPlayer({
   useEffect(() => {
     onSentenceCompleteRef.current = onSentenceComplete;
   }, [onSentenceComplete]);
+
+  // Keep track of playback pace (pause_each vs continuous)
+  const paceRef = useRef<PlaybackPace>(playbackPace);
+  useEffect(() => {
+    paceRef.current = playbackPace;
+  }, [playbackPace]);
 
   // Initialize Audio
   useEffect(() => {
@@ -128,12 +137,12 @@ export function useAudioPlayer({
         if (now - lastLoopTimeRef.current > 350) {
           lastLoopTimeRef.current = now;
           if (loopMode === "infinity" || loopMode === "1x" || loopMode === "3x" || loopMode === "5x") {
-            // Replay current sentence in loop
+            // 单句循环：同一句反复播（优先级最高，忽略连贯与一句一停）
             setLoopCount((prev) => prev + 1);
             audio.currentTime = Math.max(0, currentSentence.start_time - 0.05);
             audio.play().catch(() => {});
           } else {
-            // Bug 3 规则：默认单句循环关闭；当前句播放到句末时，自动前进到下一句并继续播放
+            // 单句循环关闭时：根据播放节奏 (pause_each vs continuous) 决定句末动作
             onSentenceCompleteRef.current?.(currentIndex);
 
             if (currentIndex < sentences.length - 1) {
@@ -149,9 +158,17 @@ export function useAudioPlayer({
               } else {
                 pendingSeekRef.current = nextStart;
               }
-              audio.play().catch(() => {});
+
+              if (paceRef.current === "continuous") {
+                // 连贯播放：当前句播完 → 自动进入下一句并继续播放
+                audio.play().catch(() => {});
+              } else {
+                // 说一句停一句（默认）：当前句播完 → 定位到下一句文案与起始时间，但不自动起播，暂停等待用户点击
+                audio.pause();
+                setIsPlaying(false);
+              }
             } else {
-              // 已是本套最后一句：停止在最后一句并暂停
+              // 套末：无论哪种节奏，停在最后一句末，安静暂停，不报错、不绕回
               audio.pause();
               setIsPlaying(false);
               setLoopCount(0);

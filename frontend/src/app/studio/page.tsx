@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { api, ExamDetail, Sentence, Subpart, Question, ResumeState } from "@/lib/api";
 import { formatExamTitleZh, formatSubpartTitleZh } from "@/lib/formatters";
-import { useAudioPlayer } from "@/hooks/useAudioPlayer";
+import { useAudioPlayer, PlaybackPace } from "@/hooks/useAudioPlayer";
 import { useKeyboardShortcuts, StudioMode } from "@/hooks/useKeyboardShortcuts";
 import { useAuth } from "@/hooks/useAuth";
 import { SentenceCard } from "@/components/studio/SentenceCard";
@@ -53,6 +53,26 @@ function StudioContent() {
   const [isPunchCardOpen, setIsPunchCardOpen] = useState(false);
   const [showDailyPunchPrompt, setShowDailyPunchPrompt] = useState(false);
   const [medalToast, setMedalToast] = useState<string | null>(null);
+
+  // Playback Pace: pause_each (说一句停一句，默认) vs continuous (连贯播放)
+  const [playbackPace, setPlaybackPace] = useState<PlaybackPace>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const stored = localStorage.getItem("stone_playback_pace");
+        if (stored === "continuous" || stored === "pause_each") {
+          return stored;
+        }
+      } catch {}
+    }
+    return "pause_each";
+  });
+
+  const handleSetPace = useCallback((newPace: PlaybackPace) => {
+    setPlaybackPace(newPace);
+    try {
+      localStorage.setItem("stone_playback_pace", newPace);
+    } catch {}
+  }, []);
 
   // Synchronously restore initialSentenceIndex from cached resume to prevent jumping
   const [initialSentenceIndex, setInitialSentenceIndex] = useState<number>(() => {
@@ -267,6 +287,7 @@ function StudioContent() {
     initialIndex: initialSentenceIndex,
     initialRate: 1.0,
     initialLoop: "off",
+    playbackPace,
     onSentenceChange: handleSentenceChange,
     onSentenceComplete: handleSentenceComplete,
   });
@@ -716,12 +737,14 @@ function StudioContent() {
           totalSentences={sentences.length}
           isPlaying={player.isPlaying}
           loopMode={player.loopMode}
+          playbackPace={playbackPace}
           playbackRate={player.playbackRate}
           volume={player.volume}
           onTogglePlay={player.togglePlay}
           onNext={player.nextSentence}
           onPrev={player.prevSentence}
           onCycleLoop={handleToggleLoop}
+          onSetPace={handleSetPace}
           onSetSpeed={player.setPlaybackRate}
           onSetVolume={player.adjustVolume}
           onOpenPunchCard={() => setIsPunchCardOpen(true)}

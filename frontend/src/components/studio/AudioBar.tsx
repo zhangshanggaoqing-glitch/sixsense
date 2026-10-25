@@ -10,19 +10,21 @@ import {
   Volume2,
   VolumeX,
 } from "lucide-react";
-import { LoopMode } from "@/hooks/useAudioPlayer";
+import { LoopMode, PlaybackPace } from "@/hooks/useAudioPlayer";
 
 interface AudioBarProps {
   currentIndex: number;
   totalSentences: number;
   isPlaying: boolean;
   loopMode: LoopMode;
+  playbackPace: PlaybackPace;
   playbackRate: number;
   volume: number;
   onTogglePlay: () => void;
   onNext: () => void;
   onPrev: () => void;
   onCycleLoop: () => void;
+  onSetPace: (pace: PlaybackPace) => void;
   onSetSpeed: (speed: number) => void;
   onSetVolume: (vol: number) => void;
   onOpenPunchCard?: () => void;
@@ -35,12 +37,14 @@ export function AudioBar({
   totalSentences,
   isPlaying,
   loopMode,
+  playbackPace,
   playbackRate,
   volume,
   onTogglePlay,
   onNext,
   onPrev,
   onCycleLoop,
+  onSetPace,
   onSetSpeed,
   onSetVolume,
   onOpenPunchCard,
@@ -123,6 +127,47 @@ export function AudioBar({
           >
             <Repeat className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">单句循环</span>
+          </button>
+
+          {/* Playback Pace: 一句一停 (默认) | 连贯播放 */}
+          {/* Desktop/Tablet: Segmented Control (两态文案：一句一停 | 连贯播放，当前态用黑底小 pill 标出) */}
+          <div className="hidden sm:inline-flex items-center p-0.5 bg-black/[0.04] dark:bg-white/[0.06] rounded-full text-[11px] font-medium shrink-0 ml-0.5">
+            <button
+              type="button"
+              onClick={() => onSetPace("pause_each")}
+              className={`px-2.5 py-1 rounded-full transition-all active:scale-95 ${
+                playbackPace === "pause_each"
+                  ? "bg-[#1d1d1f] text-white dark:bg-[#f5f5f7] dark:text-[#1d1d1f] font-semibold shadow-xs"
+                  : "text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7]"
+              }`}
+              title="说一句停一句：当前句播完后暂停，等点击下一句"
+            >
+              一句一停
+            </button>
+            <button
+              type="button"
+              onClick={() => onSetPace("continuous")}
+              className={`px-2.5 py-1 rounded-full transition-all active:scale-95 ${
+                playbackPace === "continuous"
+                  ? "bg-[#1d1d1f] text-white dark:bg-[#f5f5f7] dark:text-[#1d1d1f] font-semibold shadow-xs"
+                  : "text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7]"
+              }`}
+              title="连贯播放：当前句播完后自动进入下一句并继续播放"
+            >
+              连贯播放
+            </button>
+          </div>
+
+          {/* Mobile: Compact Pace Switcher */}
+          <button
+            type="button"
+            onClick={() => onSetPace(playbackPace === "pause_each" ? "continuous" : "pause_each")}
+            className="sm:hidden h-10 px-2 flex items-center justify-center rounded-full text-[11px] font-medium text-[#1d1d1f] dark:text-[#f5f5f7] hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all"
+            title={playbackPace === "pause_each" ? "当前：一句一停 (点击切为连贯播放)" : "当前：连贯播放 (点击切为一句一停)"}
+          >
+            <span className={playbackPace === "continuous" ? "font-semibold text-[#0071e3] dark:text-[#0a84ff]" : "font-medium text-[#86868b] dark:text-[#a1a1a6]"}>
+              {playbackPace === "pause_each" ? "一句一停" : "连贯"}
+            </span>
           </button>
         </div>
 
