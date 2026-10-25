@@ -1,4 +1,5 @@
 import time
+import json
 import uuid
 from typing import Optional
 from fastapi import APIRouter, HTTPException, Depends, status
@@ -26,6 +27,78 @@ class LoginRequest(BaseModel):
     password: str
     migrate_guest: Optional[bool] = False
     guest_id: Optional[str] = None
+
+def _migrate_guest_data(cursor, guest_id: str, user_id: str, now: float):
+    """
+    将隔离访客数据平滑合并至正式账号：
+    1. 迁移生词本、听力时长流水、听写记录
+    2. 迁移播放进度记忆（resume）
+    3. 迁移各自然日有效精听秒数（daily_active），避免今日精听跳 0
+    4. 迁移并合并静默勋章成就（medals）
+    """
+    gid = guest_id.strip()
+    if not gid or gid == "default" or gid == user_id:
+        return
+
+    cursor.execute("UPDATE vocabulary SET user_id = ? WHERE user_id = ?", (user_id, gid))
+    cursor.execute("UPDATE listening_sessions SET user_id = ? WHERE user_id = ?", (user_id, gid))
+    cursor.execute("UPDATE dictation_attempts SET user_id = ? WHERE user_id = ?", (user_id, gid))
+
+    # 迁移 resume
+    cursor.execute("SELECT value_json FROM user_state WHERE key = ?", (f"resume:{gid}",))
+    r_row = cursor.fetchone()
+    if r_row:
+        cursor.execute("""
+            INSERT INTO user_state (key, value_json, updated_at)
+            VALUES (?, ?, ?)
+            ON CONFLICT(key) DO UPDATE SET value_json = excluded.value_json, updated_at = excluded.updated_at
+        """, (f"resume:{user_id}", r_row["value_json"], now))
+        cursor.execute("DELETE FROM user_state WHERE key = ?", (f"resume:{gid}",))
+
+    # 迁移 daily_active 记录（合并秒数，杜绝双计与归零）
+    cursor.execute("SELECT key, value_json FROM user_state WHERE key LIKE ?", (f"{gid}:daily_active_%",))
+    daily_rows = cursor.fetchall()
+    for d_row in daily_rows:
+        old_k = d_row["key"]
+        date_suffix = old_k.split(":daily_active_")[-1]
+        new_k = f"{user_id}:daily_active_{date_suffix}"
+        guest_sec = int(d_row["value_json"]) if d_row["value_json"] and d_row["value_json"].isdigit() else 0
+
+        cursor.execute("SELECT value_json FROM user_state WHERE key = ?", (new_k,))
+        u_row = cursor.fetchone()
+        user_sec = int(u_row["value_json"]) if u_row and u_row["value_json"] and u_row["value_json"].isdigit() else 0
+        merged_sec = user_sec + guest_sec
+
+        cursor.execute("""
+            INSERT INTO user_state (key, value_json, updated_at)
+            VALUES (?, ?, ?)
+            ON CONFLICT(key) DO UPDATE SET value_json = excluded.value_json, updated_at = excluded.updated_at
+        """, (new_k, str(merged_sec), now))
+        cursor.execute("DELETE FROM user_state WHERE key = ?", (old_k,))
+
+    # 迁移并合并 medals 勋章
+    cursor.execute("SELECT value_json FROM user_state WHERE key = ?", (f"medals:{gid}",))
+    g_medals_row = cursor.fetchone()
+    if g_medals_row and g_medals_row["value_json"]:
+        try:
+            g_medals = json.loads(g_medals_row["value_json"])
+        except Exception:
+            g_medals = []
+        cursor.execute("SELECT value_json FROM user_state WHERE key = ?", (f"medals:{user_id}",))
+        u_medals_row = cursor.fetchone()
+        u_medals = []
+        if u_medals_row and u_medals_row["value_json"]:
+            try:
+                u_medals = json.loads(u_medals_row["value_json"])
+            except Exception:
+                u_medals = []
+        combined_medals = list(dict.fromkeys(u_medals + g_medals))
+        cursor.execute("""
+            INSERT INTO user_state (key, value_json, updated_at)
+            VALUES (?, ?, ?)
+            ON CONFLICT(key) DO UPDATE SET value_json = excluded.value_json, updated_at = excluded.updated_at
+        """, (f"medals:{user_id}", json.dumps(combined_medals, ensure_ascii=False), now))
+        cursor.execute("DELETE FROM user_state WHERE key = ?", (f"medals:{gid}",))
 
 @router.post("/register")
 def register(req: RegisterRequest):
@@ -64,20 +137,7 @@ def register(req: RegisterRequest):
 
     # Migrate guest data strictly bound to this guest_id (never touching other visitors)
     if req.migrate_guest and req.guest_id:
-        gid = req.guest_id.strip()
-        if gid and gid != "default":
-            cursor.execute("UPDATE vocabulary SET user_id = ? WHERE user_id = ?", (user_id, gid))
-            cursor.execute("UPDATE listening_sessions SET user_id = ? WHERE user_id = ?", (user_id, gid))
-            cursor.execute("UPDATE dictation_attempts SET user_id = ? WHERE user_id = ?", (user_id, gid))
-            cursor.execute("SELECT value_json FROM user_state WHERE key = ?", (f"resume:{gid}",))
-            r_row = cursor.fetchone()
-            if r_row:
-                cursor.execute("""
-                    INSERT INTO user_state (key, value_json, updated_at)
-                    VALUES (?, ?, ?)
-                    ON CONFLICT(key) DO UPDATE SET value_json = excluded.value_json, updated_at = excluded.updated_at
-                """, (f"resume:{user_id}", r_row["value_json"], now))
-                cursor.execute("DELETE FROM user_state WHERE key = ?", (f"resume:{gid}",))
+        _migrate_guest_data(cursor, req.guest_id, user_id, now)
 
     conn.commit()
     conn.close()
@@ -119,20 +179,7 @@ def login(req: LoginRequest):
 
     # Migrate isolated guest data if guest_id provided
     if req.migrate_guest and req.guest_id:
-        gid = req.guest_id.strip()
-        if gid and gid != "default":
-            cursor.execute("UPDATE vocabulary SET user_id = ? WHERE user_id = ?", (user_id, gid))
-            cursor.execute("UPDATE listening_sessions SET user_id = ? WHERE user_id = ?", (user_id, gid))
-            cursor.execute("UPDATE dictation_attempts SET user_id = ? WHERE user_id = ?", (user_id, gid))
-            cursor.execute("SELECT value_json FROM user_state WHERE key = ?", (f"resume:{gid}",))
-            r_row = cursor.fetchone()
-            if r_row:
-                cursor.execute("""
-                    INSERT INTO user_state (key, value_json, updated_at)
-                    VALUES (?, ?, ?)
-                    ON CONFLICT(key) DO UPDATE SET value_json = excluded.value_json, updated_at = excluded.updated_at
-                """, (f"resume:{user_id}", r_row["value_json"], now))
-                cursor.execute("DELETE FROM user_state WHERE key = ?", (f"resume:{gid}",))
+        _migrate_guest_data(cursor, req.guest_id, user_id, now)
 
     conn.commit()
     conn.close()

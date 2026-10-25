@@ -14,6 +14,7 @@ import {
   X,
   User as UserIcon,
   LogIn,
+  Play,
 } from "lucide-react";
 import { api, ExamDetail, Sentence, Subpart, Question } from "@/lib/api";
 import { formatExamTitleZh, formatSubpartTitleZh } from "@/lib/formatters";
@@ -24,6 +25,7 @@ import { SentenceCard } from "@/components/studio/SentenceCard";
 import { AudioBar } from "@/components/studio/AudioBar";
 import { QuestionsModal } from "@/components/studio/QuestionsModal";
 import { QuickLookupModal } from "@/components/studio/QuickLookupModal";
+import { ShareCardModal } from "@/components/studio/ShareCardModal";
 
 function StudioContent() {
   const router = useRouter();
@@ -45,8 +47,16 @@ function StudioContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
+  // Retention & Punch Card states
+  const [todayMinutes, setTodayMinutes] = useState(0.0);
+  const [streakDays, setStreakDays] = useState(0);
+  const [isPunchCardOpen, setIsPunchCardOpen] = useState(false);
+  const [showDailyPunchPrompt, setShowDailyPunchPrompt] = useState(false);
+  const [medalToast, setMedalToast] = useState<string | null>(null);
+
   // Active playing time tracking (guaranteed flush on pause, switch, visibility change, and unload)
   const pendingActiveSecondsRef = useRef(0);
+  const pendingCompletedSentenceRef = useRef(false);
   const lastTickTimeRef = useRef<number | null>(null);
 
   // 1. Check first-time entry for keyboard shortcut tip
@@ -79,14 +89,20 @@ function StudioContent() {
       setIsLoading(true);
       setIsError(false);
       try {
-        const [examData, subpartsList, resume] = await Promise.all([
+        const [examData, subpartsList, resume, statsData] = await Promise.all([
           api.getExamDetail(urlExamId),
           api.getSubparts(urlExamId),
           api.getResume().catch(() => null),
+          api.getStats().catch(() => null),
         ]);
 
         setExam(examData);
         setSubparts(subpartsList);
+
+        if (statsData) {
+          setTodayMinutes(statsData.today_minutes || 0.0);
+          setStreakDays(statsData.streak_days || 0);
+        }
 
         // Determine active subpart
         let targetSubpartId = urlSubpartId;
@@ -140,13 +156,81 @@ function StudioContent() {
     loadSubpartContent();
   }, [activeSubpartId, exam]);
 
+  const isPlayingRef = useRef(false);
+
   const handleSentenceChange = useCallback(() => {
     setHasCompletedSentence(true);
   }, []);
 
+  const flushHeartbeat = useCallback((keepalive = false) => {
+    if (!exam) return;
+    if (isPlayingRef.current && lastTickTimeRef.current !== null) {
+      const now = Date.now();
+      const elapsed = Math.floor((now - lastTickTimeRef.current) / 1000);
+      if (elapsed > 0) {
+        pendingActiveSecondsRef.current += elapsed;
+        lastTickTimeRef.current = now;
+      }
+    }
+    const sec = pendingActiveSecondsRef.current;
+    const completedSentence = pendingCompletedSentenceRef.current;
+    if (sec > 0 || completedSentence) {
+      pendingActiveSecondsRef.current = 0;
+      pendingCompletedSentenceRef.current = false;
+      api.sendHeartbeat(exam.id, sec, keepalive, completedSentence).then((res) => {
+        if (res) {
+          if (res.today_minutes !== undefined) setTodayMinutes(res.today_minutes);
+          if (res.streak_days !== undefined) setStreakDays(res.streak_days);
+
+          // Update local cached stats so home page has fresh numbers immediately
+          try {
+            const cached = localStorage.getItem("stone_cached_stats");
+            const s = cached ? JSON.parse(cached) : {};
+            s.today_minutes = res.today_minutes;
+            s.streak_days = res.streak_days;
+            if (res.medals) s.medals = res.medals;
+            localStorage.setItem("stone_cached_stats", JSON.stringify(s));
+          } catch {}
+
+          // Medal unlock toast (short, non-modal, Apple-style)
+          if (res.new_medals && res.new_medals.length > 0) {
+            const MEDAL_MAP: Record<string, string> = {
+              first_listen: "首听",
+              streak_3: "连续 3 天",
+              streak_7: "连续 7 天",
+            };
+            for (const m of res.new_medals) {
+              if (MEDAL_MAP[m]) {
+                setMedalToast(`已点亮：${MEDAL_MAP[m]}`);
+                setTimeout(() => setMedalToast(null), 3500);
+              }
+            }
+          }
+
+          // Trigger B: First time today reaching >= 60s
+          if (res.today_active_seconds >= 60) {
+            const nowD = new Date();
+            const utc = nowD.getTime() + nowD.getTimezoneOffset() * 60000;
+            const cst = new Date(utc + 3600000 * 8);
+            const todayStr = `${cst.getFullYear()}-${String(cst.getMonth() + 1).padStart(2, "0")}-${String(cst.getDate()).padStart(2, "0")}`;
+            try {
+              const promptedDate = localStorage.getItem("stone_punch_prompt_date");
+              if (promptedDate !== todayStr) {
+                localStorage.setItem("stone_punch_prompt_date", todayStr);
+                setShowDailyPunchPrompt(true);
+              }
+            } catch {}
+          }
+        }
+      });
+    }
+  }, [exam]);
+
   const handleSentenceComplete = useCallback(() => {
     setHasCompletedSentence(true);
-  }, []);
+    pendingCompletedSentenceRef.current = true;
+    flushHeartbeat(false);
+  }, [flushHeartbeat]);
 
   const audioUrl = exam ? api.getAudioUrl(exam.audio_file) : "";
 
@@ -160,6 +244,8 @@ function StudioContent() {
     onSentenceComplete: handleSentenceComplete,
   });
 
+  isPlayingRef.current = player.isPlaying;
+
   // Autoplay support when user arrives from "先听一句"
   const autoplayParam = searchParams.get("autoplay");
   const hasTriggeredAutoplayRef = useRef(false);
@@ -170,24 +256,6 @@ function StudioContent() {
       player.togglePlay();
     }
   }, [autoplayParam, sentences, exam, player]);
-
-  // Flush accumulated listening seconds to server
-  const flushHeartbeat = useCallback((keepalive = false) => {
-    if (!exam) return;
-    if (player.isPlaying && lastTickTimeRef.current !== null) {
-      const now = Date.now();
-      const elapsed = Math.floor((now - lastTickTimeRef.current) / 1000);
-      if (elapsed > 0) {
-        pendingActiveSecondsRef.current += elapsed;
-        lastTickTimeRef.current = now;
-      }
-    }
-    const sec = pendingActiveSecondsRef.current;
-    if (sec > 0) {
-      pendingActiveSecondsRef.current = 0;
-      api.sendHeartbeat(exam.id, sec, keepalive);
-    }
-  }, [exam, player.isPlaying]);
 
   // Real-time second counter: throttles heartbeat every 10s and flushes on pause
   useEffect(() => {
@@ -515,6 +583,12 @@ function StudioContent() {
 
       {/* Main Focus Area (一屏一个主角) */}
       <main className="flex-1 flex flex-col items-center justify-center px-4 relative overflow-y-auto no-scrollbar">
+        {player.isBuffering && (
+          <div className="absolute top-2 text-[11px] font-medium text-[#86868b] dark:text-[#a1a1a6] animate-pulse">
+            音频加载中…
+          </div>
+        )}
+
         {currentSentence ? (
           <SentenceCard
             sentence={currentSentence}
@@ -528,6 +602,20 @@ function StudioContent() {
           />
         ) : (
           <div className="text-sm text-[#86868b]">暂无听力句子数据</div>
+        )}
+
+        {/* Autoplay blocked or initial click-to-play invitation (silent fallback) */}
+        {!player.isPlaying && (player.isAutoplayBlocked || (autoplayParam === "1" && !hasCompletedSentence)) && (
+          <div className="mt-4 animate-in fade-in duration-200">
+            <button
+              type="button"
+              onClick={player.togglePlay}
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#1d1d1f] hover:bg-black dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-[#1d1d1f] text-xs font-semibold shadow-sm transition-transform active:scale-95"
+            >
+              <Play className="w-3.5 h-3.5 fill-current" />
+              <span>点击播放</span>
+            </button>
+          </div>
         )}
 
         {/* End of Subpart Transition Notification */}
@@ -577,8 +665,48 @@ function StudioContent() {
           onCycleLoop={handleToggleLoop}
           onSetSpeed={player.setPlaybackRate}
           onSetVolume={player.adjustVolume}
+          onOpenPunchCard={() => setIsPunchCardOpen(true)}
         />
       </footer>
+
+      {/* Trigger B: First time today reaching >= 60s prompt */}
+      {showDailyPunchPrompt && (
+        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2.5 px-4 py-2 bg-white/95 dark:bg-[#1c1c1e]/95 backdrop-blur-xl border border-black/[0.08] dark:border-white/[0.12] rounded-full shadow-lg text-xs text-[#1d1d1f] dark:text-[#f5f5f7] animate-in fade-in slide-in-from-bottom-2 duration-200">
+          <span>今日已打卡 · 生成分享图</span>
+          <button
+            type="button"
+            onClick={() => {
+              setShowDailyPunchPrompt(false);
+              setIsPunchCardOpen(true);
+            }}
+            className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#1d1d1f] text-white dark:bg-[#f5f5f7] dark:text-[#1d1d1f] hover:opacity-90 transition-opacity"
+          >
+            生成
+          </button>
+          <button
+            type="button"
+            onClick={() => setShowDailyPunchPrompt(false)}
+            className="p-0.5 rounded-full text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] transition-colors"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
+      {/* Silent Medal Toast */}
+      {medalToast && (
+        <div className="fixed top-14 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 px-4 py-1.5 bg-[#1d1d1f]/95 dark:bg-[#f5f5f7]/95 text-white dark:text-[#1d1d1f] backdrop-blur-md rounded-full shadow-md text-xs font-medium animate-in fade-in slide-in-from-top-2 duration-200">
+          <span>{medalToast}</span>
+        </div>
+      )}
+
+      {/* Share Punch Card Modal */}
+      <ShareCardModal
+        isOpen={isPunchCardOpen}
+        onClose={() => setIsPunchCardOpen(false)}
+        todayMinutes={todayMinutes}
+        streakDays={streakDays}
+      />
 
       {/* First-time Entry Shortcut Toast (Corner Hint) */}
       {showShortcutTip && (
@@ -588,7 +716,7 @@ function StudioContent() {
             onClick={dismissShortcutTip}
             className="p-0.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-[#86868b] hover:text-[#1d1d1f] transition-colors"
           >
-            <X className="w-3 h-3" />
+            <X className="w-3.5 h-3.5" />
           </button>
         </div>
       )}

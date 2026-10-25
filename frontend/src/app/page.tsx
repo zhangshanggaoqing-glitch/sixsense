@@ -3,24 +3,28 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, BookOpen, Flame, Headphones, Clock, Layers, Calendar, User as UserIcon, LogIn, Play } from "lucide-react";
-import { api, ResumeState, Subpart, ExamItem } from "@/lib/api";
+import { api, ResumeState, Subpart, ExamItem, StatsData } from "@/lib/api";
 import { formatExamTitleZh, formatSubpartTitleZh } from "@/lib/formatters";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function HomePage() {
   const { user, isLoggedIn, logout } = useAuth();
-  const [stats, setStats] = useState({
-    today_minutes: 0.0,
-    this_week_minutes: 0.0,
-    streak_days: 0,
-    vocab_count: 0,
-    dictation_count: 0,
-  });
+  const [stats, setStats] = useState<StatsData | null>(null);
   const [resume, setResume] = useState<ResumeState | null>(null);
   const [exams, setExams] = useState<ExamItem[]>([]);
   const [selectedExamId, setSelectedExamId] = useState<string>("2026-06-set1");
   const [subparts, setSubparts] = useState<Subpart[]>([]);
   const [isLoadingSubparts, setIsLoadingSubparts] = useState(false);
+
+  // Synchronously load cached stats & resume on client mount to prevent "flash of 0"
+  useEffect(() => {
+    try {
+      const cachedStats = localStorage.getItem("stone_cached_stats");
+      if (cachedStats) setStats(JSON.parse(cachedStats));
+      const cachedResume = localStorage.getItem("stone_cached_resume");
+      if (cachedResume) setResume(JSON.parse(cachedResume));
+    } catch {}
+  }, []);
 
   useEffect(() => {
     async function load() {
@@ -30,8 +34,18 @@ export default function HomePage() {
           api.getStats().catch(() => null),
           api.getExams().catch(() => []),
         ]);
-        if (resResume) setResume(resResume);
-        if (resStats) setStats(resStats);
+        if (resResume) {
+          setResume(resResume);
+          try {
+            localStorage.setItem("stone_cached_resume", JSON.stringify(resResume));
+          } catch {}
+        }
+        if (resStats) {
+          setStats(resStats);
+          try {
+            localStorage.setItem("stone_cached_stats", JSON.stringify(resStats));
+          } catch {}
+        }
         setExams(resExams);
 
         const latestExamId = resExams.length > 0 ? resExams[0].id : "2026-06-set1";
@@ -78,6 +92,13 @@ export default function HomePage() {
     { id: "sec-c", suffix: "sec-c", title: "第三部分：讲座与报道（第16–25题）", count: "3 篇 · 10 题" },
   ];
 
+  const MEDAL_NAMES: Record<string, string> = {
+    first_listen: "首听",
+    streak_3: "连续3天",
+    streak_7: "连续7天",
+  };
+  const earnedMedals = (stats?.medals || []).filter((m) => MEDAL_NAMES[m]);
+
   return (
     <div className="min-h-screen bg-[#f5f5f7] dark:bg-[#000000] text-[#1d1d1f] dark:text-[#f5f5f7] flex flex-col justify-between p-4 sm:p-12 pt-[max(0.85rem,env(safe-area-inset-top))] pb-[max(2rem,env(safe-area-inset-bottom))] select-none">
       {/* Top Header */}
@@ -95,7 +116,7 @@ export default function HomePage() {
             href="/vocabulary"
             className="text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all"
           >
-            <BookOpen className="w-3.5 h-3.5" /> 生词本 ({stats.vocab_count})
+            <BookOpen className="w-3.5 h-3.5" /> 生词本 ({stats ? stats.vocab_count : "—"})
           </Link>
 
           {isLoggedIn ? (
@@ -134,28 +155,42 @@ export default function HomePage() {
       {/* Main Container */}
       <main className="w-full max-w-4xl mx-auto py-5 sm:py-8 flex flex-col gap-6 sm:gap-8">
         {/* Quick Metrics Bar: Smooth horizontal scrollable on mobile */}
-        <div className="flex items-center gap-6 sm:gap-8 pb-3 border-b border-black/[0.04] dark:border-white/[0.06] overflow-x-auto no-scrollbar">
-          <div className="shrink-0">
-            <span className="text-[11px] text-[#86868b]">今日精听</span>
-            <p className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
-              {stats.today_minutes} 分钟
-            </p>
+        <div className="flex items-center justify-between pb-3 border-b border-black/[0.04] dark:border-white/[0.06] overflow-x-auto no-scrollbar gap-6">
+          <div className="flex items-center gap-6 sm:gap-8">
+            <div className="shrink-0">
+              <span className="text-[11px] text-[#86868b]">今日精听</span>
+              <p className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
+                {stats !== null ? `${stats.today_minutes} 分钟` : "—"}
+              </p>
+            </div>
+            <div className="shrink-0">
+              <span className="text-[11px] text-[#86868b]">本周累计</span>
+              <p className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
+                {stats !== null ? `${stats.this_week_minutes} 分钟` : "—"}
+              </p>
+            </div>
+            <div className="shrink-0">
+              <span className="text-[11px] text-[#86868b]">连续天数</span>
+              <p className="text-sm font-semibold text-[#ff9500] flex items-center gap-1">
+                <Flame className="w-3.5 h-3.5 fill-[#ff9500]" /> {stats !== null ? `${stats.streak_days} 天` : "—"}
+              </p>
+            </div>
           </div>
-          <div className="shrink-0">
-            <span className="text-[11px] text-[#86868b]">本周累计</span>
-            <p className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
-              {stats.this_week_minutes} 分钟
-            </p>
-          </div>
-          <div className="shrink-0">
-            <span className="text-[11px] text-[#86868b]">连续天数</span>
-            <p className="text-sm font-semibold text-[#ff9500] flex items-center gap-1">
-              <Flame className="w-3.5 h-3.5 fill-[#ff9500]" /> {stats.streak_days} 天
-            </p>
-          </div>
+
+          {/* Silent Medals: Weak text display, unlit medals not shown */}
+          {earnedMedals.length > 0 && (
+            <div className="hidden sm:flex items-center gap-1.5 text-[11px] text-[#86868b] dark:text-[#a1a1a6] shrink-0">
+              <span>勋章：</span>
+              {earnedMedals.map((m) => (
+                <span key={m} className="px-2 py-0.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] font-medium text-[#1d1d1f] dark:text-[#f5f5f7]">
+                  {MEDAL_NAMES[m]}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
 
-        {/* Hero Card: Primary Call to Action 「先听一句」 */}
+        {/* Hero Card: Primary Call to Action 「继续第 N 句」 / 「先听一句」 */}
         <div className="p-5 sm:p-7 bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] flex flex-col sm:flex-row sm:items-center justify-between gap-5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all">
           <div className="flex items-start gap-3.5 sm:gap-4">
             <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#0071e3]/10 text-[#0071e3] dark:text-[#0a84ff] flex items-center justify-center shrink-0">
@@ -189,7 +224,7 @@ export default function HomePage() {
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1d1d1f] hover:bg-black dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-[#1d1d1f] text-xs font-semibold rounded-full shadow-sm transition-transform active:scale-95"
           >
             <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-            <span>先听一句</span>
+            <span>{resume && resume.sentence_index > 0 ? `继续第 ${resume.sentence_index + 1} 句` : "先听一句"}</span>
           </Link>
         </div>
 

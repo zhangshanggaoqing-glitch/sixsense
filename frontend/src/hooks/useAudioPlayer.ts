@@ -25,11 +25,15 @@ export function useAudioPlayer({
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isBuffering, setIsBuffering] = useState(false);
+  const [isAutoplayBlocked, setIsAutoplayBlocked] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(initialRate);
   const [loopMode, setLoopMode] = useState<LoopMode>(initialLoop);
   const [loopCount, setLoopCount] = useState(0);
   const [volume, setVolume] = useState(1.0);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const pendingSeekRef = useRef<number | null>(null);
 
   // Keep track of sentence change callback
   const onSentenceChangeRef = useRef(onSentenceChange);
@@ -51,20 +55,42 @@ export function useAudioPlayer({
 
     const handleLoadedMetadata = () => {
       setIsLoaded(true);
+      if (pendingSeekRef.current !== null) {
+        audio.currentTime = Math.max(0, pendingSeekRef.current);
+        pendingSeekRef.current = null;
+      }
     };
 
-    const handlePlay = () => setIsPlaying(true);
-    const handlePause = () => setIsPlaying(false);
+    const handlePlay = () => {
+      setIsPlaying(true);
+      setIsAutoplayBlocked(false);
+    };
+    const handlePause = () => {
+      setIsPlaying(false);
+      setIsBuffering(false);
+    };
+    const handleWaiting = () => setIsBuffering(true);
+    const handlePlaying = () => {
+      setIsBuffering(false);
+      setIsPlaying(true);
+    };
+    const handleCanPlay = () => setIsBuffering(false);
 
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
     audio.addEventListener("play", handlePlay);
     audio.addEventListener("pause", handlePause);
+    audio.addEventListener("waiting", handleWaiting);
+    audio.addEventListener("playing", handlePlaying);
+    audio.addEventListener("canplay", handleCanPlay);
 
     return () => {
       audio.pause();
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audio.removeEventListener("play", handlePlay);
       audio.removeEventListener("pause", handlePause);
+      audio.removeEventListener("waiting", handleWaiting);
+      audio.removeEventListener("playing", handlePlaying);
+      audio.removeEventListener("canplay", handleCanPlay);
       audioRef.current = null;
     };
   }, [audioUrl]);
@@ -125,9 +151,25 @@ export function useAudioPlayer({
       setLoopCount(0);
       onSentenceChangeRef.current?.(index);
 
-      // Start slightly before boundary to avoid cutting initial consonants
-      audio.currentTime = Math.max(0, target.start_time - 0.05);
-      audio.play().then(() => setIsPlaying(true)).catch(() => {});
+      const targetTime = Math.max(0, target.start_time - 0.05);
+      if (audio.readyState >= 1) {
+        audio.currentTime = targetTime;
+      } else {
+        pendingSeekRef.current = targetTime;
+      }
+
+      const p = audio.play();
+      if (p !== undefined) {
+        p.then(() => {
+          setIsPlaying(true);
+          setIsAutoplayBlocked(false);
+        }).catch((err) => {
+          if (err?.name === "NotAllowedError") {
+            setIsAutoplayBlocked(true);
+          }
+          setIsPlaying(false);
+        });
+      }
     },
     [sentences]
   );
@@ -140,10 +182,27 @@ export function useAudioPlayer({
       audio.pause();
       setIsPlaying(false);
     } else {
-      if (audio.currentTime >= currentSentence.end_time || audio.currentTime < currentSentence.start_time) {
-        audio.currentTime = Math.max(0, currentSentence.start_time - 0.05);
+      const targetTime = Math.max(0, currentSentence.start_time - 0.05);
+      if (audio.readyState >= 1) {
+        if (audio.currentTime >= currentSentence.end_time || audio.currentTime < currentSentence.start_time) {
+          audio.currentTime = targetTime;
+        }
+      } else {
+        pendingSeekRef.current = targetTime;
       }
-      audio.play().then(() => setIsPlaying(true)).catch(() => {});
+
+      const p = audio.play();
+      if (p !== undefined) {
+        p.then(() => {
+          setIsPlaying(true);
+          setIsAutoplayBlocked(false);
+        }).catch((err) => {
+          if (err?.name === "NotAllowedError") {
+            setIsAutoplayBlocked(true);
+          }
+          setIsPlaying(false);
+        });
+      }
     }
   }, [isPlaying, currentSentence]);
 
@@ -198,6 +257,8 @@ export function useAudioPlayer({
     currentIndex,
     currentSentence,
     isPlaying,
+    isBuffering,
+    isAutoplayBlocked,
     playbackRate,
     loopMode,
     volume,

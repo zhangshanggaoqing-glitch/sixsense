@@ -25,6 +25,7 @@ interface AudioBarProps {
   onCycleLoop: () => void;
   onSetSpeed: (speed: number) => void;
   onSetVolume: (vol: number) => void;
+  onOpenPunchCard?: () => void;
 }
 
 const SPEED_OPTIONS = [0.7, 0.8, 0.9, 1.0, 1.1, 1.2];
@@ -42,6 +43,7 @@ export function AudioBar({
   onCycleLoop,
   onSetSpeed,
   onSetVolume,
+  onOpenPunchCard,
 }: AudioBarProps) {
   const [isSpeedOpen, setIsSpeedOpen] = useState(false);
   const speedRef = useRef<HTMLDivElement | null>(null);
@@ -62,7 +64,7 @@ export function AudioBar({
   const isLooping = loopMode !== "off";
 
   return (
-    <div className="w-full max-w-xl mx-auto relative select-none">
+    <div className="w-full max-w-xl mx-auto relative select-none touch-manipulation">
       {/* Floating Frosted Glass Transport Bar */}
       <div className="flex items-center justify-between px-3 sm:px-5 py-2 bg-white/80 dark:bg-[#1c1c1e]/80 backdrop-blur-xl border border-black/[0.06] dark:border-white/[0.1] rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]">
         {/* Left: Speed & Loop */}
@@ -70,6 +72,7 @@ export function AudioBar({
           {/* Speed Selector Popover */}
           <div className="relative" ref={speedRef}>
             <button
+              type="button"
               onClick={() => setIsSpeedOpen((prev) => !prev)}
               className="h-10 px-2.5 sm:px-3 flex items-center justify-center rounded-full text-xs font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
               title="调节播放倍速"
@@ -85,6 +88,7 @@ export function AudioBar({
                 {SPEED_OPTIONS.map((spd) => (
                   <button
                     key={spd}
+                    type="button"
                     onClick={() => {
                       onSetSpeed(spd);
                       setIsSpeedOpen(false);
@@ -126,6 +130,7 @@ export function AudioBar({
         <div className="flex items-center gap-1 sm:gap-2">
           {/* Previous Sentence */}
           <button
+            type="button"
             onClick={onPrev}
             disabled={currentIndex <= 0}
             className="w-11 h-11 flex items-center justify-center rounded-full text-[#1d1d1f] dark:text-[#f5f5f7] disabled:opacity-20 hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all"
@@ -136,6 +141,7 @@ export function AudioBar({
 
           {/* Primary Play / Pause Button */}
           <button
+            type="button"
             onClick={onTogglePlay}
             className="w-12 h-12 flex items-center justify-center rounded-full bg-[#1d1d1f] hover:bg-black dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-[#1d1d1f] shadow-sm active:scale-95 transition-all"
             title="播放 / 暂停 (空格)"
@@ -149,6 +155,7 @@ export function AudioBar({
 
           {/* Next Sentence */}
           <button
+            type="button"
             onClick={onNext}
             disabled={currentIndex >= totalSentences - 1}
             className="w-11 h-11 flex items-center justify-center rounded-full text-[#1d1d1f] dark:text-[#f5f5f7] disabled:opacity-20 hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all"
@@ -158,10 +165,22 @@ export function AudioBar({
           </button>
         </div>
 
-        {/* Right: Progress Indicator & Mute */}
-        <div className="flex items-center gap-1 sm:gap-2">
+        {/* Right: Weak punch button + Progress Indicator & Mute */}
+        <div className="flex items-center gap-1 sm:gap-1.5">
+          {/* Weak punch card trigger (only when paused, non-intrusive) */}
+          {onOpenPunchCard && !isPlaying && (
+            <button
+              type="button"
+              onClick={onOpenPunchCard}
+              className="px-2 py-1 text-xs text-[#86868b] hover:text-[#0071e3] dark:hover:text-[#0a84ff] rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+              title="生成今日打卡图"
+            >
+              打卡
+            </button>
+          )}
+
           {/* Progress: 第 1 句 / 共 25 句 */}
-          <div className="text-right text-[12px] sm:text-[13px] font-normal text-[#86868b] dark:text-[#a1a1a6] px-1 sm:px-2">
+          <div className="text-right text-[12px] sm:text-[13px] font-normal text-[#86868b] dark:text-[#a1a1a6] px-1 sm:px-1.5">
             <span className="font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
               第 {currentIndex + 1} 句
             </span>
@@ -170,8 +189,9 @@ export function AudioBar({
 
           {/* Mute / Unmute Button */}
           <button
+            type="button"
             onClick={() => onSetVolume(volume > 0 ? 0 : 1)}
-            className="w-10 h-10 flex items-center justify-center rounded-full text-[#86868b] hover:text-[#1d1d1f] dark:text-[#a1a1a6] dark:hover:text-[#f5f5f7] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+            className="w-9 h-9 flex items-center justify-center rounded-full text-[#86868b] hover:text-[#1d1d1f] dark:text-[#a1a1a6] dark:hover:text-[#f5f5f7] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
             title={volume === 0 ? "取消静音" : "静音"}
           >
             {volume === 0 ? (

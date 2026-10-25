@@ -144,6 +144,24 @@ export interface ResumeState {
   volume: number;
 }
 
+export interface StatsData {
+  today_minutes: number;
+  this_week_minutes: number;
+  streak_days: number;
+  vocab_count: number;
+  dictation_count: number;
+  medals?: string[];
+}
+
+export interface HeartbeatResponse {
+  status: string;
+  today_active_seconds: number;
+  today_minutes: number;
+  streak_days: number;
+  medals: string[];
+  new_medals: string[];
+}
+
 import { getStoredToken, User } from "./auth";
 import { getOrCreateGuestId } from "./guest";
 
@@ -224,7 +242,12 @@ export const api = {
     });
   },
 
-  async sendHeartbeat(examId: string, activeSeconds: number, keepalive = false): Promise<void> {
+  async sendHeartbeat(
+    examId: string,
+    activeSeconds: number,
+    keepalive = false,
+    completedSentence = false
+  ): Promise<HeartbeatResponse | null> {
     const token = getStoredToken();
     const guestId = getOrCreateGuestId();
     const headers: Record<string, string> = { "Content-Type": "application/json" };
@@ -234,18 +257,27 @@ export const api = {
       headers["X-Guest-Id"] = guestId;
     }
     try {
-      await fetch(`${API_BASE}/progress/heartbeat`, {
+      const res = await fetch(`${API_BASE}/progress/heartbeat`, {
         method: "POST",
         headers,
-        body: JSON.stringify({ exam_id: examId, active_seconds: activeSeconds }),
+        body: JSON.stringify({
+          exam_id: examId,
+          active_seconds: activeSeconds,
+          completed_sentence: completedSentence,
+        }),
         keepalive,
       });
+      if (res.ok) {
+        return await res.json();
+      }
+      return null;
     } catch {
       // Quiet fail to never disturb playback
+      return null;
     }
   },
 
-  async getStats() {
+  async getStats(): Promise<StatsData> {
     const res = await authFetch(`${API_BASE}/progress/stats`);
     if (!res.ok) throw new Error("Failed to fetch stats");
     return res.json();
