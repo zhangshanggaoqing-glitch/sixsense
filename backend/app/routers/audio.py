@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from fastapi import APIRouter, Header, HTTPException, status
+from fastapi import APIRouter, Header, HTTPException, status, Request, Response
 from fastapi.responses import StreamingResponse
 from backend.app.config import RAW_SOURCE_DIR
 
@@ -8,8 +8,9 @@ router = APIRouter(prefix="/api/audio", tags=["Audio"])
 
 CHUNK_SIZE = 1024 * 512  # 512 KB
 
+@router.head("/{filename}")
 @router.get("/{filename}")
-async def stream_audio(filename: str, range: str = Header(None)):
+async def stream_audio(filename: str, request: Request, range: str = Header(None)):
     """
     Stream audio file with HTTP 206 Partial Content support for seeking.
     Searches in RAW_SOURCE_DIR recursively.
@@ -30,6 +31,13 @@ async def stream_audio(filename: str, range: str = Header(None)):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Audio file '{filename}' not found.")
 
     file_size = target_path.stat().st_size
+
+    if request.method == "HEAD":
+        return Response(
+            status_code=status.HTTP_200_OK,
+            media_type="audio/mpeg",
+            headers={"Content-Length": str(file_size), "Accept-Ranges": "bytes"}
+        )
     
     if range is None:
         # Full content response
