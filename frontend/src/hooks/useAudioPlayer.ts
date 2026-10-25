@@ -10,6 +10,7 @@ export interface UseAudioPlayerProps {
   initialRate?: number;
   initialLoop?: LoopMode;
   onSentenceChange?: (index: number) => void;
+  onSentenceComplete?: (index: number) => void;
 }
 
 export function useAudioPlayer({
@@ -19,6 +20,7 @@ export function useAudioPlayer({
   initialRate = 1.0,
   initialLoop = "off",
   onSentenceChange,
+  onSentenceComplete,
 }: UseAudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
@@ -35,10 +37,16 @@ export function useAudioPlayer({
     onSentenceChangeRef.current = onSentenceChange;
   }, [onSentenceChange]);
 
+  const onSentenceCompleteRef = useRef(onSentenceComplete);
+  useEffect(() => {
+    onSentenceCompleteRef.current = onSentenceComplete;
+  }, [onSentenceComplete]);
+
   // Initialize Audio
   useEffect(() => {
     const audio = new Audio(audioUrl);
-    audio.preload = "auto";
+    // Use metadata preload to avoid blocking or downloading 25MB upfront
+    audio.preload = "metadata";
     audioRef.current = audio;
 
     const handleLoadedMetadata = () => {
@@ -96,6 +104,7 @@ export function useAudioPlayer({
             audio.pause();
             setIsPlaying(false);
             setLoopCount(0);
+            onSentenceCompleteRef.current?.(currentIndex);
           }
         }
       }
@@ -104,7 +113,7 @@ export function useAudioPlayer({
 
     animId = requestAnimationFrame(checkBoundary);
     return () => cancelAnimationFrame(animId);
-  }, [isPlaying, currentSentence, loopMode, loopCount]);
+  }, [isPlaying, currentSentence, loopMode, loopCount, currentIndex]);
 
   const playSentence = useCallback(
     (index: number) => {

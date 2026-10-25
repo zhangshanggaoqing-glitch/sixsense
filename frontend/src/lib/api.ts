@@ -145,12 +145,15 @@ export interface ResumeState {
 }
 
 import { getStoredToken, User } from "./auth";
+import { getOrCreateGuestId } from "./guest";
 
 async function authFetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
   const token = getStoredToken();
   const headers = new Headers(init?.headers || {});
   if (token && !headers.has("Authorization")) {
     headers.set("Authorization", `Bearer ${token}`);
+  } else if (!token && !headers.has("X-Guest-Id")) {
+    headers.set("X-Guest-Id", getOrCreateGuestId());
   }
   return fetch(input, { ...init, headers });
 }
@@ -221,12 +224,25 @@ export const api = {
     });
   },
 
-  async sendHeartbeat(examId: string, activeSeconds: number): Promise<void> {
-    await authFetch(`${API_BASE}/progress/heartbeat`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ exam_id: examId, active_seconds: activeSeconds }),
-    });
+  async sendHeartbeat(examId: string, activeSeconds: number, keepalive = false): Promise<void> {
+    const token = getStoredToken();
+    const guestId = getOrCreateGuestId();
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    } else {
+      headers["X-Guest-Id"] = guestId;
+    }
+    try {
+      await fetch(`${API_BASE}/progress/heartbeat`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ exam_id: examId, active_seconds: activeSeconds }),
+        keepalive,
+      });
+    } catch {
+      // Quiet fail to never disturb playback
+    }
   },
 
   async getStats() {
@@ -266,10 +282,11 @@ export const api = {
   },
 
   async register(username: string, password: string, migrateGuest = true): Promise<{ token: string; user: User }> {
+    const guestId = getOrCreateGuestId();
     const res = await fetch(`${API_BASE}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password, migrate_guest: migrateGuest }),
+      body: JSON.stringify({ username, password, migrate_guest: migrateGuest, guest_id: guestId }),
     });
     const data = await res.json();
     if (!res.ok) {
@@ -279,10 +296,11 @@ export const api = {
   },
 
   async login(username: string, password: string, migrateGuest = true): Promise<{ token: string; user: User }> {
+    const guestId = getOrCreateGuestId();
     const res = await fetch(`${API_BASE}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password, migrate_guest: migrateGuest }),
+      body: JSON.stringify({ username, password, migrate_guest: migrateGuest, guest_id: guestId }),
     });
     const data = await res.json();
     if (!res.ok) {

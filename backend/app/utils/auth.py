@@ -68,12 +68,31 @@ def is_admin_user(user: Optional[Dict[str, Any]]) -> bool:
     username = user.get("username", "").strip().lower()
     return username in ADMIN_USERNAMES or user.get("is_admin") is True
 
-def get_current_user_optional(authorization: Optional[str] = Header(None)) -> Dict[str, Any]:
+import re
+
+def _clean_guest_id(guest_id: Optional[str]) -> str:
+    """
+    Validate and sanitize client-provided guest UUID to prevent crosstalk or path issues.
+    Ensures guest progress and stats stay strictly isolated per browser session.
+    """
+    if guest_id:
+        clean = guest_id.strip()
+        if re.match(r"^gst_[a-zA-Z0-9_-]{8,64}$", clean):
+            return clean
+        if re.match(r"^[a-zA-Z0-9_-]{8,64}$", clean):
+            return f"gst_{clean}"
+    return "default"
+
+def get_current_user_optional(
+    authorization: Optional[str] = Header(None),
+    x_guest_id: Optional[str] = Header(None)
+) -> Dict[str, Any]:
     """
     Dependency that extracts current user if valid Bearer token provided;
-    otherwise falls back to a safe guest default user so non-logged-in users can still practice.
+    otherwise binds to the isolated X-Guest-Id so guest sessions never share state.
     """
-    guest_user = {"id": "default", "username": "访客", "is_guest": True, "is_admin": False}
+    guest_id = _clean_guest_id(x_guest_id)
+    guest_user = {"id": guest_id, "username": "访客", "is_guest": True, "is_admin": False}
     if not authorization:
         return guest_user
 
@@ -105,9 +124,12 @@ def get_current_user_optional(authorization: Optional[str] = Header(None)) -> Di
     user_data["is_admin"] = is_admin_user(user_data)
     return user_data
 
-def get_current_user_required(authorization: Optional[str] = Header(None)) -> Dict[str, Any]:
+def get_current_user_required(
+    authorization: Optional[str] = Header(None),
+    x_guest_id: Optional[str] = Header(None)
+) -> Dict[str, Any]:
     """Dependency that enforces authentication, returning 401 if missing or invalid."""
-    user = get_current_user_optional(authorization)
+    user = get_current_user_optional(authorization, x_guest_id)
     if user.get("is_guest"):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

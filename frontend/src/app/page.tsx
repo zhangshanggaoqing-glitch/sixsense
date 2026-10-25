@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Flame, Headphones, Clock, Layers, Calendar, User as UserIcon, LogIn } from "lucide-react";
+import { ArrowRight, BookOpen, Flame, Headphones, Clock, Layers, Calendar, User as UserIcon, LogIn, Play } from "lucide-react";
 import { api, ResumeState, Subpart, ExamItem } from "@/lib/api";
 import { formatExamTitleZh, formatSubpartTitleZh } from "@/lib/formatters";
 import { useAuth } from "@/hooks/useAuth";
@@ -18,7 +18,7 @@ export default function HomePage() {
   });
   const [resume, setResume] = useState<ResumeState | null>(null);
   const [exams, setExams] = useState<ExamItem[]>([]);
-  const [selectedExamId, setSelectedExamId] = useState<string>("2016-06-set1");
+  const [selectedExamId, setSelectedExamId] = useState<string>("2026-06-set1");
   const [subparts, setSubparts] = useState<Subpart[]>([]);
   const [isLoadingSubparts, setIsLoadingSubparts] = useState(false);
 
@@ -34,7 +34,8 @@ export default function HomePage() {
         if (resStats) setStats(resStats);
         setExams(resExams);
 
-        const initialExamId = resResume?.exam_id || (resExams.length > 0 ? resExams[0].id : "2016-06-set1");
+        const latestExamId = resExams.length > 0 ? resExams[0].id : "2026-06-set1";
+        const initialExamId = resResume?.exam_id || latestExamId;
         setSelectedExamId(initialExamId);
 
         const resSubparts = await api.getSubparts(initialExamId).catch(() => []);
@@ -68,7 +69,7 @@ export default function HomePage() {
 
   const availableYears = Array.from(new Set(exams.map((e) => e.year))).sort((a, b) => b - a);
   const currentExam = exams.find((e) => e.id === selectedExamId) || exams[0];
-  const selectedYear = currentExam?.year || (availableYears.length > 0 ? availableYears[0] : 2016);
+  const selectedYear = currentExam?.year || (availableYears.length > 0 ? availableYears[0] : 2026);
   const examsInSelectedYear = exams.filter((e) => e.year === selectedYear);
 
   const sections = [
@@ -154,40 +155,43 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Continue Listening Hero Card */}
-        {resume && (
-          <div className="p-5 sm:p-7 bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] flex flex-col sm:flex-row sm:items-center justify-between gap-5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all">
-            <div className="flex items-start gap-3.5 sm:gap-4">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#0071e3]/10 text-[#0071e3] dark:text-[#0a84ff] flex items-center justify-center shrink-0">
-                <Headphones className="w-5 h-5 sm:w-6 sm:h-6" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[11px] font-semibold text-[#0071e3] dark:text-[#0a84ff]">
-                    继续精听
-                  </span>
-                  <span className="text-black/10 dark:text-white/10">·</span>
-                  <span className="text-xs text-[#86868b]">
-                    第 { (resume.sentence_index ?? 0) + 1 } 句
-                  </span>
-                </div>
-                <h2 className="text-base sm:text-lg font-medium text-[#1d1d1f] dark:text-[#f5f5f7] mt-1">
-                  {formatExamTitleZh(currentExam?.title || selectedExamId)}
-                </h2>
-                <p className="text-xs text-[#86868b] mt-0.5">
-                  模式：{resume.display_mode === "C" ? "盲听" : resume.display_mode === "D" ? "听写" : "双语"} · 倍速 {resume.playback_rate}×
-                </p>
-              </div>
+        {/* Hero Card: Primary Call to Action 「先听一句」 */}
+        <div className="p-5 sm:p-7 bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] flex flex-col sm:flex-row sm:items-center justify-between gap-5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all">
+          <div className="flex items-start gap-3.5 sm:gap-4">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#0071e3]/10 text-[#0071e3] dark:text-[#0a84ff] flex items-center justify-center shrink-0">
+              <Headphones className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-
-            <Link
-              href={resume.subpart_id ? `/studio?exam_id=${resume.exam_id}&subpart_id=${resume.subpart_id}` : `/studio?exam_id=${selectedExamId}`}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1d1d1f] hover:bg-black dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-[#1d1d1f] text-xs font-semibold rounded-full shadow-sm transition-transform active:scale-95"
-            >
-              进入工作台 <ArrowRight className="w-4 h-4" />
-            </Link>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-semibold text-[#0071e3] dark:text-[#0a84ff]">
+                  {resume && resume.sentence_index > 0 ? "继续精听" : "推荐首练 · 最新真题"}
+                </span>
+                <span className="text-black/10 dark:text-white/10">·</span>
+                <span className="text-xs text-[#86868b]">
+                  第 {((resume?.sentence_index ?? 0) + 1)} 句
+                </span>
+              </div>
+              <h2 className="text-base sm:text-lg font-medium text-[#1d1d1f] dark:text-[#f5f5f7] mt-1">
+                {formatExamTitleZh(currentExam?.title || selectedExamId)}
+              </h2>
+              <p className="text-xs text-[#86868b] mt-0.5">
+                {subparts[0] ? formatSubpartTitleZh(subparts[0].title, subparts[0].question_range) : "双语对照精听"} · 沉浸单句精听
+              </p>
+            </div>
           </div>
-        )}
+
+          <Link
+            href={
+              resume?.subpart_id
+                ? `/studio?exam_id=${resume.exam_id}&subpart_id=${resume.subpart_id}&autoplay=1`
+                : `/studio?exam_id=${selectedExamId}&subpart_id=${subparts[0]?.id || ""}&autoplay=1`
+            }
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1d1d1f] hover:bg-black dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-[#1d1d1f] text-xs font-semibold rounded-full shadow-sm transition-transform active:scale-95"
+          >
+            <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+            <span>先听一句</span>
+          </Link>
+        </div>
 
         {/* Exam Navigation & Year Filter */}
         <div className="p-5 sm:p-6 bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] rounded-3xl space-y-4">

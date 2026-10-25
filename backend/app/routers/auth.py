@@ -19,11 +19,13 @@ class RegisterRequest(BaseModel):
     username: str = Field(..., min_length=2, max_length=30)
     password: str = Field(..., min_length=6, max_length=64)
     migrate_guest: Optional[bool] = True
+    guest_id: Optional[str] = None
 
 class LoginRequest(BaseModel):
     username: str
     password: str
     migrate_guest: Optional[bool] = False
+    guest_id: Optional[str] = None
 
 @router.post("/register")
 def register(req: RegisterRequest):
@@ -60,9 +62,22 @@ def register(req: RegisterRequest):
         VALUES (?, ?, ?, ?, ?)
     """, (user_id, clean_username, pw_hash, now, now))
 
-    # Optional: migrate guest vocabulary to this new registered user
-    if req.migrate_guest:
-        cursor.execute("UPDATE vocabulary SET user_id = ? WHERE user_id = 'default'", (user_id,))
+    # Migrate guest data strictly bound to this guest_id (never touching other visitors)
+    if req.migrate_guest and req.guest_id:
+        gid = req.guest_id.strip()
+        if gid and gid != "default":
+            cursor.execute("UPDATE vocabulary SET user_id = ? WHERE user_id = ?", (user_id, gid))
+            cursor.execute("UPDATE listening_sessions SET user_id = ? WHERE user_id = ?", (user_id, gid))
+            cursor.execute("UPDATE dictation_attempts SET user_id = ? WHERE user_id = ?", (user_id, gid))
+            cursor.execute("SELECT value_json FROM user_state WHERE key = ?", (f"resume:{gid}",))
+            r_row = cursor.fetchone()
+            if r_row:
+                cursor.execute("""
+                    INSERT INTO user_state (key, value_json, updated_at)
+                    VALUES (?, ?, ?)
+                    ON CONFLICT(key) DO UPDATE SET value_json = excluded.value_json, updated_at = excluded.updated_at
+                """, (f"resume:{user_id}", r_row["value_json"], now))
+                cursor.execute("DELETE FROM user_state WHERE key = ?", (f"resume:{gid}",))
 
     conn.commit()
     conn.close()
@@ -102,9 +117,22 @@ def login(req: LoginRequest):
 
     cursor.execute("UPDATE users SET last_login_at = ? WHERE id = ?", (now, user_id))
 
-    # Optional: migrate guest vocabulary to this logged in account if user had added words
-    if req.migrate_guest:
-        cursor.execute("UPDATE vocabulary SET user_id = ? WHERE user_id = 'default'", (user_id,))
+    # Migrate isolated guest data if guest_id provided
+    if req.migrate_guest and req.guest_id:
+        gid = req.guest_id.strip()
+        if gid and gid != "default":
+            cursor.execute("UPDATE vocabulary SET user_id = ? WHERE user_id = ?", (user_id, gid))
+            cursor.execute("UPDATE listening_sessions SET user_id = ? WHERE user_id = ?", (user_id, gid))
+            cursor.execute("UPDATE dictation_attempts SET user_id = ? WHERE user_id = ?", (user_id, gid))
+            cursor.execute("SELECT value_json FROM user_state WHERE key = ?", (f"resume:{gid}",))
+            r_row = cursor.fetchone()
+            if r_row:
+                cursor.execute("""
+                    INSERT INTO user_state (key, value_json, updated_at)
+                    VALUES (?, ?, ?)
+                    ON CONFLICT(key) DO UPDATE SET value_json = excluded.value_json, updated_at = excluded.updated_at
+                """, (f"resume:{user_id}", r_row["value_json"], now))
+                cursor.execute("DELETE FROM user_state WHERE key = ?", (f"resume:{gid}",))
 
     conn.commit()
     conn.close()

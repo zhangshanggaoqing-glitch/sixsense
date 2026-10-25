@@ -30,23 +30,24 @@ function StudioContent() {
   const { user, isLoggedIn, logout } = useAuth();
   const searchParams = useSearchParams();
   const urlSubpartId = searchParams.get("subpart_id") || searchParams.get("subpartId");
-  const urlExamId = searchParams.get("exam_id") || searchParams.get("examId") || searchParams.get("id") || "2016-06-set1";
+  const urlExamId = searchParams.get("exam_id") || searchParams.get("examId") || searchParams.get("id") || "2026-06-set1";
 
   const [exam, setExam] = useState<ExamDetail | null>(null);
   const [subparts, setSubparts] = useState<Subpart[]>([]);
   const [activeSubpartId, setActiveSubpartId] = useState<string>("");
   const [sentences, setSentences] = useState<Sentence[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [displayMode, setDisplayMode] = useState<StudioMode>("blind");
+  const [displayMode, setDisplayMode] = useState<StudioMode>("bilingual");
   const [isQuestionsOpen, setIsQuestionsOpen] = useState(false);
   const [isLookupOpen, setIsLookupOpen] = useState(false);
   const [showShortcutTip, setShowShortcutTip] = useState(false);
+  const [hasCompletedSentence, setHasCompletedSentence] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
-  // Active time tracking
-  const activeSecondsRef = useRef(0);
-  const lastInteractionTimeRef = useRef(Date.now());
+  // Active playing time tracking (guaranteed flush on pause, switch, visibility change, and unload)
+  const pendingActiveSecondsRef = useRef(0);
+  const lastTickTimeRef = useRef<number | null>(null);
 
   // 1. Check first-time entry for keyboard shortcut tip
   useEffect(() => {
@@ -101,11 +102,13 @@ function StudioContent() {
 
         setActiveSubpartId(targetSubpartId || "");
 
-        // Map legacy resume display_mode
+        // Map resume display_mode (defaults to bilingual for optimal first-listen success)
         if (resume?.display_mode) {
           if (resume.display_mode === "C") setDisplayMode("blind");
           else if (resume.display_mode === "D") setDisplayMode("dictation");
           else setDisplayMode("bilingual");
+        } else {
+          setDisplayMode("bilingual");
         }
       } catch (err) {
         console.error("Failed to initialize studio", err);
@@ -138,7 +141,11 @@ function StudioContent() {
   }, [activeSubpartId, exam]);
 
   const handleSentenceChange = useCallback(() => {
-    lastInteractionTimeRef.current = Date.now();
+    setHasCompletedSentence(true);
+  }, []);
+
+  const handleSentenceComplete = useCallback(() => {
+    setHasCompletedSentence(true);
   }, []);
 
   const audioUrl = exam ? api.getAudioUrl(exam.audio_file) : "";
@@ -150,11 +157,93 @@ function StudioContent() {
     initialRate: 1.0,
     initialLoop: "off",
     onSentenceChange: handleSentenceChange,
+    onSentenceComplete: handleSentenceComplete,
   });
+
+  // Autoplay support when user arrives from "先听一句"
+  const autoplayParam = searchParams.get("autoplay");
+  const hasTriggeredAutoplayRef = useRef(false);
+
+  useEffect(() => {
+    if ((autoplayParam === "1" || autoplayParam === "true") && !hasTriggeredAutoplayRef.current && sentences.length > 0 && exam) {
+      hasTriggeredAutoplayRef.current = true;
+      player.togglePlay();
+    }
+  }, [autoplayParam, sentences, exam, player]);
+
+  // Flush accumulated listening seconds to server
+  const flushHeartbeat = useCallback((keepalive = false) => {
+    if (!exam) return;
+    if (player.isPlaying && lastTickTimeRef.current !== null) {
+      const now = Date.now();
+      const elapsed = Math.floor((now - lastTickTimeRef.current) / 1000);
+      if (elapsed > 0) {
+        pendingActiveSecondsRef.current += elapsed;
+        lastTickTimeRef.current = now;
+      }
+    }
+    const sec = pendingActiveSecondsRef.current;
+    if (sec > 0) {
+      pendingActiveSecondsRef.current = 0;
+      api.sendHeartbeat(exam.id, sec, keepalive);
+    }
+  }, [exam, player.isPlaying]);
+
+  // Real-time second counter: throttles heartbeat every 10s and flushes on pause
+  useEffect(() => {
+    if (!player.isPlaying) {
+      lastTickTimeRef.current = null;
+      return;
+    }
+
+    lastTickTimeRef.current = Date.now();
+    const interval = setInterval(() => {
+      const now = Date.now();
+      if (lastTickTimeRef.current !== null) {
+        const delta = Math.floor((now - lastTickTimeRef.current) / 1000);
+        if (delta >= 1) {
+          pendingActiveSecondsRef.current += delta;
+          lastTickTimeRef.current = now;
+        }
+      }
+      if (pendingActiveSecondsRef.current >= 10) {
+        flushHeartbeat(false);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+      flushHeartbeat(false);
+    };
+  }, [player.isPlaying, flushHeartbeat]);
+
+  // Flush on visibility change, pagehide, or unmount
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (document.visibilityState === "hidden") {
+        flushHeartbeat(true);
+      }
+    };
+    const handleUnload = () => {
+      flushHeartbeat(true);
+    };
+
+    document.addEventListener("visibilitychange", handleVisibility);
+    window.addEventListener("pagehide", handleUnload);
+    window.addEventListener("beforeunload", handleUnload);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibility);
+      window.removeEventListener("pagehide", handleUnload);
+      window.removeEventListener("beforeunload", handleUnload);
+      flushHeartbeat(true);
+    };
+  }, [flushHeartbeat]);
 
   // Switch Subpart Handler
   const handleSelectSubpart = (newSubpartId: string) => {
     if (newSubpartId === activeSubpartId) return;
+    flushHeartbeat(false);
     setActiveSubpartId(newSubpartId);
     router.replace(`/studio?exam_id=${exam?.id || urlExamId}&subpart_id=${newSubpartId}`);
   };
@@ -166,25 +255,6 @@ function StudioContent() {
       handleSelectSubpart(subparts[currentIndex + 1].id);
     }
   };
-
-  // Heartbeat tracking
-  useEffect(() => {
-    if (!exam) return;
-
-    const interval = setInterval(() => {
-      const now = Date.now();
-      const isActive = now - lastInteractionTimeRef.current < 90000;
-      if (player.isPlaying && isActive && document.visibilityState === "visible") {
-        activeSecondsRef.current += 5;
-        if (activeSecondsRef.current >= 30) {
-          api.sendHeartbeat(exam.id, activeSecondsRef.current);
-          activeSecondsRef.current = 0;
-        }
-      }
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [player.isPlaying, exam]);
 
   // Save resume state
   useEffect(() => {
@@ -481,6 +551,19 @@ function StudioContent() {
 
       {/* Bottom Floating Frosted Glass Audio Bar with Safe Area */}
       <footer className="w-full pb-[max(1.25rem,calc(env(safe-area-inset-bottom)+0.6rem))] pt-1 px-3 sm:px-4 z-30 shrink-0">
+        {!isLoggedIn && hasCompletedSentence && (
+          <div className="pb-1.5 text-center animate-in fade-in duration-300">
+            <span className="text-[11px] text-[#86868b] dark:text-[#a1a1a6]">
+              进度已保存在本机 ·{" "}
+              <Link
+                href={`/login?redirect=/studio?exam_id=${exam.id}&subpart_id=${activeSubpartId}`}
+                className="text-[#0071e3] dark:text-[#0a84ff] hover:underline"
+              >
+                登录保存进度
+              </Link>
+            </span>
+          </div>
+        )}
         <AudioBar
           currentIndex={player.currentIndex}
           totalSentences={sentences.length}
