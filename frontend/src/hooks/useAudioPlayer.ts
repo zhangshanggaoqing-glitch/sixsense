@@ -103,6 +103,13 @@ export function useAudioPlayer({
     }
   }, [playbackRate, volume]);
 
+  // Support restoring initialIndex when sentences load
+  useEffect(() => {
+    if (initialIndex > 0 && initialIndex < sentences.length) {
+      setCurrentIndex(initialIndex);
+    }
+  }, [initialIndex, sentences.length]);
+
   const currentSentence = sentences[currentIndex] || null;
 
   const lastLoopTimeRef = useRef<number>(0);
@@ -126,11 +133,29 @@ export function useAudioPlayer({
             audio.currentTime = Math.max(0, currentSentence.start_time - 0.05);
             audio.play().catch(() => {});
           } else {
-            // Stop loop and pause
-            audio.pause();
-            setIsPlaying(false);
-            setLoopCount(0);
+            // Bug 3 规则：默认单句循环关闭；当前句播放到句末时，自动前进到下一句并继续播放
             onSentenceCompleteRef.current?.(currentIndex);
+
+            if (currentIndex < sentences.length - 1) {
+              const nextIndex = currentIndex + 1;
+              const nextTarget = sentences[nextIndex];
+              setCurrentIndex(nextIndex);
+              setLoopCount(0);
+              onSentenceChangeRef.current?.(nextIndex);
+
+              const nextStart = Math.max(0, nextTarget.start_time - 0.05);
+              if (audio.readyState >= 1) {
+                audio.currentTime = nextStart;
+              } else {
+                pendingSeekRef.current = nextStart;
+              }
+              audio.play().catch(() => {});
+            } else {
+              // 已是本套最后一句：停止在最后一句并暂停
+              audio.pause();
+              setIsPlaying(false);
+              setLoopCount(0);
+            }
           }
         }
       }
@@ -139,7 +164,7 @@ export function useAudioPlayer({
 
     animId = requestAnimationFrame(checkBoundary);
     return () => cancelAnimationFrame(animId);
-  }, [isPlaying, currentSentence, loopMode, loopCount, currentIndex]);
+  }, [isPlaying, currentSentence, loopMode, loopCount, currentIndex, sentences]);
 
   const playSentence = useCallback(
     (index: number) => {
@@ -163,10 +188,8 @@ export function useAudioPlayer({
         p.then(() => {
           setIsPlaying(true);
           setIsAutoplayBlocked(false);
-        }).catch((err) => {
-          if (err?.name === "NotAllowedError") {
-            setIsAutoplayBlocked(true);
-          }
+        }).catch(() => {
+          setIsAutoplayBlocked(true);
           setIsPlaying(false);
         });
       }
@@ -174,37 +197,46 @@ export function useAudioPlayer({
     [sentences]
   );
 
-  const togglePlay = useCallback(() => {
+  const play = useCallback(() => {
     const audio = audioRef.current;
     if (!audio || !currentSentence) return;
+    const targetTime = Math.max(0, currentSentence.start_time - 0.05);
+    if (audio.readyState >= 1) {
+      if (audio.currentTime >= currentSentence.end_time || audio.currentTime < currentSentence.start_time) {
+        audio.currentTime = targetTime;
+      }
+    } else {
+      pendingSeekRef.current = targetTime;
+    }
 
-    if (isPlaying) {
+    const p = audio.play();
+    if (p !== undefined) {
+      p.then(() => {
+        setIsPlaying(true);
+        setIsAutoplayBlocked(false);
+      }).catch((err) => {
+        console.warn("Play rejected / autoplay blocked:", err);
+        setIsAutoplayBlocked(true);
+        setIsPlaying(false);
+      });
+    }
+  }, [currentSentence]);
+
+  const pause = useCallback(() => {
+    const audio = audioRef.current;
+    if (audio) {
       audio.pause();
       setIsPlaying(false);
-    } else {
-      const targetTime = Math.max(0, currentSentence.start_time - 0.05);
-      if (audio.readyState >= 1) {
-        if (audio.currentTime >= currentSentence.end_time || audio.currentTime < currentSentence.start_time) {
-          audio.currentTime = targetTime;
-        }
-      } else {
-        pendingSeekRef.current = targetTime;
-      }
-
-      const p = audio.play();
-      if (p !== undefined) {
-        p.then(() => {
-          setIsPlaying(true);
-          setIsAutoplayBlocked(false);
-        }).catch((err) => {
-          if (err?.name === "NotAllowedError") {
-            setIsAutoplayBlocked(true);
-          }
-          setIsPlaying(false);
-        });
-      }
     }
-  }, [isPlaying, currentSentence]);
+  }, []);
+
+  const togglePlay = useCallback(() => {
+    if (isPlaying) {
+      pause();
+    } else {
+      play();
+    }
+  }, [isPlaying, pause, play]);
 
   const replay = useCallback(() => {
     playSentence(currentIndex);
@@ -264,6 +296,8 @@ export function useAudioPlayer({
     volume,
     isLoaded,
     playSentence,
+    play,
+    pause,
     togglePlay,
     replay,
     nextSentence,

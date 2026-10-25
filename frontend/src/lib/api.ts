@@ -142,6 +142,8 @@ export interface ResumeState {
   display_mode: "A" | "B" | "C" | "D";
   loop_mode: "off" | "1x" | "3x" | "5x" | "infinity";
   volume: number;
+  has_progress?: boolean;
+  is_completed?: boolean;
 }
 
 export interface StatsData {
@@ -231,10 +233,17 @@ export const api = {
   async getResume(): Promise<ResumeState> {
     const res = await authFetch(`${API_BASE}/progress/resume`);
     if (!res.ok) throw new Error("Failed to fetch resume");
-    return res.json();
+    const data: ResumeState = await res.json();
+    try {
+      localStorage.setItem("stone_cached_resume", JSON.stringify(data));
+    } catch {}
+    return data;
   },
 
   async saveResume(state: ResumeState): Promise<void> {
+    try {
+      localStorage.setItem("stone_cached_resume", JSON.stringify(state));
+    } catch {}
     await authFetch(`${API_BASE}/progress/resume`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

@@ -99,6 +99,11 @@ export default function HomePage() {
   };
   const earnedMedals = (stats?.medals || []).filter((m) => MEDAL_NAMES[m]);
 
+  const hasProgress = Boolean(
+    resume && (resume.sentence_index > 0 || resume.has_progress) && !resume.is_completed
+  );
+  const nextSentenceNum = (resume?.sentence_index ?? 0) + 1;
+
   return (
     <div className="min-h-screen bg-[#f5f5f7] dark:bg-[#000000] text-[#1d1d1f] dark:text-[#f5f5f7] flex flex-col justify-between p-4 sm:p-12 pt-[max(0.85rem,env(safe-area-inset-top))] pb-[max(2rem,env(safe-area-inset-bottom))] select-none">
       {/* Top Header */}
@@ -199,11 +204,11 @@ export default function HomePage() {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-[11px] font-semibold text-[#0071e3] dark:text-[#0a84ff]">
-                  {resume && resume.sentence_index > 0 ? "继续精听" : "推荐首练 · 最新真题"}
+                  {hasProgress ? "继续精听" : "推荐首练 · 最新真题"}
                 </span>
                 <span className="text-black/10 dark:text-white/10">·</span>
                 <span className="text-xs text-[#86868b]">
-                  第 {((resume?.sentence_index ?? 0) + 1)} 句
+                  第 {hasProgress ? nextSentenceNum : 1} 句
                 </span>
               </div>
               <h2 className="text-base sm:text-lg font-medium text-[#1d1d1f] dark:text-[#f5f5f7] mt-1">
@@ -224,7 +229,7 @@ export default function HomePage() {
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1d1d1f] hover:bg-black dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-[#1d1d1f] text-xs font-semibold rounded-full shadow-sm transition-transform active:scale-95"
           >
             <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-            <span>{resume && resume.sentence_index > 0 ? `继续第 ${resume.sentence_index + 1} 句` : "先听一句"}</span>
+            <span>{hasProgress ? `继续第 ${nextSentenceNum} 句` : "先听一句"}</span>
           </Link>
         </div>
 

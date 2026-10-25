@@ -19,6 +19,8 @@ class ResumeStateRequest(BaseModel):
     display_mode: Optional[str] = "C"
     loop_mode: Optional[str] = "off"
     volume: Optional[float] = 1.0
+    has_progress: Optional[bool] = False
+    is_completed: Optional[bool] = False
 
 class DictationCheckRequest(BaseModel):
     sentence_id: str
@@ -174,7 +176,9 @@ def get_resume(current_user: dict = Depends(get_current_user_optional)):
         "playback_rate": 1.0,
         "display_mode": "A",
         "loop_mode": "off",
-        "volume": 1.0
+        "volume": 1.0,
+        "has_progress": False,
+        "is_completed": False
     }
 
 @router.post("/resume")

@@ -16,7 +16,7 @@ import {
   LogIn,
   Play,
 } from "lucide-react";
-import { api, ExamDetail, Sentence, Subpart, Question } from "@/lib/api";
+import { api, ExamDetail, Sentence, Subpart, Question, ResumeState } from "@/lib/api";
 import { formatExamTitleZh, formatSubpartTitleZh } from "@/lib/formatters";
 import { useAudioPlayer } from "@/hooks/useAudioPlayer";
 import { useKeyboardShortcuts, StudioMode } from "@/hooks/useKeyboardShortcuts";
@@ -53,6 +53,22 @@ function StudioContent() {
   const [isPunchCardOpen, setIsPunchCardOpen] = useState(false);
   const [showDailyPunchPrompt, setShowDailyPunchPrompt] = useState(false);
   const [medalToast, setMedalToast] = useState<string | null>(null);
+
+  // Synchronously restore initialSentenceIndex from cached resume to prevent jumping
+  const [initialSentenceIndex, setInitialSentenceIndex] = useState<number>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const cached = localStorage.getItem("stone_cached_resume");
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (parsed && parsed.exam_id === urlExamId && (!urlSubpartId || parsed.subpart_id === urlSubpartId)) {
+            return parsed.sentence_index || 0;
+          }
+        }
+      } catch {}
+    }
+    return 0;
+  });
 
   // Active playing time tracking (guaranteed flush on pause, switch, visibility change, and unload)
   const pendingActiveSecondsRef = useRef(0);
@@ -118,6 +134,13 @@ function StudioContent() {
 
         setActiveSubpartId(targetSubpartId || "");
 
+        // Set initial sentence index if resume matches this subpart and exam
+        if (resume && resume.exam_id === urlExamId && (!targetSubpartId || resume.subpart_id === targetSubpartId)) {
+          if (typeof resume.sentence_index === "number") {
+            setInitialSentenceIndex(resume.sentence_index);
+          }
+        }
+
         // Map resume display_mode (defaults to bilingual for optimal first-listen success)
         if (resume?.display_mode) {
           if (resume.display_mode === "C") setDisplayMode("blind");
@@ -157,10 +180,7 @@ function StudioContent() {
   }, [activeSubpartId, exam]);
 
   const isPlayingRef = useRef(false);
-
-  const handleSentenceChange = useCallback(() => {
-    setHasCompletedSentence(true);
-  }, []);
+  const persistResumeRef = useRef<(targetIndex?: number, isCompleted?: boolean) => void>(() => {});
 
   const flushHeartbeat = useCallback((keepalive = false) => {
     if (!exam) return;
@@ -226,18 +246,25 @@ function StudioContent() {
     }
   }, [exam]);
 
-  const handleSentenceComplete = useCallback(() => {
+  const handleSentenceChange = useCallback((newIdx: number) => {
+    persistResumeRef.current(newIdx, false);
+  }, []);
+
+  const handleSentenceComplete = useCallback((idx: number) => {
     setHasCompletedSentence(true);
     pendingCompletedSentenceRef.current = true;
     flushHeartbeat(false);
-  }, [flushHeartbeat]);
+    const nextIdx = idx < sentences.length - 1 ? idx + 1 : idx;
+    const isCompleted = idx >= sentences.length - 1;
+    persistResumeRef.current(nextIdx, isCompleted);
+  }, [flushHeartbeat, sentences.length]);
 
   const audioUrl = exam ? api.getAudioUrl(exam.audio_file) : "";
 
   const player = useAudioPlayer({
     audioUrl,
     sentences,
-    initialIndex: 0,
+    initialIndex: initialSentenceIndex,
     initialRate: 1.0,
     initialLoop: "off",
     onSentenceChange: handleSentenceChange,
@@ -246,14 +273,50 @@ function StudioContent() {
 
   isPlayingRef.current = player.isPlaying;
 
-  // Autoplay support when user arrives from "先听一句"
+  // Reliable persist resume (saves to localStorage synchronously and syncs with backend)
+  const persistResume = useCallback(
+    (targetIndex?: number, isCompleted = false) => {
+      if (!exam || !activeSubpartId) return;
+      const idx = targetIndex !== undefined ? targetIndex : player.currentIndex;
+      const resumeData: ResumeState = {
+        exam_id: exam.id,
+        subpart_id: activeSubpartId,
+        sentence_index: idx,
+        playback_rate: player.playbackRate,
+        display_mode: displayMode === "blind" ? "C" : displayMode === "dictation" ? "D" : "A",
+        loop_mode: player.loopMode,
+        volume: player.volume,
+        has_progress: true,
+        is_completed: isCompleted,
+      };
+      api.saveResume(resumeData);
+    },
+    [exam, activeSubpartId, player.currentIndex, player.playbackRate, player.loopMode, player.volume, displayMode]
+  );
+
+  persistResumeRef.current = persistResume;
+
+  // Persist resume immediately whenever playback pauses
+  useEffect(() => {
+    if (!player.isPlaying && sentences.length > 0 && exam) {
+      persistResume(player.currentIndex, false);
+    }
+  }, [player.isPlaying, player.currentIndex, sentences.length, exam, persistResume]);
+
+  // Autoplay support when user arrives from "先听一句" or "继续第 N 句"
   const autoplayParam = searchParams.get("autoplay");
   const hasTriggeredAutoplayRef = useRef(false);
 
   useEffect(() => {
-    if ((autoplayParam === "1" || autoplayParam === "true") && !hasTriggeredAutoplayRef.current && sentences.length > 0 && exam) {
+    if (
+      (autoplayParam === "1" || autoplayParam === "true") &&
+      !hasTriggeredAutoplayRef.current &&
+      sentences.length > 0 &&
+      exam &&
+      player.currentSentence
+    ) {
       hasTriggeredAutoplayRef.current = true;
-      player.togglePlay();
+      player.play();
     }
   }, [autoplayParam, sentences, exam, player]);
 
@@ -290,10 +353,12 @@ function StudioContent() {
     const handleVisibility = () => {
       if (document.visibilityState === "hidden") {
         flushHeartbeat(true);
+        persistResumeRef.current();
       }
     };
     const handleUnload = () => {
       flushHeartbeat(true);
+      persistResumeRef.current();
     };
 
     document.addEventListener("visibilitychange", handleVisibility);
@@ -305,6 +370,7 @@ function StudioContent() {
       window.removeEventListener("pagehide", handleUnload);
       window.removeEventListener("beforeunload", handleUnload);
       flushHeartbeat(true);
+      persistResumeRef.current();
     };
   }, [flushHeartbeat]);
 
@@ -312,6 +378,7 @@ function StudioContent() {
   const handleSelectSubpart = (newSubpartId: string) => {
     if (newSubpartId === activeSubpartId) return;
     flushHeartbeat(false);
+    persistResume();
     setActiveSubpartId(newSubpartId);
     router.replace(`/studio?exam_id=${exam?.id || urlExamId}&subpart_id=${newSubpartId}`);
   };
@@ -324,22 +391,14 @@ function StudioContent() {
     }
   };
 
-  // Save resume state
+  // Periodic background sync of resume state (every 2s if state changed)
   useEffect(() => {
     if (!exam || sentences.length === 0) return;
     const timer = setTimeout(() => {
-      api.saveResume({
-        exam_id: exam.id,
-        subpart_id: activeSubpartId,
-        sentence_index: player.currentIndex,
-        playback_rate: player.playbackRate,
-        display_mode: displayMode === "blind" ? "C" : displayMode === "dictation" ? "D" : "A",
-        loop_mode: player.loopMode,
-        volume: player.volume,
-      });
+      persistResume();
     }, 2000);
     return () => clearTimeout(timer);
-  }, [player.currentIndex, player.playbackRate, player.loopMode, player.volume, displayMode, exam, sentences, activeSubpartId]);
+  }, [player.currentIndex, player.playbackRate, player.loopMode, player.volume, displayMode, exam, sentences, activeSubpartId, persistResume]);
 
   // Single-sentence Loop toggle (R shortcut)
   const handleToggleLoop = () => {
@@ -604,15 +663,15 @@ function StudioContent() {
           <div className="text-sm text-[#86868b]">暂无听力句子数据</div>
         )}
 
-        {/* Autoplay blocked or initial click-to-play invitation (silent fallback) */}
-        {!player.isPlaying && (player.isAutoplayBlocked || (autoplayParam === "1" && !hasCompletedSentence)) && (
+        {/* Autoplay blocked or click-to-play invitation in center of viewport */}
+        {!player.isPlaying && (
           <div className="mt-4 animate-in fade-in duration-200">
             <button
               type="button"
               onClick={player.togglePlay}
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#1d1d1f] hover:bg-black dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-[#1d1d1f] text-xs font-semibold shadow-sm transition-transform active:scale-95"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#1d1d1f] hover:bg-black dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-[#1d1d1f] text-xs font-semibold shadow-md active:scale-95 transition-all"
             >
-              <Play className="w-3.5 h-3.5 fill-current" />
+              <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
               <span>点击播放</span>
             </button>
           </div>
