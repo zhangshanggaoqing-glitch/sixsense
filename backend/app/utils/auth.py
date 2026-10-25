@@ -3,7 +3,7 @@ import time
 import secrets
 from pathlib import Path
 from typing import Optional, Dict, Any
-from fastapi import Header, HTTPException, status
+from fastapi import Header, HTTPException, status, Depends
 import bcrypt
 import jwt
 from backend.app.config import DATA_DIR
@@ -70,12 +70,12 @@ def is_admin_user(user: Optional[Dict[str, Any]]) -> bool:
 
 import re
 
-def _clean_guest_id(guest_id: Optional[str]) -> str:
+def _clean_guest_id(guest_id: Any) -> str:
     """
     Validate and sanitize client-provided guest UUID to prevent crosstalk or path issues.
     Ensures guest progress and stats stay strictly isolated per browser session.
     """
-    if guest_id:
+    if isinstance(guest_id, str):
         clean = guest_id.strip()
         if re.match(r"^gst_[a-zA-Z0-9_-]{8,64}$", clean):
             return clean
@@ -124,12 +124,8 @@ def get_current_user_optional(
     user_data["is_admin"] = is_admin_user(user_data)
     return user_data
 
-def get_current_user_required(
-    authorization: Optional[str] = Header(None),
-    x_guest_id: Optional[str] = Header(None)
-) -> Dict[str, Any]:
+def get_current_user_required(user: dict = Depends(get_current_user_optional)) -> Dict[str, Any]:
     """Dependency that enforces authentication, returning 401 if missing or invalid."""
-    user = get_current_user_optional(authorization, x_guest_id)
     if user.get("is_guest"):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -138,9 +134,8 @@ def get_current_user_required(
         )
     return user
 
-def get_current_admin_user(authorization: Optional[str] = Header(None)) -> Dict[str, Any]:
+def get_current_admin_user(user: dict = Depends(get_current_user_required)) -> Dict[str, Any]:
     """Dependency that requires valid authentication AND administrator privileges."""
-    user = get_current_user_required(authorization)
     if not is_admin_user(user):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
