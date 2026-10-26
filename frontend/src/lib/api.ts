@@ -367,7 +367,14 @@ export const api = {
     return data.data;
   },
 
-  async getAdminUsers(query?: string): Promise<{ total: number; users: AdminUserItem[] }> {
+  async getAdminUsers(query?: string): Promise<{
+    total: number;
+    total_listening_minutes?: number;
+    total_vocab_count?: number;
+    total_dictation_count?: number;
+    today_ts?: number;
+    users: AdminUserItem[];
+  }> {
     const url = query ? `${API_BASE}/admin/users?q=${encodeURIComponent(query)}` : `${API_BASE}/admin/users`;
     const res = await authFetch(url);
     if (!res.ok) {
@@ -400,11 +407,30 @@ export interface AdminOverview {
   total_users: number;
   today_new_users: number;
   active_users_today: number;
+  
+  // Listening Breakdown
   total_listening_minutes: number;
+  registered_listening_minutes?: number;
+  guest_listening_minutes?: number;
   today_listening_minutes: number;
+  today_registered_listening_minutes?: number;
+  today_guest_listening_minutes?: number;
+
+  // Vocabulary Breakdown
   total_vocab_words: number;
+  registered_vocab_words?: number;
+  guest_vocab_words?: number;
   today_vocab_words: number;
+  today_registered_vocab_words?: number;
+  today_guest_vocab_words?: number;
+
+  // Dictation Breakdown
   total_dictation_attempts: number;
+  registered_dictation_attempts?: number;
+  guest_dictation_attempts?: number;
+  today_dictation_attempts?: number;
+  today_registered_dictation_attempts?: number;
+  today_guest_dictation_attempts?: number;
   avg_dictation_accuracy: number;
 }
 

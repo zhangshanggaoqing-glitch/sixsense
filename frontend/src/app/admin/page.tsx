@@ -36,6 +36,8 @@ export default function AdminPage() {
   const [popularWords, setPopularWords] = useState<AdminPopularWord[]>([]);
   const [popularExams, setPopularExams] = useState<AdminPopularExam[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [usersTotalListening, setUsersTotalListening] = useState<number | null>(null);
+  const [todayTs, setTodayTs] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -52,6 +54,8 @@ export default function AdminPage() {
       ]);
       setOverview(resOverview);
       setUsers(resUsers.users);
+      setUsersTotalListening(resUsers.total_listening_minutes ?? null);
+      setTodayTs(resUsers.today_ts ?? null);
       setPopularWords(resWords);
       setPopularExams(resExams);
     } catch (err: unknown) {
@@ -82,11 +86,21 @@ export default function AdminPage() {
   const formatTimestamp = (ts?: number) => {
     if (!ts) return "—";
     const d = new Date(ts * 1000);
-    const month = String(d.getMonth() + 1).padStart(2, "0");
-    const day = String(d.getDate()).padStart(2, "0");
-    const hours = String(d.getHours()).padStart(2, "0");
-    const minutes = String(d.getMinutes()).padStart(2, "0");
-    return `${month}-${day} ${hours}:${minutes}`;
+    // Explicitly format in Asia/Shanghai (UTC+8) natural time
+    const formatter = new Intl.DateTimeFormat("zh-CN", {
+      timeZone: "Asia/Shanghai",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+    return formatter.format(d).replace(/\//g, "-");
+  };
+
+  const isToday = (ts?: number) => {
+    if (!ts || !todayTs) return false;
+    return ts >= todayTs;
   };
 
   // 1. Not Logged In
@@ -213,7 +227,7 @@ export default function AdminPage() {
                   <TrendingUp className="w-3 h-3" /> +{overview?.today_pv != null ? Number(overview.today_pv).toLocaleString() : 0} 今日
                 </span>
                 <span>·</span>
-                <span>全站 HTTP 请求</span>
+                <span>全站 HTTP 请求 (只增不减)</span>
               </div>
             </div>
           </div>
@@ -236,7 +250,7 @@ export default function AdminPage() {
                   <TrendingUp className="w-3 h-3" /> +{overview?.today_uv != null ? Number(overview.today_uv).toLocaleString() : 0} 今日
                 </span>
                 <span>·</span>
-                <span>排除内部开发调试</span>
+                <span>排除内部开发调试 (只增不减)</span>
               </div>
             </div>
           </div>
@@ -256,7 +270,7 @@ export default function AdminPage() {
               </div>
               <div className="mt-1 flex items-center gap-2 text-[11px] text-[#86868b] flex-wrap">
                 <span className="text-[#5856d6] dark:text-[#5e5ce6] font-semibold flex items-center gap-0.5">
-                  <TrendingUp className="w-3 h-3" /> +{overview?.today_new_users ?? 0} 今日
+                  <TrendingUp className="w-3 h-3" /> +{overview?.today_new_users ?? 0} 今日新增
                 </span>
                 <span>·</span>
                 <span>今日活跃 {overview?.active_users_today ?? 0} 人</span>
@@ -277,7 +291,10 @@ export default function AdminPage() {
                 {overview ? `${overview.total_listening_minutes}m` : "—"}
               </div>
               <div className="mt-1 text-[11px] text-[#86868b]">
-                今日产生 <strong className="text-[#ff9500]">{overview?.today_listening_minutes ?? 0}</strong> 分钟精听
+                全站 = 注册 <strong className="text-[#1d1d1f] dark:text-[#f5f5f7]">{overview?.registered_listening_minutes ?? 0}m</strong> · 游客 <strong className="text-[#86868b]">{overview?.guest_listening_minutes ?? 0}m</strong>
+              </div>
+              <div className="mt-0.5 text-[10px] text-[#86868b]">
+                今日全站 <strong className="text-[#ff9500]">{overview?.today_listening_minutes ?? 0}m</strong> (注册 {overview?.today_registered_listening_minutes ?? 0}m · 游客 {overview?.today_guest_listening_minutes ?? 0}m)
               </div>
             </div>
           </div>
@@ -296,6 +313,9 @@ export default function AdminPage() {
                 <span className="text-xs font-normal text-[#86868b]">词</span>
               </div>
               <div className="mt-1 text-[11px] text-[#86868b]">
+                全站 = 注册 <strong className="text-[#1d1d1f] dark:text-[#f5f5f7]">{overview?.registered_vocab_words ?? 0}</strong> · 游客 <strong className="text-[#86868b]">{overview?.guest_vocab_words ?? 0}</strong>
+              </div>
+              <div className="mt-0.5 text-[10px] text-[#86868b]">
                 今日新增 <strong className="text-[#ff2d55]">+{overview?.today_vocab_words ?? 0}</strong> 词入生词本
               </div>
             </div>
@@ -315,7 +335,10 @@ export default function AdminPage() {
                 <span className="text-xs font-normal text-[#86868b]">次</span>
               </div>
               <div className="mt-1 text-[11px] text-[#86868b]">
-                全站平均准确率 <strong className="text-[#af52de]">{overview?.avg_dictation_accuracy ?? 0}%</strong>
+                全站 = 注册 <strong className="text-[#1d1d1f] dark:text-[#f5f5f7]">{overview?.registered_dictation_attempts ?? 0}</strong> · 游客 <strong className="text-[#86868b]">{overview?.guest_dictation_attempts ?? 0}</strong>
+              </div>
+              <div className="mt-0.5 text-[10px] text-[#86868b]">
+                全站平均正确率 <strong className="text-[#af52de]">{overview?.avg_dictation_accuracy ?? 0}%</strong>
               </div>
             </div>
           </div>
@@ -328,11 +351,16 @@ export default function AdminPage() {
             <div className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
-                  <h2 className="text-sm sm:text-base font-bold text-[#1d1d1f] dark:text-[#f5f5f7] flex items-center gap-2">
-                    <UserCheck className="w-4 h-4 text-[#0071e3]" /> 学员注册与活跃明细
-                  </h2>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-sm sm:text-base font-bold text-[#1d1d1f] dark:text-[#f5f5f7] flex items-center gap-2">
+                      <UserCheck className="w-4 h-4 text-[#0071e3]" /> 学员注册与活跃明细
+                    </h2>
+                    <span className="text-[11px] text-[#86868b] bg-black/[0.03] dark:bg-white/[0.05] px-2 py-0.5 rounded-full font-mono">
+                      共 {users.length} 位注册学员
+                    </span>
+                  </div>
                   <p className="text-xs text-[#86868b] mt-0.5">
-                    实时显示从各个渠道注册学习的用户档案与活跃数据
+                    注册学员精听之和：<strong className="text-[#ff9500] font-mono">{usersTotalListening != null ? `${usersTotalListening} 分钟` : `${overview?.registered_listening_minutes ?? 0} 分钟`}</strong>（与上方卡片「注册精听」严格对应）
                   </p>
                 </div>
 
@@ -377,7 +405,14 @@ export default function AdminPage() {
                             <span>{u.username}</span>
                           </td>
                           <td className="py-3 text-[#86868b] font-mono">
-                            {formatTimestamp(u.created_at)}
+                            <div className="flex items-center gap-1.5">
+                              <span>{formatTimestamp(u.created_at)}</span>
+                              {isToday(u.created_at) && (
+                                <span className="px-1.5 py-0.2 text-[9px] font-semibold bg-[#0071e3]/10 text-[#0071e3] rounded">
+                                  今日
+                                </span>
+                              )}
+                            </div>
                           </td>
                           <td className="py-3">
                             <span className="px-2 py-0.5 rounded-full bg-[#34c759]/10 text-[#34c759] font-medium text-[11px]">
@@ -491,6 +526,19 @@ export default function AdminPage() {
             </div>
           </div>
         </div>
+
+        {/* 3. Methodology & Day-cut Footnote */}
+        <footer className="pt-6 border-t border-black/[0.06] dark:border-white/[0.08] text-[11px] text-[#86868b] space-y-1.5 leading-relaxed">
+          <p>
+            <strong>统计口径说明：</strong>全站指标统一以 <strong>Asia/Shanghai (UTC+8)</strong> 自然日 00:00:00 进行日切。
+          </p>
+          <p>
+            上方卡片展示全站练习总览（包含免登录访客体验）；下方列表展示已注册学员记录，各行精听之和与卡片中「注册精听」严格对应。
+          </p>
+          <p>
+            PV/UV 结合日志轮转与服务端高水位持久化存储，保障历史累计访问数据在 Nginx 日志轮转与容器启停后只增不减。
+          </p>
+        </footer>
       </div>
     </div>
   );
