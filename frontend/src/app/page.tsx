@@ -369,7 +369,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Full Paper Simulation Section */}
+        {/* Full Paper Simulation Section (Controlled by Year & Exam Selector) */}
         {fullPapers.length > 0 && (
           <div className="space-y-4 pt-4 border-t border-black/[0.04] dark:border-white/[0.06]">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
@@ -380,24 +380,39 @@ export default function HomePage() {
                 </h2>
               </div>
               <span className="text-xs text-[#86868b]">
-                整段播放 · 可下载 · 适合模考检测
+                整段播放 · 可下载 · 适合模考检测（{selectedYear} 年 · 共 {fullPapers.filter((fp) => fp.year === selectedYear).length} 套）
               </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              {fullPapers.map((fp) => {
+              {(fullPapers.filter((fp) => fp.year === selectedYear).length > 0
+                ? fullPapers.filter((fp) => fp.year === selectedYear)
+                : fullPapers
+              ).map((fp) => {
                 const durationMin = Math.floor(fp.duration_sec / 60);
                 const durationSec = Math.floor(fp.duration_sec % 60);
+                const isCurrentExam = fp.id === selectedExamId;
 
                 return (
                   <div
                     key={fp.id}
-                    className="flex flex-col justify-between p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] hover:border-[#0071e3]/40 hover:shadow-[0_4px_16px_rgba(0,113,227,0.06)] transition-all"
+                    onClick={() => handleSelectExam(fp.id)}
+                    className={`cursor-pointer flex flex-col justify-between p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#1c1c1e] border transition-all ${
+                      isCurrentExam
+                        ? "border-[#0071e3] ring-1 ring-[#0071e3]/30 shadow-[0_4px_20px_rgba(0,113,227,0.1)]"
+                        : "border-black/[0.06] dark:border-white/[0.08] hover:border-[#0071e3]/40 hover:shadow-[0_4px_16px_rgba(0,113,227,0.06)]"
+                    }`}
                   >
                     <div>
                       <div className="flex items-center justify-between gap-2">
-                        <span className="px-2.5 py-0.5 text-[10px] font-semibold rounded-full bg-[#0071e3]/10 text-[#0071e3] dark:bg-[#0a84ff]/15 dark:text-[#0a84ff]">
-                          全真模考 · 25题
+                        <span
+                          className={`px-2.5 py-0.5 text-[10px] font-semibold rounded-full ${
+                            isCurrentExam
+                              ? "bg-[#0071e3] text-white"
+                              : "bg-[#0071e3]/10 text-[#0071e3] dark:bg-[#0a84ff]/15 dark:text-[#0a84ff]"
+                          }`}
+                        >
+                          {isCurrentExam ? "当前选中 · 25题" : "全真模考 · 25题"}
                         </span>
                         <span className="text-[11px] text-[#86868b] flex items-center gap-1 font-mono">
                           <Clock className="w-3 h-3" /> {durationMin}分{durationSec}秒
@@ -412,7 +427,10 @@ export default function HomePage() {
                       </p>
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-black/[0.04] dark:border-white/[0.06] flex items-center justify-between gap-2">
+                    <div
+                      className="mt-4 pt-3 border-t border-black/[0.04] dark:border-white/[0.06] flex items-center justify-between gap-2"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <a
                         href={fp.download_url}
                         download
