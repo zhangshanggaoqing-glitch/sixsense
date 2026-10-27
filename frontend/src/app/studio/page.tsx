@@ -274,10 +274,13 @@ function StudioContent() {
     setHasCompletedSentence(true);
     pendingCompletedSentenceRef.current = true;
     flushHeartbeat(false);
-    const nextIdx = idx < sentences.length - 1 ? idx + 1 : idx;
+    // In blind mode + pause_each, user remains on current sentence until explicitly clicking next
+    const targetIdx = (playbackPace === "pause_each" && displayMode === "blind")
+      ? idx
+      : (idx < sentences.length - 1 ? idx + 1 : idx);
     const isCompleted = idx >= sentences.length - 1;
-    persistResumeRef.current(nextIdx, isCompleted);
-  }, [flushHeartbeat, sentences.length]);
+    persistResumeRef.current(targetIdx, isCompleted);
+  }, [flushHeartbeat, sentences.length, playbackPace, displayMode]);
 
   const audioUrl = exam ? api.getAudioUrl(exam.audio_file) : "";
 
@@ -288,6 +291,7 @@ function StudioContent() {
     initialRate: 1.0,
     initialLoop: "off",
     playbackPace,
+    mode: displayMode,
     onSentenceChange: handleSentenceChange,
     onSentenceComplete: handleSentenceComplete,
   });

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Sentence } from "@/lib/api";
+import { StudioMode } from "./useKeyboardShortcuts";
 
 export type LoopMode = "off" | "1x" | "3x" | "5x" | "infinity";
 export type PlaybackPace = "pause_each" | "continuous";
@@ -11,6 +12,7 @@ export interface UseAudioPlayerProps {
   initialRate?: number;
   initialLoop?: LoopMode;
   playbackPace?: PlaybackPace;
+  mode?: StudioMode | string;
   onSentenceChange?: (index: number) => void;
   onSentenceComplete?: (index: number) => void;
 }
@@ -22,6 +24,7 @@ export function useAudioPlayer({
   initialRate = 1.0,
   initialLoop = "off",
   playbackPace = "pause_each",
+  mode = "bilingual",
   onSentenceChange,
   onSentenceComplete,
 }: UseAudioPlayerProps) {
@@ -54,6 +57,12 @@ export function useAudioPlayer({
   useEffect(() => {
     paceRef.current = playbackPace;
   }, [playbackPace]);
+
+  // Keep track of studio mode (blind vs bilingual vs dictation)
+  const modeRef = useRef<StudioMode | string>(mode);
+  useEffect(() => {
+    modeRef.current = mode;
+  }, [mode]);
 
   // Initialize Audio
   useEffect(() => {
@@ -142,8 +151,23 @@ export function useAudioPlayer({
             audio.currentTime = Math.max(0, currentSentence.start_time - 0.05);
             audio.play().catch(() => {});
           } else {
-            // 单句循环关闭时：根据播放节奏 (pause_each vs continuous) 决定句末动作
+            // 单句循环关闭时：根据播放节奏 (pause_each vs continuous) 与当前模式决定句末动作
             onSentenceCompleteRef.current?.(currentIndex);
+
+            // 盲听 + 一句一停：播完停在当前句，不自动跳下一句
+            const isBlindMode = modeRef.current === "blind" || modeRef.current === "C";
+            if (isBlindMode && paceRef.current === "pause_each") {
+              audio.pause();
+              setIsPlaying(false);
+              // 重置到当前句开头，方便用户连按空格/播放键直接重播本句
+              const startPos = Math.max(0, currentSentence.start_time - 0.05);
+              if (audio.readyState >= 1) {
+                audio.currentTime = startPos;
+              } else {
+                pendingSeekRef.current = startPos;
+              }
+              return;
+            }
 
             if (currentIndex < sentences.length - 1) {
               const nextIndex = currentIndex + 1;
@@ -163,7 +187,7 @@ export function useAudioPlayer({
                 // 连贯播放：当前句播完 → 自动进入下一句并继续播放
                 audio.play().catch(() => {});
               } else {
-                // 说一句停一句（默认）：当前句播完 → 定位到下一句文案与起始时间，但不自动起播，暂停等待用户点击
+                // 说一句停一句（非盲听模式）：当前句播完 → 定位到下一句文案与起始时间，但不自动起播，暂停等待用户点击
                 audio.pause();
                 setIsPlaying(false);
               }
