@@ -14,7 +14,6 @@ import {
   X,
   User as UserIcon,
   LogIn,
-  Play,
 } from "lucide-react";
 import { api, ExamDetail, Sentence, Subpart, Question, ResumeState } from "@/lib/api";
 import { formatExamTitleZh, formatSubpartTitleZh } from "@/lib/formatters";
@@ -686,20 +685,6 @@ function StudioContent() {
           />
         ) : (
           <div className="text-sm text-[#86868b]">暂无听力句子数据</div>
-        )}
-
-        {/* Autoplay blocked or click-to-play invitation in center of viewport */}
-        {!player.isPlaying && (
-          <div className="mt-4 animate-in fade-in duration-200">
-            <button
-              type="button"
-              onClick={player.togglePlay}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#1d1d1f] hover:bg-black dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-[#1d1d1f] text-xs font-semibold shadow-md active:scale-95 transition-all"
-            >
-              <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-              <span>点击播放</span>
-            </button>
-          </div>
         )}
 
         {/* End of Subpart Transition Notification */}
