@@ -15,7 +15,7 @@ import {
   User as UserIcon,
   LogIn,
 } from "lucide-react";
-import { api, ExamDetail, Sentence, Subpart, Question, ResumeState } from "@/lib/api";
+import { api, ExamDetail, ExamItem, Sentence, Subpart, Question, ResumeState } from "@/lib/api";
 import { formatExamTitleZh, formatSubpartTitleZh } from "@/lib/formatters";
 import { useAudioPlayer, PlaybackPace } from "@/hooks/useAudioPlayer";
 import { useKeyboardShortcuts, StudioMode } from "@/hooks/useKeyboardShortcuts";
@@ -25,6 +25,7 @@ import { AudioBar } from "@/components/studio/AudioBar";
 import { QuestionsModal } from "@/components/studio/QuestionsModal";
 import { QuickLookupModal } from "@/components/studio/QuickLookupModal";
 import { ShareCardModal } from "@/components/studio/ShareCardModal";
+import { ExamSelectorSheet } from "@/components/studio/ExamSelectorSheet";
 
 function StudioContent() {
   const router = useRouter();
@@ -34,8 +35,10 @@ function StudioContent() {
   const urlExamId = searchParams.get("exam_id") || searchParams.get("examId") || searchParams.get("id") || "2026-06-set1";
 
   const [exam, setExam] = useState<ExamDetail | null>(null);
+  const [allExams, setAllExams] = useState<ExamItem[]>([]);
   const [subparts, setSubparts] = useState<Subpart[]>([]);
   const [activeSubpartId, setActiveSubpartId] = useState<string>("");
+  const [isSelectorOpen, setIsSelectorOpen] = useState(false);
   const [sentences, setSentences] = useState<Sentence[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [displayMode, setDisplayMode] = useState<StudioMode>("bilingual");
@@ -124,15 +127,19 @@ function StudioContent() {
       setIsLoading(true);
       setIsError(false);
       try {
-        const [examData, subpartsList, resume, statsData] = await Promise.all([
+        const [examData, subpartsList, resume, statsData, examsList] = await Promise.all([
           api.getExamDetail(urlExamId),
           api.getSubparts(urlExamId),
           api.getResume().catch(() => null),
           api.getStats().catch(() => null),
+          api.getExams().catch(() => []),
         ]);
 
         setExam(examData);
         setSubparts(subpartsList);
+        if (examsList && examsList.length > 0) {
+          setAllExams(examsList);
+        }
 
         if (statsData) {
           setTodayMinutes(statsData.today_minutes || 0.0);
@@ -176,7 +183,8 @@ function StudioContent() {
       }
     }
     init();
-  }, [urlExamId, urlSubpartId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlExamId]);
 
   // 3. Load Sentences & Questions when activeSubpartId changes
   useEffect(() => {
@@ -398,22 +406,37 @@ function StudioContent() {
     };
   }, [flushHeartbeat]);
 
-  // Switch Subpart Handler
-  const handleSelectSubpart = (newSubpartId: string) => {
-    if (newSubpartId === activeSubpartId) return;
+  // Switch Subpart & Exam Handler (0ms in-place switch within same exam, clean load across exams)
+  const handleSelectExamAndSubpart = useCallback((targetExamId: string, targetSubpartId: string) => {
+    setIsSelectorOpen(false);
+
+    if (targetExamId === exam?.id && targetSubpartId === activeSubpartId) {
+      return;
+    }
+
     flushHeartbeat(false);
     persistResume();
-    setActiveSubpartId(newSubpartId);
-    router.replace(`/studio?exam_id=${exam?.id || urlExamId}&subpart_id=${newSubpartId}`);
-  };
+
+    if (targetExamId === exam?.id) {
+      // Fast in-place switch for same exam: no full page unmount, no audio reload latency
+      setActiveSubpartId(targetSubpartId);
+      if (typeof window !== "undefined") {
+        window.history.replaceState(null, "", `/studio?exam_id=${targetExamId}&subpart_id=${targetSubpartId}`);
+      }
+    } else {
+      // Switching to a different exam:
+      setIsLoading(true);
+      router.replace(`/studio?exam_id=${targetExamId}&subpart_id=${targetSubpartId}`);
+    }
+  }, [exam?.id, activeSubpartId, flushHeartbeat, persistResume, router]);
 
   // Switch to next subpart
-  const handleNextSubpart = () => {
+  const handleNextSubpart = useCallback(() => {
     const currentIndex = subparts.findIndex((sp) => sp.id === activeSubpartId);
     if (currentIndex >= 0 && currentIndex + 1 < subparts.length) {
-      handleSelectSubpart(subparts[currentIndex + 1].id);
+      handleSelectExamAndSubpart(exam?.id || urlExamId, subparts[currentIndex + 1].id);
     }
-  };
+  }, [subparts, activeSubpartId, exam?.id, urlExamId, handleSelectExamAndSubpart]);
 
   // Periodic background sync of resume state (every 2s if state changed)
   useEffect(() => {
@@ -503,21 +526,24 @@ function StudioContent() {
             </Link>
             <span className="text-black/10 dark:text-white/10 hidden sm:inline">·</span>
 
-            {/* Subpart Switcher Dropdown */}
-            <div className="relative max-w-[160px] xs:max-w-[190px] sm:max-w-none">
-              <select
-                value={activeSubpartId}
-                onChange={(e) => handleSelectSubpart(e.target.value)}
-                className="appearance-none bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.07] dark:hover:bg-white/[0.12] text-xs font-medium text-[#1d1d1f] dark:text-[#f5f5f7] pl-2.5 sm:pl-3 pr-6 sm:pr-7 py-1.5 rounded-full cursor-pointer focus:outline-none transition-colors border-none truncate w-full"
-              >
-                {subparts.map((sp) => (
-                  <option key={sp.id} value={sp.id} className="dark:bg-[#1c1c1e] text-[#1d1d1f] dark:text-[#f5f5f7]">
-                    {examTitleZh} · {formatSubpartTitleZh(sp.title, sp.question_range)}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown className="w-3.5 h-3.5 text-[#86868b] absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
-            </div>
+            {/* Apple-style Exam & Subpart Trigger Button */}
+            <button
+              type="button"
+              onClick={() => setIsSelectorOpen(true)}
+              className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] hover:bg-black/[0.08] dark:hover:bg-white/[0.1] active:scale-[0.98] transition-all text-left max-w-[170px] xs:max-w-[220px] sm:max-w-[340px]"
+              title="点击切换题目"
+            >
+              <div className="flex items-center gap-1.5 truncate min-w-0">
+                <span className="text-xs sm:text-[13px] font-medium text-[#1d1d1f] dark:text-[#f5f5f7] truncate">
+                  {examTitleZh}
+                </span>
+                <span className="text-[#86868b] dark:text-[#a1a1a6] text-xs shrink-0">·</span>
+                <span className="text-xs text-[#86868b] dark:text-[#a1a1a6] font-normal truncate">
+                  {currentSubpartTitleZh}
+                </span>
+              </div>
+              <ChevronDown className="w-3.5 h-3.5 text-[#86868b] group-hover:text-[#1d1d1f] dark:group-hover:text-[#f5f5f7] transition-colors shrink-0 ml-0.5" />
+            </button>
           </div>
 
           {/* Right Tools (Mobile row 1 right): 考题, 查词, 生词本, 用户 */}
@@ -806,6 +832,17 @@ function StudioContent() {
         isOpen={isLookupOpen}
         onClose={() => setIsLookupOpen(false)}
         currentExamId={exam.id}
+      />
+
+      {/* Apple-style Exam & Subpart Selector Sheet */}
+      <ExamSelectorSheet
+        isOpen={isSelectorOpen}
+        onClose={() => setIsSelectorOpen(false)}
+        currentExamId={exam.id}
+        currentSubpartId={activeSubpartId}
+        onSelect={handleSelectExamAndSubpart}
+        initialExams={allExams}
+        initialSubparts={subparts}
       />
     </div>
   );
