@@ -151,12 +151,11 @@ export function useAudioPlayer({
             audio.currentTime = Math.max(0, currentSentence.start_time - 0.05);
             audio.play().catch(() => {});
           } else {
-            // 单句循环关闭时：根据播放节奏 (pause_each vs continuous) 与当前模式决定句末动作
+            // 单句循环关闭时：根据播放节奏 (pause_each vs continuous) 决定句末动作
             onSentenceCompleteRef.current?.(currentIndex);
 
-            // 盲听 + 一句一停：播完停在当前句，不自动跳下一句
-            const isBlindMode = modeRef.current === "blind" || modeRef.current === "C";
-            if (isBlindMode && paceRef.current === "pause_each") {
+            // 一句一停（所有模式通用：双语、盲听、听写）：播完停在当前句，不自动跳下一句
+            if (paceRef.current === "pause_each") {
               audio.pause();
               setIsPlaying(false);
               // 重置到当前句开头，方便用户连按空格/播放键直接重播本句
@@ -169,6 +168,7 @@ export function useAudioPlayer({
               return;
             }
 
+            // 连贯播放 (continuous)：自动进入下一句并继续播放
             if (currentIndex < sentences.length - 1) {
               const nextIndex = currentIndex + 1;
               const nextTarget = sentences[nextIndex];
@@ -183,16 +183,9 @@ export function useAudioPlayer({
                 pendingSeekRef.current = nextStart;
               }
 
-              if (paceRef.current === "continuous") {
-                // 连贯播放：当前句播完 → 自动进入下一句并继续播放
-                audio.play().catch(() => {});
-              } else {
-                // 说一句停一句（非盲听模式）：当前句播完 → 定位到下一句文案与起始时间，但不自动起播，暂停等待用户点击
-                audio.pause();
-                setIsPlaying(false);
-              }
+              audio.play().catch(() => {});
             } else {
-              // 套末：无论哪种节奏，停在最后一句末，安静暂停，不报错、不绕回
+              // 套末：停在最后一句末，安静暂停，不报错、不绕回
               audio.pause();
               setIsPlaying(false);
               setLoopCount(0);
