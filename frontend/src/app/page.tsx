@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Flame, Headphones, Clock, Layers, Calendar, User as UserIcon, LogIn, Play } from "lucide-react";
-import { api, ResumeState, Subpart, ExamItem, StatsData } from "@/lib/api";
+import { ArrowRight, BookOpen, Flame, Headphones, Clock, Layers, Calendar, User as UserIcon, LogIn, Play, Download, FileText } from "lucide-react";
+import { api, ResumeState, Subpart, ExamItem, StatsData, FullPaperItem } from "@/lib/api";
 import { formatExamTitleZh, formatSubpartTitleZh } from "@/lib/formatters";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -12,6 +12,7 @@ export default function HomePage() {
   const [stats, setStats] = useState<StatsData | null>(null);
   const [resume, setResume] = useState<ResumeState | null>(null);
   const [exams, setExams] = useState<ExamItem[]>([]);
+  const [fullPapers, setFullPapers] = useState<FullPaperItem[]>([]);
   const [selectedExamId, setSelectedExamId] = useState<string>("2026-06-set1");
   const [subparts, setSubparts] = useState<Subpart[]>([]);
   const [isLoadingSubparts, setIsLoadingSubparts] = useState(false);
@@ -29,10 +30,11 @@ export default function HomePage() {
   useEffect(() => {
     async function load() {
       try {
-        const [resResume, resStats, resExams] = await Promise.all([
+        const [resResume, resStats, resExams, resFullPapers] = await Promise.all([
           api.getResume().catch(() => null),
           api.getStats().catch(() => null),
           api.getExams().catch(() => []),
+          api.getFullPapers().catch(() => []),
         ]);
         if (resResume) {
           setResume(resResume);
@@ -47,6 +49,7 @@ export default function HomePage() {
           } catch {}
         }
         setExams(resExams);
+        setFullPapers(resFullPapers);
 
         const latestExamId = resExams.length > 0 ? resExams[0].id : "2026-06-set1";
         const initialExamId = resResume?.exam_id || latestExamId;
@@ -365,6 +368,75 @@ export default function HomePage() {
             })}
           </div>
         </div>
+
+        {/* Full Paper Simulation Section */}
+        {fullPapers.length > 0 && (
+          <div className="space-y-4 pt-4 border-t border-black/[0.04] dark:border-white/[0.06]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
+              <div className="flex items-center gap-2">
+                <FileText className="w-4 h-4 text-[#0071e3] dark:text-[#0a84ff]" />
+                <h2 className="text-sm font-semibold tracking-tight text-[#1d1d1f] dark:text-[#f5f5f7]">
+                  完整卷
+                </h2>
+              </div>
+              <span className="text-xs text-[#86868b]">
+                整段播放 · 可下载 · 适合模考检测
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              {fullPapers.map((fp) => {
+                const durationMin = Math.floor(fp.duration_sec / 60);
+                const durationSec = Math.floor(fp.duration_sec % 60);
+
+                return (
+                  <div
+                    key={fp.id}
+                    className="flex flex-col justify-between p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] hover:border-[#0071e3]/40 hover:shadow-[0_4px_16px_rgba(0,113,227,0.06)] transition-all"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="px-2.5 py-0.5 text-[10px] font-semibold rounded-full bg-[#0071e3]/10 text-[#0071e3] dark:bg-[#0a84ff]/15 dark:text-[#0a84ff]">
+                          全真模考 · 25题
+                        </span>
+                        <span className="text-[11px] text-[#86868b] flex items-center gap-1 font-mono">
+                          <Clock className="w-3 h-3" /> {durationMin}分{durationSec}秒
+                        </span>
+                      </div>
+
+                      <h3 className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] mt-2.5">
+                        {fp.title_zh}
+                      </h3>
+                      <p className="text-xs text-[#86868b] mt-1">
+                        官方原版整段录音 · 包含全套 Section A/B/C
+                      </p>
+                    </div>
+
+                    <div className="mt-4 pt-3 border-t border-black/[0.04] dark:border-white/[0.06] flex items-center justify-between gap-2">
+                      <a
+                        href={fp.download_url}
+                        download
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] bg-black/[0.03] dark:bg-white/[0.05] hover:bg-black/[0.06] transition-all"
+                        title="下载本套完整 MP3 音频"
+                      >
+                        <Download className="w-3 h-3" />
+                        <span>下载音频</span>
+                      </a>
+
+                      <Link
+                        href={`/full-paper?id=${fp.id}`}
+                        className="inline-flex items-center gap-1 px-4 py-1.5 rounded-full text-xs font-semibold bg-[#1d1d1f] hover:bg-black dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-[#1d1d1f] shadow-xs active:scale-95 transition-all"
+                      >
+                        <span>进入模考</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );

@@ -1,6 +1,7 @@
 import os
+import urllib.parse
 from pathlib import Path
-from fastapi import APIRouter, Header, HTTPException, status, Request, Response
+from fastapi import APIRouter, Header, HTTPException, status, Request, Response, Query
 from fastapi.responses import StreamingResponse
 from backend.app.config import RAW_SOURCE_DIR
 
@@ -10,7 +11,7 @@ CHUNK_SIZE = 1024 * 512  # 512 KB
 
 @router.head("/{filename}")
 @router.get("/{filename}")
-async def stream_audio(filename: str, request: Request, range: str = Header(None)):
+async def stream_audio(filename: str, request: Request, range: str = Header(None), download: int = Query(0)):
     """
     Stream audio file with HTTP 206 Partial Content support for seeking.
     Searches in RAW_SOURCE_DIR recursively.
@@ -32,11 +33,17 @@ async def stream_audio(filename: str, request: Request, range: str = Header(None
 
     file_size = target_path.stat().st_size
 
+    resp_headers = {"Content-Length": str(file_size), "Accept-Ranges": "bytes"}
+    if download:
+        encoded_name = urllib.parse.quote(filename)
+        resp_headers["Content-Disposition"] = f'attachment; filename="{encoded_name}"; filename*=UTF-8\'\'{encoded_name}'
+        resp_headers["Access-Control-Expose-Headers"] = "Content-Disposition"
+
     if request.method == "HEAD":
         return Response(
             status_code=status.HTTP_200_OK,
             media_type="audio/mpeg",
-            headers={"Content-Length": str(file_size), "Accept-Ranges": "bytes"}
+            headers=resp_headers
         )
     
     if range is None:
@@ -48,7 +55,7 @@ async def stream_audio(filename: str, request: Request, range: str = Header(None
         return StreamingResponse(
             iter_full(),
             media_type="audio/mpeg",
-            headers={"Content-Length": str(file_size), "Accept-Ranges": "bytes"}
+            headers=resp_headers
         )
 
     # Parse Range header: bytes=start-end
@@ -89,6 +96,10 @@ async def stream_audio(filename: str, request: Request, range: str = Header(None
         "Accept-Ranges": "bytes",
         "Content-Length": str(content_length),
     }
+    if download:
+        encoded_name = urllib.parse.quote(filename)
+        headers["Content-Disposition"] = f'attachment; filename="{encoded_name}"; filename*=UTF-8\'\'{encoded_name}'
+        headers["Access-Control-Expose-Headers"] = "Content-Disposition"
 
     return StreamingResponse(
         iter_chunk(),

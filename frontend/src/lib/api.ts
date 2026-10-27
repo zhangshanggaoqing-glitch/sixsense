@@ -73,6 +73,54 @@ export interface ExamDetail {
   sections: Section[];
 }
 
+export interface FullPaperQuestion {
+  id: string;
+  question_num: number;
+  prompt: string;
+  options: {
+    A: string;
+    B: string;
+    C: string;
+    D: string;
+  };
+  correct_answer?: string;
+  explanation?: string;
+}
+
+export interface FullPaperSubpart {
+  id: string;
+  title: string;
+  topic_zh?: string;
+  question_range?: string;
+  questions: FullPaperQuestion[];
+}
+
+export interface FullPaperSection {
+  id: string;
+  title: string;
+  subparts: FullPaperSubpart[];
+}
+
+export interface FullPaperItem {
+  id: string;
+  year: number;
+  month: number;
+  set: number;
+  title_zh: string;
+  audio_file: string;
+  audio_src: string;
+  download_url: string;
+  audio_bytes: number;
+  duration_sec: number;
+  question_count: number;
+  published: boolean;
+  notes?: string;
+}
+
+export interface FullPaperDetail extends FullPaperItem {
+  sections: FullPaperSection[];
+}
+
 export interface DiffToken {
   type: "match" | "missing" | "extra" | "form_diff" | "spelling_diff";
   standard: string;
@@ -192,6 +240,18 @@ export const api = {
   async getExamDetail(examId: string): Promise<ExamDetail> {
     const res = await fetch(`${API_BASE}/exams/${examId}`);
     if (!res.ok) throw new Error("Failed to fetch exam detail");
+    return res.json();
+  },
+
+  async getFullPapers(all?: boolean): Promise<FullPaperItem[]> {
+    const res = await fetch(`${API_BASE}/full-papers${all ? "?all=true" : ""}`);
+    if (!res.ok) throw new Error("Failed to fetch full papers");
+    return res.json();
+  },
+
+  async getFullPaperDetail(paperId: string): Promise<FullPaperDetail> {
+    const res = await fetch(`${API_BASE}/full-papers/${paperId}`);
+    if (!res.ok) throw new Error("Failed to fetch full paper detail");
     return res.json();
   },
 

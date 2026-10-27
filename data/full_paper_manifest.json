@@ -1,0 +1,862 @@
+[
+  {
+    "id": "2026-06-set1",
+    "year": 2026,
+    "month": 6,
+    "set": 1,
+    "title_zh": "2026年6月 六级 第1套 · 完整听力",
+    "audio_file": "2026年6月英语六级听力第1套.mp3",
+    "audio_src": "/api/audio/2026年6月英语六级听力第1套.mp3",
+    "download_url": "/api/audio/2026年6月英语六级听力第1套.mp3?download=1",
+    "audio_bytes": 20225317,
+    "duration_sec": 1264.04,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2026-06-set1",
+    "slice_paper_ids": [
+      "2026-06-set1"
+    ],
+    "notes": "官方完整真题音频与全套 25 道题目严格对齐，已核验通过。",
+    "published": true
+  },
+  {
+    "id": "2026-06-set2",
+    "year": 2026,
+    "month": 6,
+    "set": 2,
+    "title_zh": "2026年6月 六级 第2套 · 完整听力",
+    "audio_file": "2026年6月英语六级听力第2套.mp3",
+    "audio_src": "/api/audio/2026年6月英语六级听力第2套.mp3",
+    "download_url": "/api/audio/2026年6月英语六级听力第2套.mp3?download=1",
+    "audio_bytes": 11111725,
+    "duration_sec": 1587.38,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2026-06-set2",
+    "slice_paper_ids": [
+      "2026-06-set2"
+    ],
+    "notes": "官方完整真题音频与全套 25 道题目严格对齐，已核验通过。",
+    "published": true
+  },
+  {
+    "id": "2025-12-set1",
+    "year": 2025,
+    "month": 12,
+    "set": 1,
+    "title_zh": "2025年12月 六级 第1套 · 完整听力",
+    "audio_file": "2025.12六级听力第1套.mp3",
+    "audio_src": "/api/audio/2025.12六级听力第1套.mp3",
+    "download_url": "/api/audio/2025.12六级听力第1套.mp3?download=1",
+    "audio_bytes": 37060775,
+    "duration_sec": 1543.93,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2025-12-set1",
+    "slice_paper_ids": [
+      "2025-12-set1"
+    ],
+    "notes": "官方完整真题音频与全套 25 道题目严格对齐，已核验通过。",
+    "published": true
+  },
+  {
+    "id": "2025-12-set2",
+    "year": 2025,
+    "month": 12,
+    "set": 2,
+    "title_zh": "2025年12月 六级 第2套 · 完整听力",
+    "audio_file": "2025.12六级听力第2套.mp3",
+    "audio_src": "/api/audio/2025.12六级听力第2套.mp3",
+    "download_url": "/api/audio/2025.12六级听力第2套.mp3?download=1",
+    "audio_bytes": 25163452,
+    "duration_sec": 1572.43,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2025-12-set2",
+    "slice_paper_ids": [
+      "2025-12-set2"
+    ],
+    "notes": "官方完整真题音频与全套 25 道题目严格对齐，已核验通过。",
+    "published": true
+  },
+  {
+    "id": "2025-06-set1",
+    "year": 2025,
+    "month": 6,
+    "set": 1,
+    "title_zh": "2025年6月 六级 第1套 · 完整听力",
+    "audio_file": "2025年6月六级1音频.mp3",
+    "audio_src": "/api/audio/2025年6月六级1音频.mp3",
+    "download_url": "/api/audio/2025年6月六级1音频.mp3?download=1",
+    "audio_bytes": 28321135,
+    "duration_sec": 1567.4,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2025-06-set1",
+    "slice_paper_ids": [
+      "2025-06-set1"
+    ],
+    "notes": "官方完整真题音频与全套 25 道题目严格对齐，已核验通过。",
+    "published": true
+  },
+  {
+    "id": "2025-06-set2",
+    "year": 2025,
+    "month": 6,
+    "set": 2,
+    "title_zh": "2025年6月 六级 第2套 · 完整听力",
+    "audio_file": "2025年6月六级2音频.mp3",
+    "audio_src": "/api/audio/2025年6月六级2音频.mp3",
+    "download_url": "/api/audio/2025年6月六级2音频.mp3?download=1",
+    "audio_bytes": 11898936,
+    "duration_sec": 1699.85,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2025-06-set2",
+    "slice_paper_ids": [
+      "2025-06-set2"
+    ],
+    "notes": "官方完整真题音频与全套 25 道题目严格对齐，已核验通过。",
+    "published": true
+  },
+  {
+    "id": "2024-12-set1",
+    "year": 2024,
+    "month": 12,
+    "set": 1,
+    "title_zh": "2024年12月 六级 第1套 · 完整听力",
+    "audio_file": "2024年12月六级听力音频第1套.mp3",
+    "audio_src": "/api/audio/2024年12月六级听力音频第1套.mp3",
+    "download_url": "/api/audio/2024年12月六级听力音频第1套.mp3?download=1",
+    "audio_bytes": 70863497,
+    "duration_sec": 1771.37,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2024-12-set1",
+    "slice_paper_ids": [
+      "2024-12-set1"
+    ],
+    "notes": "官方完整真题音频与全套 25 道题目严格对齐，已核验通过。",
+    "published": true
+  },
+  {
+    "id": "2024-12-set2",
+    "year": 2024,
+    "month": 12,
+    "set": 2,
+    "title_zh": "2024年12月 六级 第2套 · 完整听力",
+    "audio_file": "2024年12月六级听力音频第2套.mp3",
+    "audio_src": "/api/audio/2024年12月六级听力音频第2套.mp3",
+    "download_url": "/api/audio/2024年12月六级听力音频第2套.mp3?download=1",
+    "audio_bytes": 27895942,
+    "duration_sec": 1743.22,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2024-12-set2",
+    "slice_paper_ids": [
+      "2024-12-set2"
+    ],
+    "notes": "官方完整真题音频与全套 25 道题目严格对齐，已核验通过。",
+    "published": true
+  },
+  {
+    "id": "2024-06-set1",
+    "year": 2024,
+    "month": 6,
+    "set": 1,
+    "title_zh": "2024年6月 六级 第1套 · 完整听力",
+    "audio_file": "2024.06六级听力音频第1套.mp3",
+    "audio_src": "/api/audio/2024.06六级听力音频第1套.mp3",
+    "download_url": "/api/audio/2024.06六级听力音频第1套.mp3?download=1",
+    "audio_bytes": 20868670,
+    "duration_sec": 1621.12,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2024-06-set1",
+    "slice_paper_ids": [
+      "2024-06-set1"
+    ],
+    "notes": "官方完整真题音频与全套 25 道题目严格对齐，已核验通过。",
+    "published": true
+  },
+  {
+    "id": "2024-06-set2",
+    "year": 2024,
+    "month": 6,
+    "set": 2,
+    "title_zh": "2024年6月 六级 第2套 · 完整听力",
+    "audio_file": "2024.06六级听力音频第2套.mp3",
+    "audio_src": "/api/audio/2024.06六级听力音频第2套.mp3",
+    "download_url": "/api/audio/2024.06六级听力音频第2套.mp3?download=1",
+    "audio_bytes": 20753488,
+    "duration_sec": 1549.79,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2024-06-set2",
+    "slice_paper_ids": [
+      "2024-06-set2"
+    ],
+    "notes": "官方完整真题音频与全套 25 道题目严格对齐，已核验通过。",
+    "published": true
+  },
+  {
+    "id": "2023-12-set1",
+    "year": 2023,
+    "month": 12,
+    "set": 1,
+    "title_zh": "2023年12月 六级 第1套 · 完整听力",
+    "audio_file": "2023年12月六级听力音频第1套.mp3",
+    "audio_src": "/api/audio/2023年12月六级听力音频第1套.mp3",
+    "download_url": "/api/audio/2023年12月六级听力音频第1套.mp3?download=1",
+    "audio_bytes": 25037186,
+    "duration_sec": 1564.82,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2023-12-set1",
+    "slice_paper_ids": [
+      "2023-12-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2023-12-set2",
+    "year": 2023,
+    "month": 12,
+    "set": 2,
+    "title_zh": "2023年12月 六级 第2套 · 完整听力",
+    "audio_file": "2023年12月六级听力音频第2套.mp3",
+    "audio_src": "/api/audio/2023年12月六级听力音频第2套.mp3",
+    "download_url": "/api/audio/2023年12月六级听力音频第2套.mp3?download=1",
+    "audio_bytes": 26782296,
+    "duration_sec": 1673.64,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2023-12-set2",
+    "slice_paper_ids": [
+      "2023-12-set2"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2023-06-set1",
+    "year": 2023,
+    "month": 6,
+    "set": 1,
+    "title_zh": "2023年6月 六级 第1套 · 完整听力",
+    "audio_file": "2023.06六级真题第1套听力音频.mp3",
+    "audio_src": "/api/audio/2023.06六级真题第1套听力音频.mp3",
+    "download_url": "/api/audio/2023.06六级真题第1套听力音频.mp3?download=1",
+    "audio_bytes": 20119016,
+    "duration_sec": 1652.72,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2023-06-set1",
+    "slice_paper_ids": [
+      "2023-06-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2023-06-set2",
+    "year": 2023,
+    "month": 6,
+    "set": 2,
+    "title_zh": "2023年6月 六级 第2套 · 完整听力",
+    "audio_file": "2023.06六级真题第2套听力音频.mp3",
+    "audio_src": "/api/audio/2023.06六级真题第2套听力音频.mp3",
+    "download_url": "/api/audio/2023.06六级真题第2套听力音频.mp3?download=1",
+    "audio_bytes": 20119815,
+    "duration_sec": 1652.77,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2023-06-set2",
+    "slice_paper_ids": [
+      "2023-06-set2"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2023-03-set1",
+    "year": 2023,
+    "month": 3,
+    "set": 1,
+    "title_zh": "2023年3月 六级 第1套 · 完整听力",
+    "audio_file": "2023年03月六级真题（3套相同）听力音频.mp3",
+    "audio_src": "/api/audio/2023年03月六级真题（3套相同）听力音频.mp3",
+    "download_url": "/api/audio/2023年03月六级真题（3套相同）听力音频.mp3?download=1",
+    "audio_bytes": 19174050,
+    "duration_sec": 1575.08,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2023-03-set1",
+    "slice_paper_ids": [
+      "2023-03-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2022-12-set1",
+    "year": 2022,
+    "month": 12,
+    "set": 1,
+    "title_zh": "2022年12月 六级 第1套 · 完整听力",
+    "audio_file": "2022.12六级真题第1套听力.mp3",
+    "audio_src": "/api/audio/2022.12六级真题第1套听力.mp3",
+    "download_url": "/api/audio/2022.12六级真题第1套听力.mp3?download=1",
+    "audio_bytes": 19911175,
+    "duration_sec": 1635.63,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2022-12-set1",
+    "slice_paper_ids": [
+      "2022-12-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2022-12-set2",
+    "year": 2022,
+    "month": 12,
+    "set": 2,
+    "title_zh": "2022年12月 六级 第2套 · 完整听力",
+    "audio_file": "2022.12六级真题第2套听力.mp3",
+    "audio_src": "/api/audio/2022.12六级真题第2套听力.mp3",
+    "download_url": "/api/audio/2022.12六级真题第2套听力.mp3?download=1",
+    "audio_bytes": 19307494,
+    "duration_sec": 1586.02,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2022-12-set2",
+    "slice_paper_ids": [
+      "2022-12-set2"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2022-09-set1",
+    "year": 2022,
+    "month": 9,
+    "set": 1,
+    "title_zh": "2022年9月 六级 第1套 · 完整听力",
+    "audio_file": "2022年09月六级听力（全1套）听力.mp3",
+    "audio_src": "/api/audio/2022年09月六级听力（全1套）听力.mp3",
+    "download_url": "/api/audio/2022年09月六级听力（全1套）听力.mp3?download=1",
+    "audio_bytes": 19810399,
+    "duration_sec": 1642.1,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2022-09-set1",
+    "slice_paper_ids": [
+      "2022-09-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2022-06-set1",
+    "year": 2022,
+    "month": 6,
+    "set": 1,
+    "title_zh": "2022年6月 六级 第1套 · 完整听力",
+    "audio_file": "2022年06月六级听力（全1套）.mp3",
+    "audio_src": "/api/audio/2022年06月六级听力（全1套）.mp3",
+    "download_url": "/api/audio/2022年06月六级听力（全1套）.mp3?download=1",
+    "audio_bytes": 13944033,
+    "duration_sec": 1722.36,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2022-06-set1",
+    "slice_paper_ids": [
+      "2022-06-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2021-12-set1",
+    "year": 2021,
+    "month": 12,
+    "set": 1,
+    "title_zh": "2021年12月 六级 第1套 · 完整听力",
+    "audio_file": "2021.12六级听力第1套.mp3",
+    "audio_src": "/api/audio/2021.12六级听力第1套.mp3",
+    "download_url": "/api/audio/2021.12六级听力第1套.mp3?download=1",
+    "audio_bytes": 19044491,
+    "duration_sec": 1586.99,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2021-12-set1",
+    "slice_paper_ids": [
+      "2021-12-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2021-12-set2",
+    "year": 2021,
+    "month": 12,
+    "set": 2,
+    "title_zh": "2021年12月 六级 第2套 · 完整听力",
+    "audio_file": "2021.12六级听力第2套.mp3",
+    "audio_src": "/api/audio/2021.12六级听力第2套.mp3",
+    "download_url": "/api/audio/2021.12六级听力第2套.mp3?download=1",
+    "audio_bytes": 19520555,
+    "duration_sec": 1626.66,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2021-12-set2",
+    "slice_paper_ids": [
+      "2021-12-set2"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2021-06-set1",
+    "year": 2021,
+    "month": 6,
+    "set": 1,
+    "title_zh": "2021年6月 六级 第1套 · 完整听力",
+    "audio_file": "2021年6月六级听力第1套.mp3",
+    "audio_src": "/api/audio/2021年6月六级听力第1套.mp3",
+    "download_url": "/api/audio/2021年6月六级听力第1套.mp3?download=1",
+    "audio_bytes": 27043456,
+    "duration_sec": 1690.17,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2021-06-set1",
+    "slice_paper_ids": [
+      "2021-06-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2021-06-set2",
+    "year": 2021,
+    "month": 6,
+    "set": 2,
+    "title_zh": "2021年6月 六级 第2套 · 完整听力",
+    "audio_file": "2021年6月六级听力第2套.mp3",
+    "audio_src": "/api/audio/2021年6月六级听力第2套.mp3",
+    "download_url": "/api/audio/2021年6月六级听力第2套.mp3?download=1",
+    "audio_bytes": 20426800,
+    "duration_sec": 1702.19,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2021-06-set2",
+    "slice_paper_ids": [
+      "2021-06-set2"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2020-12-set1",
+    "year": 2020,
+    "month": 12,
+    "set": 1,
+    "title_zh": "2020年12月 六级 第1套 · 完整听力",
+    "audio_file": "2020年12月六级听力第1套.mp3",
+    "audio_src": "/api/audio/2020年12月六级听力第1套.mp3",
+    "download_url": "/api/audio/2020年12月六级听力第1套.mp3?download=1",
+    "audio_bytes": 12324716,
+    "duration_sec": 1540.55,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2020-12-set1",
+    "slice_paper_ids": [
+      "2020-12-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2020-12-set2",
+    "year": 2020,
+    "month": 12,
+    "set": 2,
+    "title_zh": "2020年12月 六级 第2套 · 完整听力",
+    "audio_file": "2020年12月六级听力第2套.mp3",
+    "audio_src": "/api/audio/2020年12月六级听力第2套.mp3",
+    "download_url": "/api/audio/2020年12月六级听力第2套.mp3?download=1",
+    "audio_bytes": 19203692,
+    "duration_sec": 1600.26,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2020-12-set2",
+    "slice_paper_ids": [
+      "2020-12-set2"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2020-09-set1",
+    "year": 2020,
+    "month": 9,
+    "set": 1,
+    "title_zh": "2020年9月 六级 第1套 · 完整听力",
+    "audio_file": "2020年09月六级听力全1套.mp3",
+    "audio_src": "/api/audio/2020年09月六级听力全1套.mp3",
+    "download_url": "/api/audio/2020年09月六级听力全1套.mp3?download=1",
+    "audio_bytes": 25467426,
+    "duration_sec": 1576.1,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2020-09-set1",
+    "slice_paper_ids": [
+      "2020-09-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2020-07-set1",
+    "year": 2020,
+    "month": 7,
+    "set": 1,
+    "title_zh": "2020年7月 六级 第1套 · 完整听力",
+    "audio_file": "202007-CET6 听力.mp3",
+    "audio_src": "/api/audio/202007-CET6 听力.mp3",
+    "download_url": "/api/audio/202007-CET6 听力.mp3?download=1",
+    "audio_bytes": 25779129,
+    "duration_sec": 1611.15,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2020-07-set1",
+    "slice_paper_ids": [
+      "2020-07-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2019-12-set1",
+    "year": 2019,
+    "month": 12,
+    "set": 1,
+    "title_zh": "2019年12月 六级 第1套 · 完整听力",
+    "audio_file": "2019.12六级听力第1套.mp3",
+    "audio_src": "/api/audio/2019.12六级听力第1套.mp3",
+    "download_url": "/api/audio/2019.12六级听力第1套.mp3?download=1",
+    "audio_bytes": 20536682,
+    "duration_sec": 1687.04,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2019-12-set1",
+    "slice_paper_ids": [
+      "2019-12-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2019-12-set2",
+    "year": 2019,
+    "month": 12,
+    "set": 2,
+    "title_zh": "2019年12月 六级 第2套 · 完整听力",
+    "audio_file": "2019.12六级听力第2套.mp3",
+    "audio_src": "/api/audio/2019.12六级听力第2套.mp3",
+    "download_url": "/api/audio/2019.12六级听力第2套.mp3?download=1",
+    "audio_bytes": 20463287,
+    "duration_sec": 1681.01,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2019-12-set2",
+    "slice_paper_ids": [
+      "2019-12-set2"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2019-06-set1",
+    "year": 2019,
+    "month": 6,
+    "set": 1,
+    "title_zh": "2019年6月 六级 第1套 · 完整听力",
+    "audio_file": "2019年06月六级听力第1套.mp3",
+    "audio_src": "/api/audio/2019年06月六级听力第1套.mp3",
+    "download_url": "/api/audio/2019年06月六级听力第1套.mp3?download=1",
+    "audio_bytes": 26435533,
+    "duration_sec": 1652.19,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2019-06-set1",
+    "slice_paper_ids": [
+      "2019-06-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2019-06-set2",
+    "year": 2019,
+    "month": 6,
+    "set": 2,
+    "title_zh": "2019年6月 六级 第2套 · 完整听力",
+    "audio_file": "2019年06月六级听力第2套.mp3",
+    "audio_src": "/api/audio/2019年06月六级听力第2套.mp3",
+    "download_url": "/api/audio/2019年06月六级听力第2套.mp3?download=1",
+    "audio_bytes": 26737717,
+    "duration_sec": 1671.08,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2019-06-set2",
+    "slice_paper_ids": [
+      "2019-06-set2"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2018-12-set1",
+    "year": 2018,
+    "month": 12,
+    "set": 1,
+    "title_zh": "2018年12月 六级 第1套 · 完整听力",
+    "audio_file": "2018年12月六级听力第1套.mp3",
+    "audio_src": "/api/audio/2018年12月六级听力第1套.mp3",
+    "download_url": "/api/audio/2018年12月六级听力第1套.mp3?download=1",
+    "audio_bytes": 19393948,
+    "duration_sec": 1616.16,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2018-12-set1",
+    "slice_paper_ids": [
+      "2018-12-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2018-12-set2",
+    "year": 2018,
+    "month": 12,
+    "set": 2,
+    "title_zh": "2018年12月 六级 第2套 · 完整听力",
+    "audio_file": "2018年12月六级听力第2套.mp3",
+    "audio_src": "/api/audio/2018年12月六级听力第2套.mp3",
+    "download_url": "/api/audio/2018年12月六级听力第2套.mp3?download=1",
+    "audio_bytes": 25286949,
+    "duration_sec": 1580.43,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2018-12-set2",
+    "slice_paper_ids": [
+      "2018-12-set2"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2018-06-set1",
+    "year": 2018,
+    "month": 6,
+    "set": 1,
+    "title_zh": "2018年6月 六级 第1套 · 完整听力",
+    "audio_file": "2018年06月六级听力音频第1套.mp3",
+    "audio_src": "/api/audio/2018年06月六级听力音频第1套.mp3",
+    "download_url": "/api/audio/2018年06月六级听力音频第1套.mp3?download=1",
+    "audio_bytes": 19808668,
+    "duration_sec": 1649.07,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2018-06-set1",
+    "slice_paper_ids": [
+      "2018-06-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2018-06-set2",
+    "year": 2018,
+    "month": 6,
+    "set": 2,
+    "title_zh": "2018年6月 六级 第2套 · 完整听力",
+    "audio_file": "2018年06月六级听力音频第2套.mp3",
+    "audio_src": "/api/audio/2018年06月六级听力音频第2套.mp3",
+    "download_url": "/api/audio/2018年06月六级听力音频第2套.mp3?download=1",
+    "audio_bytes": 26426475,
+    "duration_sec": 1649.8,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2018-06-set2",
+    "slice_paper_ids": [
+      "2018-06-set2"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2017-12-set1",
+    "year": 2017,
+    "month": 12,
+    "set": 1,
+    "title_zh": "2017年12月 六级 第1套 · 完整听力",
+    "audio_file": "2017年12月六级听力第1套.mp3",
+    "audio_src": "/api/audio/2017年12月六级听力第1套.mp3",
+    "download_url": "/api/audio/2017年12月六级听力第1套.mp3?download=1",
+    "audio_bytes": 19220504,
+    "duration_sec": 1599.62,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2017-12-set1",
+    "slice_paper_ids": [
+      "2017-12-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2017-12-set2",
+    "year": 2017,
+    "month": 12,
+    "set": 2,
+    "title_zh": "2017年12月 六级 第2套 · 完整听力",
+    "audio_file": "2017年12月六级听力第2套.mp3",
+    "audio_src": "/api/audio/2017年12月六级听力第2套.mp3",
+    "download_url": "/api/audio/2017年12月六级听力第2套.mp3?download=1",
+    "audio_bytes": 26012108,
+    "duration_sec": 1623.08,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2017-12-set2",
+    "slice_paper_ids": [
+      "2017-12-set2"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2017-06-set1",
+    "year": 2017,
+    "month": 6,
+    "set": 1,
+    "title_zh": "2017年6月 六级 第1套 · 完整听力",
+    "audio_file": "2017年06月六级听力第1套.mp3",
+    "audio_src": "/api/audio/2017年06月六级听力第1套.mp3",
+    "download_url": "/api/audio/2017年06月六级听力第1套.mp3?download=1",
+    "audio_bytes": 19293414,
+    "duration_sec": 1605.04,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2017-06-set1",
+    "slice_paper_ids": [
+      "2017-06-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2017-06-set2",
+    "year": 2017,
+    "month": 6,
+    "set": 2,
+    "title_zh": "2017年6月 六级 第2套 · 完整听力",
+    "audio_file": "2017年06月六级听力第2套.mp3",
+    "audio_src": "/api/audio/2017年06月六级听力第2套.mp3",
+    "download_url": "/api/audio/2017年06月六级听力第2套.mp3?download=1",
+    "audio_bytes": 26842752,
+    "duration_sec": 1672.36,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2017-06-set2",
+    "slice_paper_ids": [
+      "2017-06-set2"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2016-12-set1",
+    "year": 2016,
+    "month": 12,
+    "set": 1,
+    "title_zh": "2016年12月 六级 第1套 · 完整听力",
+    "audio_file": "2016年12月六级听力第1套.mp3",
+    "audio_src": "/api/audio/2016年12月六级听力第1套.mp3",
+    "download_url": "/api/audio/2016年12月六级听力第1套.mp3?download=1",
+    "audio_bytes": 25868969,
+    "duration_sec": 1616.38,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2016-12-set1",
+    "slice_paper_ids": [
+      "2016-12-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2016-12-set2",
+    "year": 2016,
+    "month": 12,
+    "set": 2,
+    "title_zh": "2016年12月 六级 第2套 · 完整听力",
+    "audio_file": "2016年12月六级听力第2套.mp3",
+    "audio_src": "/api/audio/2016年12月六级听力第2套.mp3",
+    "download_url": "/api/audio/2016年12月六级听力第2套.mp3?download=1",
+    "audio_bytes": 20208379,
+    "duration_sec": 1683.46,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2016-12-set2",
+    "slice_paper_ids": [
+      "2016-12-set2"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2016-06-set1",
+    "year": 2016,
+    "month": 6,
+    "set": 1,
+    "title_zh": "2016年6月 六级 第1套 · 完整听力",
+    "audio_file": "2016年06月六级听力第1套.mp3",
+    "audio_src": "/api/audio/2016年06月六级听力第1套.mp3",
+    "download_url": "/api/audio/2016年06月六级听力第1套.mp3?download=1",
+    "audio_bytes": 25225426,
+    "duration_sec": 1576.57,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2016-06-set1",
+    "slice_paper_ids": [
+      "2016-06-set1"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  },
+  {
+    "id": "2016-06-set2",
+    "year": 2016,
+    "month": 6,
+    "set": 2,
+    "title_zh": "2016年6月 六级 第2套 · 完整听力",
+    "audio_file": "2016年06月六级听力第2套.mp3",
+    "audio_src": "/api/audio/2016年06月六级听力第2套.mp3",
+    "download_url": "/api/audio/2016年06月六级听力第2套.mp3?download=1",
+    "audio_bytes": 26349318,
+    "duration_sec": 1646.81,
+    "question_count": 25,
+    "questions_source": "site",
+    "question_paper_ref": "2016-06-set2",
+    "slice_paper_ids": [
+      "2016-06-set2"
+    ],
+    "notes": "已录入题库，待第二批人工抽听对齐后发布。",
+    "published": false
+  }
+]

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from backend.app.database import init_db
-from backend.app.routers import exams, audio, vocab, progress, dict as dict_router, auth, admin
+from backend.app.routers import exams, audio, vocab, progress, dict as dict_router, auth, admin, full_papers
 
 app = FastAPI(
     title="SixSense API",
@@ -22,6 +22,7 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(admin.router)
 app.include_router(exams.router)
+app.include_router(full_papers.router)
 app.include_router(audio.router)
 app.include_router(vocab.router)
 app.include_router(progress.router)
