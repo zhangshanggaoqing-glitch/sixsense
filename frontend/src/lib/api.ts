@@ -201,6 +201,9 @@ export interface StatsData {
   vocab_count: number;
   dictation_count: number;
   medals?: string[];
+  daily_history?: Record<string, number>;
+  today_punched?: boolean;
+  today_active_seconds?: number;
 }
 
 export interface HeartbeatResponse {
@@ -349,6 +352,27 @@ export const api = {
   async getStats(): Promise<StatsData> {
     const res = await authFetch(`${API_BASE}/progress/stats`);
     if (!res.ok) throw new Error("Failed to fetch stats");
+    return res.json();
+  },
+
+  async punch(): Promise<{
+    ok: boolean;
+    message: string;
+    today_active_seconds?: number;
+    today_minutes?: number;
+    streak_days?: number;
+    today_punched?: boolean;
+    medals?: string[];
+    new_medals?: string[];
+  }> {
+    const res = await authFetch(`${API_BASE}/progress/punch`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || "打卡请求失败");
+    }
     return res.json();
   },
 

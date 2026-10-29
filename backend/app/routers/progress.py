@@ -314,6 +314,25 @@ def get_stats(current_user: dict = Depends(get_current_user_optional)):
     week_rows = cursor.fetchall()
     this_week_seconds = sum(int(r["value_json"]) for r in week_rows if r["value_json"] and r["value_json"].isdigit())
 
+    # Fetch full daily history for user heatmap & calendar
+    prefix = f"{user_id}:daily_active_"
+    cursor.execute("SELECT key, value_json FROM user_state WHERE key LIKE ?", (f"{prefix}%",))
+    history_rows = cursor.fetchall()
+    daily_history = {}
+    for hr in history_rows:
+        k = hr["key"]
+        v = hr["value_json"]
+        date_part = k[len(prefix):]
+        if v and v.isdigit():
+            daily_history[date_part] = round(int(v) / 60.0, 1)
+    daily_history[today_str] = round(today_active / 60.0, 1)
+
+    # Check punch status for today
+    punch_key = f"{user_id}:punched_{today_str}"
+    cursor.execute("SELECT value_json FROM user_state WHERE key = ?", (punch_key,))
+    punched_row = cursor.fetchone()
+    today_punched = bool(punched_row or today_active >= 60)
+
     # Streak calculation
     streak_days = calculate_streak(cursor, user_id, today_active, cst_now)
 
@@ -333,5 +352,63 @@ def get_stats(current_user: dict = Depends(get_current_user_optional)):
         "streak_days": streak_days,
         "vocab_count": vocab_count,
         "dictation_count": dict_count,
-        "medals": all_medals
+        "medals": all_medals,
+        "daily_history": daily_history,
+        "today_punched": today_punched,
+        "today_active_seconds": today_active
+    }
+
+@router.post("/punch")
+def punch_in(current_user: dict = Depends(get_current_user_optional)):
+    """
+    打卡操作（时区：Asia/Shanghai）。
+    校验今日有效精听时长：>= 60 秒方可打卡。
+    打卡成功后记录 punched 标记，并更新连续天数及勋章。
+    """
+    conn = get_connection()
+    cursor = conn.cursor()
+    cst_now = get_cst_now()
+    today_str = cst_now.strftime("%Y-%m-%d")
+    user_id = current_user["id"]
+    now_ts = time.time()
+
+    active_key = f"{user_id}:daily_active_{today_str}"
+    cursor.execute("SELECT value_json FROM user_state WHERE key = ?", (active_key,))
+    row = cursor.fetchone()
+    today_active = int(row["value_json"]) if row and row["value_json"] and row["value_json"].isdigit() else 0
+
+    if today_active < 60:
+        conn.close()
+        return {
+            "ok": False,
+            "message": f"今日有效精听未满 1 分钟（当前 {round(today_active / 60.0, 1)} 分钟），请先听完一段真题再来打卡",
+            "today_active_seconds": today_active,
+            "today_minutes": round(today_active / 60.0, 1),
+            "min_seconds": 60
+        }
+
+    # Record punch
+    punch_key = f"{user_id}:punched_{today_str}"
+    cursor.execute("""
+        INSERT INTO user_state (key, value_json, updated_at)
+        VALUES (?, ?, ?)
+        ON CONFLICT(key) DO UPDATE SET value_json = excluded.value_json, updated_at = excluded.updated_at;
+    """, (punch_key, str(now_ts), now_ts))
+
+    # Recalculate streak and medals
+    streak_days = calculate_streak(cursor, user_id, today_active, cst_now)
+    all_medals, new_medals = evaluate_medals(cursor, user_id, streak_days, completed_sentence=False)
+
+    conn.commit()
+    conn.close()
+
+    return {
+        "ok": True,
+        "message": "打卡成功！",
+        "today_active_seconds": today_active,
+        "today_minutes": round(today_active / 60.0, 1),
+        "streak_days": streak_days,
+        "today_punched": True,
+        "medals": all_medals,
+        "new_medals": new_medals
     }

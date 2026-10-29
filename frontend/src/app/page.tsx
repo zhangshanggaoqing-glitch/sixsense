@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Flame, Headphones, Clock, Layers, Calendar, User as UserIcon, LogIn, Play, Download, FileText } from "lucide-react";
+import { ArrowRight, BookOpen, Headphones, Clock, Layers, Calendar, User as UserIcon, LogIn, Play, Download, FileText } from "lucide-react";
 import { api, ResumeState, Subpart, ExamItem, StatsData, FullPaperItem } from "@/lib/api";
 import { formatExamTitleZh, formatSubpartTitleZh } from "@/lib/formatters";
 import { useAuth } from "@/hooks/useAuth";
+import { CheckinDataPanel } from "@/components/checkin/CheckinDataPanel";
 
 export default function HomePage() {
   const { user, isLoggedIn, logout } = useAuth();
@@ -95,13 +96,6 @@ export default function HomePage() {
     { id: "sec-c", suffix: "sec-c", title: "第三部分：讲座与报道（第16–25题）", count: "3 篇 · 10 题" },
   ];
 
-  const MEDAL_NAMES: Record<string, string> = {
-    first_listen: "首听",
-    streak_3: "连续3天",
-    streak_7: "连续7天",
-  };
-  const earnedMedals = (stats?.medals || []).filter((m) => MEDAL_NAMES[m]);
-
   const hasProgress = Boolean(
     resume && (resume.sentence_index > 0 || resume.has_progress) && !resume.is_completed
   );
@@ -162,41 +156,8 @@ export default function HomePage() {
 
       {/* Main Container */}
       <main className="w-full max-w-4xl mx-auto py-5 sm:py-8 flex flex-col gap-6 sm:gap-8">
-        {/* Quick Metrics Bar: Smooth horizontal scrollable on mobile */}
-        <div className="flex items-center justify-between pb-3 border-b border-black/[0.04] dark:border-white/[0.06] overflow-x-auto no-scrollbar gap-6">
-          <div className="flex items-center gap-6 sm:gap-8">
-            <div className="shrink-0">
-              <span className="text-[11px] text-[#86868b]">今日精听</span>
-              <p className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
-                {stats !== null ? `${stats.today_minutes} 分钟` : "—"}
-              </p>
-            </div>
-            <div className="shrink-0">
-              <span className="text-[11px] text-[#86868b]">本周累计</span>
-              <p className="text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
-                {stats !== null ? `${stats.this_week_minutes} 分钟` : "—"}
-              </p>
-            </div>
-            <div className="shrink-0">
-              <span className="text-[11px] text-[#86868b]">连续天数</span>
-              <p className="text-sm font-semibold text-[#ff9500] flex items-center gap-1">
-                <Flame className="w-3.5 h-3.5 fill-[#ff9500]" /> {stats !== null ? `${stats.streak_days} 天` : "—"}
-              </p>
-            </div>
-          </div>
-
-          {/* Silent Medals: Weak text display, unlit medals not shown */}
-          {earnedMedals.length > 0 && (
-            <div className="hidden sm:flex items-center gap-1.5 text-[11px] text-[#86868b] dark:text-[#a1a1a6] shrink-0">
-              <span>勋章：</span>
-              {earnedMedals.map((m) => (
-                <span key={m} className="px-2 py-0.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] font-medium text-[#1d1d1f] dark:text-[#f5f5f7]">
-                  {MEDAL_NAMES[m]}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
+        {/* Apple Minimalist Check-in & Listening Data Panel */}
+        <CheckinDataPanel stats={stats} onStatsUpdate={setStats} />
 
         {/* Hero Card: Primary Call to Action 「继续第 N 句」 / 「先听一句」 */}
         <div className="p-5 sm:p-7 bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] flex flex-col sm:flex-row sm:items-center justify-between gap-5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all">

@@ -26,6 +26,13 @@ import { QuestionsModal } from "@/components/studio/QuestionsModal";
 import { QuickLookupModal } from "@/components/studio/QuickLookupModal";
 import { ShareCardModal } from "@/components/studio/ShareCardModal";
 import { ExamSelectorSheet } from "@/components/studio/ExamSelectorSheet";
+import { ReturnHomePromptModal } from "@/components/checkin/ReturnHomePromptModal";
+
+const PUNCH_PROMPT_CONFIG = {
+  MIN_SESSION_SECONDS: 180, // 3 minutes minimum session listening
+  MIN_PROGRESS_RATIO: 0.5,  // 50% sentences completed in current subpart
+  COOLDOWN_MINUTES: 30,     // 30 min cooldown between auto-prompts
+};
 
 function StudioContent() {
   const router = useRouter();
@@ -53,7 +60,8 @@ function StudioContent() {
   const [todayMinutes, setTodayMinutes] = useState(0.0);
   const [streakDays, setStreakDays] = useState(0);
   const [isPunchCardOpen, setIsPunchCardOpen] = useState(false);
-  const [showDailyPunchPrompt, setShowDailyPunchPrompt] = useState(false);
+  const [isReturnHomePromptOpen, setIsReturnHomePromptOpen] = useState(false);
+  const [returnHomePromptData, setReturnHomePromptData] = useState({ sessionMinutes: 0, completedRatio: 0 });
   const [medalToast, setMedalToast] = useState<string | null>(null);
 
   // Playback Pace: pause_each (说一句停一句，默认) vs continuous (连贯播放)
@@ -96,6 +104,8 @@ function StudioContent() {
   const pendingActiveSecondsRef = useRef(0);
   const pendingCompletedSentenceRef = useRef(false);
   const lastTickTimeRef = useRef<number | null>(null);
+  const sessionActiveSecondsRef = useRef(0);
+  const maxSentenceIndexRef = useRef(0);
 
   // 1. Check first-time entry for keyboard shortcut tip
   useEffect(() => {
@@ -216,6 +226,7 @@ function StudioContent() {
       const elapsed = Math.floor((now - lastTickTimeRef.current) / 1000);
       if (elapsed > 0) {
         pendingActiveSecondsRef.current += elapsed;
+        sessionActiveSecondsRef.current += elapsed;
         lastTickTimeRef.current = now;
       }
     }
@@ -253,31 +264,18 @@ function StudioContent() {
               }
             }
           }
-
-          // Trigger B: First time today reaching >= 60s
-          if (res.today_active_seconds >= 60) {
-            const nowD = new Date();
-            const utc = nowD.getTime() + nowD.getTimezoneOffset() * 60000;
-            const cst = new Date(utc + 3600000 * 8);
-            const todayStr = `${cst.getFullYear()}-${String(cst.getMonth() + 1).padStart(2, "0")}-${String(cst.getDate()).padStart(2, "0")}`;
-            try {
-              const promptedDate = localStorage.getItem("stone_punch_prompt_date");
-              if (promptedDate !== todayStr) {
-                localStorage.setItem("stone_punch_prompt_date", todayStr);
-                setShowDailyPunchPrompt(true);
-              }
-            } catch {}
-          }
         }
       });
     }
   }, [exam]);
 
   const handleSentenceChange = useCallback((newIdx: number) => {
+    maxSentenceIndexRef.current = Math.max(maxSentenceIndexRef.current, newIdx);
     persistResumeRef.current(newIdx, false);
   }, []);
 
   const handleSentenceComplete = useCallback((idx: number) => {
+    maxSentenceIndexRef.current = Math.max(maxSentenceIndexRef.current, idx);
     setHasCompletedSentence(true);
     pendingCompletedSentenceRef.current = true;
     flushHeartbeat(false);
@@ -366,6 +364,7 @@ function StudioContent() {
         const delta = Math.floor((now - lastTickTimeRef.current) / 1000);
         if (delta >= 1) {
           pendingActiveSecondsRef.current += delta;
+          sessionActiveSecondsRef.current += delta;
           lastTickTimeRef.current = now;
         }
       }
@@ -509,6 +508,85 @@ function StudioContent() {
     /conversation/i.test(currentSubpart?.title || "")
   );
 
+  const handleBackToHome = () => {
+    flushHeartbeat(true);
+
+    const nowD = new Date();
+    const utc = nowD.getTime() + nowD.getTimezoneOffset() * 60000;
+    const cst = new Date(utc + 3600000 * 8);
+    const todayStr = `${cst.getFullYear()}-${String(cst.getMonth() + 1).padStart(2, "0")}-${String(cst.getDate()).padStart(2, "0")}`;
+
+    // 1. If already punched today, silent return
+    const punchedTodayDate = localStorage.getItem("stone_today_punched_date");
+    if (punchedTodayDate === todayStr) {
+      router.push("/");
+      return;
+    }
+
+    // 2. Cooldown check: 30 minutes since last auto-prompt
+    const lastPromptTs = localStorage.getItem("stone_last_punch_prompt_ts");
+    if (lastPromptTs) {
+      const elapsedMs = Date.now() - Number(lastPromptTs);
+      if (elapsedMs < PUNCH_PROMPT_CONFIG.COOLDOWN_MINUTES * 60 * 1000) {
+        router.push("/");
+        return;
+      }
+    }
+
+    // 3. Check if session meets serious study criteria
+    const sessionSec = sessionActiveSecondsRef.current;
+    const totalSentencesCount = sentences.length;
+    const highestSentence = Math.max(maxSentenceIndexRef.current, player.currentIndex);
+    const currentProgressRatio = totalSentencesCount > 0 ? (highestSentence + 1) / totalSentencesCount : 0;
+
+    const isSeriousSession =
+      sessionSec >= PUNCH_PROMPT_CONFIG.MIN_SESSION_SECONDS ||
+      currentProgressRatio >= PUNCH_PROMPT_CONFIG.MIN_PROGRESS_RATIO;
+
+    if (!isSeriousSession) {
+      // Under threshold: silent return to home (零打扰)
+      router.push("/");
+      return;
+    }
+
+    // Reached estimate! Set cooldown timestamp and show lightweight prompt
+    try {
+      localStorage.setItem("stone_last_punch_prompt_ts", Date.now().toString());
+    } catch {}
+
+    setReturnHomePromptData({
+      sessionMinutes: sessionSec / 60.0,
+      completedRatio: currentProgressRatio,
+    });
+    setIsReturnHomePromptOpen(true);
+  };
+
+  const handleConfirmPunchFromPrompt = async () => {
+    setIsReturnHomePromptOpen(false);
+    try {
+      const res = await api.punch();
+      if (res.ok) {
+        const nowD = new Date();
+        const utc = nowD.getTime() + nowD.getTimezoneOffset() * 60000;
+        const cst = new Date(utc + 3600000 * 8);
+        const todayStr = `${cst.getFullYear()}-${String(cst.getMonth() + 1).padStart(2, "0")}-${String(cst.getDate()).padStart(2, "0")}`;
+        try {
+          localStorage.setItem("stone_today_punched_date", todayStr);
+        } catch {}
+        if (res.streak_days !== undefined) setStreakDays(res.streak_days);
+        if (res.today_minutes !== undefined) setTodayMinutes(res.today_minutes);
+      }
+    } catch (e) {
+      console.error("Punch error", e);
+    }
+    setIsPunchCardOpen(true);
+  };
+
+  const handleDismissPrompt = () => {
+    setIsReturnHomePromptOpen(false);
+    router.push("/");
+  };
+
   return (
     <div className="h-[100dvh] min-h-[100dvh] flex flex-col justify-between bg-[#f5f5f7] dark:bg-[#000000] text-[#1d1d1f] dark:text-[#f5f5f7] select-none overflow-hidden">
       {/* Top Header: 专注设计，移动端/桌面端完美适配 */}
@@ -517,13 +595,14 @@ function StudioContent() {
         <div className="flex items-center justify-between w-full sm:w-auto gap-2">
           {/* Left: 首页导航 + 分节下拉菜单 */}
           <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
-            <Link
-              href="/"
+            <button
+              type="button"
+              onClick={handleBackToHome}
               className="flex items-center gap-0.5 text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] p-1 -ml-1 rounded-full transition-colors active:scale-95"
             >
               <ChevronLeft className="w-4 h-4" />
               <span className="hidden sm:inline">首页</span>
-            </Link>
+            </button>
             <span className="text-black/10 dark:text-white/10 hidden sm:inline">·</span>
 
             {/* Apple-style Exam & Subpart Trigger Button */}
@@ -766,29 +845,14 @@ function StudioContent() {
         />
       </footer>
 
-      {/* Trigger B: First time today reaching >= 60s prompt */}
-      {showDailyPunchPrompt && (
-        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2.5 px-4 py-2 bg-white/95 dark:bg-[#1c1c1e]/95 backdrop-blur-xl border border-black/[0.08] dark:border-white/[0.12] rounded-full shadow-lg text-xs text-[#1d1d1f] dark:text-[#f5f5f7] animate-in fade-in slide-in-from-bottom-2 duration-200">
-          <span>今日已打卡 · 生成分享图</span>
-          <button
-            type="button"
-            onClick={() => {
-              setShowDailyPunchPrompt(false);
-              setIsPunchCardOpen(true);
-            }}
-            className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#1d1d1f] text-white dark:bg-[#f5f5f7] dark:text-[#1d1d1f] hover:opacity-90 transition-opacity"
-          >
-            生成
-          </button>
-          <button
-            type="button"
-            onClick={() => setShowDailyPunchPrompt(false)}
-            className="p-0.5 rounded-full text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] transition-colors"
-          >
-            <X className="w-3.5 h-3.5" />
-          </button>
-        </div>
-      )}
+      {/* Return Home Anti-disturbance Punch Prompt Sheet */}
+      <ReturnHomePromptModal
+        isOpen={isReturnHomePromptOpen}
+        onClose={handleDismissPrompt}
+        onConfirmPunch={handleConfirmPunchFromPrompt}
+        sessionMinutes={returnHomePromptData.sessionMinutes}
+        completedRatio={returnHomePromptData.completedRatio}
+      />
 
       {/* Silent Medal Toast */}
       {medalToast && (
