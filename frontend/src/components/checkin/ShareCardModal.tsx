@@ -370,7 +370,7 @@ export function ShareCardModal({
           ) : (
             <div className="w-full aspect-[3/4] max-h-[52vh] sm:max-h-[58vh] rounded-2xl bg-black/[0.04] dark:bg-white/[0.06] flex flex-col items-center justify-center gap-2 text-xs text-[#86868b]">
               <div className="w-6 h-6 border-2 border-[#0071e3] border-t-transparent rounded-full animate-spin" />
-              <span>正在渲染 Apple 极简打卡卡片…</span>
+              <span>正在加载，请等候</span>
             </div>
           )}
         </div>

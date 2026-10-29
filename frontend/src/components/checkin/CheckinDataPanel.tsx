@@ -281,7 +281,12 @@ export function CheckinDataPanel({ stats, onStatsUpdate }: CheckinDataPanelProps
                   : `需精听满 1 分钟方可打卡（当前 ${todayMinutes.toFixed(1)} 分钟）`
               }
             >
-              {isPunchedToday ? (
+              {isPunching ? (
+                <>
+                  <div className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                  <span>正在打卡…</span>
+                </>
+              ) : isPunchedToday ? (
                 <>
                   <Check className="w-3.5 h-3.5 text-[#34c759]" />
                   <span>已打卡 · 分享卡</span>
