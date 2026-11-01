@@ -2,13 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, BookOpen, Headphones, Clock, Layers, Calendar, User as UserIcon, LogIn, Play, Download, FileText } from "lucide-react";
 import { api, ResumeState, Subpart, ExamItem, StatsData, FullPaperItem } from "@/lib/api";
 import { formatExamTitleZh, formatSubpartTitleZh } from "@/lib/formatters";
 import { useAuth } from "@/hooks/useAuth";
 import { CheckinDataPanel } from "@/components/checkin/CheckinDataPanel";
+import { ServerMigrateNoticeModal, hasSeenMigrateNotice } from "@/components/common/ServerMigrateNoticeModal";
 
 export default function HomePage() {
+  const router = useRouter();
   const { user, isLoggedIn, logout } = useAuth();
   const [stats, setStats] = useState<StatsData | null>(null);
   const [resume, setResume] = useState<ResumeState | null>(null);
@@ -17,6 +20,13 @@ export default function HomePage() {
   const [selectedExamId, setSelectedExamId] = useState<string>("2026-06-set1");
   const [subparts, setSubparts] = useState<Subpart[]>([]);
   const [isLoadingSubparts, setIsLoadingSubparts] = useState(false);
+  const [showMigrateNotice, setShowMigrateNotice] = useState(false);
+
+  useEffect(() => {
+    if (!hasSeenMigrateNotice()) {
+      setShowMigrateNotice(true);
+    }
+  }, []);
 
   // Synchronously load cached stats & resume on client mount to prevent "flash of 0"
   useEffect(() => {
@@ -417,6 +427,16 @@ export default function HomePage() {
           </div>
         )}
       </main>
+
+      {/* Server Migration Notice Modal */}
+      <ServerMigrateNoticeModal
+        isOpen={showMigrateNotice}
+        onClose={() => setShowMigrateNotice(false)}
+        onGoRegister={() => {
+          setShowMigrateNotice(false);
+          router.push("/login?mode=register");
+        }}
+      />
     </div>
   );
 }

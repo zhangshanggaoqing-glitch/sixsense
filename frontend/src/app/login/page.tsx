@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Headphones, ArrowLeft, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { ServerMigrateNoticeModal, hasSeenMigrateNotice } from "@/components/common/ServerMigrateNoticeModal";
 
 function LoginForm() {
   const router = useRouter();
@@ -12,13 +13,30 @@ function LoginForm() {
   const redirectUrl = searchParams.get("redirect") || "/";
 
   const { login, register } = useAuth();
-  const [mode, setMode] = useState<"login" | "register">("login");
+  const initialMode =
+    searchParams.get("mode") === "register" || searchParams.get("tab") === "register"
+      ? "register"
+      : "login";
+  const [mode, setMode] = useState<"login" | "register">(initialMode);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
+  const [showMigrateNotice, setShowMigrateNotice] = useState(false);
+
+  useEffect(() => {
+    if (searchParams.get("mode") === "register" || searchParams.get("tab") === "register") {
+      setMode("register");
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (!hasSeenMigrateNotice()) {
+      setShowMigrateNotice(true);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,11 +45,11 @@ function LoginForm() {
 
     const cleanUser = username.trim();
     if (!cleanUser) {
-      setError("请输入用户名或邮箱");
+      setError("请输入账号或邮箱");
       return;
     }
     if (cleanUser.length < 2 || cleanUser.length > 30) {
-      setError("用户名长度需在 2 至 30 个字符之间");
+      setError("账号长度需在 2 至 30 个字符之间");
       return;
     }
     if (password.length < 6) {
@@ -130,14 +148,14 @@ function LoginForm() {
           <form onSubmit={handleSubmit} className="w-full flex flex-col gap-3.5 text-left">
             <div>
               <label className="block text-[11px] font-medium text-[#86868b] dark:text-[#a1a1a6] mb-1.5 px-1">
-                账号 / 用户名
+                账号
               </label>
               <input
                 type="text"
                 autoComplete="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="例如：stone 或常用邮箱"
+                placeholder="请输入账号或邮箱"
                 className="w-full h-11 px-3.5 text-sm bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.1] rounded-2xl focus:outline-none focus:border-[#0071e3] focus:ring-4 focus:ring-[#0071e3]/10 text-[#1d1d1f] dark:text-[#f5f5f7] transition-all"
               />
             </div>
@@ -216,10 +234,16 @@ function LoginForm() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="w-full max-w-md mx-auto text-center text-[11px] text-[#86868b]/60">
-        石头听力 · 极简专注 · 数据安全隔离
-      </footer>
+      {/* Server Migration Notice Modal */}
+      <ServerMigrateNoticeModal
+        isOpen={showMigrateNotice}
+        onClose={() => setShowMigrateNotice(false)}
+        onGoRegister={() => {
+          setShowMigrateNotice(false);
+          setMode("register");
+          setError(null);
+        }}
+      />
     </div>
   );
 }

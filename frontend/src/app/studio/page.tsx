@@ -27,6 +27,7 @@ import { QuickLookupModal } from "@/components/studio/QuickLookupModal";
 import { ShareCardModal } from "@/components/studio/ShareCardModal";
 import { ExamSelectorSheet } from "@/components/studio/ExamSelectorSheet";
 import { ReturnHomePromptModal } from "@/components/checkin/ReturnHomePromptModal";
+import { ServerMigrateNoticeModal, hasSeenMigrateNotice } from "@/components/common/ServerMigrateNoticeModal";
 
 const PUNCH_PROMPT_CONFIG = {
   MIN_SESSION_SECONDS: 180, // 3 minutes minimum session listening
@@ -36,7 +37,7 @@ const PUNCH_PROMPT_CONFIG = {
 
 function StudioContent() {
   const router = useRouter();
-  const { user, isLoggedIn, logout } = useAuth();
+  const { user, isLoggedIn, isLoading: isAuthLoading, logout } = useAuth();
   const searchParams = useSearchParams();
   const urlSubpartId = searchParams.get("subpart_id") || searchParams.get("subpartId");
   const urlExamId = searchParams.get("exam_id") || searchParams.get("examId") || searchParams.get("id") || "2026-06-set1";
@@ -55,6 +56,13 @@ function StudioContent() {
   const [hasCompletedSentence, setHasCompletedSentence] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [showMigrateNotice, setShowMigrateNotice] = useState(false);
+
+  useEffect(() => {
+    if (!isAuthLoading && !isLoggedIn && !hasSeenMigrateNotice()) {
+      setShowMigrateNotice(true);
+    }
+  }, [isAuthLoading, isLoggedIn]);
 
   // Retention & Punch Card states
   const [todayMinutes, setTodayMinutes] = useState(0.0);
@@ -476,6 +484,14 @@ function StudioContent() {
           <div className="w-7 h-7 border-2 border-[#0071e3] border-t-transparent rounded-full animate-spin" />
           <span className="text-sm font-medium text-[#86868b]">正在准备听力材料…</span>
         </div>
+        <ServerMigrateNoticeModal
+          isOpen={showMigrateNotice}
+          onClose={() => setShowMigrateNotice(false)}
+          onGoRegister={() => {
+            setShowMigrateNotice(false);
+            router.push("/login?mode=register");
+          }}
+        />
       </div>
     );
   }
@@ -493,6 +509,14 @@ function StudioContent() {
             点击重试
           </button>
         </div>
+        <ServerMigrateNoticeModal
+          isOpen={showMigrateNotice}
+          onClose={() => setShowMigrateNotice(false)}
+          onGoRegister={() => {
+            setShowMigrateNotice(false);
+            router.push("/login?mode=register");
+          }}
+        />
       </div>
     );
   }
@@ -907,6 +931,16 @@ function StudioContent() {
         onSelect={handleSelectExamAndSubpart}
         initialExams={allExams}
         initialSubparts={subparts}
+      />
+
+      {/* Server Migration Notice Modal for guest users */}
+      <ServerMigrateNoticeModal
+        isOpen={showMigrateNotice}
+        onClose={() => setShowMigrateNotice(false)}
+        onGoRegister={() => {
+          setShowMigrateNotice(false);
+          router.push("/login?mode=register");
+        }}
       />
     </div>
   );
