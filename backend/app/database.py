@@ -157,6 +157,89 @@ def init_db():
     );
     """)
 
+    # 11. Vocab Frequency (CET-6 listening frequency table)
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS vocab_frequency (
+        word TEXT PRIMARY KEY,
+        frequency INTEGER NOT NULL DEFAULT 1,
+        exam_count INTEGER NOT NULL DEFAULT 1,
+        phonetic TEXT DEFAULT '',
+        phonetic_uk TEXT DEFAULT '',
+        phonetic_us TEXT DEFAULT '',
+        pos TEXT DEFAULT '',
+        definition_zh TEXT DEFAULT '',
+        tags_json TEXT DEFAULT '[]',
+        examples_json TEXT DEFAULT '[]'
+    );
+    """)
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_vocab_freq_count ON vocab_frequency(frequency DESC);")
+
+    # 12. User Vocab Status (Track mastery: known / learning)
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS user_vocab_status (
+        user_id TEXT NOT NULL,
+        word TEXT NOT NULL,
+        status TEXT NOT NULL,
+        updated_at REAL NOT NULL,
+        PRIMARY KEY (user_id, word)
+    );
+    """)
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_user_vocab_status ON user_vocab_status(user_id, status);")
+
+    # 13. Vocab Distractors (Precomputed listening distractors for 4-choice quiz)
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS vocab_distractors (
+        word TEXT PRIMARY KEY,
+        distractors_json TEXT NOT NULL,
+        quality TEXT NOT NULL
+    );
+    """)
+
+    # 14. User Vocab SRS (FSRS-5 memory curve state)
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS user_vocab_srs (
+        user_id TEXT NOT NULL,
+        word TEXT NOT NULL,
+        state TEXT NOT NULL DEFAULT 'new',
+        stability REAL NOT NULL DEFAULT 0.0,
+        difficulty REAL NOT NULL DEFAULT 0.0,
+        reps INTEGER NOT NULL DEFAULT 0,
+        lapses INTEGER NOT NULL DEFAULT 0,
+        last_review REAL DEFAULT NULL,
+        due REAL NOT NULL DEFAULT 0.0,
+        rating INTEGER DEFAULT NULL,
+        quiz_fails INTEGER NOT NULL DEFAULT 0,
+        updated_at REAL NOT NULL,
+        PRIMARY KEY (user_id, word)
+    );
+    """)
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_user_srs_due ON user_vocab_srs(user_id, due ASC);")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_user_srs_state ON user_vocab_srs(user_id, state);")
+
+    # 15. User Vocab Settings (Daily new quota, autoplay, etc.)
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS user_vocab_settings (
+        user_id TEXT PRIMARY KEY,
+        daily_new_quota INTEGER NOT NULL DEFAULT 20,
+        autoplay_audio INTEGER NOT NULL DEFAULT 1,
+        algorithm_version TEXT NOT NULL DEFAULT 'FSRS-5.0.0',
+        updated_at REAL NOT NULL
+    );
+    """)
+
+    # 16. Vocab Telemetry Events (Minimal event logging)
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS vocab_events (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id TEXT NOT NULL,
+        event_name TEXT NOT NULL,
+        word TEXT DEFAULT '',
+        payload_json TEXT DEFAULT '{}',
+        created_at REAL NOT NULL
+    );
+    """)
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_vocab_events_user ON vocab_events(user_id, created_at DESC);")
+
     # Ensure vocabulary table has UK/US phonetic & audio fields, plus user_id
     cursor.execute("PRAGMA table_info(vocabulary);")
     vocab_cols = [r[1] for r in cursor.fetchall()]

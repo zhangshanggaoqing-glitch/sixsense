@@ -181,6 +181,85 @@ export interface VocabItem {
   created_at: number;
 }
 
+export interface FreqSentenceExample {
+  sentence_id: string;
+  exam_id: string;
+  audio_file: string;
+  start_time: number;
+  end_time: number;
+  english: string;
+  chinese: string;
+}
+
+export interface FreqVocabItem {
+  word: string;
+  frequency: number;
+  exam_count: number;
+  phonetic?: string;
+  phonetic_uk?: string;
+  phonetic_us?: string;
+  pos?: string;
+  definition_zh: string;
+  status: "new" | "learning" | "known";
+  example_count: number;
+  tags?: string[];
+  examples?: FreqSentenceExample[];
+  distractors?: string[];
+}
+
+export interface FreqVocabListResponse {
+  items: FreqVocabItem[];
+  total_count: number;
+  mastered_count: number;
+  remaining_count: number;
+  page: number;
+  limit: number;
+  has_more: boolean;
+}
+
+export interface VocabSettings {
+  daily_new_quota: number;
+  autoplay_audio: boolean;
+  algorithm_version: string;
+}
+
+export interface VocabDailySummary {
+  new_today: number;
+  new_quota: number;
+  review_total: number;
+  due_count: number;
+  mastered_count: number;
+  summary_text: string;
+}
+
+export interface StudySessionItem {
+  word: string;
+  is_review: boolean;
+  frequency: number;
+  exam_count: number;
+  phonetic?: string;
+  pos?: string;
+  definition_zh: string;
+  examples: FreqSentenceExample[];
+  distractors: string[];
+  srs: {
+    state: "new" | "learning" | "review" | "relearning";
+    stability: number;
+    difficulty: number;
+    reps: number;
+    lapses: number;
+    due: number;
+  };
+}
+
+export interface StudySessionResponse {
+  items: StudySessionItem[];
+  due_count: number;
+  new_count: number;
+  remaining_new_quota: number;
+  is_completed: boolean;
+}
+
 export interface ResumeState {
   exam_id: string;
   section_id?: string;
@@ -394,6 +473,110 @@ export const api = {
 
   async deleteVocabulary(id: string): Promise<void> {
     await authFetch(`${API_BASE}/vocab/${id}`, { method: "DELETE" });
+  },
+
+  async getFreqVocabulary(
+    tab: "unmastered" | "mastered" | "all" = "unmastered",
+    page = 1,
+    limit = 30,
+    q?: string
+  ): Promise<FreqVocabListResponse> {
+    const params = new URLSearchParams();
+    params.set("tab", tab);
+    params.set("page", String(page));
+    params.set("limit", String(limit));
+    if (q) params.set("q", q);
+    const res = await authFetch(`${API_BASE}/vocab/freq?${params.toString()}`);
+    if (!res.ok) throw new Error("Failed to fetch frequency vocabulary");
+    return res.json();
+  },
+
+  async getFreqWordDetail(word: string): Promise<FreqVocabItem> {
+    const res = await authFetch(`${API_BASE}/vocab/freq/${encodeURIComponent(word)}`);
+    if (!res.ok) throw new Error("Failed to fetch word details");
+    return res.json();
+  },
+
+  async updateFreqStatus(
+    word: string,
+    status: "known" | "learning" | "new"
+  ): Promise<{ status: string; word: string; new_status: string }> {
+    const res = await authFetch(`${API_BASE}/vocab/freq/status`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ word, status }),
+    });
+    if (!res.ok) throw new Error("Failed to update status");
+    return res.json();
+  },
+
+  async syncFreqStatus(
+    items: Array<{ word: string; status: string; updated_at?: number }>
+  ): Promise<{ status: string; synced_count: number }> {
+    const res = await authFetch(`${API_BASE}/vocab/freq/sync`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items }),
+    });
+    if (!res.ok) throw new Error("Failed to sync status");
+    return res.json();
+  },
+
+  async getVocabSettings(): Promise<VocabSettings> {
+    const res = await authFetch(`${API_BASE}/vocab/settings`);
+    if (!res.ok) return { daily_new_quota: 20, autoplay_audio: true, algorithm_version: "FSRS-5.0.0" };
+    return res.json();
+  },
+
+  async saveVocabSettings(
+    daily_new_quota?: number,
+    autoplay_audio?: boolean
+  ): Promise<{ status: string; daily_new_quota: number; autoplay_audio: boolean }> {
+    const res = await authFetch(`${API_BASE}/vocab/settings`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ daily_new_quota, autoplay_audio }),
+    });
+    if (!res.ok) throw new Error("Failed to save vocab settings");
+    return res.json();
+  },
+
+  async getVocabSummary(): Promise<VocabDailySummary> {
+    const res = await authFetch(`${API_BASE}/vocab/summary`);
+    if (!res.ok) throw new Error("Failed to fetch daily summary");
+    return res.json();
+  },
+
+  async getVocabStudySession(): Promise<StudySessionResponse> {
+    const res = await authFetch(`${API_BASE}/vocab/session`);
+    if (!res.ok) throw new Error("Failed to fetch study session");
+    return res.json();
+  },
+
+  async rateVocabCard(
+    word: string,
+    rating: 1 | 2 | 3,
+    quiz_passed?: boolean,
+    listen_count = 1
+  ): Promise<{ status: string; card: Record<string, unknown> }> {
+    const res = await authFetch(`${API_BASE}/vocab/card/rate`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ word, rating, quiz_passed, listen_count }),
+    });
+    if (!res.ok) throw new Error("Failed to rate card");
+    return res.json();
+  },
+
+  async logVocabEvent(event_name: string, word = "", payload: Record<string, unknown> = {}): Promise<void> {
+    try {
+      await authFetch(`${API_BASE}/vocab/events`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ event_name, word, payload }),
+        keepalive: true,
+      });
+    } catch {}
   },
 
   async lookupWord(word: string): Promise<WordLookupResult> {

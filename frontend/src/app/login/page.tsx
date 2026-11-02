@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Headphones, ArrowLeft, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { api } from "@/lib/api";
 import { ServerMigrateNoticeModal, hasSeenMigrateNotice } from "@/components/common/ServerMigrateNoticeModal";
 
 function LoginForm() {
@@ -70,6 +71,22 @@ function LoginForm() {
         await register(cleanUser, password);
         setSuccessMsg("注册成功，已同步云端生词本…");
       }
+
+      // Sync guest frequency vocabulary mastery records
+      try {
+        const raw = localStorage.getItem("stone_vocab_mastery_v1");
+        if (raw) {
+          const map = JSON.parse(raw);
+          const items = Object.entries(map).map(([word, status]) => ({
+            word,
+            status: status as string,
+          }));
+          if (items.length > 0) {
+            await api.syncFreqStatus(items).catch(() => null);
+          }
+        }
+      } catch {}
+
       setTimeout(() => {
         router.push(redirectUrl);
       }, 600);
