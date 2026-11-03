@@ -65,17 +65,17 @@
   },
   "children": {
     "distractors": [
-      "childhood",
       "chinese",
-      "culture"
+      "culture",
+      "couldn"
     ],
     "quality": "high"
   },
   "study": {
     "distractors": [
-      "studies",
       "stuff",
-      "state"
+      "state",
+      "story"
     ],
     "quality": "high"
   },
@@ -129,9 +129,9 @@
   },
   "take": {
     "distractors": [
+      "taken",
       "lake",
-      "tasks",
-      "talked"
+      "tasks"
     ],
     "quality": "high"
   },
@@ -290,8 +290,8 @@
   "come": {
     "distractors": [
       "came",
-      "home",
-      "income"
+      "comet",
+      "home"
     ],
     "quality": "high"
   },
@@ -417,9 +417,9 @@
   },
   "company": {
     "distractors": [
-      "companies",
       "compound",
-      "component"
+      "combined",
+      "complain"
     ],
     "quality": "high"
   },
@@ -482,7 +482,7 @@
   "fact": {
     "distractors": [
       "fast",
-      "face",
+      "faced",
       "act"
     ],
     "quality": "high"
@@ -498,8 +498,8 @@
   "team": {
     "distractors": [
       "steam",
-      "stream",
-      "dream"
+      "tea",
+      "stream"
     ],
     "quality": "high"
   },
@@ -514,8 +514,8 @@
   "parents": {
     "distractors": [
       "patients",
-      "payments",
-      "agents"
+      "parts",
+      "payments"
     ],
     "quality": "high"
   },
@@ -553,9 +553,9 @@
   },
   "scientists": {
     "distractors": [
-      "scientific",
-      "sciences",
-      "economists"
+      "economists",
+      "ecologists",
+      "societies"
     ],
     "quality": "high"
   },
@@ -579,7 +579,7 @@
     "distractors": [
       "true",
       "entry",
-      "tree"
+      "toy"
     ],
     "quality": "high"
   },
@@ -641,17 +641,17 @@
   },
   "countries": {
     "distractors": [
-      "country",
       "centuries",
-      "control"
+      "control",
+      "communities"
     ],
     "quality": "high"
   },
   "idea": {
     "distractors": [
+      "ideal",
       "video",
-      "wider",
-      "india"
+      "wider"
     ],
     "quality": "high"
   },
@@ -665,17 +665,17 @@
   },
   "understand": {
     "distractors": [
-      "understood",
-      "underground",
-      "interesting"
+      "underlying",
+      "interesting",
+      "undemanding"
     ],
     "quality": "high"
   },
   "products": {
     "distractors": [
-      "produce",
       "projects",
-      "protect"
+      "protect",
+      "prospects"
     ],
     "quality": "high"
   },
@@ -706,8 +706,8 @@
   "studies": {
     "distractors": [
       "stories",
-      "study",
-      "states"
+      "states",
+      "species"
     ],
     "quality": "high"
   },
@@ -715,15 +715,15 @@
     "distractors": [
       "fear",
       "fair",
-      "fur"
+      "farm"
     ],
     "quality": "high"
   },
   "men": {
     "distractors": [
+      "menu",
       "mean",
-      "man",
-      "women"
+      "man"
     ],
     "quality": "high"
   },
@@ -802,8 +802,8 @@
   "instead": {
     "distractors": [
       "installed",
-      "instance",
-      "instinct"
+      "instinct",
+      "inside"
     ],
     "quality": "high"
   },
@@ -833,17 +833,17 @@
   },
   "believe": {
     "distractors": [
-      "belief",
       "relieve",
-      "retrieve"
+      "retrieve",
+      "achieve"
     ],
     "quality": "high"
   },
   "comes": {
     "distractors": [
       "homes",
-      "incomes",
-      "coins"
+      "comet",
+      "incomes"
     ],
     "quality": "high"
   },
@@ -857,17 +857,17 @@
   },
   "memory": {
     "distractors": [
-      "memories",
       "members",
-      "gregory"
+      "gregory",
+      "minor"
     ],
     "quality": "high"
   },
   "control": {
     "distractors": [
-      "contrast",
-      "contract",
-      "contrary"
+      "central",
+      "country",
+      "context"
     ],
     "quality": "high"
   },
@@ -897,9 +897,9 @@
   },
   "technology": {
     "distractors": [
-      "technologies",
       "psychology",
-      "technically"
+      "recently",
+      "secondly"
     ],
     "quality": "high"
   },
@@ -913,9 +913,9 @@
   },
   "history": {
     "distractors": [
-      "historian",
       "story",
-      "memory"
+      "memory",
+      "visitors"
     ],
     "quality": "high"
   },
@@ -947,7 +947,7 @@
     "distractors": [
       "bad",
       "bed",
-      "bodies"
+      "today"
     ],
     "quality": "high"
   },
@@ -1002,8 +1002,8 @@
   "point": {
     "distractors": [
       "print",
-      "post",
-      "coins"
+      "poised",
+      "post"
     ],
     "quality": "high"
   },
@@ -1041,9 +1041,9 @@
   },
   "behavior": {
     "distractors": [
-      "behaviour",
-      "behave",
-      "senior"
+      "senior",
+      "behalf",
+      "heavier"
     ],
     "quality": "high"
   },
@@ -1067,7 +1067,7 @@
     "distractors": [
       "spent",
       "send",
-      "depend"
+      "speed"
     ],
     "quality": "high"
   },
@@ -1091,7 +1091,7 @@
     "distractors": [
       "order",
       "wonder",
-      "wider"
+      "oldest"
     ],
     "quality": "high"
   },
@@ -1105,9 +1105,9 @@
   },
   "second": {
     "distractors": [
+      "sections",
       "respond",
-      "sectors",
-      "record"
+      "sectors"
     ],
     "quality": "high"
   },
@@ -1185,9 +1185,9 @@
   },
   "times": {
     "distractors": [
+      "timber",
       "comes",
-      "tunes",
-      "tones"
+      "tunes"
     ],
     "quality": "high"
   },
@@ -1209,9 +1209,9 @@
   },
   "experience": {
     "distractors": [
-      "expertise",
       "expressions",
-      "expectancy"
+      "expectancy",
+      "patience"
     ],
     "quality": "high"
   },
@@ -1234,8 +1234,8 @@
   "stress": {
     "distractors": [
       "stores",
-      "actress",
-      "dress"
+      "stroke",
+      "strict"
     ],
     "quality": "high"
   },
@@ -1249,9 +1249,9 @@
   },
   "possible": {
     "distractors": [
+      "possibly",
       "impossible",
-      "sensible",
-      "accessible"
+      "sensible"
     ],
     "quality": "high"
   },
@@ -1425,9 +1425,9 @@
   },
   "seems": {
     "distractors": [
+      "sees",
       "seek",
-      "items",
-      "seed"
+      "items"
     ],
     "quality": "high"
   },
@@ -1579,15 +1579,15 @@
     "distractors": [
       "sort",
       "sport",
-      "shore"
+      "shoot"
     ],
     "quality": "high"
   },
   "benefits": {
     "distractors": [
       "beneath",
-      "beneficial",
-      "profits"
+      "profits",
+      "genetics"
     ],
     "quality": "high"
   },
@@ -1601,9 +1601,9 @@
   },
   "country": {
     "distractors": [
-      "countries",
-      "county",
-      "century"
+      "century",
+      "control",
+      "centre"
     ],
     "quality": "high"
   },
@@ -1618,16 +1618,16 @@
   "hours": {
     "distractors": [
       "pours",
-      "horse",
-      "house"
+      "houses",
+      "horse"
     ],
     "quality": "high"
   },
   "industry": {
     "distractors": [
-      "industrial",
       "indicated",
-      "indecision"
+      "indecision",
+      "country"
     ],
     "quality": "high"
   },
@@ -1650,8 +1650,8 @@
   "seem": {
     "distractors": [
       "seek",
-      "seed",
-      "esteem"
+      "sees",
+      "seed"
     ],
     "quality": "high"
   },
@@ -1681,9 +1681,9 @@
   },
   "interesting": {
     "distractors": [
-      "interacting",
-      "interpreting",
-      "intriguing"
+      "intriguing",
+      "introducing",
+      "increasing"
     ],
     "quality": "high"
   },
@@ -2033,9 +2033,9 @@
   },
   "increase": {
     "distractors": [
-      "incredibly",
       "inches",
-      "insurance"
+      "insurance",
+      "ingredient"
     ],
     "quality": "high"
   },
@@ -2081,9 +2081,9 @@
   },
   "companies": {
     "distractors": [
-      "company",
       "communities",
-      "comedies"
+      "comedies",
+      "components"
     ],
     "quality": "high"
   },
@@ -2146,8 +2146,8 @@
   "away": {
     "distractors": [
       "aware",
-      "award",
-      "awake"
+      "awake",
+      "subway"
     ],
     "quality": "high"
   },
@@ -2218,8 +2218,8 @@
   "published": {
     "distractors": [
       "polished",
-      "publicly",
-      "established"
+      "established",
+      "finished"
     ],
     "quality": "high"
   },
@@ -2250,8 +2250,8 @@
   "understanding": {
     "distractors": [
       "undemanding",
-      "underestimate",
-      "underground"
+      "interesting",
+      "devastating"
     ],
     "quality": "high"
   },
@@ -2273,7 +2273,7 @@
   },
   "office": {
     "distractors": [
-      "official",
+      "offered",
       "offense",
       "advice"
     ],
@@ -2337,9 +2337,9 @@
   },
   "participants": {
     "distractors": [
-      "particularly",
       "anticipate",
-      "applicants"
+      "applicants",
+      "apartments"
     ],
     "quality": "high"
   },
@@ -2347,7 +2347,7 @@
     "distractors": [
       "worst",
       "worried",
-      "worse"
+      "word"
     ],
     "quality": "high"
   },
@@ -2361,9 +2361,9 @@
   },
   "particularly": {
     "distractors": [
-      "participants",
       "articulate",
-      "practically"
+      "practically",
+      "physically"
     ],
     "quality": "high"
   },
@@ -2387,15 +2387,15 @@
     "distractors": [
       "wealthy",
       "unhealthy",
-      "healthier"
+      "heart"
     ],
     "quality": "high"
   },
   "college": {
     "distractors": [
-      "colleague",
-      "collect",
-      "collar"
+      "collar",
+      "close",
+      "challenge"
     ],
     "quality": "high"
   },
@@ -2417,9 +2417,9 @@
   },
   "shows": {
     "distractors": [
+      "shoes",
       "shops",
-      "shots",
-      "shores"
+      "shots"
     ],
     "quality": "high"
   },
@@ -2465,9 +2465,9 @@
   },
   "common": {
     "distractors": [
+      "comment",
       "commit",
-      "compound",
-      "commands"
+      "compound"
     ],
     "quality": "high"
   },
@@ -2499,7 +2499,7 @@
     "distractors": [
       "simulator",
       "simple",
-      "simulate"
+      "solar"
     ],
     "quality": "high"
   },
@@ -2570,8 +2570,8 @@
   "century": {
     "distractors": [
       "centre",
-      "centuries",
-      "country"
+      "country",
+      "contrary"
     ],
     "quality": "high"
   },
@@ -2617,9 +2617,9 @@
   },
   "climate": {
     "distractors": [
+      "clients",
       "ultimate",
-      "eliminate",
-      "cultivate"
+      "eliminate"
     ],
     "quality": "high"
   },
@@ -2689,9 +2689,9 @@
   },
   "financial": {
     "distractors": [
-      "finance",
       "initial",
-      "beneficial"
+      "beneficial",
+      "special"
     ],
     "quality": "high"
   },
@@ -2761,7 +2761,7 @@
   },
   "guess": {
     "distractors": [
-      "guys",
+      "guest",
       "dress",
       "success"
     ],
@@ -2769,9 +2769,9 @@
   },
   "scientific": {
     "distractors": [
-      "scientists",
       "specific",
-      "sciences"
+      "eccentric",
+      "identified"
     ],
     "quality": "high"
   },
@@ -2825,9 +2825,9 @@
   },
   "spending": {
     "distractors": [
+      "speeding",
       "speaking",
-      "depending",
-      "opening"
+      "depending"
     ],
     "quality": "high"
   },
@@ -2841,9 +2841,9 @@
   },
   "completely": {
     "distractors": [
-      "complimented",
-      "complain",
-      "computer"
+      "computer",
+      "competing",
+      "comprehend"
     ],
     "quality": "high"
   },
@@ -2889,9 +2889,9 @@
   },
   "society": {
     "distractors": [
-      "societies",
       "anxiety",
-      "variety"
+      "variety",
+      "safety"
     ],
     "quality": "high"
   },
@@ -2930,8 +2930,8 @@
   "create": {
     "distractors": [
       "rate",
-      "creator",
-      "relate"
+      "relate",
+      "croatia"
     ],
     "quality": "high"
   },
@@ -2939,7 +2939,7 @@
     "distractors": [
       "models",
       "modest",
-      "moderate"
+      "concern"
     ],
     "quality": "high"
   },
@@ -2953,9 +2953,9 @@
   },
   "close": {
     "distractors": [
+      "closer",
       "lose",
-      "clock",
-      "chose"
+      "clock"
     ],
     "quality": "high"
   },
@@ -2979,7 +2979,7 @@
     "distractors": [
       "melodies",
       "stories",
-      "memory"
+      "theories"
     ],
     "quality": "high"
   },
@@ -3033,17 +3033,17 @@
   },
   "several": {
     "distractors": [
+      "severely",
       "general",
-      "federal",
-      "central"
+      "federal"
     ],
     "quality": "high"
   },
   "theory": {
     "distractors": [
-      "theories",
       "therapy",
-      "gregory"
+      "gregory",
+      "theatre"
     ],
     "quality": "high"
   },
@@ -3075,7 +3075,7 @@
     "distractors": [
       "wrote",
       "white",
-      "written"
+      "elite"
     ],
     "quality": "high"
   },
@@ -3089,9 +3089,9 @@
   },
   "easily": {
     "distractors": [
-      "easy",
       "daily",
-      "readily"
+      "readily",
+      "heavily"
     ],
     "quality": "high"
   },
@@ -3105,9 +3105,9 @@
   },
   "advice": {
     "distractors": [
+      "advise",
       "advocate",
-      "advance",
-      "device"
+      "advance"
     ],
     "quality": "high"
   },
@@ -3171,7 +3171,7 @@
     "distractors": [
       "mature",
       "feature",
-      "capture"
+      "native"
     ],
     "quality": "high"
   },
@@ -3233,17 +3233,17 @@
   },
   "full": {
     "distractors": [
+      "fully",
       "fall",
-      "fill",
-      "fell"
+      "fill"
     ],
     "quality": "high"
   },
   "plan": {
     "distractors": [
       "plain",
-      "play",
-      "alan"
+      "alan",
+      "place"
     ],
     "quality": "high"
   },
@@ -3299,7 +3299,7 @@
     "distractors": [
       "nice",
       "mice",
-      "icy"
+      "voice"
     ],
     "quality": "high"
   },
@@ -3307,7 +3307,7 @@
     "distractors": [
       "fred",
       "tree",
-      "agree"
+      "freeze"
     ],
     "quality": "high"
   },
@@ -3315,15 +3315,15 @@
     "distractors": [
       "unhappy",
       "happen",
-      "happily"
+      "hope"
     ],
     "quality": "high"
   },
   "general": {
     "distractors": [
+      "generate",
       "several",
-      "central",
-      "federal"
+      "central"
     ],
     "quality": "high"
   },
@@ -3443,7 +3443,7 @@
     "distractors": [
       "arts",
       "parks",
-      "sports"
+      "parents"
     ],
     "quality": "high"
   },
@@ -3522,8 +3522,8 @@
   "easy": {
     "distractors": [
       "east",
-      "easily",
-      "least"
+      "least",
+      "ready"
     ],
     "quality": "high"
   },
@@ -3569,17 +3569,17 @@
   },
   "car": {
     "distractors": [
-      "core",
-      "cure",
-      "war"
+      "carry",
+      "cargo",
+      "cards"
     ],
     "quality": "high"
   },
   "shoes": {
     "distractors": [
-      "sees",
-      "shapes",
-      "stores"
+      "shows",
+      "shores",
+      "shops"
     ],
     "quality": "high"
   },
@@ -3601,9 +3601,9 @@
   },
   "imagine": {
     "distractors": [
-      "image",
       "magazine",
-      "machine"
+      "machine",
+      "examine"
     ],
     "quality": "high"
   },
@@ -3626,8 +3626,8 @@
   "support": {
     "distractors": [
       "sport",
-      "suppose",
-      "airport"
+      "airport",
+      "report"
     ],
     "quality": "high"
   },
@@ -3659,15 +3659,15 @@
     "distractors": [
       "sex",
       "size",
-      "sick"
+      "sixth"
     ],
     "quality": "high"
   },
   "activities": {
     "distractors": [
-      "activate",
-      "activist",
-      "abilities"
+      "actively",
+      "abilities",
+      "facilities"
     ],
     "quality": "high"
   },
@@ -3675,7 +3675,7 @@
     "distractors": [
       "differ",
       "suffer",
-      "safer"
+      "offend"
     ],
     "quality": "high"
   },
@@ -3715,7 +3715,7 @@
     "distractors": [
       "cynical",
       "radicals",
-      "chemistry"
+      "commercials"
     ],
     "quality": "high"
   },
@@ -3761,7 +3761,7 @@
   },
   "electronic": {
     "distractors": [
-      "electric",
+      "elements",
       "volcanic",
       "economic"
     ],
@@ -3819,7 +3819,7 @@
     "distractors": [
       "glass",
       "close",
-      "clues"
+      "claims"
     ],
     "quality": "high"
   },
@@ -3857,17 +3857,17 @@
   },
   "belief": {
     "distractors": [
-      "believe",
       "relief",
-      "brief"
+      "brief",
+      "behalf"
     ],
     "quality": "high"
   },
   "daily": {
     "distractors": [
       "baily",
-      "easily",
-      "family"
+      "dairy",
+      "easily"
     ],
     "quality": "high"
   },
@@ -3882,8 +3882,8 @@
   "worse": {
     "distractors": [
       "works",
-      "worst",
-      "horse"
+      "horse",
+      "worries"
     ],
     "quality": "high"
   },
@@ -3931,7 +3931,7 @@
     "distractors": [
       "haven",
       "happier",
-      "happy"
+      "open"
     ],
     "quality": "high"
   },
@@ -3970,24 +3970,24 @@
   "single": {
     "distractors": [
       "simple",
-      "kaggle",
-      "struggle"
+      "sinful",
+      "kaggle"
     ],
     "quality": "high"
   },
   "particular": {
     "distractors": [
-      "particles",
-      "participate",
-      "spectacular"
+      "spectacular",
+      "articulate",
+      "paradise"
     ],
     "quality": "high"
   },
   "present": {
     "distractors": [
-      "percent",
-      "represent",
-      "recent"
+      "prevent",
+      "presence",
+      "president"
     ],
     "quality": "high"
   },
@@ -4009,9 +4009,9 @@
   },
   "story": {
     "distractors": [
-      "store",
       "storm",
-      "history"
+      "history",
+      "stray"
     ],
     "quality": "high"
   },
@@ -4026,8 +4026,8 @@
   "increased": {
     "distractors": [
       "decreased",
-      "incredibly",
-      "incorporate"
+      "incorporate",
+      "included"
     ],
     "quality": "high"
   },
@@ -4065,9 +4065,9 @@
   },
   "influence": {
     "distractors": [
-      "influential",
       "incidence",
-      "difference"
+      "difference",
+      "confidence"
     ],
     "quality": "high"
   },
@@ -4075,7 +4075,7 @@
     "distractors": [
       "easier",
       "happier",
-      "earned"
+      "early"
     ],
     "quality": "high"
   },
@@ -4155,31 +4155,31 @@
     "distractors": [
       "extra",
       "external",
-      "extend"
+      "extent"
     ],
     "quality": "high"
   },
   "activity": {
     "distractors": [
+      "actively",
       "ability",
-      "creativity",
-      "utility"
+      "creativity"
     ],
     "quality": "high"
   },
   "vegetarian": {
     "distractors": [
-      "vegetables",
       "historian",
-      "centenarians"
+      "centenarians",
+      "canadian"
     ],
     "quality": "high"
   },
   "generally": {
     "distractors": [
+      "generate",
       "mentally",
-      "literally",
-      "eventually"
+      "literally"
     ],
     "quality": "high"
   },
@@ -4193,9 +4193,9 @@
   },
   "appear": {
     "distractors": [
+      "appeal",
       "fear",
-      "hear",
-      "clear"
+      "hear"
     ],
     "quality": "high"
   },
@@ -4209,9 +4209,9 @@
   },
   "atmosphere": {
     "distractors": [
-      "atmospheric",
       "philosophers",
-      "audience"
+      "audience",
+      "astronomers"
     ],
     "quality": "high"
   },
@@ -4249,9 +4249,9 @@
   },
   "store": {
     "distractors": [
-      "story",
       "stone",
-      "shore"
+      "shore",
+      "score"
     ],
     "quality": "high"
   },
@@ -4305,17 +4305,17 @@
   },
   "interview": {
     "distractors": [
-      "internet",
-      "intervenes",
-      "interpret"
+      "introduced",
+      "intriguing",
+      "intense"
     ],
     "quality": "high"
   },
   "associated": {
     "distractors": [
+      "assessed",
       "assistance",
-      "assigned",
-      "automated"
+      "assigned"
     ],
     "quality": "high"
   },
@@ -4323,7 +4323,7 @@
     "distractors": [
       "evolved",
       "invested",
-      "invited"
+      "invented"
     ],
     "quality": "high"
   },
@@ -4337,17 +4337,17 @@
   },
   "product": {
     "distractors": [
-      "produce",
       "protect",
-      "predict"
+      "predict",
+      "project"
     ],
     "quality": "high"
   },
   "service": {
     "distractors": [
-      "serve",
       "device",
-      "surface"
+      "surface",
+      "advice"
     ],
     "quality": "high"
   },
@@ -4377,9 +4377,9 @@
   },
   "ideas": {
     "distractors": [
+      "ideal",
       "areas",
-      "videos",
-      "deal"
+      "videos"
     ],
     "quality": "high"
   },
@@ -4409,9 +4409,9 @@
   },
   "sea": {
     "distractors": [
+      "seat",
       "shah",
-      "set",
-      "sex"
+      "set"
     ],
     "quality": "high"
   },
@@ -4609,9 +4609,9 @@
   },
   "organization": {
     "distractors": [
-      "organisations",
       "communication",
-      "globalization"
+      "globalization",
+      "generation"
     ],
     "quality": "high"
   },
@@ -4625,9 +4625,9 @@
   },
   "skin": {
     "distractors": [
+      "ski",
       "skill",
-      "soon",
-      "sun"
+      "soon"
     ],
     "quality": "high"
   },
@@ -4755,7 +4755,7 @@
     "distractors": [
       "profit",
       "pride",
-      "profile"
+      "promise"
     ],
     "quality": "high"
   },
@@ -4769,9 +4769,9 @@
   },
   "international": {
     "distractors": [
-      "interpersonal",
       "intentional",
-      "interactions"
+      "introduction",
+      "observational"
     ],
     "quality": "high"
   },
@@ -4785,9 +4785,9 @@
   },
   "interest": {
     "distractors": [
-      "internet",
-      "interact",
-      "intervene"
+      "intricate",
+      "intense",
+      "invest"
     ],
     "quality": "high"
   },
@@ -4841,9 +4841,9 @@
   },
   "aware": {
     "distractors": [
-      "award",
       "awake",
-      "unaware"
+      "unaware",
+      "share"
     ],
     "quality": "high"
   },
@@ -4851,7 +4851,7 @@
     "distractors": [
       "willingness",
       "wildlife",
-      "williams"
+      "followed"
     ],
     "quality": "high"
   },
@@ -4865,17 +4865,17 @@
   },
   "internet": {
     "distractors": [
-      "interest",
-      "interpret",
-      "interact"
+      "intent",
+      "intricate",
+      "intense"
     ],
     "quality": "high"
   },
   "speech": {
     "distractors": [
       "speak",
-      "space",
-      "spent"
+      "speed",
+      "space"
     ],
     "quality": "high"
   },
@@ -4963,7 +4963,7 @@
     "distractors": [
       "pacific",
       "scientific",
-      "specialist"
+      "spectrum"
     ],
     "quality": "high"
   },
@@ -5042,8 +5042,8 @@
   "claim": {
     "distractors": [
       "calm",
-      "aim",
-      "classic"
+      "class",
+      "aim"
     ],
     "quality": "high"
   },
@@ -5057,9 +5057,9 @@
   },
   "interested": {
     "distractors": [
-      "interviewed",
-      "internet",
-      "interpreter"
+      "introduced",
+      "intricate",
+      "invested"
     ],
     "quality": "high"
   },
@@ -5297,8 +5297,8 @@
   },
   "community": {
     "distractors": [
+      "comments",
       "commands",
-      "commute",
       "opportunity"
     ],
     "quality": "high"
@@ -5329,9 +5329,9 @@
   },
   "caused": {
     "distractors": [
+      "caught",
       "accused",
-      "classed",
-      "based"
+      "classed"
     ],
     "quality": "high"
   },
@@ -5361,9 +5361,9 @@
   },
   "european": {
     "distractors": [
-      "europa",
       "caribbean",
-      "frozen"
+      "frozen",
+      "broken"
     ],
     "quality": "high"
   },
@@ -5394,8 +5394,8 @@
   "clothes": {
     "distractors": [
       "clouds",
-      "close",
-      "coaches"
+      "closer",
+      "close"
     ],
     "quality": "high"
   },
@@ -5426,8 +5426,8 @@
   "stories": {
     "distractors": [
       "storage",
-      "store",
-      "series"
+      "series",
+      "studies"
     ],
     "quality": "high"
   },
@@ -5465,9 +5465,9 @@
   },
   "produce": {
     "distractors": [
-      "product",
       "protect",
-      "reduce"
+      "reduce",
+      "procedure"
     ],
     "quality": "high"
   },
@@ -5490,8 +5490,8 @@
   "native": {
     "distractors": [
       "negative",
-      "active",
-      "creative"
+      "nature",
+      "active"
     ],
     "quality": "high"
   },
@@ -5545,9 +5545,9 @@
   },
   "colleagues": {
     "distractors": [
-      "collected",
       "continues",
-      "challenges"
+      "challenges",
+      "villages"
     ],
     "quality": "high"
   },
@@ -5577,9 +5577,9 @@
   },
   "economic": {
     "distractors": [
-      "economist",
-      "economy",
-      "academic"
+      "academic",
+      "epidemic",
+      "ecologists"
     ],
     "quality": "high"
   },
@@ -5603,7 +5603,7 @@
     "distractors": [
       "lois",
       "less",
-      "boss"
+      "lost"
     ],
     "quality": "high"
   },
@@ -5713,9 +5713,9 @@
   },
   "guest": {
     "distractors": [
+      "guess",
       "rest",
-      "west",
-      "test"
+      "west"
     ],
     "quality": "high"
   },
@@ -5737,9 +5737,9 @@
   },
   "account": {
     "distractors": [
+      "accent",
       "amount",
-      "count",
-      "accident"
+      "count"
     ],
     "quality": "high"
   },
@@ -5762,8 +5762,8 @@
   "experienced": {
     "distractors": [
       "inexperienced",
-      "expertise",
-      "explained"
+      "explained",
+      "expressions"
     ],
     "quality": "high"
   },
@@ -5857,33 +5857,33 @@
   },
   "fully": {
     "distractors": [
+      "full",
       "fall",
-      "fill",
-      "fell"
+      "fill"
     ],
     "quality": "high"
   },
   "lies": {
     "distractors": [
       "ties",
-      "relies",
-      "onlies"
+      "lied",
+      "relies"
     ],
     "quality": "high"
   },
   "takes": {
     "distractors": [
       "taxes",
-      "teaches",
-      "talkers"
+      "taken",
+      "teaches"
     ],
     "quality": "high"
   },
   "studied": {
     "distractors": [
-      "studying",
       "stated",
-      "tried"
+      "tried",
+      "satisfied"
     ],
     "quality": "high"
   },
@@ -5907,7 +5907,7 @@
     "distractors": [
       "mass",
       "mess",
-      "mix"
+      "messy"
     ],
     "quality": "high"
   },
@@ -5929,9 +5929,9 @@
   },
   "complex": {
     "distractors": [
-      "complete",
-      "complain",
-      "compared"
+      "compared",
+      "computer",
+      "couple"
     ],
     "quality": "high"
   },
@@ -5947,7 +5947,7 @@
     "distractors": [
       "optimism",
       "opinions",
-      "optimum"
+      "portions"
     ],
     "quality": "high"
   },
@@ -6035,7 +6035,7 @@
     "distractors": [
       "stream",
       "steam",
-      "team"
+      "dress"
     ],
     "quality": "high"
   },
@@ -6097,9 +6097,9 @@
   },
   "move": {
     "distractors": [
-      "movie",
       "love",
-      "remove"
+      "remove",
+      "drove"
     ],
     "quality": "high"
   },
@@ -6137,9 +6137,9 @@
   },
   "experiment": {
     "distractors": [
-      "expertise",
       "expressions",
-      "apartment"
+      "apartment",
+      "excellent"
     ],
     "quality": "high"
   },
@@ -6209,17 +6209,17 @@
   },
   "academic": {
     "distractors": [
-      "academy",
       "epidemic",
-      "accidents"
+      "accidents",
+      "economic"
     ],
     "quality": "high"
   },
   "taken": {
     "distractors": [
+      "takes",
       "shaken",
-      "talked",
-      "broken"
+      "talked"
     ],
     "quality": "high"
   },
@@ -6305,17 +6305,17 @@
   },
   "europe": {
     "distractors": [
-      "europa",
       "hope",
-      "cope"
+      "cope",
+      "purpose"
     ],
     "quality": "high"
   },
   "worst": {
     "distractors": [
-      "worse",
       "workout",
-      "wrist"
+      "wrist",
+      "word"
     ],
     "quality": "high"
   },
@@ -6474,7 +6474,7 @@
   "showed": {
     "distractors": [
       "shoot",
-      "shoe",
+      "shoes",
       "shore"
     ],
     "quality": "high"
@@ -6521,9 +6521,9 @@
   },
   "written": {
     "distractors": [
-      "write",
       "listen",
-      "wrist"
+      "wrist",
+      "forgotten"
     ],
     "quality": "high"
   },
@@ -6561,9 +6561,9 @@
   },
   "satisfaction": {
     "distractors": [
-      "satisfying",
       "attraction",
-      "stimulation"
+      "stimulation",
+      "interaction"
     ],
     "quality": "high"
   },
@@ -6610,8 +6610,8 @@
   "happens": {
     "distractors": [
       "happiness",
-      "happy",
-      "hoping"
+      "hoping",
+      "shoppers"
     ],
     "quality": "high"
   },
@@ -6626,8 +6626,8 @@
   "italy": {
     "distractors": [
       "ideally",
-      "stay",
-      "tall"
+      "italian",
+      "stay"
     ],
     "quality": "high"
   },
@@ -6666,8 +6666,8 @@
   "speaking": {
     "distractors": [
       "spending",
-      "seeking",
-      "appearing"
+      "speeding",
+      "seeking"
     ],
     "quality": "high"
   },
@@ -6707,7 +6707,7 @@
     "distractors": [
       "prejudice",
       "prestige",
-      "priced"
+      "praise"
     ],
     "quality": "high"
   },
@@ -6729,8 +6729,8 @@
   },
   "fred": {
     "distractors": [
+      "freed",
       "red",
-      "free",
       "tired"
     ],
     "quality": "high"
@@ -6745,9 +6745,9 @@
   },
   "concern": {
     "distractors": [
-      "concert",
       "cancer",
-      "concede"
+      "congress",
+      "content"
     ],
     "quality": "high"
   },
@@ -6771,7 +6771,7 @@
     "distractors": [
       "contracts",
       "complaints",
-      "complicated"
+      "contact"
     ],
     "quality": "high"
   },
@@ -6803,23 +6803,23 @@
     "distractors": [
       "robert",
       "root",
-      "room"
+      "rob"
     ],
     "quality": "high"
   },
   "beliefs": {
     "distractors": [
-      "believes",
       "belongs",
-      "relief"
+      "relief",
+      "bodies"
     ],
     "quality": "high"
   },
   "identified": {
     "distractors": [
-      "identify",
-      "identical",
-      "justified"
+      "justified",
+      "terrified",
+      "satisfied"
     ],
     "quality": "high"
   },
@@ -6841,9 +6841,9 @@
   },
   "presentation": {
     "distractors": [
+      "presenting",
       "representation",
-      "preparation",
-      "implementation"
+      "preparation"
     ],
     "quality": "high"
   },
@@ -6859,7 +6859,7 @@
     "distractors": [
       "burn",
       "inborn",
-      "brown"
+      "boring"
     ],
     "quality": "high"
   },
@@ -6913,9 +6913,9 @@
   },
   "childhood": {
     "distractors": [
-      "childish",
-      "children",
-      "hollywood"
+      "hollywood",
+      "chinatown",
+      "motherhood"
     ],
     "quality": "high"
   },
@@ -6994,16 +6994,16 @@
   "importance": {
     "distractors": [
       "imperative",
-      "impersonal",
-      "improved"
+      "improved",
+      "instance"
     ],
     "quality": "high"
   },
   "institute": {
     "distractors": [
-      "instinct",
       "instance",
-      "substitute"
+      "substitute",
+      "instead"
     ],
     "quality": "high"
   },
@@ -7043,23 +7043,23 @@
     "distractors": [
       "opening",
       "appearing",
-      "challenging"
+      "appealing"
     ],
     "quality": "high"
   },
   "minutes": {
     "distractors": [
       "mindsets",
-      "minted",
-      "ministers"
+      "mines",
+      "minted"
     ],
     "quality": "high"
   },
   "pleasure": {
     "distractors": [
-      "please",
       "pressure",
-      "measure"
+      "measure",
+      "ensure"
     ],
     "quality": "high"
   },
@@ -7121,9 +7121,9 @@
   },
   "concerned": {
     "distractors": [
-      "concert",
       "confined",
-      "constrained"
+      "constrained",
+      "connected"
     ],
     "quality": "high"
   },
@@ -7170,16 +7170,16 @@
   "lifestyle": {
     "distractors": [
       "lifetime",
-      "lifespan",
-      "lifting"
+      "lifting",
+      "milestone"
     ],
     "quality": "high"
   },
   "action": {
     "distractors": [
       "auction",
-      "vacation",
-      "reaction"
+      "acting",
+      "vacation"
     ],
     "quality": "high"
   },
@@ -7187,7 +7187,7 @@
     "distractors": [
       "placing",
       "planning",
-      "plains"
+      "planting"
     ],
     "quality": "high"
   },
@@ -7225,9 +7225,9 @@
   },
   "economy": {
     "distractors": [
-      "economic",
-      "economist",
-      "ecology"
+      "ecology",
+      "autonomy",
+      "secondly"
     ],
     "quality": "high"
   },
@@ -7291,15 +7291,15 @@
     "distractors": [
       "stranger",
       "strength",
-      "stranded"
+      "longer"
     ],
     "quality": "high"
   },
   "trust": {
     "distractors": [
       "tourist",
-      "truth",
-      "true"
+      "truly",
+      "truth"
     ],
     "quality": "high"
   },
@@ -7314,8 +7314,8 @@
   "war": {
     "distractors": [
       "wear",
-      "car",
-      "far"
+      "warm",
+      "warn"
     ],
     "quality": "high"
   },
@@ -7339,15 +7339,15 @@
     "distractors": [
       "consider",
       "consensus",
-      "consulted"
+      "confused"
     ],
     "quality": "high"
   },
   "freedom": {
     "distractors": [
+      "freed",
       "random",
-      "freeze",
-      "seldom"
+      "freeze"
     ],
     "quality": "high"
   },
@@ -7385,9 +7385,9 @@
   },
   "responsibility": {
     "distractors": [
-      "responsiveness",
       "repairability",
-      "sustainability"
+      "sustainability",
+      "adaptability"
     ],
     "quality": "high"
   },
@@ -7411,7 +7411,7 @@
     "distractors": [
       "multitude",
       "attitude",
-      "solitary"
+      "solution"
     ],
     "quality": "high"
   },
@@ -7441,9 +7441,9 @@
   },
   "response": {
     "distractors": [
-      "respond",
       "resolve",
-      "expense"
+      "expense",
+      "restore"
     ],
     "quality": "high"
   },
@@ -7457,9 +7457,9 @@
   },
   "entire": {
     "distractors": [
+      "entered",
       "entry",
-      "endure",
-      "entrance"
+      "endure"
     ],
     "quality": "high"
   },
@@ -7490,7 +7490,7 @@
   "linked": {
     "distractors": [
       "liked",
-      "line",
+      "lined",
       "picked"
     ],
     "quality": "high"
@@ -7553,17 +7553,17 @@
   },
   "makeup": {
     "distractors": [
+      "makers",
       "markets",
-      "massive",
-      "lake"
+      "massive"
     ],
     "quality": "high"
   },
   "concerns": {
     "distractors": [
-      "concerts",
-      "concepts",
-      "cancer"
+      "cancer",
+      "congress",
+      "content"
     ],
     "quality": "high"
   },
@@ -7586,8 +7586,8 @@
   "ten": {
     "distractors": [
       "teen",
-      "tiny",
-      "town"
+      "tends",
+      "tiny"
     ],
     "quality": "high"
   },
@@ -7697,9 +7697,9 @@
   },
   "increases": {
     "distractors": [
-      "incredibly",
       "incorporate",
-      "ingredients"
+      "ingredients",
+      "diseases"
     ],
     "quality": "high"
   },
@@ -7761,9 +7761,9 @@
   },
   "trees": {
     "distractors": [
-      "sees",
-      "fees",
-      "degrees"
+      "trends",
+      "treat",
+      "sees"
     ],
     "quality": "high"
   },
@@ -7777,9 +7777,9 @@
   },
   "psychology": {
     "distractors": [
-      "psychologist",
       "technology",
-      "physically"
+      "physically",
+      "scholars"
     ],
     "quality": "high"
   },
@@ -7793,17 +7793,17 @@
   },
   "crisis": {
     "distractors": [
+      "crises",
       "critics",
-      "risks",
-      "basis"
+      "risks"
     ],
     "quality": "high"
   },
   "communities": {
     "distractors": [
       "companies",
-      "communication",
-      "committed"
+      "committed",
+      "opportunities"
     ],
     "quality": "high"
   },
@@ -7849,9 +7849,9 @@
   },
   "accidents": {
     "distractors": [
+      "accents",
       "accounts",
-      "clients",
-      "residents"
+      "clients"
     ],
     "quality": "high"
   },
@@ -7929,9 +7929,9 @@
   },
   "closer": {
     "distractors": [
-      "lose",
-      "cover",
-      "lower"
+      "close",
+      "clothes",
+      "lose"
     ],
     "quality": "high"
   },
@@ -7971,7 +7971,7 @@
     "distractors": [
       "opposite",
       "diversity",
-      "density"
+      "obese"
     ],
     "quality": "high"
   },
@@ -8081,9 +8081,9 @@
   },
   "sun": {
     "distractors": [
+      "sunny",
       "skin",
-      "soon",
-      "fun"
+      "soon"
     ],
     "quality": "high"
   },
@@ -8161,9 +8161,9 @@
   },
   "noise": {
     "distractors": [
-      "noisy",
       "nose",
-      "nice"
+      "nice",
+      "raise"
     ],
     "quality": "high"
   },
@@ -8178,8 +8178,8 @@
   "appropriate": {
     "distractors": [
       "appreciate",
-      "approximately",
-      "associate"
+      "associate",
+      "alleviate"
     ],
     "quality": "high"
   },
@@ -8193,9 +8193,9 @@
   },
   "experiences": {
     "distractors": [
-      "expertise",
       "expressions",
-      "inexperienced"
+      "inexperienced",
+      "differences"
     ],
     "quality": "high"
   },
@@ -8209,9 +8209,9 @@
   },
   "accurate": {
     "distractors": [
-      "accuracy",
       "according",
-      "activate"
+      "activate",
+      "articulate"
     ],
     "quality": "high"
   },
@@ -8226,8 +8226,8 @@
   "dreams": {
     "distractors": [
       "teams",
-      "drinks",
-      "breaks"
+      "dress",
+      "drinks"
     ],
     "quality": "high"
   },
@@ -8267,7 +8267,7 @@
     "distractors": [
       "dancer",
       "concern",
-      "concert"
+      "chances"
     ],
     "quality": "high"
   },
@@ -8379,7 +8379,7 @@
     "distractors": [
       "largest",
       "fastest",
-      "lowest"
+      "late"
     ],
     "quality": "high"
   },
@@ -8473,9 +8473,9 @@
   },
   "responsibilities": {
     "distractors": [
-      "responsiveness",
       "sustainability",
-      "representative"
+      "representative",
+      "recommendations"
     ],
     "quality": "high"
   },
@@ -8523,7 +8523,7 @@
     "distractors": [
       "advantage",
       "venture",
-      "advance"
+      "advertised"
     ],
     "quality": "high"
   },
@@ -8649,9 +8649,9 @@
   },
   "please": {
     "distractors": [
-      "pleasure",
       "release",
-      "place"
+      "place",
+      "phase"
     ],
     "quality": "high"
   },
@@ -8665,9 +8665,9 @@
   },
   "colleague": {
     "distractors": [
-      "college",
-      "collected",
-      "collaborate"
+      "collaborate",
+      "colorado",
+      "catalogue"
     ],
     "quality": "high"
   },
@@ -8705,9 +8705,9 @@
   },
   "policy": {
     "distractors": [
-      "police",
       "polite",
-      "policies"
+      "place",
+      "poll"
     ],
     "quality": "high"
   },
@@ -8779,7 +8779,7 @@
     "distractors": [
       "treat",
       "throat",
-      "threads"
+      "heat"
     ],
     "quality": "high"
   },
@@ -8931,23 +8931,23 @@
     "distractors": [
       "extreme",
       "ultra",
-      "extend"
+      "extent"
     ],
     "quality": "high"
   },
   "transport": {
     "distractors": [
-      "transforms",
-      "transit",
-      "translate"
+      "tranquility",
+      "airport",
+      "support"
     ],
     "quality": "high"
   },
   "seek": {
     "distractors": [
+      "sees",
       "seed",
-      "seem",
-      "week"
+      "seem"
     ],
     "quality": "high"
   },
@@ -8993,9 +8993,9 @@
   },
   "clients": {
     "distractors": [
+      "climate",
       "accidents",
-      "patients",
-      "elements"
+      "patients"
     ],
     "quality": "high"
   },
@@ -9089,9 +9089,9 @@
   },
   "app": {
     "distractors": [
+      "apple",
       "happy",
-      "apes",
-      "cape"
+      "apes"
     ],
     "quality": "high"
   },
@@ -9114,8 +9114,8 @@
   "final": {
     "distractors": [
       "signal",
-      "female",
-      "journal"
+      "finds",
+      "finance"
     ],
     "quality": "high"
   },
@@ -9139,7 +9139,7 @@
     "distractors": [
       "project",
       "product",
-      "produce"
+      "predict"
     ],
     "quality": "high"
   },
@@ -9185,7 +9185,7 @@
   },
   "necessarily": {
     "distractors": [
-      "necessary",
+      "necessity",
       "unnecessary",
       "primarily"
     ],
@@ -9210,7 +9210,7 @@
   "carry": {
     "distractors": [
       "curry",
-      "care",
+      "car",
       "sorry"
     ],
     "quality": "high"
@@ -9225,9 +9225,9 @@
   },
   "contrast": {
     "distractors": [
-      "contract",
-      "contrary",
-      "contribute"
+      "contact",
+      "central",
+      "context"
     ],
     "quality": "high"
   },
@@ -9267,15 +9267,15 @@
     "distractors": [
       "particles",
       "artists",
-      "articulate"
+      "vehicles"
     ],
     "quality": "high"
   },
   "anger": {
     "distractors": [
       "danger",
-      "answer",
-      "manager"
+      "angry",
+      "answer"
     ],
     "quality": "high"
   },
@@ -9289,9 +9289,9 @@
   },
   "unless": {
     "distractors": [
+      "unlike",
       "useless",
-      "endless",
-      "less"
+      "endless"
     ],
     "quality": "high"
   },
@@ -9315,23 +9315,23 @@
     "distractors": [
       "feed",
       "meet",
-      "feel"
+      "fees"
     ],
     "quality": "high"
   },
   "prepared": {
     "distractors": [
       "preferred",
-      "preference",
-      "preserved"
+      "preserved",
+      "compared"
     ],
     "quality": "high"
   },
   "identify": {
     "distractors": [
-      "identified",
-      "identical",
-      "justify"
+      "justify",
+      "ideally",
+      "density"
     ],
     "quality": "high"
   },
@@ -9369,9 +9369,9 @@
   },
   "historical": {
     "distractors": [
-      "historian",
       "biological",
-      "critical"
+      "critical",
+      "tropical"
     ],
     "quality": "high"
   },
@@ -9451,7 +9451,7 @@
     "distractors": [
       "store",
       "stolen",
-      "story"
+      "phone"
     ],
     "quality": "high"
   },
@@ -9489,9 +9489,9 @@
   },
   "societies": {
     "distractors": [
-      "society",
       "facilities",
-      "policies"
+      "policies",
+      "comedies"
     ],
     "quality": "high"
   },
@@ -9505,17 +9505,17 @@
   },
   "advanced": {
     "distractors": [
-      "advantages",
       "adventure",
-      "balanced"
+      "balanced",
+      "advice"
     ],
     "quality": "high"
   },
   "offers": {
     "distractors": [
+      "offense",
       "owners",
-      "refers",
-      "mothers"
+      "refers"
     ],
     "quality": "high"
   },
@@ -9545,41 +9545,41 @@
   },
   "prevent": {
     "distractors": [
+      "present",
       "president",
-      "proven",
-      "event"
+      "proven"
     ],
     "quality": "high"
   },
   "autonomous": {
     "distractors": [
-      "autonomy",
       "enormous",
-      "subconscious"
+      "subconscious",
+      "astronomers"
     ],
     "quality": "high"
   },
   "cars": {
     "distractors": [
-      "wars",
-      "mars",
-      "oscars"
+      "cargo",
+      "cards",
+      "wars"
     ],
     "quality": "high"
   },
   "multiple": {
     "distractors": [
-      "multitude",
       "principle",
-      "cultivate"
+      "cultivate",
+      "couple"
     ],
     "quality": "high"
   },
   "arts": {
     "distractors": [
+      "artist",
       "parts",
-      "starts",
-      "charts"
+      "starts"
     ],
     "quality": "high"
   },
@@ -9593,9 +9593,9 @@
   },
   "extent": {
     "distractors": [
+      "extend",
       "event",
-      "intent",
-      "patient"
+      "intent"
     ],
     "quality": "high"
   },
@@ -9634,8 +9634,8 @@
   "section": {
     "distractors": [
       "reaction",
-      "fiction",
-      "mention"
+      "sector",
+      "fiction"
     ],
     "quality": "high"
   },
@@ -9649,9 +9649,9 @@
   },
   "psychologists": {
     "distractors": [
-      "psychological",
-      "psychiatrists",
-      "technologies"
+      "technologies",
+      "enthusiasts",
+      "acupuncturists"
     ],
     "quality": "high"
   },
@@ -9659,7 +9659,7 @@
     "distractors": [
       "struggle",
       "pictures",
-      "cultures"
+      "stressed"
     ],
     "quality": "high"
   },
@@ -9681,17 +9681,17 @@
   },
   "accept": {
     "distractors": [
+      "accent",
       "accident",
-      "concept",
-      "account"
+      "concept"
     ],
     "quality": "high"
   },
   "particles": {
     "distractors": [
-      "particular",
       "articles",
-      "participate"
+      "paradise",
+      "partner"
     ],
     "quality": "high"
   },
@@ -9785,9 +9785,9 @@
   },
   "understood": {
     "distractors": [
-      "understand",
-      "underground",
-      "motherhood"
+      "underlying",
+      "motherhood",
+      "undeniably"
     ],
     "quality": "high"
   },
@@ -9841,9 +9841,9 @@
   },
   "techniques": {
     "distractors": [
-      "technical",
-      "technologies",
-      "continues"
+      "continues",
+      "teaching",
+      "vehicles"
     ],
     "quality": "high"
   },
@@ -9865,9 +9865,9 @@
   },
   "scientist": {
     "distractors": [
-      "scientific",
-      "sciences",
-      "consist"
+      "consist",
+      "specialist",
+      "economist"
     ],
     "quality": "high"
   },
@@ -9889,9 +9889,9 @@
   },
   "ready": {
     "distractors": [
-      "readily",
       "red",
-      "road"
+      "road",
+      "steady"
     ],
     "quality": "high"
   },
@@ -9954,8 +9954,8 @@
   "central": {
     "distractors": [
       "century",
-      "centuries",
-      "control"
+      "control",
+      "neutral"
     ],
     "quality": "high"
   },
@@ -10058,8 +10058,8 @@
   "stressful": {
     "distractors": [
       "successful",
-      "careful",
-      "harmful"
+      "straight",
+      "careful"
     ],
     "quality": "high"
   },
@@ -10073,17 +10073,17 @@
   },
   "fun": {
     "distractors": [
-      "fine",
-      "sun",
-      "fur"
+      "funny",
+      "funds",
+      "fine"
     ],
     "quality": "high"
   },
   "standard": {
     "distractors": [
       "stanford",
-      "standpoint",
-      "goddard"
+      "goddard",
+      "downward"
     ],
     "quality": "high"
   },
@@ -10113,9 +10113,9 @@
   },
   "check": {
     "distractors": [
+      "chess",
       "cheap",
-      "chef",
-      "choice"
+      "chef"
     ],
     "quality": "high"
   },
@@ -10186,8 +10186,8 @@
   "receive": {
     "distractors": [
       "perceive",
-      "relative",
-      "creative"
+      "receiving",
+      "relative"
     ],
     "quality": "high"
   },
@@ -10201,9 +10201,9 @@
   },
   "supermarket": {
     "distractors": [
-      "superiors",
-      "supervised",
-      "permanent"
+      "permanent",
+      "supportive",
+      "suffering"
     ],
     "quality": "high"
   },
@@ -10217,17 +10217,17 @@
   },
   "vegetables": {
     "distractors": [
-      "vegetarian",
       "variables",
-      "vehicles"
+      "vehicles",
+      "obstacles"
     ],
     "quality": "high"
   },
   "sector": {
     "distractors": [
+      "section",
       "factor",
-      "doctor",
-      "director"
+      "doctor"
     ],
     "quality": "high"
   },
@@ -10273,9 +10273,9 @@
   },
   "actions": {
     "distractors": [
+      "acting",
       "vacations",
-      "reactions",
-      "auction"
+      "reactions"
     ],
     "quality": "high"
   },
@@ -10289,9 +10289,9 @@
   },
   "shops": {
     "distractors": [
+      "shoes",
       "shows",
-      "shots",
-      "shapes"
+      "shots"
     ],
     "quality": "high"
   },
@@ -10313,9 +10313,9 @@
   },
   "entirely": {
     "distractors": [
+      "entered",
       "unlikely",
-      "negatively",
-      "actively"
+      "negatively"
     ],
     "quality": "high"
   },
@@ -10353,9 +10353,9 @@
   },
   "adverse": {
     "distractors": [
+      "advise",
       "diverse",
-      "universe",
-      "adventure"
+      "universe"
     ],
     "quality": "high"
   },
@@ -10369,8 +10369,8 @@
   },
   "necessary": {
     "distractors": [
-      "necessarily",
       "unnecessary",
+      "necessity",
       "anniversary"
     ],
     "quality": "high"
@@ -10378,8 +10378,8 @@
   "added": {
     "distractors": [
       "ended",
-      "avoided",
-      "tended"
+      "address",
+      "avoided"
     ],
     "quality": "high"
   },
@@ -10425,17 +10425,17 @@
   },
   "notes": {
     "distractors": [
+      "notice",
       "routes",
-      "nuts",
-      "rates"
+      "nuts"
     ],
     "quality": "high"
   },
   "client": {
     "distractors": [
-      "accident",
-      "patient",
-      "ancient"
+      "climate",
+      "cling",
+      "accident"
     ],
     "quality": "high"
   },
@@ -10466,8 +10466,8 @@
   "plans": {
     "distractors": [
       "plains",
-      "plays",
-      "places"
+      "places",
+      "loans"
     ],
     "quality": "high"
   },
@@ -10513,25 +10513,25 @@
   },
   "statistics": {
     "distractors": [
+      "stations",
       "plastics",
-      "logistics",
-      "antibiotics"
+      "logistics"
     ],
     "quality": "high"
   },
   "closely": {
     "distractors": [
       "lonely",
-      "wisely",
-      "likely"
+      "closer",
+      "wisely"
     ],
     "quality": "high"
   },
   "therapy": {
     "distractors": [
       "theory",
-      "theories",
-      "cheap"
+      "cheap",
+      "heavy"
     ],
     "quality": "high"
   },
@@ -10601,9 +10601,9 @@
   },
   "president": {
     "distractors": [
+      "present",
       "prevent",
-      "prestige",
-      "prestigious"
+      "prestige"
     ],
     "quality": "high"
   },
@@ -10769,9 +10769,9 @@
   },
   "diversity": {
     "distractors": [
+      "diverse",
       "university",
-      "density",
-      "generosity"
+      "density"
     ],
     "quality": "high"
   },
@@ -10785,9 +10785,9 @@
   },
   "disability": {
     "distractors": [
-      "disabled",
       "discipline",
-      "stability"
+      "stability",
+      "adaptability"
     ],
     "quality": "high"
   },
@@ -10803,7 +10803,7 @@
     "distractors": [
       "six",
       "seek",
-      "sea"
+      "sees"
     ],
     "quality": "high"
   },
@@ -10841,7 +10841,7 @@
   },
   "medicine": {
     "distractors": [
-      "medication",
+      "medical",
       "medium",
       "examine"
     ],
@@ -10851,7 +10851,7 @@
     "distractors": [
       "rural",
       "normal",
-      "formal"
+      "morton"
     ],
     "quality": "high"
   },
@@ -10859,7 +10859,7 @@
     "distractors": [
       "sleeping",
       "speaking",
-      "selling"
+      "speeding"
     ],
     "quality": "high"
   },
@@ -10874,8 +10874,8 @@
   "chronic": {
     "distractors": [
       "caring",
-      "currency",
-      "organic"
+      "carrying",
+      "currency"
     ],
     "quality": "high"
   },
@@ -10891,7 +10891,7 @@
     "distractors": [
       "level",
       "labor",
-      "lake"
+      "lab"
     ],
     "quality": "high"
   },
@@ -10922,16 +10922,16 @@
   "worldwide": {
     "distractors": [
       "worried",
-      "worrying",
-      "workforce"
+      "workforce",
+      "outside"
     ],
     "quality": "high"
   },
   "outdoor": {
     "distractors": [
+      "outer",
       "indoor",
-      "outcome",
-      "outgoing"
+      "outcome"
     ],
     "quality": "high"
   },
@@ -11018,8 +11018,8 @@
   "lucky": {
     "distractors": [
       "lucy",
-      "luckily",
-      "lack"
+      "lack",
+      "lucas"
     ],
     "quality": "high"
   },
@@ -11105,9 +11105,9 @@
   },
   "analysis": {
     "distractors": [
-      "analysts",
-      "analyzed",
-      "diagnosis"
+      "diagnosis",
+      "crisis",
+      "emphasis"
     ],
     "quality": "high"
   },
@@ -11121,9 +11121,9 @@
   },
   "accounts": {
     "distractors": [
+      "accents",
       "accidents",
-      "amounts",
-      "counts"
+      "amounts"
     ],
     "quality": "high"
   },
@@ -11265,9 +11265,9 @@
   },
   "believed": {
     "distractors": [
-      "beliefs",
       "achieved",
-      "relieve"
+      "relieve",
+      "perceived"
     ],
     "quality": "high"
   },
@@ -11283,7 +11283,7 @@
     "distractors": [
       "connect",
       "correct",
-      "college"
+      "reflect"
     ],
     "quality": "high"
   },
@@ -11297,17 +11297,17 @@
   },
   "economics": {
     "distractors": [
-      "economists",
-      "economy",
-      "ecologists"
+      "ecologists",
+      "robotics",
+      "academics"
     ],
     "quality": "high"
   },
   "favor": {
     "distractors": [
       "flavor",
-      "flavour",
-      "factor"
+      "factor",
+      "fiber"
     ],
     "quality": "high"
   },
@@ -11321,25 +11321,25 @@
   },
   "autonomy": {
     "distractors": [
-      "autonomous",
       "economy",
-      "authority"
+      "authority",
+      "automated"
     ],
     "quality": "high"
   },
   "acting": {
     "distractors": [
+      "actions",
       "lasting",
-      "wasting",
-      "waiting"
+      "wasting"
     ],
     "quality": "high"
   },
   "truly": {
     "distractors": [
-      "thrill",
-      "trial",
-      "rely"
+      "trust",
+      "truck",
+      "truth"
     ],
     "quality": "high"
   },
@@ -11355,7 +11355,7 @@
     "distractors": [
       "priority",
       "authority",
-      "utility"
+      "cursing"
     ],
     "quality": "high"
   },
@@ -11458,8 +11458,8 @@
   "policies": {
     "distractors": [
       "politics",
-      "police",
-      "places"
+      "places",
+      "polished"
     ],
     "quality": "high"
   },
@@ -11473,9 +11473,9 @@
   },
   "faces": {
     "distractors": [
-      "places",
-      "forces",
-      "spaces"
+      "facets",
+      "facts",
+      "places"
     ],
     "quality": "high"
   },
@@ -11529,17 +11529,17 @@
   },
   "interviewed": {
     "distractors": [
-      "intervene",
-      "interested",
-      "interpreter"
+      "introduced",
+      "intricate",
+      "intensive"
     ],
     "quality": "high"
   },
   "copy": {
     "distractors": [
-      "cope",
       "cozy",
-      "cup"
+      "cup",
+      "cape"
     ],
     "quality": "high"
   },
@@ -11553,9 +11553,9 @@
   },
   "realized": {
     "distractors": [
-      "realistic",
       "relaxed",
-      "organized"
+      "organized",
+      "reached"
     ],
     "quality": "high"
   },
@@ -11569,17 +11569,17 @@
   },
   "complicated": {
     "distractors": [
-      "completed",
-      "complained",
-      "committed"
+      "committed",
+      "duplicated",
+      "domesticated"
     ],
     "quality": "high"
   },
   "interactions": {
     "distractors": [
-      "interventions",
-      "intersection",
-      "international"
+      "introduction",
+      "infections",
+      "distractions"
     ],
     "quality": "high"
   },
@@ -11633,9 +11633,9 @@
   },
   "regularly": {
     "distractors": [
-      "regulate",
       "similarly",
-      "clearly"
+      "clearly",
+      "regarded"
     ],
     "quality": "high"
   },
@@ -11681,17 +11681,17 @@
   },
   "contract": {
     "distractors": [
-      "contrast",
       "contact",
-      "contrary"
+      "central",
+      "constant"
     ],
     "quality": "high"
   },
   "discipline": {
     "distractors": [
       "disability",
-      "disabled",
-      "discussing"
+      "discussing",
+      "disclose"
     ],
     "quality": "high"
   },
@@ -11785,9 +11785,9 @@
   },
   "characteristics": {
     "distractors": [
-      "characterized",
       "collectivistic",
-      "acupuncturists"
+      "acupuncturists",
+      "psychiatrists"
     ],
     "quality": "high"
   },
@@ -11817,9 +11817,9 @@
   },
   "experiments": {
     "distractors": [
-      "expertise",
       "expressions",
-      "governments"
+      "governments",
+      "departments"
     ],
     "quality": "high"
   },
@@ -11827,7 +11827,7 @@
     "distractors": [
       "explored",
       "complained",
-      "explanation"
+      "planned"
     ],
     "quality": "high"
   },
@@ -11841,17 +11841,17 @@
   },
   "regular": {
     "distractors": [
-      "regulate",
       "regard",
-      "popular"
+      "popular",
+      "regions"
     ],
     "quality": "high"
   },
   "mid": {
     "distractors": [
       "maid",
-      "mild",
-      "mood"
+      "midst",
+      "mild"
     ],
     "quality": "high"
   },
@@ -11899,15 +11899,15 @@
     "distractors": [
       "stronger",
       "strengths",
-      "stranded"
+      "trackers"
     ],
     "quality": "high"
   },
   "oldest": {
     "distractors": [
+      "olds",
       "modest",
-      "closest",
-      "longest"
+      "closest"
     ],
     "quality": "high"
   },
@@ -11921,9 +11921,9 @@
   },
   "behaviours": {
     "distractors": [
-      "behaviors",
       "beverage",
-      "delicious"
+      "delicious",
+      "relations"
     ],
     "quality": "high"
   },
@@ -11947,7 +11947,7 @@
     "distractors": [
       "plays",
       "pills",
-      "please"
+      "piles"
     ],
     "quality": "high"
   },
@@ -11993,9 +11993,9 @@
   },
   "claims": {
     "distractors": [
+      "class",
       "cling",
-      "clips",
-      "alarms"
+      "clips"
     ],
     "quality": "high"
   },
@@ -12017,9 +12017,9 @@
   },
   "presented": {
     "distractors": [
-      "represented",
-      "resulted",
-      "printed"
+      "presence",
+      "predicted",
+      "represented"
     ],
     "quality": "high"
   },
@@ -12089,9 +12089,9 @@
   },
   "believes": {
     "distractors": [
-      "beliefs",
       "achieves",
-      "relieve"
+      "relieve",
+      "drives"
     ],
     "quality": "high"
   },
@@ -12121,9 +12121,9 @@
   },
   "intense": {
     "distractors": [
-      "intended",
+      "intent",
       "internal",
-      "interest"
+      "intimacy"
     ],
     "quality": "high"
   },
@@ -12145,9 +12145,9 @@
   },
   "comparison": {
     "distractors": [
-      "companion",
       "comprehend",
-      "competition"
+      "competition",
+      "composition"
     ],
     "quality": "high"
   },
@@ -12169,9 +12169,9 @@
   },
   "baby": {
     "distractors": [
-      "babies",
       "baily",
-      "behave"
+      "behave",
+      "bank"
     ],
     "quality": "high"
   },
@@ -12201,9 +12201,9 @@
   },
   "active": {
     "distractors": [
+      "activate",
       "arrive",
-      "native",
-      "alive"
+      "action"
     ],
     "quality": "high"
   },
@@ -12355,7 +12355,7 @@
     "distractors": [
       "names",
       "games",
-      "homes"
+      "jamaica"
     ],
     "quality": "high"
   },
@@ -12409,9 +12409,9 @@
   },
   "image": {
     "distractors": [
-      "imagine",
       "damage",
-      "wage"
+      "wage",
+      "page"
     ],
     "quality": "high"
   },
@@ -12473,17 +12473,17 @@
   },
   "afternoon": {
     "distractors": [
-      "afterward",
       "alterations",
-      "atkinson"
+      "atkinson",
+      "aversion"
     ],
     "quality": "high"
   },
   "ancient": {
     "distractors": [
       "accident",
-      "client",
-      "patient"
+      "accent",
+      "client"
     ],
     "quality": "high"
   },
@@ -12537,17 +12537,17 @@
   },
   "accent": {
     "distractors": [
-      "ancient",
-      "scent",
-      "decent"
+      "account",
+      "accident",
+      "accept"
     ],
     "quality": "high"
   },
   "presence": {
     "distractors": [
+      "presented",
       "preference",
-      "presume",
-      "preserve"
+      "presume"
     ],
     "quality": "high"
   },
@@ -12649,9 +12649,9 @@
   },
   "bones": {
     "distractors": [
+      "bonus",
       "ones",
-      "tones",
-      "zones"
+      "tones"
     ],
     "quality": "high"
   },
@@ -12659,31 +12659,31 @@
     "distractors": [
       "continents",
       "contracts",
-      "construction"
+      "consideration"
     ],
     "quality": "high"
   },
   "genetic": {
     "distractors": [
       "magnetic",
-      "gentle",
-      "exotic"
+      "genes",
+      "gentle"
     ],
     "quality": "high"
   },
   "controlled": {
     "distractors": [
-      "contribute",
-      "contract",
-      "contrast"
+      "constrained",
+      "continued",
+      "consulted"
     ],
     "quality": "high"
   },
   "property": {
     "distractors": [
-      "properties",
       "proportion",
-      "prosperity"
+      "prosperity",
+      "poverty"
     ],
     "quality": "high"
   },
@@ -12769,9 +12769,9 @@
   },
   "pluto": {
     "distractors": [
+      "plus",
       "polite",
-      "photo",
-      "puts"
+      "photo"
     ],
     "quality": "high"
   },
@@ -12794,8 +12794,8 @@
   "increasing": {
     "distractors": [
       "including",
-      "incredibly",
-      "creating"
+      "creating",
+      "interesting"
     ],
     "quality": "high"
   },
@@ -12809,9 +12809,9 @@
   },
   "faced": {
     "distractors": [
+      "fact",
       "placed",
-      "forced",
-      "fixed"
+      "forced"
     ],
     "quality": "high"
   },
@@ -12826,24 +12826,24 @@
   "household": {
     "distractors": [
       "threshold",
-      "motherhood",
-      "roughly"
+      "housing",
+      "motherhood"
     ],
     "quality": "high"
   },
   "unlike": {
     "distractors": [
+      "unless",
       "alike",
-      "dislike",
-      "bike"
+      "dislike"
     ],
     "quality": "high"
   },
   "editor": {
     "distractors": [
+      "edition",
       "monitor",
-      "visitor",
-      "director"
+      "visitor"
     ],
     "quality": "high"
   },
@@ -12883,7 +12883,7 @@
     "distractors": [
       "agreements",
       "incredibly",
-      "increases"
+      "residents"
     ],
     "quality": "high"
   },
@@ -12905,17 +12905,17 @@
   },
   "windows": {
     "distractors": [
+      "wines",
       "wants",
-      "winter",
-      "allows"
+      "winter"
     ],
     "quality": "high"
   },
   "password": {
     "distractors": [
+      "passed",
       "afford",
-      "passionate",
-      "passengers"
+      "passionate"
     ],
     "quality": "high"
   },
@@ -12955,7 +12955,7 @@
     "distractors": [
       "police",
       "elite",
-      "policy"
+      "opposite"
     ],
     "quality": "high"
   },
@@ -12977,9 +12977,9 @@
   },
   "recognition": {
     "distractors": [
+      "recession",
       "recreation",
-      "condition",
-      "definition"
+      "condition"
     ],
     "quality": "high"
   },
@@ -12993,9 +12993,9 @@
   },
   "substances": {
     "distractors": [
-      "substantial",
       "subsidies",
-      "substitute"
+      "sciences",
+      "subjects"
     ],
     "quality": "high"
   },
@@ -13034,8 +13034,8 @@
   "communicate": {
     "distractors": [
       "complicated",
-      "communities",
-      "committed"
+      "committed",
+      "immediate"
     ],
     "quality": "high"
   },
@@ -13113,25 +13113,25 @@
   },
   "interests": {
     "distractors": [
-      "intervenes",
-      "interact",
-      "internet"
+      "intricate",
+      "intense",
+      "forests"
     ],
     "quality": "high"
   },
   "deposit": {
     "distractors": [
       "depicting",
-      "opposite",
-      "dependent"
+      "depiction",
+      "opposite"
     ],
     "quality": "high"
   },
   "ideal": {
     "distractors": [
+      "ideas",
       "deal",
-      "meal",
-      "real"
+      "meal"
     ],
     "quality": "high"
   },
@@ -13209,9 +13209,9 @@
   },
   "arrive": {
     "distractors": [
+      "arrival",
       "active",
-      "strive",
-      "drive"
+      "strive"
     ],
     "quality": "high"
   },
@@ -13257,9 +13257,9 @@
   },
   "marks": {
     "distractors": [
+      "mars",
       "march",
-      "parks",
-      "sharks"
+      "parks"
     ],
     "quality": "high"
   },
@@ -13289,9 +13289,9 @@
   },
   "routine": {
     "distractors": [
-      "route",
       "outline",
-      "round"
+      "round",
+      "coastline"
     ],
     "quality": "high"
   },
@@ -13329,9 +13329,9 @@
   },
   "assortment": {
     "distractors": [
+      "assessment",
       "apartment",
-      "department",
-      "assistant"
+      "department"
     ],
     "quality": "high"
   },
@@ -13394,8 +13394,8 @@
   "labor": {
     "distractors": [
       "label",
-      "arbor",
-      "flavor"
+      "lab",
+      "arbor"
     ],
     "quality": "high"
   },
@@ -13418,16 +13418,16 @@
   "generate": {
     "distractors": [
       "penetrate",
-      "celebrate",
-      "desperate"
+      "general",
+      "celebrate"
     ],
     "quality": "high"
   },
   "incorporate": {
     "distractors": [
       "increases",
-      "incredibly",
-      "intricate"
+      "intricate",
+      "unfortunate"
     ],
     "quality": "high"
   },
@@ -13441,9 +13441,9 @@
   },
   "interaction": {
     "distractors": [
-      "intersection",
-      "intervention",
-      "introduction"
+      "introduction",
+      "intention",
+      "attraction"
     ],
     "quality": "high"
   },
@@ -13467,15 +13467,15 @@
     "distractors": [
       "profits",
       "proven",
-      "profile"
+      "produces"
     ],
     "quality": "high"
   },
   "economists": {
     "distractors": [
-      "economics",
       "ecologists",
-      "tourists"
+      "tourists",
+      "scientists"
     ],
     "quality": "high"
   },
@@ -13499,7 +13499,7 @@
     "distractors": [
       "instinct",
       "insurance",
-      "installed"
+      "incidence"
     ],
     "quality": "high"
   },
@@ -13521,9 +13521,9 @@
   },
   "behaviors": {
     "distractors": [
-      "behaviours",
       "seniors",
-      "neighbors"
+      "neighbors",
+      "sensors"
     ],
     "quality": "high"
   },
@@ -13547,7 +13547,7 @@
     "distractors": [
       "interviewed",
       "intriguing",
-      "intricate"
+      "produced"
     ],
     "quality": "high"
   },
@@ -13578,8 +13578,8 @@
   "approximately": {
     "distractors": [
       "appreciation",
-      "appropriate",
-      "approaching"
+      "immediately",
+      "unfortunately"
     ],
     "quality": "high"
   },
@@ -13626,7 +13626,7 @@
   "partner": {
     "distractors": [
       "parties",
-      "party",
+      "parent",
       "corner"
     ],
     "quality": "high"
@@ -13745,17 +13745,17 @@
   },
   "technologies": {
     "distractors": [
-      "technology",
-      "techniques",
-      "personalities"
+      "personalities",
+      "ecologists",
+      "authorities"
     ],
     "quality": "high"
   },
   "invest": {
     "distractors": [
+      "invent",
       "invasive",
-      "interest",
-      "biggest"
+      "interest"
     ],
     "quality": "high"
   },
@@ -13809,9 +13809,9 @@
   },
   "everyday": {
     "distractors": [
-      "everybody",
       "yesterday",
-      "eventually"
+      "eventually",
+      "friday"
     ],
     "quality": "high"
   },
@@ -13858,8 +13858,8 @@
   "complete": {
     "distractors": [
       "compete",
-      "complex",
-      "complain"
+      "compare",
+      "commute"
     ],
     "quality": "high"
   },
@@ -13946,8 +13946,8 @@
   "ran": {
     "distractors": [
       "rain",
-      "run",
-      "van"
+      "rank",
+      "run"
     ],
     "quality": "high"
   },
@@ -13993,9 +13993,9 @@
   },
   "criticism": {
     "distractors": [
-      "criticized",
       "capitalism",
-      "optimism"
+      "optimism",
+      "charities"
     ],
     "quality": "high"
   },
@@ -14009,17 +14009,17 @@
   },
   "contribute": {
     "distractors": [
-      "contract",
-      "contrast",
-      "controlled"
+      "continue",
+      "constraints",
+      "consolidate"
     ],
     "quality": "high"
   },
   "psychological": {
     "distractors": [
-      "psychologists",
       "technological",
-      "meteorological"
+      "meteorological",
+      "mathematical"
     ],
     "quality": "high"
   },
@@ -14050,16 +14050,16 @@
   "offered": {
     "distractors": [
       "suffered",
-      "referred",
-      "covered"
+      "offended",
+      "referred"
     ],
     "quality": "high"
   },
   "alternative": {
     "distractors": [
-      "alterations",
       "attractive",
-      "imperative"
+      "imperative",
+      "interactive"
     ],
     "quality": "high"
   },
@@ -14082,8 +14082,8 @@
   "mistakes": {
     "distractors": [
       "mishandled",
-      "diseases",
-      "messages"
+      "missed",
+      "diseases"
     ],
     "quality": "high"
   },
@@ -14161,9 +14161,9 @@
   },
   "organic": {
     "distractors": [
-      "organism",
-      "organized",
-      "volcanic"
+      "volcanic",
+      "original",
+      "chronic"
     ],
     "quality": "high"
   },
@@ -14177,9 +14177,9 @@
   },
   "flavor": {
     "distractors": [
-      "flavour",
       "favor",
-      "labor"
+      "labor",
+      "floor"
     ],
     "quality": "high"
   },
@@ -14187,7 +14187,7 @@
     "distractors": [
       "invest",
       "invasive",
-      "invited"
+      "invented"
     ],
     "quality": "high"
   },
@@ -14243,7 +14243,7 @@
     "distractors": [
       "participating",
       "accepting",
-      "accounting"
+      "parenting"
     ],
     "quality": "high"
   },
@@ -14265,9 +14265,9 @@
   },
   "shorter": {
     "distractors": [
-      "shore",
       "smarter",
-      "shelter"
+      "shelter",
+      "shoppers"
     ],
     "quality": "high"
   },
@@ -14323,7 +14323,7 @@
     "distractors": [
       "counter",
       "engineer",
-      "encourage"
+      "recruiter"
     ],
     "quality": "high"
   },
@@ -14337,9 +14337,9 @@
   },
   "internal": {
     "distractors": [
-      "interact",
-      "interest",
-      "intervenes"
+      "external",
+      "intricate",
+      "intense"
     ],
     "quality": "high"
   },
@@ -14377,8 +14377,8 @@
   },
   "guys": {
     "distractors": [
-      "guess",
       "gas",
+      "guest",
       "argues"
     ],
     "quality": "high"
@@ -14386,8 +14386,8 @@
   "appears": {
     "distractors": [
       "approach",
-      "fears",
-      "applies"
+      "appeal",
+      "fears"
     ],
     "quality": "high"
   },
@@ -14417,9 +14417,9 @@
   },
   "competing": {
     "distractors": [
-      "compelling",
       "committing",
-      "computers"
+      "computers",
+      "connecting"
     ],
     "quality": "high"
   },
@@ -14483,7 +14483,7 @@
     "distractors": [
       "press",
       "address",
-      "drugs"
+      "dreams"
     ],
     "quality": "high"
   },
@@ -14523,7 +14523,7 @@
     "distractors": [
       "tribal",
       "global",
-      "overlap"
+      "version"
     ],
     "quality": "high"
   },
@@ -14561,7 +14561,7 @@
   },
   "intended": {
     "distractors": [
-      "intense",
+      "intent",
       "unintended",
       "tended"
     ],
@@ -14585,17 +14585,17 @@
   },
   "optimistic": {
     "distractors": [
-      "optimism",
       "antibiotic",
-      "domestic"
+      "domestic",
+      "realistic"
     ],
     "quality": "high"
   },
   "equal": {
     "distractors": [
+      "equate",
       "usual",
-      "mutual",
-      "visual"
+      "mutual"
     ],
     "quality": "high"
   },
@@ -14650,8 +14650,8 @@
   "healthier": {
     "distractors": [
       "heavier",
-      "healthcare",
-      "healthy"
+      "happier",
+      "earlier"
     ],
     "quality": "high"
   },
@@ -14729,17 +14729,17 @@
   },
   "carrying": {
     "distractors": [
+      "caring",
       "worrying",
-      "paying",
-      "carried"
+      "paying"
     ],
     "quality": "high"
   },
   "cup": {
     "distractors": [
       "copy",
-      "cope",
-      "cape"
+      "cape",
+      "cuba"
     ],
     "quality": "high"
   },
@@ -14777,9 +14777,9 @@
   },
   "kill": {
     "distractors": [
+      "killy",
       "skill",
-      "fill",
-      "hill"
+      "fill"
     ],
     "quality": "high"
   },
@@ -14793,9 +14793,9 @@
   },
   "movie": {
     "distractors": [
-      "move",
       "mobile",
-      "rosie"
+      "rosie",
+      "love"
     ],
     "quality": "high"
   },
@@ -14819,7 +14819,7 @@
     "distractors": [
       "contamination",
       "bostonians",
-      "containers"
+      "continents"
     ],
     "quality": "high"
   },
@@ -14882,8 +14882,8 @@
   "accomplishments": {
     "distractors": [
       "advertisements",
-      "accommodations",
-      "establishment"
+      "establishment",
+      "complimentary"
     ],
     "quality": "high"
   },
@@ -14891,7 +14891,7 @@
     "distractors": [
       "strangers",
       "stronger",
-      "stranded"
+      "stereotype"
     ],
     "quality": "high"
   },
@@ -14899,7 +14899,7 @@
     "distractors": [
       "intensity",
       "interact",
-      "indian"
+      "intent"
     ],
     "quality": "high"
   },
@@ -14907,7 +14907,7 @@
     "distractors": [
       "cooperative",
       "celebrating",
-      "celebrities"
+      "alternative"
     ],
     "quality": "high"
   },
@@ -15001,7 +15001,7 @@
   },
   "notice": {
     "distractors": [
-      "note",
+      "notes",
       "nice",
       "voice"
     ],
@@ -15017,9 +15017,9 @@
   },
   "strategies": {
     "distractors": [
-      "strategy",
       "stranger",
-      "strengths"
+      "strengths",
+      "stereotypes"
     ],
     "quality": "high"
   },
@@ -15041,9 +15041,9 @@
   },
   "increasingly": {
     "distractors": [
-      "incredibly",
       "interestingly",
-      "incorporating"
+      "incorporating",
+      "surprisingly"
     ],
     "quality": "high"
   },
@@ -15178,8 +15178,8 @@
   "sciences": {
     "distractors": [
       "senses",
-      "scientist",
-      "chances"
+      "chances",
+      "pieces"
     ],
     "quality": "high"
   },
@@ -15193,33 +15193,33 @@
   },
   "methods": {
     "distractors": [
+      "meters",
       "metres",
-      "periods",
-      "goods"
+      "periods"
     ],
     "quality": "high"
   },
   "pregnant": {
     "distractors": [
+      "present",
       "pleasant",
-      "prevent",
-      "presume"
+      "prevent"
     ],
     "quality": "high"
   },
   "caught": {
     "distractors": [
       "taught",
-      "sought",
-      "bought"
+      "caused",
+      "sought"
     ],
     "quality": "high"
   },
   "interviews": {
     "distractors": [
-      "intervene",
-      "interests",
-      "interpret"
+      "intricate",
+      "introduce",
+      "intelligent"
     ],
     "quality": "high"
   },
@@ -15234,8 +15234,8 @@
   "speed": {
     "distractors": [
       "seed",
-      "saved",
-      "shipped"
+      "spend",
+      "saved"
     ],
     "quality": "high"
   },
@@ -15273,9 +15273,9 @@
   },
   "offices": {
     "distractors": [
+      "officials",
       "prices",
-      "ounces",
-      "faces"
+      "ounces"
     ],
     "quality": "high"
   },
@@ -15338,8 +15338,8 @@
   "canada": {
     "distractors": [
       "candy",
-      "canadian",
-      "candle"
+      "candle",
+      "cancer"
     ],
     "quality": "high"
   },
@@ -15361,8 +15361,8 @@
   },
   "official": {
     "distractors": [
+      "offices",
       "beneficial",
-      "office",
       "artificial"
     ],
     "quality": "high"
@@ -15378,16 +15378,16 @@
   "scent": {
     "distractors": [
       "sent",
-      "scene",
-      "spent"
+      "spent",
+      "silent"
     ],
     "quality": "high"
   },
   "difficulty": {
     "distractors": [
-      "difficulties",
       "specialty",
-      "difference"
+      "difference",
+      "directly"
     ],
     "quality": "high"
   },
@@ -15395,7 +15395,7 @@
     "distractors": [
       "dress",
       "actress",
-      "press"
+      "added"
     ],
     "quality": "high"
   },
@@ -15417,17 +15417,17 @@
   },
   "strive": {
     "distractors": [
+      "stripes",
       "survive",
-      "arrive",
-      "drive"
+      "arrive"
     ],
     "quality": "high"
   },
   "encouraging": {
     "distractors": [
-      "encountering",
       "discouraging",
-      "incorporating"
+      "incorporating",
+      "increasing"
     ],
     "quality": "high"
   },
@@ -15443,15 +15443,15 @@
     "distractors": [
       "pays",
       "mass",
-      "phase"
+      "past"
     ],
     "quality": "high"
   },
   "introduction": {
     "distractors": [
       "interaction",
-      "intersection",
-      "intervention"
+      "production",
+      "intriguing"
     ],
     "quality": "high"
   },
@@ -15474,16 +15474,16 @@
   "appreciate": {
     "distractors": [
       "appropriate",
-      "approach",
-      "alleviate"
+      "alleviate",
+      "associate"
     ],
     "quality": "high"
   },
   "preferences": {
     "distractors": [
-      "preferred",
       "differences",
-      "prejudices"
+      "prejudices",
+      "properties"
     ],
     "quality": "high"
   },
@@ -15523,7 +15523,7 @@
     "distractors": [
       "pages",
       "wages",
-      "images"
+      "aged"
     ],
     "quality": "high"
   },
@@ -15561,9 +15561,9 @@
   },
   "influences": {
     "distractors": [
-      "influential",
       "differences",
-      "consequences"
+      "consequences",
+      "preferences"
     ],
     "quality": "high"
   },
@@ -15585,17 +15585,17 @@
   },
   "influenced": {
     "distractors": [
-      "influential",
       "balanced",
-      "introduced"
+      "introduced",
+      "informed"
     ],
     "quality": "high"
   },
   "concept": {
     "distractors": [
-      "concert",
-      "concede",
-      "connect"
+      "connect",
+      "context",
+      "contact"
     ],
     "quality": "high"
   },
@@ -15617,9 +15617,9 @@
   },
   "route": {
     "distractors": [
-      "routine",
       "root",
-      "rate"
+      "rate",
+      "round"
     ],
     "quality": "high"
   },
@@ -15634,8 +15634,8 @@
   "town": {
     "distractors": [
       "thrown",
-      "grown",
-      "towel"
+      "tower",
+      "grown"
     ],
     "quality": "high"
   },
@@ -15657,17 +15657,17 @@
   },
   "standards": {
     "distractors": [
-      "standpoint",
       "stanford",
-      "hazards"
+      "hazards",
+      "stations"
     ],
     "quality": "high"
   },
   "driven": {
     "distractors": [
       "proven",
-      "given",
-      "drove"
+      "dried",
+      "given"
     ],
     "quality": "high"
   },
@@ -15729,25 +15729,25 @@
   },
   "mistake": {
     "distractors": [
+      "miserable",
       "distance",
-      "dislike",
-      "awake"
+      "dislike"
     ],
     "quality": "high"
   },
   "behavioral": {
     "distractors": [
-      "behaviours",
       "irrational",
-      "rational"
+      "rational",
+      "beneficial"
     ],
     "quality": "high"
   },
   "method": {
     "distractors": [
+      "meter",
       "metres",
-      "mention",
-      "matched"
+      "mention"
     ],
     "quality": "high"
   },
@@ -15801,9 +15801,9 @@
   },
   "haze": {
     "distractors": [
-      "hazy",
       "gaze",
-      "hate"
+      "hate",
+      "huge"
     ],
     "quality": "high"
   },
@@ -15914,8 +15914,8 @@
   "observed": {
     "distractors": [
       "served",
-      "reserved",
-      "obscure"
+      "obsessed",
+      "reserved"
     ],
     "quality": "high"
   },
@@ -15938,14 +15938,14 @@
   "stations": {
     "distractors": [
       "situations",
-      "nations",
-      "sections"
+      "stating",
+      "nations"
     ],
     "quality": "high"
   },
   "link": {
     "distractors": [
-      "line",
+      "lines",
       "ink",
       "lying"
     ],
@@ -16010,8 +16010,8 @@
   "sensors": {
     "distractors": [
       "seniors",
-      "sectors",
-      "superiors"
+      "senses",
+      "sectors"
     ],
     "quality": "high"
   },
@@ -16049,9 +16049,9 @@
   },
   "technical": {
     "distractors": [
-      "technique",
       "cynical",
-      "ethical"
+      "ethical",
+      "electrical"
     ],
     "quality": "high"
   },
@@ -16073,17 +16073,17 @@
   },
   "analyzed": {
     "distractors": [
-      "analysis",
-      "analysts",
-      "realized"
+      "realized",
+      "amazed",
+      "organized"
     ],
     "quality": "high"
   },
   "incredibly": {
     "distractors": [
-      "increasingly",
       "ingredient",
-      "incorporate"
+      "incorporate",
+      "credible"
     ],
     "quality": "high"
   },
@@ -16129,9 +16129,9 @@
   },
   "finance": {
     "distractors": [
-      "financial",
       "france",
-      "instance"
+      "instance",
+      "guidance"
     ],
     "quality": "high"
   },
@@ -16169,9 +16169,9 @@
   },
   "offering": {
     "distractors": [
+      "offspring",
       "suffering",
-      "wondering",
-      "deferring"
+      "wondering"
     ],
     "quality": "high"
   },
@@ -16217,17 +16217,17 @@
   },
   "strategy": {
     "distractors": [
-      "strategic",
       "street",
-      "saturated"
+      "saturated",
+      "strangers"
     ],
     "quality": "high"
   },
   "completed": {
     "distractors": [
-      "complicated",
-      "complained",
-      "complex"
+      "committed",
+      "compete",
+      "comprehend"
     ],
     "quality": "high"
   },
@@ -16362,8 +16362,8 @@
   "sky": {
     "distractors": [
       "shy",
-      "ski",
-      "risky"
+      "risky",
+      "sea"
     ],
     "quality": "high"
   },
@@ -16387,7 +16387,7 @@
     "distractors": [
       "attempted",
       "affected",
-      "adapted"
+      "accent"
     ],
     "quality": "high"
   },
@@ -16441,9 +16441,9 @@
   },
   "preventing": {
     "distractors": [
+      "presenting",
       "parenting",
-      "printing",
-      "planting"
+      "printing"
     ],
     "quality": "high"
   },
@@ -16481,9 +16481,9 @@
   },
   "respond": {
     "distractors": [
-      "response",
       "restore",
-      "respect"
+      "respect",
+      "second"
     ],
     "quality": "high"
   },
@@ -16521,9 +16521,9 @@
   },
   "mark": {
     "distractors": [
+      "mars",
       "march",
-      "dark",
-      "park"
+      "dark"
     ],
     "quality": "high"
   },
@@ -16545,9 +16545,9 @@
   },
   "genes": {
     "distractors": [
+      "genius",
       "scenes",
-      "games",
-      "bones"
+      "gender"
     ],
     "quality": "high"
   },
@@ -16633,9 +16633,9 @@
   },
   "acceptable": {
     "distractors": [
+      "accessible",
       "susceptible",
-      "agreeable",
-      "reputable"
+      "agreeable"
     ],
     "quality": "high"
   },
@@ -16763,15 +16763,15 @@
     "distractors": [
       "facets",
       "acts",
-      "fats"
+      "faces"
     ],
     "quality": "high"
   },
   "injuries": {
     "distractors": [
-      "injury",
       "centuries",
-      "varies"
+      "varies",
+      "increases"
     ],
     "quality": "high"
   },
@@ -16795,7 +16795,7 @@
     "distractors": [
       "silent",
       "parent",
-      "patient"
+      "talkers"
     ],
     "quality": "high"
   },
@@ -16833,9 +16833,9 @@
   },
   "compounds": {
     "distractors": [
-      "components",
       "commands",
-      "companies"
+      "companies",
+      "campgrounds"
     ],
     "quality": "high"
   },
@@ -16874,14 +16874,14 @@
   "conversations": {
     "distractors": [
       "connections",
-      "convictions",
-      "conclusions"
+      "conclusions",
+      "contributions"
     ],
     "quality": "high"
   },
   "recognize": {
     "distractors": [
-      "receive",
+      "recession",
       "realize",
       "specialize"
     ],
@@ -16889,9 +16889,9 @@
   },
   "accident": {
     "distractors": [
+      "accent",
       "ancient",
-      "accept",
-      "client"
+      "accept"
     ],
     "quality": "high"
   },
@@ -17193,9 +17193,9 @@
   },
   "historian": {
     "distractors": [
-      "historical",
-      "history",
-      "italian"
+      "italian",
+      "australian",
+      "vegetarian"
     ],
     "quality": "high"
   },
@@ -17209,9 +17209,9 @@
   },
   "director": {
     "distractors": [
-      "directness",
       "sector",
-      "creator"
+      "creator",
+      "doctor"
     ],
     "quality": "high"
   },
@@ -17289,9 +17289,9 @@
   },
   "lab": {
     "distractors": [
-      "leap",
-      "lay",
-      "law"
+      "labor",
+      "label",
+      "leap"
     ],
     "quality": "high"
   },
@@ -17393,9 +17393,9 @@
   },
   "appearing": {
     "distractors": [
+      "appealing",
       "apparent",
-      "approaching",
-      "hearing"
+      "approaching"
     ],
     "quality": "high"
   },
@@ -17410,16 +17410,16 @@
   "mindset": {
     "distractors": [
       "minutes",
-      "minted",
-      "ministers"
+      "mines",
+      "minted"
     ],
     "quality": "high"
   },
   "acts": {
     "distractors": [
       "facts",
-      "arts",
-      "facets"
+      "actors",
+      "arts"
     ],
     "quality": "high"
   },
@@ -17434,8 +17434,8 @@
   "stranger": {
     "distractors": [
       "stronger",
-      "stranded",
-      "strength"
+      "strength",
+      "strain"
     ],
     "quality": "high"
   },
@@ -17466,8 +17466,8 @@
   "perceived": {
     "distractors": [
       "received",
-      "perceptions",
-      "perspective"
+      "perspective",
+      "performed"
     ],
     "quality": "high"
   },
@@ -17545,9 +17545,9 @@
   },
   "primary": {
     "distractors": [
-      "primarily",
       "ordinary",
-      "prior"
+      "prior",
+      "privately"
     ],
     "quality": "high"
   },
@@ -17587,15 +17587,15 @@
     "distractors": [
       "strangers",
       "strongly",
-      "stranded"
+      "straight"
     ],
     "quality": "high"
   },
   "tea": {
     "distractors": [
-      "ten",
-      "ted",
-      "sea"
+      "team",
+      "teach",
+      "ten"
     ],
     "quality": "high"
   },
@@ -17609,9 +17609,9 @@
   },
   "invention": {
     "distractors": [
+      "invented",
       "intention",
-      "mention",
-      "interaction"
+      "mention"
     ],
     "quality": "high"
   },
@@ -17674,8 +17674,8 @@
   "indigenous": {
     "distractors": [
       "indicator",
-      "indicate",
-      "industrial"
+      "industrial",
+      "indecision"
     ],
     "quality": "high"
   },
@@ -17705,9 +17705,9 @@
   },
   "closed": {
     "distractors": [
+      "closet",
       "classed",
-      "caused",
-      "exposed"
+      "caused"
     ],
     "quality": "high"
   },
@@ -17738,8 +17738,8 @@
   "desert": {
     "distractors": [
       "desired",
-      "deserve",
-      "assert"
+      "assert",
+      "destroy"
     ],
     "quality": "high"
   },
@@ -17777,9 +17777,9 @@
   },
   "tower": {
     "distractors": [
+      "towel",
       "lower",
-      "power",
-      "slower"
+      "power"
     ],
     "quality": "high"
   },
@@ -17801,9 +17801,9 @@
   },
   "economist": {
     "distractors": [
-      "economics",
-      "economy",
-      "ecologists"
+      "ecologists",
+      "consist",
+      "geologist"
     ],
     "quality": "high"
   },
@@ -17825,9 +17825,9 @@
   },
   "barrett": {
     "distractors": [
-      "barren",
       "barely",
-      "birth"
+      "birth",
+      "bread"
     ],
     "quality": "high"
   },
@@ -17849,9 +17849,9 @@
   },
   "outer": {
     "distractors": [
+      "outdoor",
       "counter",
-      "foster",
-      "meter"
+      "foster"
     ],
     "quality": "high"
   },
@@ -17865,9 +17865,9 @@
   },
   "compound": {
     "distractors": [
-      "component",
       "company",
-      "combined"
+      "combined",
+      "complained"
     ],
     "quality": "high"
   },
@@ -17947,7 +17947,7 @@
     "distractors": [
       "matters",
       "mothers",
-      "centers"
+      "metres"
     ],
     "quality": "high"
   },
@@ -17977,9 +17977,9 @@
   },
   "apply": {
     "distractors": [
+      "apple",
       "supply",
-      "happily",
-      "comply"
+      "happily"
     ],
     "quality": "high"
   },
@@ -18155,7 +18155,7 @@
     "distractors": [
       "mines",
       "menus",
-      "forms"
+      "minus"
     ],
     "quality": "high"
   },
@@ -18163,15 +18163,15 @@
     "distractors": [
       "nose",
       "noisy",
-      "noise"
+      "mass"
     ],
     "quality": "high"
   },
   "invested": {
     "distractors": [
+      "invented",
       "invited",
-      "invasive",
-      "interested"
+      "invasive"
     ],
     "quality": "high"
   },
@@ -18185,9 +18185,9 @@
   },
   "exclusively": {
     "distractors": [
+      "excessive",
       "effectively",
-      "relatively",
-      "negatively"
+      "relatively"
     ],
     "quality": "high"
   },
@@ -18209,9 +18209,9 @@
   },
   "interacting": {
     "distractors": [
-      "interesting",
-      "interpreting",
-      "intriguing"
+      "intriguing",
+      "introducing",
+      "detecting"
     ],
     "quality": "high"
   },
@@ -18225,9 +18225,9 @@
   },
   "academy": {
     "distractors": [
-      "academic",
       "accident",
-      "enemy"
+      "enemy",
+      "acting"
     ],
     "quality": "high"
   },
@@ -18243,7 +18243,7 @@
     "distractors": [
       "appliance",
       "apparent",
-      "acceptance"
+      "appealing"
     ],
     "quality": "high"
   },
@@ -18322,8 +18322,8 @@
   "sharp": {
     "distractors": [
       "shark",
-      "share",
-      "shame"
+      "shame",
+      "shah"
     ],
     "quality": "high"
   },
@@ -18353,17 +18353,17 @@
   },
   "extend": {
     "distractors": [
+      "extent",
       "attend",
-      "intend",
-      "external"
+      "intend"
     ],
     "quality": "high"
   },
   "extended": {
     "distractors": [
+      "extent",
       "tended",
-      "intended",
-      "expanded"
+      "intended"
     ],
     "quality": "high"
   },
@@ -18426,8 +18426,8 @@
   "speaker": {
     "distractors": [
       "weaker",
-      "species",
-      "thicker"
+      "speed",
+      "species"
     ],
     "quality": "high"
   },
@@ -18441,17 +18441,17 @@
   },
   "caring": {
     "distractors": [
+      "carrying",
       "charming",
-      "calling",
-      "hearing"
+      "calling"
     ],
     "quality": "high"
   },
   "crops": {
     "distractors": [
+      "cross",
       "troops",
-      "shops",
-      "groups"
+      "shops"
     ],
     "quality": "high"
   },
@@ -18489,9 +18489,9 @@
   },
   "attacks": {
     "distractors": [
-      "attached",
       "snacks",
-      "attract"
+      "attract",
+      "trucks"
     ],
     "quality": "high"
   },
@@ -18505,9 +18505,9 @@
   },
   "organized": {
     "distractors": [
-      "organic",
-      "organism",
-      "realized"
+      "realized",
+      "recognized",
+      "criticized"
     ],
     "quality": "high"
   },
@@ -18585,9 +18585,9 @@
   },
   "youngsters": {
     "distractors": [
-      "youngest",
       "ministers",
-      "founders"
+      "founders",
+      "computers"
     ],
     "quality": "high"
   },
@@ -18690,8 +18690,8 @@
   "copies": {
     "distractors": [
       "cookies",
-      "cope",
-      "movies"
+      "movies",
+      "bodies"
     ],
     "quality": "high"
   },
@@ -18705,17 +18705,17 @@
   },
   "fans": {
     "distractors": [
+      "fancy",
       "vans",
-      "spans",
-      "loans"
+      "spans"
     ],
     "quality": "high"
   },
   "satisfied": {
     "distractors": [
-      "satisfying",
       "saturated",
-      "justified"
+      "justified",
+      "studied"
     ],
     "quality": "high"
   },
@@ -18769,33 +18769,33 @@
   },
   "healthcare": {
     "distractors": [
-      "healthier",
       "headache",
-      "nightmare"
+      "nightmare",
+      "software"
     ],
     "quality": "high"
   },
   "maintenance": {
     "distractors": [
-      "maintaining",
       "insurance",
-      "appearance"
+      "appearance",
+      "assistance"
     ],
     "quality": "high"
   },
   "profits": {
     "distractors": [
       "provides",
-      "profile",
-      "projects"
+      "projects",
+      "products"
     ],
     "quality": "high"
   },
   "feels": {
     "distractors": [
+      "fees",
       "heels",
-      "fails",
-      "wheels"
+      "fails"
     ],
     "quality": "high"
   },
@@ -18817,7 +18817,7 @@
   },
   "recognise": {
     "distractors": [
-      "receive",
+      "recession",
       "records",
       "recommends"
     ],
@@ -18857,9 +18857,9 @@
   },
   "literature": {
     "distractors": [
+      "literally",
       "temperature",
-      "miniature",
-      "architecture"
+      "miniature"
     ],
     "quality": "high"
   },
@@ -18881,9 +18881,9 @@
   },
   "predicted": {
     "distractors": [
+      "presented",
       "produced",
-      "prejudiced",
-      "dedicated"
+      "prejudiced"
     ],
     "quality": "high"
   },
@@ -18915,7 +18915,7 @@
     "distractors": [
       "propels",
       "problem",
-      "profit"
+      "promise"
     ],
     "quality": "high"
   },
@@ -18930,8 +18930,8 @@
   "consumed": {
     "distractors": [
       "confirmed",
-      "consulted",
-      "confused"
+      "confused",
+      "consensus"
     ],
     "quality": "high"
   },
@@ -18946,8 +18946,8 @@
   "canadian": {
     "distractors": [
       "comedian",
-      "canada",
-      "canteen"
+      "canteen",
+      "indian"
     ],
     "quality": "high"
   },
@@ -18955,7 +18955,7 @@
     "distractors": [
       "treating",
       "throat",
-      "threads"
+      "thrilled"
     ],
     "quality": "high"
   },
@@ -19067,7 +19067,7 @@
     "distractors": [
       "skilled",
       "filled",
-      "thrilled"
+      "killy"
     ],
     "quality": "high"
   },
@@ -19081,9 +19081,9 @@
   },
   "electricity": {
     "distractors": [
-      "electronic",
       "flexibility",
-      "fertility"
+      "fertility",
+      "creativity"
     ],
     "quality": "high"
   },
@@ -19098,8 +19098,8 @@
   "enterprises": {
     "distractors": [
       "entrepreneurs",
-      "entertainment",
-      "exercises"
+      "exercises",
+      "interpreters"
     ],
     "quality": "high"
   },
@@ -19137,9 +19137,9 @@
   },
   "menu": {
     "distractors": [
+      "men",
       "man",
-      "mean",
-      "mental"
+      "mean"
     ],
     "quality": "high"
   },
@@ -19154,8 +19154,8 @@
   "encourage": {
     "distractors": [
       "storage",
-      "encounter",
-      "percentage"
+      "percentage",
+      "beverage"
     ],
     "quality": "high"
   },
@@ -19201,17 +19201,17 @@
   },
   "celebrate": {
     "distractors": [
-      "celebrities",
       "collaborate",
-      "elaborate"
+      "elaborate",
+      "generate"
     ],
     "quality": "high"
   },
   "committed": {
     "distractors": [
       "completed",
-      "complicated",
-      "combined"
+      "combined",
+      "commute"
     ],
     "quality": "high"
   },
@@ -19225,25 +19225,25 @@
   },
   "catch": {
     "distractors": [
+      "cats",
       "watch",
-      "match",
-      "cathy"
+      "match"
     ],
     "quality": "high"
   },
   "mortality": {
     "distractors": [
+      "morality",
       "vitality",
-      "fertility",
-      "reality"
+      "fertility"
     ],
     "quality": "high"
   },
   "silent": {
     "distractors": [
+      "silence",
       "sent",
-      "scent",
-      "talent"
+      "scent"
     ],
     "quality": "high"
   },
@@ -19257,9 +19257,9 @@
   },
   "recognized": {
     "distractors": [
+      "recession",
       "received",
-      "realized",
-      "recruited"
+      "realized"
     ],
     "quality": "high"
   },
@@ -19345,9 +19345,9 @@
   },
   "editing": {
     "distractors": [
+      "edition",
       "existing",
-      "exciting",
-      "dating"
+      "exciting"
     ],
     "quality": "high"
   },
@@ -19417,8 +19417,8 @@
   },
   "applied": {
     "distractors": [
-      "apple",
       "appeared",
+      "applying",
       "relied"
     ],
     "quality": "high"
@@ -19434,8 +19434,8 @@
   "transition": {
     "distractors": [
       "tradition",
-      "transporting",
-      "tranquility"
+      "tranquility",
+      "sensation"
     ],
     "quality": "high"
   },
@@ -19473,9 +19473,9 @@
   },
   "enter": {
     "distractors": [
-      "center",
-      "letter",
-      "winter"
+      "entire",
+      "entry",
+      "center"
     ],
     "quality": "high"
   },
@@ -19498,16 +19498,16 @@
   "tranquility": {
     "distractors": [
       "transition",
-      "translate",
-      "transport"
+      "inequality",
+      "stability"
     ],
     "quality": "high"
   },
   "injury": {
     "distractors": [
-      "injuries",
       "jury",
-      "century"
+      "century",
+      "mercury"
     ],
     "quality": "high"
   },
@@ -19531,7 +19531,7 @@
     "distractors": [
       "resume",
       "presence",
-      "pressure"
+      "presented"
     ],
     "quality": "high"
   },
@@ -19555,7 +19555,7 @@
     "distractors": [
       "copies",
       "bodies",
-      "move"
+      "melodies"
     ],
     "quality": "high"
   },
@@ -19602,8 +19602,8 @@
   "march": {
     "distractors": [
       "mark",
-      "search",
-      "match"
+      "mars",
+      "search"
     ],
     "quality": "high"
   },
@@ -19665,9 +19665,9 @@
   },
   "advantage": {
     "distractors": [
-      "advance",
       "adventure",
-      "advocate"
+      "advocate",
+      "average"
     ],
     "quality": "high"
   },
@@ -19794,8 +19794,8 @@
   "greenhouse": {
     "distractors": [
       "warehouse",
-      "greenland",
-      "tremendous"
+      "tremendous",
+      "greatest"
     ],
     "quality": "high"
   },
@@ -19809,17 +19809,17 @@
   },
   "cope": {
     "distractors": [
-      "copy",
       "cape",
-      "hope"
+      "hope",
+      "coke"
     ],
     "quality": "high"
   },
   "consume": {
     "distractors": [
       "costume",
-      "consulted",
-      "consensus"
+      "consensus",
+      "conclude"
     ],
     "quality": "high"
   },
@@ -19851,7 +19851,7 @@
     "distractors": [
       "chef",
       "leap",
-      "check"
+      "chess"
     ],
     "quality": "high"
   },
@@ -19889,9 +19889,9 @@
   },
   "safety": {
     "distractors": [
+      "safely",
       "safest",
-      "soft",
-      "saved"
+      "soft"
     ],
     "quality": "high"
   },
@@ -19969,9 +19969,9 @@
   },
   "appealing": {
     "distractors": [
+      "appearing",
       "approaching",
-      "dealing",
-      "appliance"
+      "dealing"
     ],
     "quality": "high"
   },
@@ -20001,9 +20001,9 @@
   },
   "strategic": {
     "distractors": [
-      "strategy",
       "stranger",
-      "straight"
+      "straight",
+      "saturated"
     ],
     "quality": "high"
   },
@@ -20057,9 +20057,9 @@
   },
   "intent": {
     "distractors": [
+      "intend",
       "invent",
-      "content",
-      "extent"
+      "internet"
     ],
     "quality": "high"
   },
@@ -20067,7 +20067,7 @@
     "distractors": [
       "concede",
       "correct",
-      "concept"
+      "constant"
     ],
     "quality": "high"
   },
@@ -20105,9 +20105,9 @@
   },
   "possibly": {
     "distractors": [
+      "possible",
       "positively",
-      "impossible",
-      "posting"
+      "impossible"
     ],
     "quality": "high"
   },
@@ -20242,16 +20242,16 @@
   "intentional": {
     "distractors": [
       "international",
-      "interpersonal",
-      "conventional"
+      "conventional",
+      "irrational"
     ],
     "quality": "high"
   },
   "scents": {
     "distractors": [
       "accents",
-      "scene",
-      "agents"
+      "agents",
+      "events"
     ],
     "quality": "high"
   },
@@ -20377,25 +20377,25 @@
   },
   "closest": {
     "distractors": [
-      "closet",
       "lowest",
+      "closed",
       "modest"
     ],
     "quality": "high"
   },
   "motivator": {
     "distractors": [
-      "motivate",
       "monitor",
-      "indicator"
+      "indicator",
+      "solicitor"
     ],
     "quality": "high"
   },
   "expertise": {
     "distractors": [
-      "experiment",
       "exercise",
-      "expense"
+      "expense",
+      "expressions"
     ],
     "quality": "high"
   },
@@ -20441,9 +20441,9 @@
   },
   "scene": {
     "distractors": [
-      "scent",
       "scheme",
-      "gene"
+      "gene",
+      "science"
     ],
     "quality": "high"
   },
@@ -20483,15 +20483,15 @@
     "distractors": [
       "consecutive",
       "contact",
-      "contagious"
+      "productive"
     ],
     "quality": "high"
   },
   "advise": {
     "distractors": [
-      "arise",
-      "mise",
-      "admire"
+      "advice",
+      "advocate",
+      "adverse"
     ],
     "quality": "high"
   },
@@ -20545,9 +20545,9 @@
   },
   "advancement": {
     "distractors": [
-      "advantage",
       "advertisement",
-      "arrangement"
+      "arrangement",
+      "adventure"
     ],
     "quality": "high"
   },
@@ -20665,9 +20665,9 @@
   },
   "analyze": {
     "distractors": [
-      "analysis",
-      "analysts",
-      "realize"
+      "realize",
+      "translate",
+      "angry"
     ],
     "quality": "high"
   },
@@ -20714,8 +20714,8 @@
   "recommends": {
     "distractors": [
       "commands",
-      "recognise",
-      "compounds"
+      "comments",
+      "recognise"
     ],
     "quality": "high"
   },
@@ -20731,7 +20731,7 @@
     "distractors": [
       "intriguing",
       "interpreting",
-      "interacting"
+      "contributing"
     ],
     "quality": "high"
   },
@@ -20875,7 +20875,7 @@
     "distractors": [
       "mary",
       "salary",
-      "varies"
+      "party"
     ],
     "quality": "high"
   },
@@ -20898,8 +20898,8 @@
   "glad": {
     "distractors": [
       "salad",
-      "gold",
-      "glance"
+      "glass",
+      "gold"
     ],
     "quality": "high"
   },
@@ -20913,9 +20913,9 @@
   },
   "mechanics": {
     "distractors": [
-      "mechanism",
       "machines",
-      "mathematics"
+      "mathematics",
+      "hispanics"
     ],
     "quality": "high"
   },
@@ -20937,9 +20937,9 @@
   },
   "heavy": {
     "distractors": [
-      "heavily",
       "head",
-      "heat"
+      "heat",
+      "heard"
     ],
     "quality": "high"
   },
@@ -20947,7 +20947,7 @@
     "distractors": [
       "preteen",
       "proven",
-      "protect"
+      "profit"
     ],
     "quality": "high"
   },
@@ -21089,9 +21089,9 @@
   },
   "maintaining": {
     "distractors": [
-      "maintenance",
       "obtaining",
-      "retaining"
+      "retaining",
+      "mountains"
     ],
     "quality": "high"
   },
@@ -21107,7 +21107,7 @@
     "distractors": [
       "introducing",
       "interacting",
-      "interesting"
+      "contributing"
     ],
     "quality": "high"
   },
@@ -21209,9 +21209,9 @@
   },
   "relief": {
     "distractors": [
-      "relieve",
       "belief",
-      "relaxed"
+      "relaxed",
+      "related"
     ],
     "quality": "high"
   },
@@ -21249,9 +21249,9 @@
   },
   "cross": {
     "distractors": [
+      "crops",
       "gross",
-      "curious",
-      "boss"
+      "curious"
     ],
     "quality": "high"
   },
@@ -21274,8 +21274,8 @@
   "connections": {
     "distractors": [
       "convictions",
-      "conversations",
-      "conditions"
+      "conditions",
+      "construction"
     ],
     "quality": "high"
   },
@@ -21313,9 +21313,9 @@
   },
   "luckily": {
     "distractors": [
-      "lucky",
       "likely",
-      "local"
+      "local",
+      "baily"
     ],
     "quality": "high"
   },
@@ -21377,9 +21377,9 @@
   },
   "win": {
     "distractors": [
+      "wing",
       "won",
-      "wit",
-      "pain"
+      "wit"
     ],
     "quality": "high"
   },
@@ -21411,7 +21411,7 @@
     "distractors": [
       "stories",
       "stage",
-      "store"
+      "stroke"
     ],
     "quality": "high"
   },
@@ -21482,8 +21482,8 @@
   "profit": {
     "distractors": [
       "provide",
-      "profile",
-      "prompt"
+      "prompt",
+      "protein"
     ],
     "quality": "high"
   },
@@ -21505,9 +21505,9 @@
   },
   "genius": {
     "distractors": [
+      "genes",
       "genetics",
-      "genuine",
-      "celsius"
+      "genuine"
     ],
     "quality": "high"
   },
@@ -21545,25 +21545,25 @@
   },
   "satisfying": {
     "distractors": [
-      "satisfied",
-      "satisfaction",
-      "shifting"
+      "shifting",
+      "sticking",
+      "studying"
     ],
     "quality": "high"
   },
   "pills": {
     "distractors": [
+      "piles",
       "bills",
-      "hills",
-      "pools"
+      "hills"
     ],
     "quality": "high"
   },
   "lines": {
     "distractors": [
+      "links",
       "wines",
-      "mines",
-      "lies"
+      "mines"
     ],
     "quality": "high"
   },
@@ -21586,8 +21586,8 @@
   "impressive": {
     "distractors": [
       "imperative",
-      "impersonal",
-      "importance"
+      "importance",
+      "excessive"
     ],
     "quality": "high"
   },
@@ -21617,17 +21617,17 @@
   },
   "unlikely": {
     "distractors": [
+      "unless",
       "likely",
-      "entirely",
-      "widely"
+      "entirely"
     ],
     "quality": "high"
   },
   "entrepreneur": {
     "distractors": [
       "enterprises",
-      "entertainment",
-      "interpreter"
+      "interpreter",
+      "endorsements"
     ],
     "quality": "high"
   },
@@ -21657,9 +21657,9 @@
   },
   "substantial": {
     "distractors": [
-      "substances",
-      "substitute",
-      "subsidies"
+      "subsidies",
+      "essential",
+      "potential"
     ],
     "quality": "high"
   },
@@ -21667,7 +21667,7 @@
     "distractors": [
       "necessary",
       "anniversary",
-      "necessarily"
+      "necessity"
     ],
     "quality": "high"
   },
@@ -21729,7 +21729,7 @@
   },
   "card": {
     "distractors": [
-      "care",
+      "cars",
       "hard",
       "cured"
     ],
@@ -21754,8 +21754,8 @@
   "leg": {
     "distractors": [
       "log",
-      "lies",
-      "led"
+      "logo",
+      "lies"
     ],
     "quality": "high"
   },
@@ -21785,9 +21785,9 @@
   },
   "invented": {
     "distractors": [
-      "intended",
-      "interested",
-      "infant"
+      "invested",
+      "invited",
+      "invention"
     ],
     "quality": "high"
   },
@@ -21801,8 +21801,8 @@
   },
   "funny": {
     "distractors": [
+      "fun",
       "sunny",
-      "fund",
       "penny"
     ],
     "quality": "high"
@@ -21810,8 +21810,8 @@
   "safer": {
     "distractors": [
       "suffer",
-      "super",
-      "defer"
+      "safety",
+      "super"
     ],
     "quality": "high"
   },
@@ -21873,25 +21873,25 @@
   },
   "towel": {
     "distractors": [
+      "tower",
       "toll",
-      "tool",
-      "town"
+      "tool"
     ],
     "quality": "high"
   },
   "trial": {
     "distractors": [
+      "tribal",
       "thrill",
-      "burial",
-      "crucial"
+      "burial"
     ],
     "quality": "high"
   },
   "mess": {
     "distractors": [
+      "messy",
       "mass",
-      "miss",
-      "press"
+      "miss"
     ],
     "quality": "high"
   },
@@ -21937,9 +21937,9 @@
   },
   "angry": {
     "distractors": [
+      "anger",
       "hungry",
-      "answers",
-      "entry"
+      "answers"
     ],
     "quality": "high"
   },
@@ -21953,9 +21953,9 @@
   },
   "interpreting": {
     "distractors": [
-      "interacting",
-      "interesting",
-      "intriguing"
+      "intriguing",
+      "introducing",
+      "incorporating"
     ],
     "quality": "high"
   },
@@ -22033,9 +22033,9 @@
   },
   "killy": {
     "distractors": [
+      "kill",
       "chilly",
-      "molly",
-      "fully"
+      "molly"
     ],
     "quality": "high"
   },
@@ -22137,25 +22137,25 @@
   },
   "medicines": {
     "distractors": [
-      "medications",
       "magazines",
-      "vaccines"
+      "vaccines",
+      "headlines"
     ],
     "quality": "high"
   },
   "silence": {
     "distractors": [
+      "silent",
       "science",
-      "sentence",
-      "evidence"
+      "sentence"
     ],
     "quality": "high"
   },
   "diverse": {
     "distractors": [
+      "diversity",
       "divorced",
-      "disperse",
-      "universe"
+      "disperse"
     ],
     "quality": "high"
   },
@@ -22170,8 +22170,8 @@
   "ecologists": {
     "distractors": [
       "economists",
-      "economics",
-      "geologist"
+      "geologist",
+      "tourists"
     ],
     "quality": "high"
   },
@@ -22250,8 +22250,8 @@
   "quantities": {
     "distractors": [
       "qualities",
-      "quantitative",
-      "charities"
+      "charities",
+      "authorities"
     ],
     "quality": "high"
   },
@@ -22265,17 +22265,17 @@
   },
   "olds": {
     "distractors": [
+      "oldest",
       "holds",
-      "worlds",
-      "odds"
+      "worlds"
     ],
     "quality": "high"
   },
   "demography": {
     "distractors": [
-      "demographics",
       "biography",
-      "demonstrates"
+      "demonstrates",
+      "geographic"
     ],
     "quality": "high"
   },
@@ -22290,16 +22290,16 @@
   "youngest": {
     "distractors": [
       "longest",
-      "youngsters",
-      "honest"
+      "honest",
+      "suggest"
     ],
     "quality": "high"
   },
   "aspirin": {
     "distractors": [
-      "aspire",
       "spirit",
-      "aspect"
+      "aspect",
+      "spring"
     ],
     "quality": "high"
   },
@@ -22313,9 +22313,9 @@
   },
   "obese": {
     "distractors": [
+      "obesity",
       "ones",
-      "chinese",
-      "foresee"
+      "chinese"
     ],
     "quality": "high"
   },
@@ -22385,9 +22385,9 @@
   },
   "superiors": {
     "distractors": [
-      "supervisors",
       "seniors",
-      "supplies"
+      "supplies",
+      "competitors"
     ],
     "quality": "high"
   },
@@ -22433,9 +22433,9 @@
   },
   "economies": {
     "distractors": [
-      "economy",
       "cookies",
-      "ecologists"
+      "ecologists",
+      "comedies"
     ],
     "quality": "high"
   },
@@ -22545,17 +22545,17 @@
   },
   "hazy": {
     "distractors": [
-      "haze",
       "lazy",
-      "crazy"
+      "crazy",
+      "heavy"
     ],
     "quality": "high"
   },
   "spacecraft": {
     "distractors": [
       "spokesman",
-      "spokesperson",
-      "subjects"
+      "subjects",
+      "specialty"
     ],
     "quality": "high"
   },
@@ -22626,8 +22626,8 @@
   "depicted": {
     "distractors": [
       "depleted",
-      "dedicated",
-      "duplicated"
+      "depiction",
+      "dedicated"
     ],
     "quality": "high"
   },
@@ -22635,7 +22635,7 @@
     "distractors": [
       "official",
       "artificial",
-      "benefits"
+      "financial"
     ],
     "quality": "high"
   },
@@ -22657,9 +22657,9 @@
   },
   "club": {
     "distractors": [
+      "clues",
       "cuba",
-      "blue",
-      "comb"
+      "blue"
     ],
     "quality": "high"
   },
@@ -22691,7 +22691,7 @@
     "distractors": [
       "city",
       "catch",
-      "wealthy"
+      "cats"
     ],
     "quality": "high"
   },
@@ -22753,9 +22753,9 @@
   },
   "organizations": {
     "distractors": [
-      "organisations",
       "obligations",
-      "civilizations"
+      "civilizations",
+      "generations"
     ],
     "quality": "high"
   },
@@ -22809,9 +22809,9 @@
   },
   "underlying": {
     "distractors": [
-      "wandering",
-      "wondering",
-      "entering"
+      "undemanding",
+      "underground",
+      "wandering"
     ],
     "quality": "high"
   },
@@ -22826,8 +22826,8 @@
   "sections": {
     "distractors": [
       "reactions",
-      "stations",
-      "actions"
+      "sectors",
+      "stations"
     ],
     "quality": "high"
   },
@@ -22858,8 +22858,8 @@
   "invited": {
     "distractors": [
       "invested",
-      "united",
-      "indicated"
+      "invented",
+      "united"
     ],
     "quality": "high"
   },
@@ -22873,9 +22873,9 @@
   },
   "perceptions": {
     "distractors": [
-      "perceived",
       "descriptions",
-      "perspective"
+      "perspective",
+      "promotions"
     ],
     "quality": "high"
   },
@@ -22947,7 +22947,7 @@
     "distractors": [
       "turns",
       "earth",
-      "arms"
+      "early"
     ],
     "quality": "high"
   },
@@ -22971,7 +22971,7 @@
     "distractors": [
       "perform",
       "inform",
-      "form"
+      "refers"
     ],
     "quality": "high"
   },
@@ -23009,17 +23009,17 @@
   },
   "unpredictable": {
     "distractors": [
-      "unprecedented",
       "uncomfortable",
-      "susceptible"
+      "susceptible",
+      "comfortable"
     ],
     "quality": "high"
   },
   "urgency": {
     "distractors": [
+      "urgent",
       "currency",
-      "agency",
-      "emergency"
+      "agency"
     ],
     "quality": "high"
   },
@@ -23027,7 +23027,7 @@
     "distractors": [
       "printing",
       "presenting",
-      "earning"
+      "preventing"
     ],
     "quality": "high"
   },
@@ -23043,7 +23043,7 @@
     "distractors": [
       "relying",
       "realizing",
-      "religion"
+      "reading"
     ],
     "quality": "high"
   },
@@ -23105,9 +23105,9 @@
   },
   "organisations": {
     "distractors": [
-      "organizations",
       "obligations",
-      "generations"
+      "generations",
+      "collaborations"
     ],
     "quality": "high"
   },
@@ -23185,9 +23185,9 @@
   },
   "preschoolers": {
     "distractors": [
-      "prescribed",
       "prejudices",
-      "prestigious"
+      "prestigious",
+      "preoccupied"
     ],
     "quality": "high"
   },
@@ -23225,9 +23225,9 @@
   },
   "applicants": {
     "distractors": [
-      "appliances",
       "appearances",
-      "supplements"
+      "supplements",
+      "applying"
     ],
     "quality": "high"
   },
@@ -23235,15 +23235,15 @@
     "distractors": [
       "prepared",
       "referred",
-      "preferences"
+      "preserved"
     ],
     "quality": "high"
   },
   "revealed": {
     "distractors": [
+      "revenue",
       "sealed",
-      "reviewed",
-      "traveled"
+      "reviewed"
     ],
     "quality": "high"
   },
@@ -23306,8 +23306,8 @@
   "altogether": {
     "distractors": [
       "alternate",
-      "alterations",
-      "automated"
+      "automated",
+      "alzheimer"
     ],
     "quality": "high"
   },
@@ -23411,7 +23411,7 @@
     "distractors": [
       "property",
       "productivity",
-      "properties"
+      "priority"
     ],
     "quality": "high"
   },
@@ -23419,7 +23419,7 @@
     "distractors": [
       "forecasts",
       "forget",
-      "foresee"
+      "forgotten"
     ],
     "quality": "high"
   },
@@ -23441,9 +23441,9 @@
   },
   "longevity": {
     "distractors": [
-      "longest",
       "obesity",
-      "prosperity"
+      "prosperity",
+      "density"
     ],
     "quality": "high"
   },
@@ -23545,9 +23545,9 @@
   },
   "underestimate": {
     "distractors": [
-      "undergraduate",
-      "understanding",
-      "underground"
+      "unfortunate",
+      "demonstrate",
+      "participate"
     ],
     "quality": "high"
   },
@@ -23563,7 +23563,7 @@
     "distractors": [
       "conference",
       "convenience",
-      "consecutive"
+      "confidence"
     ],
     "quality": "high"
   },
@@ -23634,8 +23634,8 @@
   "consecutive": {
     "distractors": [
       "constructive",
-      "consequence",
-      "conducive"
+      "conducive",
+      "conscious"
     ],
     "quality": "high"
   },
@@ -23657,25 +23657,25 @@
   },
   "justified": {
     "distractors": [
-      "justify",
       "identified",
-      "terrified"
+      "terrified",
+      "satisfied"
     ],
     "quality": "high"
   },
   "pro": {
     "distractors": [
       "pre",
-      "poor",
-      "prior"
+      "proud",
+      "prove"
     ],
     "quality": "high"
   },
   "advantages": {
     "distractors": [
-      "advances",
       "adventure",
-      "advocates"
+      "advocates",
+      "disadvantage"
     ],
     "quality": "high"
   },
@@ -23730,8 +23730,8 @@
   "sensitive": {
     "distractors": [
       "sensation",
-      "positive",
-      "repetitive"
+      "sensible",
+      "positive"
     ],
     "quality": "high"
   },
@@ -23817,17 +23817,17 @@
   },
   "obsession": {
     "distractors": [
+      "observation",
       "recession",
-      "discussion",
-      "compassion"
+      "discussion"
     ],
     "quality": "high"
   },
   "prevents": {
     "distractors": [
+      "present",
       "events",
-      "represents",
-      "proven"
+      "represents"
     ],
     "quality": "high"
   },
@@ -23849,9 +23849,9 @@
   },
   "identical": {
     "distractors": [
-      "identify",
-      "identified",
-      "skeptical"
+      "skeptical",
+      "electrical",
+      "clinical"
     ],
     "quality": "high"
   },
@@ -23873,17 +23873,17 @@
   },
   "undergraduates": {
     "distractors": [
-      "underestimate",
-      "understanding",
-      "demonstrates"
+      "demonstrates",
+      "kindergarten",
+      "interpreters"
     ],
     "quality": "high"
   },
   "complained": {
     "distractors": [
-      "completed",
-      "complimented",
-      "combined"
+      "combined",
+      "compelling",
+      "explained"
     ],
     "quality": "high"
   },
@@ -24042,7 +24042,7 @@
   "applies": {
     "distractors": [
       "supplies",
-      "apple",
+      "applying",
       "families"
     ],
     "quality": "high"
@@ -24089,9 +24089,9 @@
   },
   "circumstances": {
     "distractors": [
-      "circulating",
       "consequences",
-      "appearances"
+      "appearances",
+      "preferences"
     ],
     "quality": "high"
   },
@@ -24114,8 +24114,8 @@
   "subsidies": {
     "distractors": [
       "substances",
-      "substitute",
-      "substantial"
+      "signifies",
+      "supplies"
     ],
     "quality": "high"
   },
@@ -24139,7 +24139,7 @@
     "distractors": [
       "forget",
       "forecast",
-      "foresee"
+      "forced"
     ],
     "quality": "high"
   },
@@ -24147,15 +24147,15 @@
     "distractors": [
       "destination",
       "deception",
-      "described"
+      "depiction"
     ],
     "quality": "high"
   },
   "regulate": {
     "distractors": [
       "relate",
-      "regular",
-      "resulted"
+      "resulted",
+      "equate"
     ],
     "quality": "high"
   },
@@ -24169,9 +24169,9 @@
   },
   "minor": {
     "distractors": [
+      "mines",
       "minus",
-      "minds",
-      "manner"
+      "minds"
     ],
     "quality": "high"
   },
@@ -24193,25 +24193,25 @@
   },
   "bride": {
     "distractors": [
-      "bridge",
       "ride",
-      "pride"
+      "pride",
+      "hide"
     ],
     "quality": "high"
   },
   "supermarkets": {
     "distractors": [
-      "supervisors",
-      "superstitious",
-      "supplements"
+      "supplements",
+      "supporting",
+      "operations"
     ],
     "quality": "high"
   },
   "percentage": {
     "distractors": [
       "personal",
-      "perception",
-      "perspective"
+      "perspective",
+      "persuade"
     ],
     "quality": "high"
   },
@@ -24241,17 +24241,17 @@
   },
   "alterations": {
     "distractors": [
-      "alternative",
       "interactions",
-      "generations"
+      "generations",
+      "operations"
     ],
     "quality": "high"
   },
   "invent": {
     "distractors": [
       "intent",
-      "infant",
-      "event"
+      "invest",
+      "infant"
     ],
     "quality": "high"
   },
@@ -24290,16 +24290,16 @@
   "properties": {
     "distractors": [
       "proportions",
-      "property",
-      "prospective"
+      "prospective",
+      "proofread"
     ],
     "quality": "high"
   },
   "classmates": {
     "distractors": [
       "teammates",
-      "classrooms",
-      "roommates"
+      "roommates",
+      "graduates"
     ],
     "quality": "high"
   },
@@ -24329,9 +24329,9 @@
   },
   "urgent": {
     "distractors": [
+      "urgency",
       "current",
-      "rent",
-      "judgment"
+      "rent"
     ],
     "quality": "high"
   },
@@ -24386,16 +24386,16 @@
   "introduce": {
     "distractors": [
       "intricate",
-      "intriguing",
-      "interactive"
+      "interactive",
+      "produce"
     ],
     "quality": "high"
   },
   "recession": {
     "distractors": [
-      "depression",
-      "profession",
-      "revision"
+      "recognition",
+      "recreation",
+      "depression"
     ],
     "quality": "high"
   },
@@ -24403,7 +24403,7 @@
     "distractors": [
       "sustainable",
       "acceptable",
-      "miserable"
+      "accessible"
     ],
     "quality": "high"
   },
@@ -24417,9 +24417,9 @@
   },
   "comments": {
     "distractors": [
-      "contents",
-      "moments",
-      "movements"
+      "commands",
+      "community",
+      "components"
     ],
     "quality": "high"
   },
@@ -24497,9 +24497,9 @@
   },
   "psychologist": {
     "distractors": [
-      "psychological",
-      "psychology",
-      "psychiatrists"
+      "ecologists",
+      "specialist",
+      "technologies"
     ],
     "quality": "high"
   },
@@ -24515,7 +24515,7 @@
     "distractors": [
       "keyser",
       "closer",
-      "super"
+      "useful"
     ],
     "quality": "high"
   },
@@ -24529,9 +24529,9 @@
   },
   "noting": {
     "distractors": [
+      "notions",
       "sorting",
-      "posting",
-      "boring"
+      "posting"
     ],
     "quality": "high"
   },
@@ -24545,9 +24545,9 @@
   },
   "concepts": {
     "distractors": [
-      "concerts",
       "contexts",
-      "concerns"
+      "connect",
+      "continents"
     ],
     "quality": "high"
   },
@@ -24585,9 +24585,9 @@
   },
   "motivators": {
     "distractors": [
-      "motivate",
       "creators",
-      "educators"
+      "educators",
+      "visitors"
     ],
     "quality": "high"
   },
@@ -24601,9 +24601,9 @@
   },
   "satisfy": {
     "distractors": [
-      "satisfied",
       "stations",
-      "saturated"
+      "saturated",
+      "seriously"
     ],
     "quality": "high"
   },
@@ -24715,31 +24715,31 @@
     "distractors": [
       "thrives",
       "wives",
-      "drinks"
+      "dried"
     ],
     "quality": "high"
   },
   "cargo": {
     "distractors": [
+      "cars",
       "charge",
-      "carbon",
-      "cards"
+      "carbon"
     ],
     "quality": "high"
   },
   "fortunate": {
     "distractors": [
-      "fortune",
       "unfortunate",
-      "coordinate"
+      "coordinate",
+      "formula"
     ],
     "quality": "high"
   },
   "studio": {
     "distractors": [
-      "studying",
       "radio",
-      "stuck"
+      "stuck",
+      "stubborn"
     ],
     "quality": "high"
   },
@@ -24754,8 +24754,8 @@
   "party": {
     "distractors": [
       "parks",
-      "parties",
-      "partner"
+      "partner",
+      "paired"
     ],
     "quality": "high"
   },
@@ -24787,7 +24787,7 @@
     "distractors": [
       "foster",
       "possibly",
-      "soil"
+      "possible"
     ],
     "quality": "high"
   },
@@ -24849,9 +24849,9 @@
   },
   "wing": {
     "distractors": [
+      "wines",
       "king",
-      "wind",
-      "wine"
+      "wind"
     ],
     "quality": "high"
   },
@@ -24905,9 +24905,9 @@
   },
   "interact": {
     "distractors": [
-      "interest",
-      "internet",
-      "interpret"
+      "intricate",
+      "introduce",
+      "attract"
     ],
     "quality": "high"
   },
@@ -24937,9 +24937,9 @@
   },
   "aged": {
     "distractors": [
+      "ages",
       "asked",
-      "argued",
-      "agents"
+      "argued"
     ],
     "quality": "high"
   },
@@ -24978,32 +24978,32 @@
   "forecasts": {
     "distractors": [
       "forests",
-      "foresee",
-      "fortunate"
+      "fortunate",
+      "forcing"
     ],
     "quality": "high"
   },
   "substitute": {
     "distractors": [
-      "substantial",
       "subsidies",
-      "substances"
+      "institute",
+      "multitude"
     ],
     "quality": "high"
   },
   "complain": {
     "distractors": [
       "compelling",
-      "complete",
-      "complex"
+      "companion",
+      "captain"
     ],
     "quality": "high"
   },
   "participate": {
     "distractors": [
       "anticipate",
-      "particular",
-      "particles"
+      "articulate",
+      "associate"
     ],
     "quality": "high"
   },
@@ -25033,9 +25033,9 @@
   },
   "guests": {
     "distractors": [
+      "guess",
       "tests",
-      "requests",
-      "forests"
+      "requests"
     ],
     "quality": "high"
   },
@@ -25065,9 +25065,9 @@
   },
   "consequences": {
     "distractors": [
-      "consecutive",
       "consciousness",
-      "consistently"
+      "consistently",
+      "conference"
     ],
     "quality": "high"
   },
@@ -25113,9 +25113,9 @@
   },
   "log": {
     "distractors": [
+      "logo",
       "leg",
-      "lois",
-      "lose"
+      "logan"
     ],
     "quality": "high"
   },
@@ -25217,9 +25217,9 @@
   },
   "laymen": {
     "distractors": [
+      "layer",
       "payment",
-      "women",
-      "claimed"
+      "women"
     ],
     "quality": "high"
   },
@@ -25273,9 +25273,9 @@
   },
   "transportation": {
     "distractors": [
-      "transformation",
       "dissertation",
-      "presentation"
+      "presentation",
+      "anticipation"
     ],
     "quality": "high"
   },
@@ -25345,17 +25345,17 @@
   },
   "contracts": {
     "distractors": [
-      "contrast",
-      "contrary",
-      "contribute"
+      "conflicts",
+      "contact",
+      "constraints"
     ],
     "quality": "high"
   },
   "justify": {
     "distractors": [
-      "justified",
       "identify",
-      "adjusting"
+      "adjusting",
+      "quantity"
     ],
     "quality": "high"
   },
@@ -25363,15 +25363,15 @@
     "distractors": [
       "strength",
       "stranger",
-      "stranded"
+      "struggle"
     ],
     "quality": "high"
   },
   "exploratory": {
     "distractors": [
       "explanation",
-      "explained",
-      "expectations"
+      "expectations",
+      "expertise"
     ],
     "quality": "high"
   },
@@ -25385,9 +25385,9 @@
   },
   "childish": {
     "distractors": [
-      "childhood",
       "finish",
-      "swedish"
+      "swedish",
+      "chinese"
     ],
     "quality": "high"
   },
@@ -25417,9 +25417,9 @@
   },
   "presenting": {
     "distractors": [
-      "pursuing",
-      "parenting",
-      "resulting"
+      "preventing",
+      "presentation",
+      "pregnant"
     ],
     "quality": "high"
   },
@@ -25434,7 +25434,7 @@
   "appliances": {
     "distractors": [
       "appearances",
-      "applicants",
+      "applying",
       "advances"
     ],
     "quality": "high"
@@ -25531,15 +25531,15 @@
     "distractors": [
       "minus",
       "optimum",
-      "miniature"
+      "mining"
     ],
     "quality": "high"
   },
   "depicting": {
     "distractors": [
+      "depictions",
       "depending",
-      "detecting",
-      "devastating"
+      "detecting"
     ],
     "quality": "high"
   },
@@ -25577,9 +25577,9 @@
   },
   "freely": {
     "distractors": [
+      "freeze",
       "rely",
-      "largely",
-      "fairly"
+      "largely"
     ],
     "quality": "high"
   },
@@ -25675,23 +25675,23 @@
     "distractors": [
       "disabled",
       "mistaken",
-      "installed"
+      "miserable"
     ],
     "quality": "high"
   },
   "altered": {
     "distractors": [
+      "alternate",
       "entered",
-      "scattered",
-      "shattered"
+      "scattered"
     ],
     "quality": "high"
   },
   "interviewers": {
     "distractors": [
-      "interpreters",
-      "intervenes",
-      "interactions"
+      "intriguing",
+      "introduced",
+      "intelligent"
     ],
     "quality": "high"
   },
@@ -25713,7 +25713,7 @@
   },
   "intend": {
     "distractors": [
-      "intense",
+      "intent",
       "attend",
       "extend"
     ],
@@ -25737,9 +25737,9 @@
   },
   "distinguish": {
     "distractors": [
-      "distinctions",
       "destination",
-      "dictionaries"
+      "dictionaries",
+      "discourse"
     ],
     "quality": "high"
   },
@@ -25818,7 +25818,7 @@
   "firmly": {
     "distractors": [
       "formula",
-      "fire",
+      "fires",
       "fairly"
     ],
     "quality": "high"
@@ -25827,7 +25827,7 @@
     "distractors": [
       "contact",
       "concepts",
-      "concerts"
+      "conduct"
     ],
     "quality": "high"
   },
@@ -25857,9 +25857,9 @@
   },
   "indicate": {
     "distractors": [
-      "indicator",
       "inadequate",
-      "intricate"
+      "intricate",
+      "dedicate"
     ],
     "quality": "high"
   },
@@ -25985,9 +25985,9 @@
   },
   "technique": {
     "distractors": [
-      "technical",
       "teaching",
-      "technology"
+      "vehicle",
+      "teenage"
     ],
     "quality": "high"
   },
@@ -26018,8 +26018,8 @@
   "geographic": {
     "distractors": [
       "demographics",
-      "demography",
-      "biography"
+      "biography",
+      "geologist"
     ],
     "quality": "high"
   },
@@ -26034,8 +26034,8 @@
   "warn": {
     "distractors": [
       "warm",
-      "earn",
-      "weren"
+      "wars",
+      "earn"
     ],
     "quality": "high"
   },
@@ -26121,17 +26121,17 @@
   },
   "advances": {
     "distractors": [
-      "advantages",
       "adventure",
-      "finances"
+      "finances",
+      "chances"
     ],
     "quality": "high"
   },
   "interactive": {
     "distractors": [
-      "intersection",
-      "interesting",
-      "interpreting"
+      "intuitive",
+      "intensive",
+      "intricate"
     ],
     "quality": "high"
   },
@@ -26209,9 +26209,9 @@
   },
   "depiction": {
     "distractors": [
+      "depicting",
       "depression",
-      "medication",
-      "definition"
+      "medication"
     ],
     "quality": "high"
   },
@@ -26241,9 +26241,9 @@
   },
   "activate": {
     "distractors": [
-      "activities",
-      "activist",
-      "motivate"
+      "active",
+      "motivate",
+      "cultivate"
     ],
     "quality": "high"
   },
@@ -26257,9 +26257,9 @@
   },
   "behaviour": {
     "distractors": [
-      "behavior",
       "flavour",
-      "heavier"
+      "heavier",
+      "delicious"
     ],
     "quality": "high"
   },
@@ -26353,9 +26353,9 @@
   },
   "constrained": {
     "distractors": [
-      "constructive",
       "concerned",
-      "container"
+      "container",
+      "considered"
     ],
     "quality": "high"
   },
@@ -26394,16 +26394,16 @@
   "entrance": {
     "distractors": [
       "enhance",
-      "entire",
-      "insurance"
+      "entering",
+      "entire"
     ],
     "quality": "high"
   },
   "apple": {
     "distractors": [
-      "applies",
-      "appeal",
-      "able"
+      "apply",
+      "able",
+      "example"
     ],
     "quality": "high"
   },
@@ -26435,7 +26435,7 @@
     "distractors": [
       "components",
       "compelling",
-      "complete"
+      "comments"
     ],
     "quality": "high"
   },
@@ -26457,9 +26457,9 @@
   },
   "translate": {
     "distractors": [
-      "transit",
       "tranquility",
-      "transformed"
+      "regulate",
+      "graduate"
     ],
     "quality": "high"
   },
@@ -26489,9 +26489,9 @@
   },
   "celebrities": {
     "distractors": [
-      "celebrating",
       "charities",
-      "centuries"
+      "centuries",
+      "authorities"
     ],
     "quality": "high"
   },
@@ -26561,9 +26561,9 @@
   },
   "grandparents": {
     "distractors": [
-      "grandmothers",
       "arrangements",
-      "graduating"
+      "graduating",
+      "apartments"
     ],
     "quality": "high"
   },
@@ -26595,15 +26595,15 @@
     "distractors": [
       "illegal",
       "local",
-      "metal"
+      "legend"
     ],
     "quality": "high"
   },
   "advance": {
     "distractors": [
-      "advantage",
       "adventure",
-      "advice"
+      "advice",
+      "audience"
     ],
     "quality": "high"
   },
@@ -26617,9 +26617,9 @@
   },
   "assessing": {
     "distractors": [
+      "assuming",
       "pressing",
-      "blessing",
-      "discussing"
+      "blessing"
     ],
     "quality": "high"
   },
@@ -26690,8 +26690,8 @@
   "spectrum": {
     "distractors": [
       "specific",
-      "specialty",
-      "specialist"
+      "spends",
+      "speaker"
     ],
     "quality": "high"
   },
@@ -26753,9 +26753,9 @@
   },
   "fancy": {
     "distractors": [
+      "fans",
       "agency",
-      "france",
-      "funny"
+      "france"
     ],
     "quality": "high"
   },
@@ -26779,7 +26779,7 @@
     "distractors": [
       "advice",
       "allocate",
-      "associate"
+      "advise"
     ],
     "quality": "high"
   },
@@ -26833,9 +26833,9 @@
   },
   "celebrating": {
     "distractors": [
-      "celebrities",
       "accelerating",
-      "generating"
+      "generating",
+      "embracing"
     ],
     "quality": "high"
   },
@@ -26881,15 +26881,15 @@
   },
   "crop": {
     "distractors": [
+      "cross",
       "crave",
-      "group",
-      "pro"
+      "group"
     ],
     "quality": "high"
   },
   "component": {
     "distractors": [
-      "compound",
+      "comment",
       "convenient",
       "companions"
     ],
@@ -26913,9 +26913,9 @@
   },
   "depictions": {
     "distractors": [
+      "depicting",
       "predictions",
-      "medications",
-      "sections"
+      "medications"
     ],
     "quality": "high"
   },
@@ -26946,8 +26946,8 @@
   "entry": {
     "distractors": [
       "entire",
-      "endure",
-      "try"
+      "enter",
+      "endure"
     ],
     "quality": "high"
   },
@@ -26977,9 +26977,9 @@
   },
   "skis": {
     "distractors": [
-      "sees",
-      "saws",
-      "six"
+      "skin",
+      "skills",
+      "skirt"
     ],
     "quality": "high"
   },
@@ -27001,9 +27001,9 @@
   },
   "wines": {
     "distractors": [
+      "wing",
       "mines",
-      "lines",
-      "wives"
+      "lines"
     ],
     "quality": "high"
   },
@@ -27011,7 +27011,7 @@
     "distractors": [
       "scores",
       "stores",
-      "sharks"
+      "shoes"
     ],
     "quality": "high"
   },
@@ -27099,7 +27099,7 @@
     "distractors": [
       "lifetime",
       "textiles",
-      "lifespan"
+      "obstacles"
     ],
     "quality": "high"
   },
@@ -27123,23 +27123,23 @@
     "distractors": [
       "commuters",
       "compete",
-      "competitors"
+      "consumers"
     ],
     "quality": "high"
   },
   "multitude": {
     "distractors": [
       "attitude",
-      "multiple",
-      "solitude"
+      "solitude",
+      "substitute"
     ],
     "quality": "high"
   },
   "statement": {
     "distractors": [
+      "station",
       "student",
-      "settlement",
-      "placement"
+      "settlement"
     ],
     "quality": "high"
   },
@@ -27185,7 +27185,7 @@
   },
   "offend": {
     "distractors": [
-      "offense",
+      "offered",
       "opened",
       "attend"
     ],
@@ -27209,9 +27209,9 @@
   },
   "accessible": {
     "distractors": [
+      "acceptable",
       "credible",
-      "sensible",
-      "impossible"
+      "sensible"
     ],
     "quality": "high"
   },
@@ -27227,23 +27227,23 @@
     "distractors": [
       "altered",
       "applied",
-      "apparent"
+      "appeal"
     ],
     "quality": "high"
   },
   "creators": {
     "distractors": [
       "sectors",
-      "create",
-      "ancestors"
+      "ancestors",
+      "educators"
     ],
     "quality": "high"
   },
   "characteristic": {
     "distractors": [
-      "characterized",
       "collectivistic",
-      "individualistic"
+      "individualistic",
+      "enthusiastic"
     ],
     "quality": "high"
   },
@@ -27290,8 +27290,8 @@
   "revenue": {
     "distractors": [
       "avenue",
-      "revolve",
-      "reviewed"
+      "revealed",
+      "revolve"
     ],
     "quality": "high"
   },
@@ -27305,9 +27305,9 @@
   },
   "flavour": {
     "distractors": [
-      "flavor",
       "behaviour",
-      "favor"
+      "favor",
+      "flaws"
     ],
     "quality": "high"
   },
@@ -27337,9 +27337,9 @@
   },
   "centuries": {
     "distractors": [
-      "century",
       "countries",
-      "central"
+      "central",
+      "injuries"
     ],
     "quality": "high"
   },
@@ -27378,8 +27378,8 @@
   "facets": {
     "distractors": [
       "facts",
-      "brackets",
-      "markets"
+      "faces",
+      "brackets"
     ],
     "quality": "high"
   },
@@ -27433,9 +27433,9 @@
   },
   "necessity": {
     "distractors": [
+      "necessary",
       "generosity",
-      "density",
-      "security"
+      "density"
     ],
     "quality": "high"
   },
@@ -27482,8 +27482,8 @@
   "sunny": {
     "distractors": [
       "funny",
-      "sunday",
-      "penny"
+      "sun",
+      "sunday"
     ],
     "quality": "high"
   },
@@ -27539,7 +27539,7 @@
     "distractors": [
       "desired",
       "desert",
-      "deserve"
+      "describe"
     ],
     "quality": "high"
   },
@@ -27553,9 +27553,9 @@
   },
   "interpreter": {
     "distractors": [
-      "interviewer",
-      "intervene",
-      "interested"
+      "intricate",
+      "introduce",
+      "experimenter"
     ],
     "quality": "high"
   },
@@ -27577,9 +27577,9 @@
   },
   "sees": {
     "distractors": [
-      "fees",
-      "sexes",
-      "shoes"
+      "seek",
+      "seed",
+      "fees"
     ],
     "quality": "high"
   },
@@ -27593,9 +27593,9 @@
   },
   "noisy": {
     "distractors": [
-      "noise",
       "nose",
-      "nasa"
+      "nasa",
+      "nice"
     ],
     "quality": "high"
   },
@@ -27641,9 +27641,9 @@
   },
   "specialized": {
     "distractors": [
-      "specialist",
-      "specialty",
-      "speculation"
+      "speculation",
+      "recognized",
+      "organized"
     ],
     "quality": "high"
   },
@@ -27682,8 +27682,8 @@
   "attached": {
     "distractors": [
       "attracted",
-      "attack",
-      "matched"
+      "matched",
+      "watched"
     ],
     "quality": "high"
   },
@@ -27698,8 +27698,8 @@
   "seed": {
     "distractors": [
       "speed",
-      "feed",
-      "seek"
+      "sees",
+      "feed"
     ],
     "quality": "high"
   },
@@ -27763,7 +27763,7 @@
     "distractors": [
       "headlines",
       "healthcare",
-      "healthy"
+      "hearing"
     ],
     "quality": "high"
   },
@@ -27873,9 +27873,9 @@
   },
   "offender": {
     "distractors": [
-      "offense",
       "blender",
-      "founder"
+      "founder",
+      "offered"
     ],
     "quality": "high"
   },
@@ -27913,9 +27913,9 @@
   },
   "ski": {
     "distractors": [
-      "sky",
-      "shy",
-      "sea"
+      "skin",
+      "skirt",
+      "skill"
     ],
     "quality": "high"
   },
@@ -27961,9 +27961,9 @@
   },
   "melt": {
     "distractors": [
+      "mel",
       "felt",
-      "multi",
-      "met"
+      "multi"
     ],
     "quality": "high"
   },
@@ -28065,9 +28065,9 @@
   },
   "assessment": {
     "distractors": [
+      "assortment",
       "agreement",
-      "resentment",
-      "investment"
+      "assistant"
     ],
     "quality": "high"
   },
@@ -28075,7 +28075,7 @@
     "distractors": [
       "trip",
       "trick",
-      "trigger"
+      "trial"
     ],
     "quality": "high"
   },
@@ -28089,9 +28089,9 @@
   },
   "statements": {
     "distractors": [
+      "stations",
       "students",
-      "sentiments",
-      "supplements"
+      "sentiments"
     ],
     "quality": "high"
   },
@@ -28099,7 +28099,7 @@
     "distractors": [
       "consumed",
       "confined",
-      "consulted"
+      "concluded"
     ],
     "quality": "high"
   },
@@ -28131,7 +28131,7 @@
     "distractors": [
       "conducted",
       "connected",
-      "consumed"
+      "consolidate"
     ],
     "quality": "high"
   },
@@ -28154,8 +28154,8 @@
   "proud": {
     "distractors": [
       "proved",
-      "prone",
-      "aloud"
+      "pro",
+      "prone"
     ],
     "quality": "high"
   },
@@ -28170,8 +28170,8 @@
   "tons": {
     "distractors": [
       "towns",
-      "tunes",
-      "teens"
+      "tongue",
+      "tunes"
     ],
     "quality": "high"
   },
@@ -28251,7 +28251,7 @@
     "distractors": [
       "member",
       "fiber",
-      "number"
+      "times"
     ],
     "quality": "high"
   },
@@ -28283,7 +28283,7 @@
     "distractors": [
       "presented",
       "unprecedented",
-      "recruited"
+      "predicted"
     ],
     "quality": "high"
   },
@@ -28305,9 +28305,9 @@
   },
   "mechanism": {
     "distractors": [
-      "mechanics",
       "machines",
-      "organism"
+      "organism",
+      "feminism"
     ],
     "quality": "high"
   },
@@ -28329,9 +28329,9 @@
   },
   "males": {
     "distractors": [
+      "malls",
       "miles",
-      "sales",
-      "tables"
+      "sales"
     ],
     "quality": "high"
   },
@@ -28353,25 +28353,25 @@
   },
   "celebration": {
     "distractors": [
-      "celebrities",
       "collaboration",
-      "generation"
+      "generation",
+      "operation"
     ],
     "quality": "high"
   },
   "preference": {
     "distractors": [
       "presence",
-      "preferred",
-      "performance"
+      "performance",
+      "prepared"
     ],
     "quality": "high"
   },
   "overwhelmed": {
     "distractors": [
-      "overworked",
       "overlooking",
-      "overpriced"
+      "overpriced",
+      "performed"
     ],
     "quality": "high"
   },
@@ -28395,7 +28395,7 @@
     "distractors": [
       "constantly",
       "confidently",
-      "consistently"
+      "continually"
     ],
     "quality": "high"
   },
@@ -28418,8 +28418,8 @@
   "cards": {
     "distractors": [
       "carrots",
-      "charts",
-      "awards"
+      "cars",
+      "charts"
     ],
     "quality": "high"
   },
@@ -28457,9 +28457,9 @@
   },
   "metres": {
     "distractors": [
+      "meters",
       "mixtures",
-      "gestures",
-      "measures"
+      "gestures"
     ],
     "quality": "high"
   },
@@ -28497,9 +28497,9 @@
   },
   "cuba": {
     "distractors": [
+      "cubs",
       "cup",
-      "cheap",
-      "club"
+      "cheap"
     ],
     "quality": "high"
   },
@@ -28553,17 +28553,17 @@
   },
   "disabled": {
     "distractors": [
-      "disability",
       "display",
-      "doubled"
+      "doubled",
+      "enabled"
     ],
     "quality": "high"
   },
   "chess": {
     "distractors": [
-      "cues",
-      "chose",
-      "access"
+      "check",
+      "chefs",
+      "cues"
     ],
     "quality": "high"
   },
@@ -28593,9 +28593,9 @@
   },
   "mines": {
     "distractors": [
+      "minus",
       "wines",
-      "lines",
-      "menus"
+      "lines"
     ],
     "quality": "high"
   },
@@ -28681,9 +28681,9 @@
   },
   "county": {
     "distractors": [
-      "country",
       "court",
-      "comedy"
+      "comedy",
+      "candy"
     ],
     "quality": "high"
   },
@@ -28817,9 +28817,9 @@
   },
   "applying": {
     "distractors": [
-      "employing",
-      "happening",
-      "flying"
+      "appearing",
+      "appliance",
+      "employing"
     ],
     "quality": "high"
   },
@@ -28841,9 +28841,9 @@
   },
   "aspire": {
     "distractors": [
-      "aspirin",
       "inspire",
-      "admire"
+      "admire",
+      "acquire"
     ],
     "quality": "high"
   },
@@ -28857,9 +28857,9 @@
   },
   "supervisors": {
     "distractors": [
-      "superiors",
-      "superstitious",
-      "supermarkets"
+      "competitors",
+      "behaviors",
+      "motivators"
     ],
     "quality": "high"
   },
@@ -29001,17 +29001,17 @@
   },
   "controversial": {
     "distractors": [
-      "contributing",
       "inconsequential",
-      "conventional"
+      "conventional",
+      "considering"
     ],
     "quality": "high"
   },
   "grows": {
     "distractors": [
+      "gross",
       "groups",
-      "flows",
-      "shows"
+      "flows"
     ],
     "quality": "high"
   },
@@ -29057,9 +29057,9 @@
   },
   "mat": {
     "distractors": [
+      "math",
       "meat",
-      "met",
-      "mott"
+      "met"
     ],
     "quality": "high"
   },
@@ -29083,31 +29083,31 @@
     "distractors": [
       "steadily",
       "heavily",
-      "ready"
+      "reality"
     ],
     "quality": "high"
   },
   "commands": {
     "distractors": [
+      "comments",
       "compounds",
-      "community",
-      "recommends"
+      "community"
     ],
     "quality": "high"
   },
   "obsessed": {
     "distractors": [
       "assessed",
-      "stressed",
-      "witnessed"
+      "observed",
+      "stressed"
     ],
     "quality": "high"
   },
   "chefs": {
     "distractors": [
+      "chess",
       "chips",
-      "cheap",
-      "check"
+      "cheap"
     ],
     "quality": "high"
   },
@@ -29171,7 +29171,7 @@
     "distractors": [
       "wars",
       "award",
-      "dark"
+      "warn"
     ],
     "quality": "high"
   },
@@ -29201,9 +29201,9 @@
   },
   "upset": {
     "distractors": [
+      "ups",
       "set",
-      "closet",
-      "pet"
+      "closet"
     ],
     "quality": "high"
   },
@@ -29217,7 +29217,7 @@
   },
   "closet": {
     "distractors": [
-      "closest",
+      "closed",
       "classed",
       "clothes"
     ],
@@ -29265,9 +29265,9 @@
   },
   "territory": {
     "distractors": [
-      "terribly",
       "dormitory",
-      "observatory"
+      "observatory",
+      "mandatory"
     ],
     "quality": "high"
   },
@@ -29323,7 +29323,7 @@
     "distractors": [
       "prison",
       "parties",
-      "paradise"
+      "parental"
     ],
     "quality": "high"
   },
@@ -29457,17 +29457,17 @@
   },
   "interpersonal": {
     "distractors": [
-      "international",
-      "intersection",
-      "intervention"
+      "intentional",
+      "introducing",
+      "observational"
     ],
     "quality": "high"
   },
   "wars": {
     "distractors": [
       "mars",
-      "cars",
-      "works"
+      "warn",
+      "warm"
     ],
     "quality": "high"
   },
@@ -29483,15 +29483,15 @@
     "distractors": [
       "minus",
       "venus",
-      "bonus"
+      "mines"
     ],
     "quality": "high"
   },
   "minus": {
     "distractors": [
       "menus",
-      "minds",
-      "bonus"
+      "mines",
+      "minds"
     ],
     "quality": "high"
   },
@@ -29513,9 +29513,9 @@
   },
   "criticized": {
     "distractors": [
-      "criticism",
       "organized",
-      "realized"
+      "realized",
+      "charities"
     ],
     "quality": "high"
   },
@@ -29529,9 +29529,9 @@
   },
   "organisms": {
     "distractors": [
-      "organized",
-      "organic",
-      "originally"
+      "originally",
+      "oranges",
+      "companions"
     ],
     "quality": "high"
   },
@@ -29659,7 +29659,7 @@
     "distractors": [
       "household",
       "threatened",
-      "threads"
+      "thrilled"
     ],
     "quality": "high"
   },
@@ -29673,9 +29673,9 @@
   },
   "transformed": {
     "distractors": [
-      "translated",
-      "transport",
-      "transition"
+      "tranquility",
+      "confirmed",
+      "performed"
     ],
     "quality": "high"
   },
@@ -29689,17 +29689,17 @@
   },
   "appeal": {
     "distractors": [
+      "appear",
       "apple",
-      "apparent",
-      "ideal"
+      "apparent"
     ],
     "quality": "high"
   },
   "fuel": {
     "distractors": [
       "full",
-      "fell",
-      "fill"
+      "fully",
+      "fell"
     ],
     "quality": "high"
   },
@@ -29745,9 +29745,9 @@
   },
   "prosperous": {
     "distractors": [
-      "prospects",
       "properties",
-      "property"
+      "proportions",
+      "prestigious"
     ],
     "quality": "high"
   },
@@ -29769,9 +29769,9 @@
   },
   "offspring": {
     "distractors": [
+      "offering",
       "aspiring",
-      "deferring",
-      "referring"
+      "deferring"
     ],
     "quality": "high"
   },
@@ -29785,9 +29785,9 @@
   },
   "activist": {
     "distractors": [
-      "activate",
-      "activities",
-      "artist"
+      "actively",
+      "artist",
+      "actions"
     ],
     "quality": "high"
   },
@@ -29817,9 +29817,9 @@
   },
   "links": {
     "distractors": [
+      "lines",
       "thinks",
-      "drinks",
-      "banks"
+      "drinks"
     ],
     "quality": "high"
   },
@@ -29843,23 +29843,23 @@
     "distractors": [
       "teenage",
       "foresee",
-      "tendency"
+      "tension"
     ],
     "quality": "high"
   },
   "organism": {
     "distractors": [
-      "organic",
-      "organized",
-      "mechanism"
+      "mechanism",
+      "optimism",
+      "feminism"
     ],
     "quality": "high"
   },
   "responsiveness": {
     "distractors": [
-      "responsibility",
       "consciousness",
-      "endorsements"
+      "endorsements",
+      "demonstrates"
     ],
     "quality": "high"
   },
@@ -29897,9 +29897,9 @@
   },
   "crossing": {
     "distractors": [
+      "crowding",
       "cursing",
-      "cracking",
-      "rosling"
+      "cracking"
     ],
     "quality": "high"
   },
@@ -29930,8 +29930,8 @@
   "happily": {
     "distractors": [
       "heavily",
-      "happy",
-      "baily"
+      "baily",
+      "apply"
     ],
     "quality": "high"
   },
@@ -29969,9 +29969,9 @@
   },
   "simulate": {
     "distractors": [
-      "simulator",
       "regulate",
-      "articulate"
+      "articulate",
+      "similarity"
     ],
     "quality": "high"
   },
@@ -30089,9 +30089,9 @@
   },
   "participating": {
     "distractors": [
-      "particularly",
       "fascinating",
-      "cultivating"
+      "cultivating",
+      "circulating"
     ],
     "quality": "high"
   },
@@ -30130,16 +30130,16 @@
   "complaint": {
     "distractors": [
       "compelling",
-      "completed",
-      "complicated"
+      "component",
+      "companions"
     ],
     "quality": "high"
   },
   "impersonal": {
     "distractors": [
       "personal",
-      "imperative",
-      "improved"
+      "improved",
+      "importance"
     ],
     "quality": "high"
   },
@@ -30219,7 +30219,7 @@
     "distractors": [
       "mental",
       "printer",
-      "capital"
+      "parisian"
     ],
     "quality": "high"
   },
@@ -30233,9 +30233,9 @@
   },
   "accurately": {
     "distractors": [
-      "accuracy",
       "moderately",
-      "according"
+      "according",
+      "accumulated"
     ],
     "quality": "high"
   },
@@ -30265,9 +30265,9 @@
   },
   "rob": {
     "distractors": [
+      "robot",
       "roof",
-      "comb",
-      "grab"
+      "comb"
     ],
     "quality": "high"
   },
@@ -30289,9 +30289,9 @@
   },
   "interventions": {
     "distractors": [
-      "interactions",
-      "intersection",
-      "interesting"
+      "introduction",
+      "instructions",
+      "perceptions"
     ],
     "quality": "high"
   },
@@ -30329,9 +30329,9 @@
   },
   "piles": {
     "distractors": [
+      "pills",
       "miles",
-      "plus",
-      "isles"
+      "plus"
     ],
     "quality": "high"
   },
@@ -30361,9 +30361,9 @@
   },
   "simulator": {
     "distractors": [
-      "simulate",
       "similar",
-      "stimulation"
+      "stimulation",
+      "creator"
     ],
     "quality": "high"
   },
@@ -30402,16 +30402,16 @@
   "suppose": {
     "distractors": [
       "purpose",
-      "support",
-      "spoke"
+      "spoke",
+      "spouse"
     ],
     "quality": "high"
   },
   "volcanic": {
     "distractors": [
-      "volcano",
       "organic",
-      "picnic"
+      "picnic",
+      "ethnic"
     ],
     "quality": "high"
   },
@@ -30441,25 +30441,25 @@
   },
   "electric": {
     "distractors": [
-      "electronic",
       "eccentric",
-      "elicit"
+      "elicit",
+      "rhetoric"
     ],
     "quality": "high"
   },
   "appliance": {
     "distractors": [
       "appearance",
-      "applicants",
+      "applying",
       "patience"
     ],
     "quality": "high"
   },
   "primarily": {
     "distractors": [
-      "primary",
       "privately",
-      "priority"
+      "priority",
+      "readily"
     ],
     "quality": "high"
   },
@@ -30594,8 +30594,8 @@
   "dictionaries": {
     "distractors": [
       "distinctions",
-      "distinguish",
-      "destinations"
+      "destinations",
+      "difficulties"
     ],
     "quality": "high"
   },
@@ -30675,7 +30675,7 @@
     "distractors": [
       "concert",
       "connect",
-      "concept"
+      "context"
     ],
     "quality": "high"
   },
@@ -30761,9 +30761,9 @@
   },
   "translated": {
     "distractors": [
-      "transformed",
-      "transporting",
-      "transition"
+      "tranquility",
+      "traveled",
+      "graduated"
     ],
     "quality": "high"
   },
@@ -30801,9 +30801,9 @@
   },
   "realistic": {
     "distractors": [
-      "realized",
       "plastic",
-      "optimistic"
+      "optimistic",
+      "relaxation"
     ],
     "quality": "high"
   },
@@ -30849,9 +30849,9 @@
   },
   "industrial": {
     "distractors": [
-      "industry",
       "indicating",
-      "indecision"
+      "indecision",
+      "influential"
     ],
     "quality": "high"
   },
@@ -30865,9 +30865,9 @@
   },
   "publicly": {
     "distractors": [
-      "published",
       "policy",
-      "police"
+      "purely",
+      "particle"
     ],
     "quality": "high"
   },
@@ -30985,9 +30985,9 @@
   },
   "winopia": {
     "distractors": [
+      "wines",
       "india",
-      "windows",
-      "winter"
+      "windows"
     ],
     "quality": "high"
   },
@@ -31001,9 +31001,9 @@
   },
   "arrival": {
     "distractors": [
+      "arrive",
       "survival",
-      "array",
-      "revival"
+      "array"
     ],
     "quality": "high"
   },
@@ -31043,7 +31043,7 @@
     "distractors": [
       "catalogue",
       "argue",
-      "tongue"
+      "fatal"
     ],
     "quality": "high"
   },
@@ -31065,17 +31065,17 @@
   },
   "stripes": {
     "distractors": [
+      "strive",
       "recipes",
-      "strict",
-      "trips"
+      "strict"
     ],
     "quality": "high"
   },
   "atmospheric": {
     "distractors": [
-      "atmosphere",
       "aesthetic",
-      "prosperity"
+      "prosperity",
+      "eccentric"
     ],
     "quality": "high"
   },
@@ -31105,9 +31105,9 @@
   },
   "characterized": {
     "distractors": [
-      "characteristic",
       "specialized",
-      "challenging"
+      "challenging",
+      "hypothesize"
     ],
     "quality": "high"
   },
@@ -31154,8 +31154,8 @@
   "plains": {
     "distractors": [
       "plans",
-      "playing",
-      "explains"
+      "explains",
+      "placing"
     ],
     "quality": "high"
   },
@@ -31193,9 +31193,9 @@
   },
   "pursue": {
     "distractors": [
-      "pursuit",
       "prize",
-      "pours"
+      "pours",
+      "phrase"
     ],
     "quality": "high"
   },
@@ -31217,9 +31217,9 @@
   },
   "crises": {
     "distractors": [
+      "crisis",
       "courses",
-      "raises",
-      "cases"
+      "raises"
     ],
     "quality": "high"
   },
@@ -31314,8 +31314,8 @@
   "outlet": {
     "distractors": [
       "outfit",
-      "outline",
-      "ballet"
+      "outer",
+      "outline"
     ],
     "quality": "high"
   },
@@ -31361,17 +31361,17 @@
   },
   "entered": {
     "distractors": [
+      "entire",
       "centered",
-      "altered",
-      "endorsed"
+      "entry"
     ],
     "quality": "high"
   },
   "sixth": {
     "distractors": [
+      "six",
       "sight",
-      "sized",
-      "smith"
+      "sized"
     ],
     "quality": "high"
   },
@@ -31379,7 +31379,7 @@
     "distractors": [
       "math",
       "mouth",
-      "mott"
+      "mat"
     ],
     "quality": "high"
   },
@@ -31409,9 +31409,9 @@
   },
   "transforms": {
     "distractors": [
-      "transport",
-      "translated",
-      "transition"
+      "tranquility",
+      "trainers",
+      "trackers"
     ],
     "quality": "high"
   },
@@ -31425,9 +31425,9 @@
   },
   "passwords": {
     "distractors": [
+      "passion",
       "passengers",
-      "passionate",
-      "records"
+      "passionate"
     ],
     "quality": "high"
   },
@@ -31459,7 +31459,7 @@
     "distractors": [
       "obsessed",
       "accused",
-      "stressed"
+      "associated"
     ],
     "quality": "high"
   },
@@ -31475,15 +31475,15 @@
     "distractors": [
       "happily",
       "readily",
-      "heavy"
+      "easily"
     ],
     "quality": "high"
   },
   "observers": {
     "distractors": [
       "obscure",
-      "borders",
-      "seekers"
+      "obsessed",
+      "borders"
     ],
     "quality": "high"
   },
@@ -31497,9 +31497,9 @@
   },
   "deadlock": {
     "distractors": [
-      "deadlines",
       "shylock",
-      "dealing"
+      "dealing",
+      "details"
     ],
     "quality": "high"
   },
@@ -31545,9 +31545,9 @@
   },
   "safest": {
     "distractors": [
+      "safely",
       "safety",
-      "latest",
-      "manifest"
+      "latest"
     ],
     "quality": "high"
   },
@@ -31609,7 +31609,7 @@
   },
   "alternate": {
     "distractors": [
-      "alterations",
+      "altered",
       "alleviate",
       "illiterate"
     ],
@@ -31617,9 +31617,9 @@
   },
   "voluntary": {
     "distractors": [
-      "volunteer",
       "solitary",
-      "culinary"
+      "culinary",
+      "military"
     ],
     "quality": "high"
   },
@@ -31642,8 +31642,8 @@
   "entrepreneurs": {
     "distractors": [
       "enterprises",
-      "entertainment",
-      "interpreters"
+      "interpreters",
+      "endorsements"
     ],
     "quality": "high"
   },
@@ -31681,9 +31681,9 @@
   },
   "concerts": {
     "distractors": [
-      "concerns",
-      "concepts",
-      "contents"
+      "contents",
+      "congress",
+      "cancer"
     ],
     "quality": "high"
   },
@@ -31705,9 +31705,9 @@
   },
   "underground": {
     "distractors": [
-      "undergraduate",
-      "understood",
-      "understand"
+      "underlying",
+      "background",
+      "undemanding"
     ],
     "quality": "high"
   },
@@ -31769,9 +31769,9 @@
   },
   "tongue": {
     "distractors": [
+      "tones",
       "tonight",
-      "teenage",
-      "argue"
+      "teenage"
     ],
     "quality": "high"
   },
@@ -31802,8 +31802,8 @@
   "particle": {
     "distractors": [
       "article",
-      "particular",
-      "paradise"
+      "paradise",
+      "vehicle"
     ],
     "quality": "high"
   },
@@ -31811,15 +31811,15 @@
     "distractors": [
       "noise",
       "lose",
-      "noisy"
+      "loose"
     ],
     "quality": "high"
   },
   "difficulties": {
     "distractors": [
-      "difficulty",
       "facilities",
-      "dictionaries"
+      "dictionaries",
+      "disabilities"
     ],
     "quality": "high"
   },
@@ -31833,25 +31833,25 @@
   },
   "generalize": {
     "distractors": [
-      "specialize",
-      "emphasize",
-      "organize"
+      "generating",
+      "genetics",
+      "specialize"
     ],
     "quality": "high"
   },
   "volunteer": {
     "distractors": [
-      "voluntary",
       "volumes",
-      "valentin"
+      "valentin",
+      "counter"
     ],
     "quality": "high"
   },
   "asserts": {
     "distractors": [
       "assured",
-      "ascertain",
-      "starts"
+      "assess",
+      "ascertain"
     ],
     "quality": "high"
   },
@@ -31937,17 +31937,17 @@
   },
   "award": {
     "distractors": [
-      "aware",
       "onward",
-      "reward"
+      "reward",
+      "awake"
     ],
     "quality": "high"
   },
   "indicator": {
     "distractors": [
-      "indicate",
       "indecision",
-      "indigenous"
+      "indigenous",
+      "industry"
     ],
     "quality": "high"
   },
@@ -31971,7 +31971,7 @@
     "distractors": [
       "persuasive",
       "preoccupied",
-      "preference"
+      "presenting"
     ],
     "quality": "high"
   },
@@ -31979,7 +31979,7 @@
     "distractors": [
       "word",
       "worry",
-      "worried"
+      "wealthy"
     ],
     "quality": "high"
   },
@@ -32057,9 +32057,9 @@
   },
   "directness": {
     "distractors": [
-      "director",
       "sameness",
-      "kindness"
+      "kindness",
+      "thickness"
     ],
     "quality": "high"
   },
@@ -32073,9 +32073,9 @@
   },
   "transporting": {
     "distractors": [
-      "transformation",
-      "transition",
-      "translated"
+      "tranquility",
+      "responding",
+      "supporting"
     ],
     "quality": "high"
   },
@@ -32083,7 +32083,7 @@
     "distractors": [
       "passed",
       "promised",
-      "raised"
+      "pointed"
     ],
     "quality": "high"
   },
@@ -32113,9 +32113,9 @@
   },
   "quantitative": {
     "distractors": [
-      "quantities",
       "initiative",
-      "innovative"
+      "innovative",
+      "repetitive"
     ],
     "quality": "high"
   },
@@ -32137,9 +32137,9 @@
   },
   "grandmothers": {
     "distractors": [
-      "grandparents",
       "graduating",
-      "daydreamers"
+      "daydreamers",
+      "philosophers"
     ],
     "quality": "high"
   },
@@ -32257,9 +32257,9 @@
   },
   "speeding": {
     "distractors": [
-      "bleeding",
-      "feeding",
-      "sleeping"
+      "spending",
+      "speaking",
+      "bleeding"
     ],
     "quality": "high"
   },
@@ -32297,9 +32297,9 @@
   },
   "transit": {
     "distractors": [
-      "translate",
-      "transport",
-      "trains"
+      "trains",
+      "trait",
+      "traffic"
     ],
     "quality": "high"
   },
@@ -32322,8 +32322,8 @@
   "continually": {
     "distractors": [
       "contamination",
-      "containers",
-      "critically"
+      "critically",
+      "economically"
     ],
     "quality": "high"
   },
@@ -32355,7 +32355,7 @@
     "distractors": [
       "centre",
       "theory",
-      "theories"
+      "threaten"
     ],
     "quality": "high"
   },
@@ -32395,7 +32395,7 @@
     "distractors": [
       "sick",
       "skills",
-      "sales"
+      "silent"
     ],
     "quality": "high"
   },
@@ -32498,8 +32498,8 @@
   "proofread": {
     "distractors": [
       "property",
-      "properties",
-      "proportions"
+      "proportions",
+      "prepared"
     ],
     "quality": "high"
   },
@@ -32515,15 +32515,15 @@
     "distractors": [
       "overwhelmed",
       "operating",
-      "overworked"
+      "cyberloafing"
     ],
     "quality": "high"
   },
   "entitled": {
     "distractors": [
+      "entity",
       "enabled",
-      "entire",
-      "installed"
+      "entire"
     ],
     "quality": "high"
   },
@@ -32593,15 +32593,15 @@
   },
   "everybody": {
     "distractors": [
-      "everyday",
       "anybody",
-      "somebody"
+      "somebody",
+      "eventually"
     ],
     "quality": "high"
   },
   "communal": {
     "distractors": [
-      "commute",
+      "comment",
       "commands",
       "criminal"
     ],
@@ -32633,9 +32633,9 @@
   },
   "pursuit": {
     "distractors": [
-      "pursue",
       "persuade",
-      "fruit"
+      "fruit",
+      "prestige"
     ],
     "quality": "high"
   },
@@ -32769,9 +32769,9 @@
   },
   "influential": {
     "distractors": [
-      "influences",
       "industrial",
-      "residential"
+      "residential",
+      "essential"
     ],
     "quality": "high"
   },
@@ -32786,8 +32786,8 @@
   "edinburgh": {
     "distractors": [
       "editing",
-      "indulge",
-      "sainsbury"
+      "edition",
+      "indulge"
     ],
     "quality": "high"
   },
@@ -32809,9 +32809,9 @@
   },
   "terribly": {
     "distractors": [
-      "territory",
-      "terrie",
-      "tribal"
+      "tribal",
+      "trouble",
+      "remarkably"
     ],
     "quality": "high"
   },
@@ -32825,9 +32825,9 @@
   },
   "undergraduate": {
     "distractors": [
-      "underestimate",
-      "underground",
-      "understanding"
+      "unfortunate",
+      "undemanding",
+      "demonstrate"
     ],
     "quality": "high"
   },
@@ -32905,9 +32905,9 @@
   },
   "responding": {
     "distractors": [
-      "response",
       "resulting",
-      "receiving"
+      "receiving",
+      "reporting"
     ],
     "quality": "high"
   },
@@ -32993,17 +32993,17 @@
   },
   "lifespan": {
     "distractors": [
-      "lifestyle",
       "lifetime",
-      "lifting"
+      "lifting",
+      "widespread"
     ],
     "quality": "high"
   },
   "severely": {
     "distractors": [
+      "several",
       "surely",
-      "safely",
-      "purely"
+      "safely"
     ],
     "quality": "high"
   },
@@ -33065,9 +33065,9 @@
   },
   "morality": {
     "distractors": [
+      "mortality",
       "vitality",
-      "reality",
-      "quality"
+      "reality"
     ],
     "quality": "high"
   },
@@ -33081,9 +33081,9 @@
   },
   "ups": {
     "distractors": [
+      "upset",
       "soups",
-      "apps",
-      "bugs"
+      "apps"
     ],
     "quality": "high"
   },
@@ -33137,9 +33137,9 @@
   },
   "participant": {
     "distractors": [
-      "particular",
-      "particles",
-      "anticipate"
+      "anticipate",
+      "brilliant",
+      "parenting"
     ],
     "quality": "high"
   },
@@ -33162,8 +33162,8 @@
   "overpriced": {
     "distractors": [
       "overworked",
-      "overwhelmed",
-      "replaced"
+      "replaced",
+      "prejudiced"
     ],
     "quality": "high"
   },
@@ -33171,7 +33171,7 @@
     "distractors": [
       "chief",
       "cheap",
-      "check"
+      "chess"
     ],
     "quality": "high"
   },
@@ -33265,9 +33265,9 @@
   },
   "prospects": {
     "distractors": [
-      "prosperous",
       "projects",
-      "products"
+      "products",
+      "propels"
     ],
     "quality": "high"
   },
@@ -33291,7 +33291,7 @@
     "distractors": [
       "commute",
       "comet",
-      "comedy"
+      "comment"
     ],
     "quality": "high"
   },
@@ -33362,8 +33362,8 @@
   "editorial": {
     "distractors": [
       "equatorial",
-      "initial",
-      "material"
+      "edition",
+      "initial"
     ],
     "quality": "high"
   },
@@ -33425,9 +33425,9 @@
   },
   "economically": {
     "distractors": [
-      "economists",
       "technically",
-      "chronically"
+      "chronically",
+      "academically"
     ],
     "quality": "high"
   },
@@ -33497,9 +33497,9 @@
   },
   "activated": {
     "distractors": [
-      "activities",
-      "activist",
-      "motivated"
+      "actively",
+      "motivated",
+      "cultivated"
     ],
     "quality": "high"
   },
@@ -33531,7 +33531,7 @@
     "distractors": [
       "firmly",
       "fortune",
-      "fortunate"
+      "forth"
     ],
     "quality": "high"
   },
@@ -33545,9 +33545,9 @@
   },
   "bridge": {
     "distractors": [
-      "bride",
       "fridge",
-      "brings"
+      "brings",
+      "british"
     ],
     "quality": "high"
   },
@@ -33563,15 +33563,15 @@
     "distractors": [
       "spots",
       "shops",
-      "shows"
+      "shoes"
     ],
     "quality": "high"
   },
   "freeze": {
     "distractors": [
       "fresh",
-      "foresee",
-      "fierce"
+      "freed",
+      "foresee"
     ],
     "quality": "high"
   },
@@ -33585,9 +33585,9 @@
   },
   "volcanoes": {
     "distractors": [
-      "volcanic",
       "volumes",
-      "volunteer"
+      "volunteer",
+      "villages"
     ],
     "quality": "high"
   },
@@ -33626,16 +33626,16 @@
   "unprecedented": {
     "distractors": [
       "represented",
-      "unpredictable",
-      "complimented"
+      "complimented",
+      "unfortunate"
     ],
     "quality": "high"
   },
   "sensible": {
     "distractors": [
+      "sensitive",
       "edible",
-      "enable",
-      "terrible"
+      "enable"
     ],
     "quality": "high"
   },
@@ -33714,8 +33714,8 @@
   "reflects": {
     "distractors": [
       "effects",
-      "affects",
-      "prospects"
+      "refers",
+      "affects"
     ],
     "quality": "high"
   },
@@ -33793,9 +33793,9 @@
   },
   "relieve": {
     "distractors": [
-      "relief",
       "believe",
-      "retrieve"
+      "retrieve",
+      "relative"
     ],
     "quality": "high"
   },
@@ -33827,7 +33827,7 @@
     "distractors": [
       "perspective",
       "productive",
-      "prosperous"
+      "properties"
     ],
     "quality": "high"
   },
@@ -33873,9 +33873,9 @@
   },
   "fees": {
     "distractors": [
+      "feels",
       "sees",
-      "trees",
-      "fires"
+      "feed"
     ],
     "quality": "high"
   },
@@ -33937,9 +33937,9 @@
   },
   "intervene": {
     "distractors": [
-      "interviewer",
-      "interpreter",
-      "interest"
+      "intricate",
+      "introduce",
+      "intensive"
     ],
     "quality": "high"
   },
@@ -33970,8 +33970,8 @@
   "shark": {
     "distractors": [
       "sharp",
-      "share",
-      "shah"
+      "shah",
+      "shame"
     ],
     "quality": "high"
   },
@@ -34041,9 +34041,9 @@
   },
   "officials": {
     "distractors": [
+      "offices",
       "commercials",
-      "radicals",
-      "hospitals"
+      "radicals"
     ],
     "quality": "high"
   },
@@ -34090,8 +34090,8 @@
   "internationally": {
     "distractors": [
       "intentionally",
-      "interestingly",
-      "interpersonal"
+      "traditionally",
+      "automatically"
     ],
     "quality": "high"
   },
@@ -34105,9 +34105,9 @@
   },
   "entity": {
     "distractors": [
+      "entitled",
       "identity",
-      "density",
-      "unity"
+      "density"
     ],
     "quality": "high"
   },
@@ -34145,9 +34145,9 @@
   },
   "dairy": {
     "distractors": [
+      "daily",
       "dry",
-      "fairly",
-      "mary"
+      "fairly"
     ],
     "quality": "high"
   },
@@ -34179,7 +34179,7 @@
     "distractors": [
       "adequate",
       "estate",
-      "regulate"
+      "equal"
     ],
     "quality": "high"
   },
@@ -34233,9 +34233,9 @@
   },
   "interestingly": {
     "distractors": [
-      "interacting",
-      "internationally",
-      "interpreting"
+      "increasingly",
+      "introducing",
+      "intentional"
     ],
     "quality": "high"
   },
@@ -34273,9 +34273,9 @@
   },
   "threads": {
     "distractors": [
-      "threat",
       "thirds",
-      "thrives"
+      "thrives",
+      "throat"
     ],
     "quality": "high"
   },
@@ -34345,9 +34345,9 @@
   },
   "steady": {
     "distractors": [
-      "steadily",
       "ready",
-      "steam"
+      "steam",
+      "stood"
     ],
     "quality": "high"
   },
@@ -34369,9 +34369,9 @@
   },
   "suspicion": {
     "distractors": [
-      "suspicious",
       "suspect",
-      "sustain"
+      "sustain",
+      "opinion"
     ],
     "quality": "high"
   },
@@ -34457,9 +34457,9 @@
   },
   "celebrated": {
     "distractors": [
-      "celebrities",
       "generated",
-      "repeated"
+      "repeated",
+      "selected"
     ],
     "quality": "high"
   },
@@ -34514,8 +34514,8 @@
   "portrayed": {
     "distractors": [
       "delayed",
-      "surveyed",
-      "powered"
+      "portions",
+      "surveyed"
     ],
     "quality": "high"
   },
@@ -34553,9 +34553,9 @@
   },
   "cats": {
     "distractors": [
+      "catch",
       "rats",
-      "fats",
-      "bats"
+      "fats"
     ],
     "quality": "high"
   },
@@ -34578,8 +34578,8 @@
   "confirmed": {
     "distractors": [
       "consumed",
-      "confined",
-      "conference"
+      "conference",
+      "informed"
     ],
     "quality": "high"
   },
@@ -34594,8 +34594,8 @@
   "approaching": {
     "distractors": [
       "appealing",
-      "appreciate",
-      "approximately"
+      "appearing",
+      "appreciate"
     ],
     "quality": "high"
   },
@@ -34633,9 +34633,9 @@
   },
   "transformation": {
     "distractors": [
-      "transportation",
       "pronunciation",
-      "anticipation"
+      "anticipation",
+      "dissertation"
     ],
     "quality": "high"
   },
@@ -34739,7 +34739,7 @@
     "distractors": [
       "lawyer",
       "player",
-      "lower"
+      "laymen"
     ],
     "quality": "high"
   },
@@ -34777,9 +34777,9 @@
   },
   "interpret": {
     "distractors": [
-      "internet",
-      "interact",
-      "interest"
+      "intricate",
+      "introduced",
+      "intelligent"
     ],
     "quality": "high"
   },
@@ -34810,8 +34810,8 @@
   "midst": {
     "distractors": [
       "modest",
-      "mindset",
-      "middle"
+      "mid",
+      "mindset"
     ],
     "quality": "high"
   },
@@ -34833,17 +34833,17 @@
   },
   "academics": {
     "distractors": [
-      "academy",
       "economics",
-      "aesthetics"
+      "aesthetics",
+      "accidents"
     ],
     "quality": "high"
   },
   "electrical": {
     "distractors": [
-      "electronic",
       "skeptical",
-      "identical"
+      "identical",
+      "technical"
     ],
     "quality": "high"
   },
@@ -34865,9 +34865,9 @@
   },
   "afterward": {
     "distractors": [
-      "afternoon",
       "forward",
-      "harvard"
+      "harvard",
+      "downward"
     ],
     "quality": "high"
   },
@@ -34890,8 +34890,8 @@
   "notions": {
     "distractors": [
       "nations",
-      "portions",
-      "actions"
+      "noting",
+      "portions"
     ],
     "quality": "high"
   },
@@ -34955,7 +34955,7 @@
     "distractors": [
       "access",
       "possess",
-      "actress"
+      "asserts"
     ],
     "quality": "high"
   },
@@ -34969,9 +34969,9 @@
   },
   "police": {
     "distractors": [
-      "policy",
       "polite",
-      "policies"
+      "place",
+      "notice"
     ],
     "quality": "high"
   },
@@ -35009,9 +35009,9 @@
   },
   "stranded": {
     "distractors": [
-      "stranger",
       "stronger",
-      "strain"
+      "strain",
+      "strength"
     ],
     "quality": "high"
   },
@@ -35034,8 +35034,8 @@
   "apps": {
     "distractors": [
       "apes",
-      "happy",
-      "ups"
+      "apple",
+      "appear"
     ],
     "quality": "high"
   },
@@ -35057,9 +35057,9 @@
   },
   "analysts": {
     "distractors": [
-      "analysis",
-      "analyze",
-      "artists"
+      "artists",
+      "interests",
+      "ecologists"
     ],
     "quality": "high"
   },
@@ -35089,17 +35089,17 @@
   },
   "assuming": {
     "distractors": [
+      "assessing",
       "passing",
-      "aspiring",
-      "alarming"
+      "aspiring"
     ],
     "quality": "high"
   },
   "constructive": {
     "distractors": [
       "consecutive",
-      "constrained",
-      "destructive"
+      "destructive",
+      "connecting"
     ],
     "quality": "high"
   },
@@ -35115,7 +35115,7 @@
     "distractors": [
       "concerts",
       "comments",
-      "concepts"
+      "consensus"
     ],
     "quality": "high"
   },
@@ -35138,8 +35138,8 @@
   "supports": {
     "distractors": [
       "sports",
-      "suppose",
-      "supplies"
+      "supplies",
+      "airports"
     ],
     "quality": "high"
   },
@@ -35185,9 +35185,9 @@
   },
   "compelling": {
     "distractors": [
-      "competing",
       "complaint",
-      "committing"
+      "committing",
+      "consulting"
     ],
     "quality": "high"
   },
@@ -35234,8 +35234,8 @@
   "portrayal": {
     "distractors": [
       "betrayal",
-      "arrival",
-      "parental"
+      "portions",
+      "arrival"
     ],
     "quality": "high"
   },
@@ -35283,7 +35283,7 @@
     "distractors": [
       "destinations",
       "distractions",
-      "distinguish"
+      "instructions"
     ],
     "quality": "high"
   },
@@ -35321,9 +35321,9 @@
   },
   "struggled": {
     "distractors": [
+      "stressed",
       "structures",
-      "straight",
-      "traveled"
+      "straight"
     ],
     "quality": "high"
   },
@@ -35417,9 +35417,9 @@
   },
   "teddy": {
     "distractors": [
+      "ted",
       "steady",
-      "teeth",
-      "tuesday"
+      "teeth"
     ],
     "quality": "high"
   },
@@ -35457,9 +35457,9 @@
   },
   "vitamin": {
     "distractors": [
+      "vitality",
       "benjamin",
-      "vietnam",
-      "attain"
+      "vietnam"
     ],
     "quality": "high"
   },
@@ -35481,9 +35481,9 @@
   },
   "messy": {
     "distractors": [
+      "mess",
       "mass",
-      "miss",
-      "message"
+      "miss"
     ],
     "quality": "high"
   },
@@ -35539,7 +35539,7 @@
     "distractors": [
       "compare",
       "commit",
-      "combat"
+      "comment"
     ],
     "quality": "high"
   },
@@ -35561,9 +35561,9 @@
   },
   "seconds": {
     "distractors": [
+      "sections",
       "sectors",
-      "spends",
-      "depends"
+      "spends"
     ],
     "quality": "high"
   },
@@ -35601,17 +35601,17 @@
   },
   "entering": {
     "distractors": [
-      "fostering",
-      "featuring",
-      "wandering"
+      "entrance",
+      "entirely",
+      "fostering"
     ],
     "quality": "high"
   },
   "intersection": {
     "distractors": [
-      "intervention",
-      "interaction",
-      "introduction"
+      "introduction",
+      "intriguing",
+      "attraction"
     ],
     "quality": "high"
   },
@@ -35681,9 +35681,9 @@
   },
   "optimum": {
     "distractors": [
-      "optimism",
       "option",
-      "minimum"
+      "minimum",
+      "obtaining"
     ],
     "quality": "high"
   },
@@ -35722,8 +35722,8 @@
   "committing": {
     "distractors": [
       "competing",
-      "compelling",
-      "comedian"
+      "comedian",
+      "forgetting"
     ],
     "quality": "high"
   },
@@ -35739,7 +35739,7 @@
     "distractors": [
       "discover",
       "disaster",
-      "discourse"
+      "desired"
     ],
     "quality": "high"
   },
@@ -35794,15 +35794,15 @@
   "station": {
     "distractors": [
       "situation",
-      "nation",
-      "section"
+      "stating",
+      "nation"
     ],
     "quality": "high"
   },
   "classroom": {
     "distractors": [
+      "classed",
       "bathroom",
-      "classical",
       "boardroom"
     ],
     "quality": "high"
@@ -35817,9 +35817,9 @@
   },
   "lined": {
     "distractors": [
+      "linked",
       "signed",
-      "joined",
-      "gained"
+      "joined"
     ],
     "quality": "high"
   },
@@ -35843,15 +35843,15 @@
     "distractors": [
       "particular",
       "specialty",
-      "specifically"
+      "substantial"
     ],
     "quality": "high"
   },
   "articulate": {
     "distractors": [
-      "articles",
       "participate",
-      "anticipate"
+      "anticipate",
+      "simulate"
     ],
     "quality": "high"
   },
@@ -35921,7 +35921,7 @@
   },
   "components": {
     "distractors": [
-      "compounds",
+      "comments",
       "complaints",
       "companions"
     ],
@@ -36025,9 +36025,9 @@
   },
   "mars": {
     "distractors": [
-      "wars",
-      "cars",
-      "myers"
+      "marks",
+      "march",
+      "wars"
     ],
     "quality": "high"
   },
@@ -36041,9 +36041,9 @@
   },
   "ted": {
     "distractors": [
+      "teddy",
       "hated",
-      "dated",
-      "cited"
+      "dated"
     ],
     "quality": "high"
   },
@@ -36057,9 +36057,9 @@
   },
   "crowding": {
     "distractors": [
+      "crossing",
       "creating",
-      "growing",
-      "providing"
+      "growing"
     ],
     "quality": "high"
   },
@@ -36090,8 +36090,8 @@
   "divorced": {
     "distractors": [
       "diverse",
-      "divided",
-      "forced"
+      "diversity",
+      "divided"
     ],
     "quality": "high"
   },
@@ -36107,7 +36107,7 @@
     "distractors": [
       "container",
       "convictions",
-      "conventional"
+      "conducting"
     ],
     "quality": "high"
   },
@@ -36161,25 +36161,25 @@
   },
   "intervention": {
     "distractors": [
-      "intersection",
-      "interaction",
-      "introduction"
+      "introduction",
+      "intriguing",
+      "observation"
     ],
     "quality": "high"
   },
   "intervenes": {
     "distractors": [
-      "interviewers",
-      "interests",
-      "interpreters"
+      "intricate",
+      "introduce",
+      "intensive"
     ],
     "quality": "high"
   },
   "creator": {
     "distractors": [
-      "create",
       "director",
-      "collector"
+      "collector",
+      "sector"
     ],
     "quality": "high"
   },
@@ -36242,8 +36242,8 @@
   "foresee": {
     "distractors": [
       "force",
-      "forest",
-      "forever"
+      "forever",
+      "fires"
     ],
     "quality": "high"
   },
@@ -36257,9 +36257,9 @@
   },
   "complimented": {
     "distractors": [
-      "complained",
-      "completely",
-      "compelling"
+      "compelling",
+      "components",
+      "documented"
     ],
     "quality": "high"
   },
@@ -36273,9 +36273,9 @@
   },
   "specialty": {
     "distractors": [
-      "specialist",
-      "specialized",
-      "speculation"
+      "speculation",
+      "especially",
+      "spectacular"
     ],
     "quality": "high"
   },
@@ -36337,9 +36337,9 @@
   },
   "contrary": {
     "distractors": [
-      "contract",
-      "contrast",
-      "control"
+      "central",
+      "century",
+      "country"
     ],
     "quality": "high"
   },
@@ -36370,8 +36370,8 @@
   "inexperienced": {
     "distractors": [
       "experienced",
-      "inexpensive",
-      "inefficient"
+      "inefficient",
+      "independence"
     ],
     "quality": "high"
   },
@@ -36465,23 +36465,23 @@
   },
   "superstitious": {
     "distractors": [
-      "supervisors",
       "prestigious",
-      "spontaneous"
+      "spontaneous",
+      "subconscious"
     ],
     "quality": "high"
   },
   "concert": {
     "distractors": [
-      "concern",
-      "concept",
-      "cancer"
+      "cancer",
+      "congress",
+      "connect"
     ],
     "quality": "high"
   },
   "offended": {
     "distractors": [
-      "offense",
+      "offered",
       "opened",
       "depended"
     ],
@@ -36513,9 +36513,9 @@
   },
   "motivate": {
     "distractors": [
-      "motivator",
       "activate",
-      "cultivate"
+      "cultivate",
+      "ultimate"
     ],
     "quality": "high"
   },
@@ -36523,7 +36523,7 @@
     "distractors": [
       "canadian",
       "committing",
-      "comedy"
+      "commercial"
     ],
     "quality": "high"
   },
@@ -36531,7 +36531,7 @@
     "distractors": [
       "celebrating",
       "operating",
-      "accelerating"
+      "generalize"
     ],
     "quality": "high"
   },
@@ -36553,9 +36553,9 @@
   },
   "artist": {
     "distractors": [
+      "arts",
       "article",
-      "wrist",
-      "activist"
+      "wrist"
     ],
     "quality": "high"
   },
@@ -36571,7 +36571,7 @@
     "distractors": [
       "rise",
       "rocky",
-      "sky"
+      "risen"
     ],
     "quality": "high"
   },
@@ -36602,8 +36602,8 @@
   "similarly": {
     "distractors": [
       "simulate",
-      "simulator",
-      "regularly"
+      "regularly",
+      "clearly"
     ],
     "quality": "high"
   },
@@ -36625,9 +36625,9 @@
   },
   "barren": {
     "distractors": [
-      "barrett",
       "aren",
-      "brown"
+      "brown",
+      "burn"
     ],
     "quality": "high"
   },
@@ -36690,24 +36690,24 @@
   "versatile": {
     "distractors": [
       "fragile",
-      "persuasive",
-      "profile"
+      "version",
+      "persuasive"
     ],
     "quality": "high"
   },
   "recreation": {
     "distractors": [
+      "recession",
       "recruiting",
-      "recognition",
-      "relation"
+      "recognition"
     ],
     "quality": "high"
   },
   "entertainment": {
     "distractors": [
-      "enterprises",
       "entrepreneur",
-      "environment"
+      "environment",
+      "advertisement"
     ],
     "quality": "high"
   },
@@ -36737,9 +36737,9 @@
   },
   "complimentary": {
     "distractors": [
-      "complicated",
       "comprehensive",
-      "competitors"
+      "competitors",
+      "commercials"
     ],
     "quality": "high"
   },
@@ -36753,9 +36753,9 @@
   },
   "gross": {
     "distractors": [
+      "grows",
       "cross",
-      "boss",
-      "loss"
+      "groups"
     ],
     "quality": "high"
   },
@@ -36785,9 +36785,9 @@
   },
   "malls": {
     "distractors": [
+      "males",
       "walls",
-      "calls",
-      "smells"
+      "calls"
     ],
     "quality": "high"
   },
@@ -36801,9 +36801,9 @@
   },
   "fortune": {
     "distractors": [
-      "fortunate",
       "forth",
-      "formula"
+      "formula",
+      "forcing"
     ],
     "quality": "high"
   },
@@ -36817,9 +36817,9 @@
   },
   "steadily": {
     "distractors": [
-      "steady",
       "readily",
-      "heavily"
+      "heavily",
+      "easily"
     ],
     "quality": "high"
   },
@@ -36913,9 +36913,9 @@
   },
   "inconsequential": {
     "distractors": [
-      "inconsistency",
       "controversial",
-      "incorporating"
+      "incorporating",
+      "entrepreneurial"
     ],
     "quality": "high"
   },
@@ -36955,7 +36955,7 @@
     "distractors": [
       "hazards",
       "cards",
-      "aware"
+      "words"
     ],
     "quality": "high"
   },
@@ -37041,25 +37041,25 @@
   },
   "senses": {
     "distractors": [
+      "sensors",
       "sciences",
-      "diseases",
-      "expenses"
+      "diseases"
     ],
     "quality": "high"
   },
   "instinct": {
     "distractors": [
       "instance",
-      "institute",
-      "distinct"
+      "distinct",
+      "inside"
     ],
     "quality": "high"
   },
   "volcano": {
     "distractors": [
-      "volcanic",
       "voluntary",
-      "volumes"
+      "volumes",
+      "vocal"
     ],
     "quality": "high"
   },
@@ -37073,9 +37073,9 @@
   },
   "publicizing": {
     "distractors": [
-      "published",
       "participating",
-      "realizing"
+      "realizing",
+      "believing"
     ],
     "quality": "high"
   },
@@ -37177,9 +37177,9 @@
   },
   "classrooms": {
     "distractors": [
-      "classmates",
       "classical",
-      "bathroom"
+      "bathroom",
+      "passwords"
     ],
     "quality": "high"
   },
@@ -37193,9 +37193,9 @@
   },
   "logo": {
     "distractors": [
+      "log",
       "logan",
-      "lois",
-      "leg"
+      "lois"
     ],
     "quality": "high"
   },
@@ -37217,9 +37217,9 @@
   },
   "interpreters": {
     "distractors": [
-      "interviewers",
-      "intervenes",
-      "interpersonal"
+      "introduced",
+      "intriguing",
+      "enterprises"
     ],
     "quality": "high"
   },
@@ -37281,9 +37281,9 @@
   },
   "edition": {
     "distractors": [
+      "editing",
       "addition",
-      "emotion",
-      "reduction"
+      "emotion"
     ],
     "quality": "high"
   },
@@ -37321,9 +37321,9 @@
   },
   "severe": {
     "distractors": [
+      "several",
       "seven",
-      "super",
-      "safer"
+      "super"
     ],
     "quality": "high"
   },
@@ -37331,7 +37331,7 @@
     "distractors": [
       "train",
       "stranded",
-      "stranger"
+      "stream"
     ],
     "quality": "high"
   },
@@ -37497,9 +37497,9 @@
   },
   "accents": {
     "distractors": [
+      "accounts",
       "agents",
-      "scents",
-      "payments"
+      "accidents"
     ],
     "quality": "high"
   },
@@ -37537,9 +37537,9 @@
   },
   "specialist": {
     "distractors": [
-      "specialized",
-      "specialty",
-      "speculation"
+      "speculation",
+      "scientist",
+      "speaking"
     ],
     "quality": "high"
   },
@@ -37562,8 +37562,8 @@
   "preschool": {
     "distractors": [
       "precious",
-      "prescribed",
-      "predictions"
+      "predictions",
+      "prestige"
     ],
     "quality": "high"
   },
@@ -37586,8 +37586,8 @@
   "croatia": {
     "distractors": [
       "create",
-      "crowding",
-      "creator"
+      "crossing",
+      "crowding"
     ],
     "quality": "high"
   },
@@ -37665,9 +37665,9 @@
   },
   "claude": {
     "distractors": [
+      "classed",
       "claimed",
-      "clouds",
-      "include"
+      "clouds"
     ],
     "quality": "high"
   },
@@ -37730,8 +37730,8 @@
   "inexpensive": {
     "distractors": [
       "expensive",
-      "inexperienced",
-      "intensive"
+      "intensive",
+      "extensive"
     ],
     "quality": "high"
   },
@@ -37769,7 +37769,7 @@
   },
   "offense": {
     "distractors": [
-      "offended",
+      "offers",
       "expense",
       "intense"
     ],
@@ -37897,17 +37897,17 @@
   },
   "europa": {
     "distractors": [
-      "europe",
       "crop",
-      "winopia"
+      "winopia",
+      "curacao"
     ],
     "quality": "high"
   },
   "icy": {
     "distractors": [
-      "ice",
       "mice",
-      "lucy"
+      "lucy",
+      "pick"
     ],
     "quality": "high"
   },
@@ -37995,7 +37995,7 @@
     "distractors": [
       "expectations",
       "experiencing",
-      "expertise"
+      "emissions"
     ],
     "quality": "high"
   },
@@ -38027,15 +38027,15 @@
     "distractors": [
       "bringing",
       "transforms",
-      "transport"
+      "brackets"
     ],
     "quality": "high"
   },
   "comment": {
     "distractors": [
-      "content",
-      "moment",
-      "monument"
+      "commands",
+      "community",
+      "component"
     ],
     "quality": "high"
   },
@@ -38065,9 +38065,9 @@
   },
   "die": {
     "distractors": [
+      "diet",
       "due",
-      "lie",
-      "dried"
+      "lie"
     ],
     "quality": "high"
   },
@@ -38154,8 +38154,8 @@
   "encountering": {
     "distractors": [
       "engineering",
-      "encouraging",
-      "accounting"
+      "accounting",
+      "volunteering"
     ],
     "quality": "high"
   },
@@ -38169,25 +38169,25 @@
   },
   "southwest": {
     "distractors": [
-      "southern",
       "youngest",
-      "sources"
+      "sources",
+      "suggest"
     ],
     "quality": "high"
   },
   "bonus": {
     "distractors": [
+      "bones",
       "banks",
-      "menus",
-      "minus"
+      "menus"
     ],
     "quality": "high"
   },
   "southern": {
     "distractors": [
       "northern",
-      "southwest",
-      "sought"
+      "sought",
+      "eastern"
     ],
     "quality": "high"
   },
@@ -38201,9 +38201,9 @@
   },
   "stressed": {
     "distractors": [
-      "witnessed",
-      "depressed",
-      "obsessed"
+      "struggled",
+      "stroke",
+      "witnessed"
     ],
     "quality": "high"
   },
@@ -38267,7 +38267,7 @@
     "distractors": [
       "died",
       "tried",
-      "varied"
+      "drives"
     ],
     "quality": "high"
   },
@@ -38379,7 +38379,7 @@
     "distractors": [
       "conscious",
       "contexts",
-      "contains"
+      "spontaneous"
     ],
     "quality": "high"
   },
@@ -38553,17 +38553,17 @@
   },
   "observation": {
     "distractors": [
+      "obsession",
       "operation",
-      "dissertation",
-      "sensation"
+      "dissertation"
     ],
     "quality": "high"
   },
   "chemistry": {
     "distractors": [
-      "chemical",
       "cheaper",
-      "country"
+      "country",
+      "industry"
     ],
     "quality": "high"
   },
@@ -38611,7 +38611,7 @@
     "distractors": [
       "led",
       "died",
-      "relied"
+      "lies"
     ],
     "quality": "high"
   },
@@ -38705,9 +38705,9 @@
   },
   "optimism": {
     "distractors": [
-      "optimum",
-      "optimistic",
-      "options"
+      "options",
+      "criticism",
+      "obtaining"
     ],
     "quality": "high"
   },
@@ -38721,9 +38721,9 @@
   },
   "installed": {
     "distractors": [
-      "instance",
       "instead",
-      "instinct"
+      "instinct",
+      "enabled"
     ],
     "quality": "high"
   },
@@ -38737,9 +38737,9 @@
   },
   "accuracy": {
     "distractors": [
-      "accurate",
       "acceptance",
-      "accounting"
+      "accounting",
+      "according"
     ],
     "quality": "high"
   },
@@ -38787,7 +38787,7 @@
     "distractors": [
       "closed",
       "passed",
-      "caused"
+      "claimed"
     ],
     "quality": "high"
   },
@@ -38857,9 +38857,9 @@
   },
   "sectors": {
     "distractors": [
+      "sections",
       "actors",
-      "sensors",
-      "doctors"
+      "sensors"
     ],
     "quality": "high"
   },
@@ -38921,9 +38921,9 @@
   },
   "jamaica": {
     "distractors": [
+      "james",
       "africa",
-      "america",
-      "damaging"
+      "america"
     ],
     "quality": "high"
   },
@@ -38945,17 +38945,17 @@
   },
   "safely": {
     "distractors": [
-      "surely",
-      "barely",
-      "rarely"
+      "safety",
+      "safest",
+      "surely"
     ],
     "quality": "high"
   },
   "tribal": {
     "distractors": [
+      "trial",
       "terribly",
-      "travel",
-      "trip"
+      "travel"
     ],
     "quality": "high"
   },
@@ -38987,7 +38987,7 @@
     "distractors": [
       "understanding",
       "demanding",
-      "depending"
+      "underlying"
     ],
     "quality": "high"
   },
@@ -39043,7 +39043,7 @@
     "distractors": [
       "advantages",
       "indicates",
-      "advances"
+      "allocate"
     ],
     "quality": "high"
   },
@@ -39115,7 +39115,7 @@
     "distractors": [
       "consequences",
       "consistently",
-      "consecutive"
+      "conclusions"
     ],
     "quality": "high"
   },
@@ -39129,9 +39129,9 @@
   },
   "actively": {
     "distractors": [
+      "activity",
       "entirely",
-      "negatively",
-      "positively"
+      "negatively"
     ],
     "quality": "high"
   },
@@ -39193,17 +39193,17 @@
   },
   "suspicious": {
     "distractors": [
-      "suspicion",
       "malicious",
-      "subconscious"
+      "subconscious",
+      "delicious"
     ],
     "quality": "high"
   },
   "sexy": {
     "distractors": [
       "sees",
-      "six",
-      "seat"
+      "seek",
+      "six"
     ],
     "quality": "high"
   },
@@ -39211,7 +39211,7 @@
     "distractors": [
       "surveys",
       "surely",
-      "surgical"
+      "surround"
     ],
     "quality": "high"
   },
@@ -39225,9 +39225,9 @@
   },
   "freed": {
     "distractors": [
+      "fred",
       "feed",
-      "agreed",
-      "seed"
+      "freedom"
     ],
     "quality": "high"
   },
@@ -39251,21 +39251,21 @@
     "distractors": [
       "sort",
       "short",
-      "dirt"
+      "ski"
     ],
     "quality": "high"
   },
   "hotel": {
     "distractors": [
+      "hot",
       "mattel",
-      "hate",
-      "noted"
+      "hate"
     ],
     "quality": "high"
   },
   "generosity": {
     "distractors": [
-      "generating",
+      "generalize",
       "necessity",
       "diversity"
     ],
@@ -39305,17 +39305,17 @@
   },
   "geologist": {
     "distractors": [
-      "geological",
       "economist",
-      "ecologists"
+      "ecologists",
+      "tourist"
     ],
     "quality": "high"
   },
   "geological": {
     "distractors": [
-      "geologist",
       "biological",
-      "political"
+      "political",
+      "theoretical"
     ],
     "quality": "high"
   },
@@ -39370,16 +39370,16 @@
   "storm": {
     "distractors": [
       "story",
-      "store",
-      "norm"
+      "norm",
+      "stood"
     ],
     "quality": "high"
   },
   "cubs": {
     "distractors": [
+      "cuba",
       "cues",
-      "chefs",
-      "chips"
+      "chefs"
     ],
     "quality": "high"
   },
@@ -39515,7 +39515,7 @@
     "distractors": [
       "severe",
       "spent",
-      "event"
+      "several"
     ],
     "quality": "high"
   },
@@ -39633,17 +39633,17 @@
   },
   "technically": {
     "distractors": [
-      "technique",
       "economically",
-      "clinically"
+      "clinically",
+      "specifically"
     ],
     "quality": "high"
   },
   "considerable": {
     "distractors": [
       "constrained",
-      "constructive",
-      "formidable"
+      "formidable",
+      "confidently"
     ],
     "quality": "high"
   },
@@ -39722,8 +39722,8 @@
   "valentin": {
     "distractors": [
       "voluntary",
-      "volunteer",
-      "parenting"
+      "parenting",
+      "martin"
     ],
     "quality": "high"
   },
@@ -39739,7 +39739,7 @@
     "distractors": [
       "myers",
       "mars",
-      "worries"
+      "marks"
     ],
     "quality": "high"
   },
@@ -39770,8 +39770,8 @@
   "vitality": {
     "distractors": [
       "mortality",
-      "utility",
-      "reality"
+      "vitamin",
+      "utility"
     ],
     "quality": "high"
   },
@@ -39794,16 +39794,16 @@
   "congress": {
     "distractors": [
       "concert",
-      "concerns",
-      "contrast"
+      "contrast",
+      "progress"
     ],
     "quality": "high"
   },
   "ninety": {
     "distractors": [
+      "niners",
       "anxiety",
-      "safety",
-      "honesty"
+      "safety"
     ],
     "quality": "high"
   },
@@ -39811,7 +39811,7 @@
     "distractors": [
       "fingers",
       "risers",
-      "rivers"
+      "ninety"
     ],
     "quality": "high"
   },
@@ -39833,9 +39833,9 @@
   },
   "overworked": {
     "distractors": [
-      "overwhelmed",
       "overpriced",
-      "overcome"
+      "overcome",
+      "overlooking"
     ],
     "quality": "high"
   },
@@ -39857,9 +39857,9 @@
   },
   "demographics": {
     "distractors": [
-      "demography",
       "geographic",
-      "demonstrates"
+      "demonstrates",
+      "aesthetics"
     ],
     "quality": "high"
   },
@@ -39889,9 +39889,9 @@
   },
   "psychiatrists": {
     "distractors": [
-      "psychologists",
-      "psychological",
-      "acupuncturists"
+      "acupuncturists",
+      "enthusiasts",
+      "associations"
     ],
     "quality": "high"
   },
@@ -39914,8 +39914,8 @@
   "mel": {
     "distractors": [
       "meal",
-      "mile",
-      "male"
+      "melt",
+      "mile"
     ],
     "quality": "high"
   },
@@ -39977,9 +39977,9 @@
   },
   "interviewer": {
     "distractors": [
-      "intervene",
-      "interpreter",
-      "interests"
+      "intricate",
+      "introduce",
+      "intensive"
     ],
     "quality": "high"
   },
@@ -39993,9 +39993,9 @@
   },
   "inconsistency": {
     "distractors": [
-      "inconsequential",
       "consistently",
-      "incorporating"
+      "incorporating",
+      "consequence"
     ],
     "quality": "high"
   },
@@ -40019,7 +40019,7 @@
     "distractors": [
       "substitute",
       "supposed",
-      "substances"
+      "supervised"
     ],
     "quality": "high"
   },
@@ -40090,8 +40090,8 @@
   "risen": {
     "distractors": [
       "rosen",
-      "risky",
-      "prison"
+      "rise",
+      "risky"
     ],
     "quality": "high"
   },
@@ -40113,9 +40113,9 @@
   },
   "standpoint": {
     "distractors": [
-      "standards",
       "stanford",
-      "statement"
+      "statement",
+      "stations"
     ],
     "quality": "high"
   },
@@ -40337,9 +40337,9 @@
   },
   "terrie": {
     "distractors": [
-      "terribly",
       "berries",
-      "tree"
+      "tree",
+      "true"
     ],
     "quality": "high"
   },

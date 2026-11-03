@@ -37,9 +37,10 @@ def get_stem(w):
         'ing', 'ed', 'ers', 'er', 'es', 's', 'al', 'ment', 'ments',
         'tion', 'tions', 'sion', 'sions', 'ly', 'able', 'ible',
         'ive', 'ity', 'ize', 'ise', 'ant', 'ants', 'ent', 'ents',
-        'ated', 'ating', 'ation', 'ations', 'ful', 'less', 'ness'
+        'ated', 'ating', 'ation', 'ations', 'ful', 'less', 'ness',
+        'ic', 'ical', 'ies', 'ied', 'ious', 'ous'
     )
-    curr = w.lower()
+    curr = w.lower().strip()
     changed = True
     while changed:
         changed = False
@@ -48,21 +49,33 @@ def get_stem(w):
                 curr = curr[:-len(suf)]
                 changed = True
                 break
+    curr = curr.rstrip('e')
+    if curr.endswith('y'):
+        curr = curr[:-1] + 'i'
     return curr
 
 def are_same_root(w1, w2):
     if w1 == w2:
         return True
-    # Direct inflections: -s, -es, -d, -ed, -ing, -er, -est
+    w1_l, w2_l = w1.lower(), w2.lower()
+    # Direct inflections: -s, -es, -d, -ed, -ing, -er, -est, -ly
     for suf in ('s', 'es', 'd', 'ed', 'ing', 'er', 'est', 'ly'):
-        if w1 + suf == w2 or w2 + suf == w1:
+        if w1_l + suf == w2_l or w2_l + suf == w1_l:
             return True
-    st1 = get_stem(w1)
-    st2 = get_stem(w2)
-    if st1 == st2 or st1.rstrip('e') == st2.rstrip('e'):
+    # Plural -ies vs -y / -ied vs -y
+    if w1_l.endswith('ies') and w1_l[:-3] + 'y' == w2_l: return True
+    if w2_l.endswith('ies') and w2_l[:-3] + 'y' == w1_l: return True
+    if w1_l.endswith('ied') and w1_l[:-3] + 'y' == w2_l: return True
+    if w2_l.endswith('ied') and w2_l[:-3] + 'y' == w1_l: return True
+    
+    st1 = get_stem(w1_l)
+    st2 = get_stem(w2_l)
+    if st1 == st2 or st1.rstrip('i') == st2.rstrip('i'):
         return True
     min_len = min(len(st1), len(st2))
-    if min_len >= 3 and (st1.startswith(st2) or st2.startswith(st1)):
+    if min_len >= 4 and (st1.startswith(st2) or st2.startswith(st1)):
+        return True
+    if len(st1) >= 5 and len(st2) >= 5 and st1[:5] == st2[:5]:
         return True
     return False
 
