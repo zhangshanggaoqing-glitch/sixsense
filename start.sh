@@ -5,6 +5,15 @@ BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$BASE_DIR"
 export PYTHONPATH="$BASE_DIR"
 
+if [ "$BASE_DIR" = "/home/ubuntu/sixsense" ] || [ "$(hostname)" = "VM-0-12-ubuntu" ]; then
+  echo "STOP: refusing to start this checkout on the production host." >&2
+  echo "STOP: live images are not proven equal to this tree, and this tree has no NCE module." >&2
+  exit 2
+fi
+if [ ! -f "$BASE_DIR/backend/app/routers/nce.py" ]; then
+  echo "NOTE: NCE router is absent. This start is local only and must not replace mystone.top."
+fi
+
 echo "=== Starting SixSense Services ==="
 
 # 1. Start Backend FastAPI

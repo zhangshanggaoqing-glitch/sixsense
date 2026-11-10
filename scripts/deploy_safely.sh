@@ -9,6 +9,24 @@ set -e
 # ==============================================================================
 
 PROJECT_DIR="/home/ubuntu/sixsense"
+SOURCE_TREE="$(cd "$(dirname "$0")/.." && pwd)"
+
+# Hard gates. This script rebuilds the live containers. It is not run by CI.
+# The 2026-11-10 read-only audit found live /api/nce and four NCE books, while
+# GitHub main 4381616 has no NCE router. Do not recreate production from this tree.
+if [ ! -f "$SOURCE_TREE/backend/app/routers/nce.py" ]; then
+  echo "STOP: $SOURCE_TREE has no backend/app/routers/nce.py" >&2
+  echo "STOP: refusing to build or recreate sixsense-frontend/backend. Live serves /api/nce." >&2
+  echo "STOP: version parity is unproven (server has no .git; images are newer than 4381616)." >&2
+  exit 2
+fi
+if [ "${CONFIRM_VERSION_PARITY:-}" != "yes" ] \
+  || [ "${CONFIRM_BACKUP_RESTORE_DRILL:-}" != "yes" ] \
+  || [ "${CONFIRM_PRODUCTION_DEPLOY:-}" != "yes" ]; then
+  echo "STOP: set CONFIRM_VERSION_PARITY, CONFIRM_BACKUP_RESTORE_DRILL, and CONFIRM_PRODUCTION_DEPLOY to yes only after both hard gates pass." >&2
+  exit 2
+fi
+
 cd "$PROJECT_DIR"
 
 echo "=== [1/4] Running Pre-deploy Database Backup ==="

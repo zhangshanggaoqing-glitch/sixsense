@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useLayoutEffect, useRef, useCallback } from "react";
 import { Sentence } from "@/lib/api";
 import { StudioMode } from "./useKeyboardShortcuts";
 
@@ -121,12 +121,17 @@ export function useAudioPlayer({
     }
   }, [playbackRate, volume]);
 
-  // Support restoring initialIndex when sentences load
-  useEffect(() => {
-    if (initialIndex > 0 && initialIndex < sentences.length) {
-      setCurrentIndex(initialIndex);
-    }
-  }, [initialIndex, sentences.length]);
+  // Apply the restored index before paint, once per sentence list.
+  // A later user navigation keeps its own index until the list or target changes.
+  const appliedSentenceKeyRef = useRef("");
+  useLayoutEffect(() => {
+    if (sentences.length === 0) return;
+    const key = `${sentences[0]?.id ?? ""}:${sentences.length}:${initialIndex}`;
+    if (appliedSentenceKeyRef.current === key) return;
+    appliedSentenceKeyRef.current = key;
+    const next = initialIndex >= 0 && initialIndex < sentences.length ? initialIndex : 0;
+    setCurrentIndex(next);
+  }, [sentences, initialIndex]);
 
   const currentSentence = sentences[currentIndex] || null;
 
