@@ -28,6 +28,7 @@ import { ShareCardModal } from "@/components/studio/ShareCardModal";
 import { ExamSelectorSheet } from "@/components/studio/ExamSelectorSheet";
 import { ReturnHomePromptModal } from "@/components/checkin/ReturnHomePromptModal";
 import { ServerMigrateNoticeModal, hasSeenMigrateNotice } from "@/components/common/ServerMigrateNoticeModal";
+import { consumePendingProgress, readResumeSentenceIndex, shouldCommitResumeWrite } from "@/lib/resumeGuard";
 
 const PUNCH_PROMPT_CONFIG = {
   MIN_SESSION_SECONDS: 180, // 3 minutes minimum session listening
@@ -100,13 +101,19 @@ function StudioContent() {
         if (cached) {
           const parsed = JSON.parse(cached);
           if (parsed && parsed.exam_id === urlExamId && (!urlSubpartId || parsed.subpart_id === urlSubpartId)) {
-            return parsed.sentence_index || 0;
+            return readResumeSentenceIndex(parsed.sentence_index);
           }
         }
       } catch {}
     }
     return 0;
   });
+  const resumeLoadedRef = useRef(false);
+  const suppressHydrationWriteRef = useRef(true);
+  const sentenceCountRef = useRef(0);
+  const targetIndexRef = useRef(initialSentenceIndex);
+  sentenceCountRef.current = sentences.length;
+  targetIndexRef.current = initialSentenceIndex;
 
   // Active playing time tracking (guaranteed flush on pause, switch, visibility change, and unload)
   const pendingActiveSecondsRef = useRef(0);
@@ -181,7 +188,7 @@ function StudioContent() {
         // Set initial sentence index if resume matches this subpart and exam
         if (resume && resume.exam_id === urlExamId && (!targetSubpartId || resume.subpart_id === targetSubpartId)) {
           if (typeof resume.sentence_index === "number") {
-            setInitialSentenceIndex(resume.sentence_index);
+            setInitialSentenceIndex(readResumeSentenceIndex(resume.sentence_index));
           }
         }
 
@@ -197,6 +204,7 @@ function StudioContent() {
         console.error("Failed to initialize studio", err);
         setIsError(true);
       } finally {
+        resumeLoadedRef.current = true;
         setIsLoading(false);
       }
     }
@@ -238,12 +246,14 @@ function StudioContent() {
         lastTickTimeRef.current = now;
       }
     }
-    const sec = pendingActiveSecondsRef.current;
-    const completedSentence = pendingCompletedSentenceRef.current;
-    if (sec > 0 || completedSentence) {
+    const pending = consumePendingProgress(
+      pendingActiveSecondsRef.current,
+      pendingCompletedSentenceRef.current
+    );
+    if (pending.send) {
       pendingActiveSecondsRef.current = 0;
       pendingCompletedSentenceRef.current = false;
-      api.sendHeartbeat(exam.id, sec, keepalive, completedSentence).then((res) => {
+      api.sendHeartbeat(exam.id, pending.seconds, keepalive, pending.completed).then((res) => {
         if (res) {
           if (res.today_minutes !== undefined) setTodayMinutes(res.today_minutes);
           if (res.streak_days !== undefined) setStreakDays(res.streak_days);
@@ -316,6 +326,14 @@ function StudioContent() {
     (targetIndex?: number, isCompleted = false) => {
       if (!exam || !activeSubpartId) return;
       const idx = targetIndex !== undefined ? targetIndex : player.currentIndex;
+      const allow = shouldCommitResumeWrite({
+        resumeLoaded: resumeLoadedRef.current,
+        suppressHydrationWrite: suppressHydrationWriteRef.current,
+        sentenceCount: sentenceCountRef.current,
+        targetIndex: targetIndexRef.current,
+        writeIndex: idx,
+      });
+      if (!allow) return;
       const resumeData: ResumeState = {
         exam_id: exam.id,
         subpart_id: activeSubpartId,
@@ -333,6 +351,15 @@ function StudioContent() {
   );
 
   persistResumeRef.current = persistResume;
+
+  // Drop automatic writes until the visible sentence matches the restored index.
+  useEffect(() => {
+    if (!resumeLoadedRef.current || sentences.length === 0) return;
+    const target = Math.min(Math.max(initialSentenceIndex, 0), sentences.length - 1);
+    if (player.currentIndex === target) {
+      suppressHydrationWriteRef.current = false;
+    }
+  }, [initialSentenceIndex, player.currentIndex, sentences.length]);
 
   // Persist resume immediately whenever playback pauses
   useEffect(() => {
@@ -423,6 +450,9 @@ function StudioContent() {
 
     flushHeartbeat(false);
     persistResume();
+    suppressHydrationWriteRef.current = true;
+    setInitialSentenceIndex(0);
+    setSentences([]);
 
     if (targetExamId === exam?.id) {
       // Fast in-place switch for same exam: no full page unmount, no audio reload latency

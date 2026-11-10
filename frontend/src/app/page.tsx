@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, BookOpen, Headphones, Clock, Layers, Calendar, User as UserIcon, LogIn, Play, Download, FileText } from "lucide-react";
@@ -9,6 +9,13 @@ import { formatExamTitleZh, formatSubpartTitleZh } from "@/lib/formatters";
 import { useAuth } from "@/hooks/useAuth";
 import { CheckinDataPanel } from "@/components/checkin/CheckinDataPanel";
 import { ServerMigrateNoticeModal, hasSeenMigrateNotice } from "@/components/common/ServerMigrateNoticeModal";
+import {
+  keepPreviousOnFailure,
+  readCachedJson,
+  resolveContinueTarget,
+  subpartsMatchExam,
+  takeLatest,
+} from "@/lib/homeNavigation";
 
 export default function HomePage() {
   const router = useRouter();
@@ -19,8 +26,11 @@ export default function HomePage() {
   const [fullPapers, setFullPapers] = useState<FullPaperItem[]>([]);
   const [selectedExamId, setSelectedExamId] = useState<string>("2026-06-set1");
   const [subparts, setSubparts] = useState<Subpart[]>([]);
-  const [isLoadingSubparts, setIsLoadingSubparts] = useState(false);
+  const [isLoadingSubparts, setIsLoadingSubparts] = useState(true);
+  const [subpartsError, setSubpartsError] = useState(false);
   const [showMigrateNotice, setShowMigrateNotice] = useState(false);
+  const subpartSeq = useRef(0);
+  const userPickedExamRef = useRef(false);
 
   useEffect(() => {
     if (!hasSeenMigrateNotice()) {
@@ -28,64 +38,102 @@ export default function HomePage() {
     }
   }, []);
 
-  // Synchronously load cached stats & resume on client mount to prevent "flash of 0"
-  useEffect(() => {
+  // Apply the local cache before paint. A null stats object renders as "—", not as a wiped account.
+  useLayoutEffect(() => {
+    const cachedStats = readCachedJson<StatsData>(window.localStorage, "stone_cached_stats");
+    const cachedResume = readCachedJson<ResumeState>(window.localStorage, "stone_cached_resume");
+    if (cachedStats) setStats(cachedStats);
+    if (cachedResume) setResume(cachedResume);
+  }, []);
+
+  const loadSubparts = useCallback(async (examId: string) => {
+    const seq = ++subpartSeq.current;
+    setSelectedExamId(examId);
+    setIsLoadingSubparts(true);
+    setSubpartsError(false);
+    setSubparts([]);
     try {
-      const cachedStats = localStorage.getItem("stone_cached_stats");
-      if (cachedStats) setStats(JSON.parse(cachedStats));
-      const cachedResume = localStorage.getItem("stone_cached_resume");
-      if (cachedResume) setResume(JSON.parse(cachedResume));
-    } catch {}
+      const sps = await api.getSubparts(examId);
+      const accepted = takeLatest(seq, subpartSeq.current, sps);
+      if (!accepted) return;
+      setSubparts(accepted);
+    } catch (e) {
+      console.error(e);
+      if (seq !== subpartSeq.current) return;
+      setSubparts([]);
+      setSubpartsError(true);
+    } finally {
+      if (seq === subpartSeq.current) setIsLoadingSubparts(false);
+    }
   }, []);
 
   useEffect(() => {
+    let cancelled = false;
     async function load() {
+      const hinted = readCachedJson<ResumeState>(
+        typeof window === "undefined" ? null : window.localStorage,
+        "stone_cached_resume"
+      );
+      const hintedExamId = hinted?.exam_id || "";
       try {
-        const [resResume, resStats, resExams, resFullPapers] = await Promise.all([
+        const [resResume, resStats, resExams, resFullPapers, hintedSubparts] = await Promise.all([
           api.getResume().catch(() => null),
           api.getStats().catch(() => null),
           api.getExams().catch(() => []),
           api.getFullPapers().catch(() => []),
+          hintedExamId ? api.getSubparts(hintedExamId).catch(() => null) : Promise.resolve(null),
         ]);
+        if (cancelled) return;
+
+        setResume((current) => keepPreviousOnFailure(current, resResume));
+        setStats((current) => keepPreviousOnFailure(current, resStats));
         if (resResume) {
-          setResume(resResume);
           try {
             localStorage.setItem("stone_cached_resume", JSON.stringify(resResume));
           } catch {}
         }
         if (resStats) {
-          setStats(resStats);
           try {
             localStorage.setItem("stone_cached_stats", JSON.stringify(resStats));
           } catch {}
         }
-        setExams(resExams);
-        setFullPapers(resFullPapers);
+        if (resExams.length > 0) setExams(resExams);
+        if (resFullPapers.length > 0) setFullPapers(resFullPapers);
+
+        if (userPickedExamRef.current) return;
 
         const latestExamId = resExams.length > 0 ? resExams[0].id : "2026-06-set1";
         const initialExamId = resResume?.exam_id || latestExamId;
-        setSelectedExamId(initialExamId);
-
-        const resSubparts = await api.getSubparts(initialExamId).catch(() => []);
-        setSubparts(resSubparts);
+        if (
+          hintedExamId &&
+          hintedExamId === initialExamId &&
+          Array.isArray(hintedSubparts)
+        ) {
+          const seq = ++subpartSeq.current;
+          setSelectedExamId(initialExamId);
+          const accepted = takeLatest(seq, subpartSeq.current, hintedSubparts);
+          if (accepted) {
+            setSubparts(accepted);
+            setSubpartsError(false);
+            setIsLoadingSubparts(false);
+          }
+          return;
+        }
+        await loadSubparts(initialExamId);
       } catch (e) {
         console.error(e);
+        if (!cancelled) setIsLoadingSubparts(false);
       }
     }
     load();
-  }, [user]);
+    return () => {
+      cancelled = true;
+    };
+  }, [user, loadSubparts]);
 
-  const handleSelectExam = async (examId: string) => {
-    setSelectedExamId(examId);
-    setIsLoadingSubparts(true);
-    try {
-      const sps = await api.getSubparts(examId);
-      setSubparts(sps);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setIsLoadingSubparts(false);
-    }
+  const handleSelectExam = (examId: string) => {
+    userPickedExamRef.current = true;
+    void loadSubparts(examId);
   };
 
   const formatDuration = (sec?: number) => {
@@ -106,10 +154,15 @@ export default function HomePage() {
     { id: "sec-c", suffix: "sec-c", title: "第三部分：讲座与报道（第16–25题）", count: "3 篇 · 10 题" },
   ];
 
-  const hasProgress = Boolean(
-    resume && (resume.sentence_index > 0 || resume.has_progress) && !resume.is_completed
-  );
-  const nextSentenceNum = (resume?.sentence_index ?? 0) + 1;
+  const subpartsAreCurrent = !isLoadingSubparts && subpartsMatchExam(subparts, selectedExamId);
+  const visibleSubparts = subpartsAreCurrent ? subparts : [];
+  const continueTarget = resolveContinueTarget({
+    selectedExamId,
+    resume,
+    selectedSubparts: visibleSubparts,
+    subpartsBelongToSelected: subpartsAreCurrent,
+  });
+  const papersThisYear = fullPapers.filter((fp) => fp.year === selectedYear);
 
   return (
     <div className="min-h-screen bg-[#f5f5f7] dark:bg-[#000000] text-[#1d1d1f] dark:text-[#f5f5f7] flex flex-col justify-between p-4 sm:p-12 pt-[max(0.85rem,env(safe-area-inset-top))] pb-[max(2rem,env(safe-area-inset-bottom))] select-none">
@@ -178,32 +231,32 @@ export default function HomePage() {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-[11px] font-semibold text-[#0071e3] dark:text-[#0a84ff]">
-                  {hasProgress ? "继续精听" : "推荐首练 · 最新真题"}
+                  {continueTarget.continuesSelectedExam ? "继续精听" : "推荐首练 · 当前所选"}
                 </span>
                 <span className="text-black/10 dark:text-white/10">·</span>
                 <span className="text-xs text-[#86868b]">
-                  第 {hasProgress ? nextSentenceNum : 1} 句
+                  第 {continueTarget.sentenceNumber} 句
                 </span>
               </div>
               <h2 className="text-base sm:text-lg font-medium text-[#1d1d1f] dark:text-[#f5f5f7] mt-1">
                 {formatExamTitleZh(currentExam?.title || selectedExamId)}
               </h2>
               <p className="text-xs text-[#86868b] mt-0.5">
-                {subparts[0] ? formatSubpartTitleZh(subparts[0].title, subparts[0].question_range) : "双语对照精听"} · 沉浸单句精听
+                {visibleSubparts[0]
+                  ? formatSubpartTitleZh(visibleSubparts[0].title, visibleSubparts[0].question_range)
+                  : isLoadingSubparts
+                  ? "正在加载题型…"
+                  : "双语对照精听"} · 沉浸单句精听
               </p>
             </div>
           </div>
 
           <Link
-            href={
-              resume?.subpart_id
-                ? `/studio?exam_id=${resume.exam_id}&subpart_id=${resume.subpart_id}&autoplay=1`
-                : `/studio?exam_id=${selectedExamId}&subpart_id=${subparts[0]?.id || ""}&autoplay=1`
-            }
+            href={continueTarget.href}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1d1d1f] hover:bg-black dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-[#1d1d1f] text-xs font-semibold rounded-full shadow-sm transition-transform active:scale-95"
           >
             <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-            <span>{hasProgress ? `继续第 ${nextSentenceNum} 句` : "先听一句"}</span>
+            <span>{continueTarget.label}</span>
           </Link>
         </div>
 
@@ -277,14 +330,18 @@ export default function HomePage() {
               </h2>
             </div>
             <span className="text-xs text-[#86868b]">
-              {isLoadingSubparts ? "正在加载…" : `${subparts.length} 个独立题型 · 25 道全真考题`}
+              {isLoadingSubparts
+                ? "正在加载…"
+                : subpartsError
+                ? "题型加载失败，请重试"
+                : `${visibleSubparts.length} 个独立题型 · 25 道全真考题`}
             </span>
           </div>
 
           {/* Section Grid */}
           <div className="space-y-6">
             {sections.map((sec) => {
-              const secSubparts = subparts.filter((sp) => {
+              const secSubparts = visibleSubparts.filter((sp) => {
                 const sid = (sp.section_id || "").toLowerCase();
                 const stype = (sp.type || "").toLowerCase();
                 if (sec.id === "sec-a") return sid.endsWith("sec-a") || sid.endsWith("section-a") || stype === "conversation";
@@ -351,15 +408,16 @@ export default function HomePage() {
                 </h2>
               </div>
               <span className="text-xs text-[#86868b]">
-                整段播放 · 可下载 · 适合模考检测（{selectedYear} 年 · 共 {fullPapers.filter((fp) => fp.year === selectedYear).length} 套）
+                整段播放 · 可下载 · 适合模考检测（{selectedYear} 年 · 共 {papersThisYear.length} 套）
               </span>
             </div>
 
+            {papersThisYear.length === 0 ? (
+              <p className="text-xs text-[#86868b] px-1">该年暂无完整卷。</p>
+            ) : null}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              {(fullPapers.filter((fp) => fp.year === selectedYear).length > 0
-                ? fullPapers.filter((fp) => fp.year === selectedYear)
-                : fullPapers
-              ).map((fp) => {
+              {papersThisYear.map((fp) => {
                 const durationMin = Math.floor(fp.duration_sec / 60);
                 const durationSec = Math.floor(fp.duration_sec % 60);
                 const isCurrentExam = fp.id === selectedExamId;

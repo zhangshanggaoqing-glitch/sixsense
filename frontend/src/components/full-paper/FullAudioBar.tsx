@@ -167,7 +167,7 @@ export function FullAudioBar({
         preload="metadata"
       />
 
-      <div className="bg-white/90 dark:bg-[#1c1c1e]/90 backdrop-blur-xl border border-black/[0.08] dark:border-white/[0.1] rounded-2xl sm:rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] px-4 sm:px-6 py-3 sm:py-3.5 space-y-2">
+      <div className="bg-white/90 dark:bg-[#1c1c1e]/90 backdrop-blur-xl border border-black/[0.08] dark:border-white/[0.1] rounded-2xl sm:rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] px-3 sm:px-6 py-2.5 sm:py-3.5 space-y-2">
         {/* Progress Bar & Scrubber */}
         <div className="flex items-center gap-3">
           <span className="text-[11px] font-mono font-medium text-[#86868b] min-w-[36px] text-right">
@@ -206,7 +206,7 @@ export function FullAudioBar({
         </div>
 
         {/* Playback Controls Row */}
-        <div className="flex items-center justify-between gap-2 pt-0.5">
+        <div className="flex items-center justify-between gap-2 pt-0.5 flex-nowrap">
           {/* Left tools: Speed + Download */}
           <div className="flex items-center gap-1.5 sm:gap-2">
             <button

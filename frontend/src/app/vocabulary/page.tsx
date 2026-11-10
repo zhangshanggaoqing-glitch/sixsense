@@ -28,6 +28,7 @@ import {
 } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
 import { formatExamTitleZh } from "@/lib/formatters";
+import { beginExclusiveAction, sessionCompletionCopy, stageAfterRating } from "@/lib/vocabSession";
 
 export default function VocabularyPage() {
   const { user } = useAuth();
@@ -87,6 +88,8 @@ export default function VocabularyPage() {
   // Audio refs
   const voiceAudioRef = useRef<HTMLAudioElement | null>(null);
   const clipAudioRef = useRef<HTMLAudioElement | null>(null);
+  const rateLockRef = useRef(false);
+  const quizLockRef = useRef(false);
 
   // Active word in current session
   const activeSessionItem = useMemo(() => {
@@ -232,6 +235,8 @@ export default function VocabularyPage() {
     setIsQuizCorrect(null);
     setVoiceErrorWord(null);
 
+    rateLockRef.current = false;
+    quizLockRef.current = false;
     if (currentSessionIndex + 1 < sessionQueue.length) {
       setCurrentSessionIndex((i) => i + 1);
     } else {
@@ -261,49 +266,58 @@ export default function VocabularyPage() {
   }, [playWordAudio]);
 
   const handleRatingChoice = useCallback(async (rating: 1 | 2 | 3) => {
-    if (!activeSessionItem) return;
+    if (!activeSessionItem || cardStage !== "front") return;
+    if (!beginExclusiveAction(rateLockRef)) return;
     const word = activeSessionItem.word;
     setLastRatingChoice(rating);
 
-    if (rating === 1) {
-      // 不会 -> Reveal definition + 1 real exam example -> Schedule Again
-      setCardStage("reveal_feedback");
-      api.logVocabEvent("rate_again", word);
-      await api.rateVocabCard(word, 1, undefined, 1);
-    } else if (rating === 2) {
-      // 模糊 -> Reveal definition + 1 real exam example -> Schedule Hard
-      setCardStage("reveal_feedback");
-      api.logVocabEvent("rate_hard", word);
-      await api.rateVocabCard(word, 2, undefined, 1);
-    } else {
-      // 会了 -> Enter Listening Discrimination Quiz (四选一)
-      api.logVocabEvent("rate_good_intent", word);
-      prepareQuiz(activeSessionItem);
+    try {
+      if (rating === 1) {
+        setCardStage(stageAfterRating(1));
+        api.logVocabEvent("rate_again", word);
+        await api.rateVocabCard(word, 1, undefined, 1);
+      } else if (rating === 2) {
+        setCardStage(stageAfterRating(2));
+        api.logVocabEvent("rate_hard", word);
+        await api.rateVocabCard(word, 2, undefined, 1);
+      } else {
+        api.logVocabEvent("rate_good_intent", word);
+        setCardStage(stageAfterRating(3));
+        prepareQuiz(activeSessionItem);
+      }
+    } catch (e) {
+      console.error(e);
+      rateLockRef.current = false;
     }
-  }, [activeSessionItem, prepareQuiz]);
+  }, [activeSessionItem, cardStage, prepareQuiz]);
 
   const handleSelectQuizOption = useCallback(async (option: string) => {
     if (selectedQuizOption !== null || !activeSessionItem) return;
+    if (!beginExclusiveAction(quizLockRef)) return;
 
     setSelectedQuizOption(option);
     const correct = option.toLowerCase() === activeSessionItem.word.toLowerCase();
     setIsQuizCorrect(correct);
     setCardStage("quiz_result");
 
-    if (correct) {
-      api.logVocabEvent("quiz_correct", activeSessionItem.word, { listen_count: quizListenCount });
-      // Schedule Good (Rating 3)
-      await api.rateVocabCard(activeSessionItem.word, 3, true, quizListenCount);
-      // Auto advance to next card after short feedback
-      setTimeout(() => {
-        handleAdvanceNextCard();
-      }, 850);
-    } else {
-      api.logVocabEvent("quiz_wrong", activeSessionItem.word, { selected: option, listen_count: quizListenCount });
-      // Schedule Again (Rating 1) because listening discrimination failed
-      await api.rateVocabCard(activeSessionItem.word, 1, false, quizListenCount);
-      // Replay correct audio for ear alignment
-      playWordAudio(activeSessionItem.word);
+    try {
+      if (correct) {
+        api.logVocabEvent("quiz_correct", activeSessionItem.word, { listen_count: quizListenCount });
+        await api.rateVocabCard(activeSessionItem.word, 3, true, quizListenCount);
+        setTimeout(() => {
+          handleAdvanceNextCard();
+        }, 850);
+      } else {
+        api.logVocabEvent("quiz_wrong", activeSessionItem.word, { selected: option, listen_count: quizListenCount });
+        await api.rateVocabCard(activeSessionItem.word, 1, false, quizListenCount);
+        playWordAudio(activeSessionItem.word);
+      }
+    } catch (e) {
+      console.error(e);
+      quizLockRef.current = false;
+      setSelectedQuizOption(null);
+      setIsQuizCorrect(null);
+      setCardStage("quiz");
     }
   }, [selectedQuizOption, activeSessionItem, quizListenCount, handleAdvanceNextCard, playWordAudio]);
 
@@ -518,10 +532,10 @@ export default function VocabularyPage() {
               <div className="py-24 text-center bg-white dark:bg-[#1c1c1e] rounded-3xl p-8 border border-black/[0.04] dark:border-white/[0.06] shadow-sm">
                 <CheckCircle2 className="w-12 h-12 text-[#34c759] mx-auto mb-3 opacity-90" />
                 <h3 className="text-base font-bold text-[#1d1d1f] dark:text-[#f5f5f7]">
-                  今日新词已完成
+                  {sessionCompletionCopy(summary.due_count).title}
                 </h3>
                 <p className="text-xs text-[#86868b] mt-1 max-w-xs mx-auto">
-                  {summary.due_count === 0 ? "暂无到期复习。记忆曲线已更新，明天再来！" : "复习任务已清理完毕。"}
+                  {sessionCompletionCopy(summary.due_count).detail}
                 </p>
                 <div className="mt-5 flex items-center justify-center gap-2">
                   <button
@@ -600,7 +614,7 @@ export default function VocabularyPage() {
                     </div>
 
                     <p className="text-xs text-[#86868b]">
-                      听清发音后，请选择对该词的掌握感
+                      听清发音后选择掌握感。选「会了」进入听辨四选一。
                     </p>
                   </div>
                 )}

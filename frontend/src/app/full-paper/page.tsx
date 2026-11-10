@@ -138,7 +138,7 @@ function FullPaperContent() {
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-8 py-6 pb-36 space-y-8">
+      <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-8 py-6 pb-[calc(12.5rem+env(safe-area-inset-bottom))] sm:pb-44 space-y-8">
         {/* Exam Overview Banner */}
         <div className="bg-white dark:bg-[#1c1c1e] border border-black/[0.06] dark:border-white/[0.08] rounded-3xl p-5 sm:p-6 shadow-xs">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

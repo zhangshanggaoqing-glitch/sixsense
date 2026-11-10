@@ -447,7 +447,7 @@ def get_study_session(current_user: dict = Depends(get_current_user_optional)):
             vf.frequency, vf.exam_count, vf.phonetic, vf.pos, vf.definition_zh, vf.examples_json,
             vd.distractors_json
         FROM user_vocab_srs uvs
-        JOIN vocab_frequency vf ON uvs.word = vf.word
+        LEFT JOIN vocab_frequency vf ON uvs.word = vf.word
         LEFT JOIN vocab_distractors vd ON uvs.word = vd.word
         WHERE uvs.user_id = ? AND uvs.due <= ? AND uvs.state IN ('learning', 'review', 'relearning')
         ORDER BY uvs.due ASC, uvs.stability ASC
@@ -463,11 +463,11 @@ def get_study_session(current_user: dict = Depends(get_current_user_optional)):
         session_items.append({
             "word": w,
             "is_review": True,
-            "frequency": r[7],
-            "exam_count": r[8],
-            "phonetic": r[9],
-            "pos": r[10],
-            "definition_zh": r[11],
+            "frequency": r[7] or 0,
+            "exam_count": r[8] or 0,
+            "phonetic": r[9] or "",
+            "pos": r[10] or "",
+            "definition_zh": r[11] or "",
             "examples": examples,
             "distractors": distractors,
             "srs": {
